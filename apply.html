@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apply &mdash; Association of Nature and Forest Therapies</title>
+<meta name="description" content="Apply for participation in the Association of Nature and Forest Therapies.">
+<link rel="canonical" href="https://anft.earth/apply.html">
+<meta property="og:title" content="Apply — Association of Nature and Forest Therapies">
+<meta property="og:description" content="Apply for participation in the Association of Nature and Forest Therapies.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://anft.earth/apply.html">
+<meta name="robots" content="noindex">
+<!-- noindex: application forms shouldn't compete in search results; remove this
+     line if you'd rather the apply page be indexed. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2F3EC; --card:#FBFCF8; --ink:#26301F; --ink-soft:#4E5A47;
+    --navy:#1E3A5F; --fir:#2E5B3E; --fir-tint:#E1EBDD; --river:#2E6E6A;
+    --gold:#A9862C; --gold-deep:#7C6118; --gold-tint:#F3EDD9;
+    --bark:#6B4F3A; --bark-deep:#4E3324; --bark-tint:#EFE7DF;
+    --line:#C9D0BE; --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:"Albert Sans",system-ui,sans-serif;
+    font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .serif{font-family:"EB Garamond",Garamond,Georgia,serif}
+
+  .site-header{background:#fff;border-bottom:1px solid var(--line)}
+  .hdr-in{max-width:1120px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;
+    justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .hdr-in img{height:66px;width:auto;display:block}
+  nav{display:flex;gap:26px;flex-wrap:wrap}
+  nav a{color:var(--navy);text-decoration:none;font-size:14.5px;font-weight:600;letter-spacing:.02em}
+  nav a:hover{color:var(--gold-deep);text-decoration:underline;text-underline-offset:4px}
+
+  .section{max-width:880px;margin:0 auto;padding:56px 28px 80px}
+  .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);
+    font-weight:600;margin-bottom:10px}
+  h1{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:500;color:var(--navy);
+    font-size:clamp(28px,4vw,40px);line-height:1.15}
+  .lede{margin-top:12px;color:var(--ink-soft);max-width:62ch}
+
+  /* step indicator */
+  .steps{display:flex;gap:8px;margin:30px 0 26px;flex-wrap:wrap}
+  .step-dot{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--ink-soft);
+    background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 16px}
+  .step-dot .n{width:20px;height:20px;border-radius:50%;background:var(--line);color:#fff;
+    display:inline-flex;align-items:center;justify-content:center;font-size:11.5px}
+  .step-dot.active{border-color:var(--gold);color:var(--navy)}
+  .step-dot.active .n{background:var(--gold)}
+  .step-dot.done .n{background:var(--fir)}
+
+  form{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:34px 38px}
+  @media (max-width:640px){form{padding:24px 20px}}
+  fieldset{border:0;margin:0 0 8px}
+  legend{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:23px;color:var(--navy);
+    font-weight:500;margin-bottom:4px}
+  .fs-note{font-size:14px;color:var(--ink-soft);margin-bottom:18px}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px}
+  @media (max-width:640px){.grid2{grid-template-columns:1fr}}
+  .fld{margin-bottom:16px}
+  .fld label{display:block;font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:6px}
+  .fld .req{color:var(--gold-deep)}
+  .fld input[type=text],.fld input[type=email],.fld input[type=tel],.fld input[type=url],
+  .fld select,.fld textarea{
+    width:100%;font-family:inherit;font-size:15px;color:var(--ink);
+    background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 13px}
+  .fld textarea{min-height:96px;resize:vertical}
+  .fld input:focus-visible,.fld select:focus-visible,.fld textarea:focus-visible{
+    outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
+  .fld .hint{font-size:12.5px;color:var(--ink-soft);margin-top:4px}
+  .fld.invalid input,.fld.invalid select,.fld.invalid textarea{border-color:#A33A2A;background:#FDF6F4}
+  .fld .err{display:none;font-size:12.5px;color:#A33A2A;margin-top:4px;font-weight:600}
+  .fld.invalid .err{display:block}
+
+  /* academy chooser */
+  .acad-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px}
+  @media (max-width:640px){.acad-grid{grid-template-columns:1fr}}
+  .acad-opt input{position:absolute;opacity:0}
+  .acad-opt .card{display:block;cursor:pointer;background:#fff;border:1px solid var(--line);
+    border-left-width:4px;border-radius:10px;padding:14px 16px;transition:border-color .15s ease,box-shadow .15s ease}
+  .acad-opt .t{display:block;font-family:"EB Garamond",Garamond,Georgia,serif;font-size:17.5px;color:var(--navy);font-weight:600;line-height:1.3}
+  .acad-opt .d{display:block;font-size:13px;color:var(--ink-soft);margin-top:3px}
+  .acad-opt.c-fir .card{border-left-color:var(--fir)}
+  .acad-opt.c-gold .card{border-left-color:var(--gold)}
+  .acad-opt.c-bark .card{border-left-color:var(--bark)}
+  .acad-opt input:checked + .card{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold-tint);background:var(--card)}
+  .acad-opt input:focus-visible + .card{outline:2px solid var(--gold);outline-offset:2px}
+
+  .acad-ghost{border:1.5px dashed var(--line);border-radius:10px;padding:26px 24px;
+    text-align:center;color:var(--ink-soft);font-size:14.5px;margin-bottom:8px;background:var(--paper)}
+  .form-nav{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:26px;
+    border-top:1px solid var(--line);padding-top:22px}
+  .btn{display:inline-block;font-size:14.5px;font-weight:600;border-radius:999px;padding:12px 26px;
+    text-decoration:none;cursor:pointer;border:1.5px solid transparent;font-family:inherit}
+  .btn-gold{background:var(--gold);color:#fff}
+  .btn-gold:hover{background:var(--gold-deep)}
+  .btn-quiet{background:transparent;color:var(--ink-soft);border-color:var(--line)}
+  .btn-quiet:hover{color:var(--navy);border-color:var(--navy)}
+  .btn:focus-visible{outline:2.5px solid var(--gold-deep);outline-offset:2px}
+  .btn[disabled]{opacity:.55;cursor:default}
+
+  /* review */
+  .review{border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:20px}
+  .review h3{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+    color:var(--gold-deep);background:var(--gold-tint);padding:10px 16px}
+  .review dl{display:grid;grid-template-columns:minmax(150px,34%) 1fr;font-size:14.5px}
+  .review dt{padding:9px 16px;color:var(--ink-soft);border-top:1px solid var(--line);font-weight:600}
+  .review dd{padding:9px 16px;border-top:1px solid var(--line);overflow-wrap:anywhere}
+  .review dl > dt:first-of-type, .review dl > dt:first-of-type + dd{border-top:0}
+  .confirm-row{display:flex;gap:10px;align-items:flex-start;margin:18px 0 4px;font-size:14.5px}
+  .confirm-row input{margin-top:4px;accent-color:var(--fir);width:17px;height:17px}
+
+  .success{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:44px 40px;text-align:center}
+  .success h2{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:500;color:var(--fir);font-size:30px}
+  .success p{color:var(--ink-soft);max-width:52ch;margin:12px auto 0}
+
+  [hidden]{display:none !important}
+
+
+
+  /* comprehensive footer */
+  footer{margin-top:72px;background:var(--navy);color:#F4F7FB;
+    border-top:3px solid var(--gold);padding:48px 28px 26px}
+  .foot-grid{max-width:1120px;margin:0 auto;display:grid;
+    grid-template-columns:1.6fr 1fr 1fr 1.3fr;gap:34px 44px}
+  @media (max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
+  @media (max-width:540px){.foot-grid{grid-template-columns:1fr}}
+  .foot-brand{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:21px;line-height:1.3;color:#FFFFFF}
+  .foot-tagline{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:14.5px;
+    color:#E7D9A8;letter-spacing:.06em;margin-top:8px}
+  .foot-mission{font-size:14px;color:#C9D5E6;margin:16px 0 0;max-width:40ch;line-height:1.65}
+  .foot-sys{display:inline-block;margin-top:16px;font-size:13.5px;font-weight:600;
+    color:#E7D9A8;text-decoration:none;border:1px solid rgba(231,217,168,.45);
+    border-radius:999px;padding:7px 16px}
+  .foot-sys:hover{background:rgba(231,217,168,.12);border-color:#E7D9A8}
+  .foot-col h3{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:#E7D9A8;
+    font-weight:700;margin:0 0 14px}
+  .foot-col a{display:block;color:#EDF2F8;text-decoration:none;font-size:14px;
+    padding:4px 0;line-height:1.5}
+  .foot-col a:hover{color:#FFFFFF;text-decoration:underline;text-underline-offset:3px;
+    text-decoration-color:var(--gold)}
+  .foot-contact p{font-size:14px;color:#C9D5E6;margin:0 0 12px;line-height:1.7;max-width:none}
+  .foot-contact a{display:inline;color:#EDF2F8;text-decoration:none;font-size:14px;
+    overflow-wrap:anywhere}
+  .foot-contact a:hover{text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px}
+  .foot-social{display:flex;gap:8px 18px;flex-wrap:wrap;margin-top:14px}
+  .foot-social a{display:inline;font-size:13.5px;color:#C9D5E6;text-decoration:none;
+    font-weight:600;padding:0}
+  .foot-social a:hover{color:#FFFFFF;text-decoration:underline;text-underline-offset:3px}
+  .foot-land{max-width:1120px;margin:40px auto 0;padding-top:24px;
+    border-top:1px solid rgba(244,247,251,.22);
+    font-family:"EB Garamond",Garamond,Georgia,serif;font-style:italic;font-size:15.5px;
+    color:#D8E0EC;line-height:1.7;max-width:76ch}
+  .foot-legal{max-width:1120px;margin:26px auto 0;padding-top:16px;
+    border-top:1px solid rgba(244,247,251,.16);
+    font-size:12.5px;color:#B9C6D9;display:flex;justify-content:space-between;
+    gap:10px 24px;flex-wrap:wrap;line-height:1.6}
+  .foot-legal a{color:#C9D5E6;text-decoration:none}
+  .foot-legal a:hover{color:#FFFFFF;text-decoration:underline}
+</style>
+</head>
+<body id="top">
+
+<header class="site-header">
+  <div class="hdr-in">
+    <a href="index.html" aria-label="Association of Nature and Forest Therapies — home"><img src="images/anft-logo-horizontal.webp" width="478" height="132" decoding="async" alt="Association of Nature and Forest Therapies"></a>
+    <nav aria-label="Primary">
+      <a href="index.html#structure">The Academies</a>
+      <a href="a-living-system.html">A Living System</a>
+      <a href="index.html#trainings">Trainings</a>
+      <a href="forest-threshold.html">The Forest Threshold</a>
+      <a href="membership.html">Membership</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="section">
+  <div class="eyebrow">Participation</div>
+  <h1>Apply to the Academies</h1>
+  <p class="lede">Three short steps: choose your path and tell us about yourself, share a little background, then review and send. Applications go to our admissions circle, and you&rsquo;ll receive a confirmation by email.</p>
+
+  <div class="steps" aria-hidden="true">
+    <span class="step-dot active" data-step-dot="1"><span class="n">1</span> Your path</span>
+    <span class="step-dot" data-step-dot="2"><span class="n">2</span> Background</span>
+    <span class="step-dot" data-step-dot="3"><span class="n">3</span> Review &amp; send</span>
+  </div>
+
+  <!-- ====================================================================
+       Submission backend: FormSubmit (https://formsubmit.co) — no account
+       needed. IMPORTANT: the FIRST submission triggers a one-time activation
+       email to admissions@anft.earth; a person there must click "Activate"
+       once, after which every submission is emailed to that address and an
+       automatic confirmation is emailed to the applicant (_autoresponse).
+       To use a different backend later, change the action URL only.
+       ==================================================================== -->
+  <form id="appForm" action="https://formsubmit.co/admissions@anft.earth" method="POST" novalidate>
+    <input type="hidden" name="_subject" value="Academy application — new submission">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_autoresponse" value="Thank you for your application to the Association of Nature and Forest Therapies. Our admissions circle has received it and will be in touch soon. — ANFT Admissions">
+    <input type="hidden" name="_next" value="" id="nextUrl">
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+    <!-- ============================ STEP 1 ============================ -->
+    <section class="fstep" data-step="1">
+      <fieldset>
+        <legend id="s1h" tabindex="-1">Where is the call of the wild leading you?</legend>
+        <p class="fs-note"><strong>Choose one</strong> &mdash; its questions will appear further down this page. You can change your mind at any time before sending.</p>
+        <div class="acad-grid" role="radiogroup" aria-label="Academy">
+          <label class="acad-opt c-fir"><input type="radio" name="Academy" value="The Forest Threshold" required>
+            <span class="card"><span class="t">The Forest Threshold</span><span class="d">The shared beginning of every path</span></span></label>
+          <label class="acad-opt c-fir"><input type="radio" name="Academy" value="Relational Forest Therapy Academy" required>
+            <span class="card"><span class="t">Relational Forest Therapy Academy</span><span class="d">Certified guide training and mentored practicum</span></span></label>
+          <label class="acad-opt c-gold"><input type="radio" name="Academy" value="Nature as Medicine">
+            <span class="card"><span class="t">Nature as Medicine</span><span class="d">For licensed health care professionals</span></span></label>
+          <label class="acad-opt c-fir"><input type="radio" name="Academy" value="Academy of Place">
+            <span class="card"><span class="t">Academy of Place</span><span class="d">Trail certification and place-based stewardship</span></span></label>
+          <label class="acad-opt c-bark"><input type="radio" name="Academy" value="Opus Academy">
+            <span class="card"><span class="t">Opus Academy</span><span class="d">The Alchimage creative-transformative path</span></span></label>
+          <label class="acad-opt c-bark"><input type="radio" name="Academy" value="Academy of Applied Partnerships">
+            <span class="card"><span class="t">Academy of Applied Partnerships</span><span class="d">Deliver your own offering through the Academies</span></span></label>
+        </div>
+        <p class="err" id="acadErr" style="display:none;color:#A33A2A;font-size:13px;font-weight:600;margin:-12px 0 16px">Please choose an academy to continue.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>About you</legend>
+        <div class="grid2">
+          <div class="fld"><label for="fname">First name <span class="req">*</span></label>
+            <input type="text" id="fname" name="First name" required autocomplete="given-name"><p class="err">Please enter your first name.</p></div>
+          <div class="fld"><label for="lname">Last name <span class="req">*</span></label>
+            <input type="text" id="lname" name="Last name" required autocomplete="family-name"><p class="err">Please enter your last name.</p></div>
+          <div class="fld"><label for="email">Email <span class="req">*</span></label>
+            <input type="email" id="email" name="Email" required autocomplete="email"><p class="err">Please enter a valid email address.</p></div>
+          <div class="fld"><label for="phone">Phone (with country code)</label>
+            <input type="tel" id="phone" name="Phone" autocomplete="tel"></div>
+          <div class="fld"><label for="city">City / town <span class="req">*</span></label>
+            <input type="text" id="city" name="City" required autocomplete="address-level2"><p class="err">Please enter your city or town.</p></div>
+          <div class="fld"><label for="lang">Preferred language for training <span class="req">*</span></label>
+            <select id="lang" name="Preferred language" required>
+              <option value="">Select&hellip;</option>
+              <option>English</option><option>Spanish</option><option>Other (note in final step)</option>
+            </select><p class="err">Please choose a language.</p></div>
+        </div>
+      </fieldset>
+
+      <!-- Ghost placeholder: occupies the spot where the chosen academy's
+           questions appear, so the reveal mechanic is visible before it happens -->
+      <div class="acad-ghost" id="acadGhost" aria-hidden="true">
+        <p>Your path&rsquo;s questions will appear here once you choose an academy above.</p>
+      </div>
+
+      <!-- Academy-specific question sets. Only the chosen one is shown and
+           enabled; the rest are disabled so they neither validate nor send. -->
+      <fieldset class="acad-fs" data-acad="The Forest Threshold" hidden disabled>
+        <legend>The call you are answering</legend>
+        <div class="fld"><label for="t1">How are you experiencing the call of the wild self? <span class="req">*</span></label>
+          <textarea id="t1" name="Threshold — Call of the wild self" required></textarea><p class="err">A sentence or two helps our admissions circle know you.</p></div>
+        <div class="fld"><label for="t2">Three scenes from your journey up to now <span class="req">*</span></label>
+          <textarea id="t2" name="Threshold — Three scenes" required></textarea><p class="err">Please share a few words.</p></div>
+        <div class="fld"><label for="t3">What about you would you most like to be seen?</label>
+          <textarea id="t3" name="Threshold — Most like to be seen"></textarea></div>
+        <div class="fld"><label for="t4">What is a footprint you have left that traces part of your life story?</label>
+          <textarea id="t4" name="Threshold — A footprint you have left"></textarea></div>
+      </fieldset>
+
+      <fieldset class="acad-fs" data-acad="Relational Forest Therapy Academy" hidden disabled>
+        <legend>Your path as a guide</legend>
+        <div class="fld"><label for="r1">Have you experienced a guided forest therapy walk? <span class="req">*</span></label>
+          <select id="r1" name="RFTA — Prior forest therapy experience" required>
+            <option value="">Select&hellip;</option><option>Yes, several</option><option>Yes, once</option><option>Not yet</option>
+          </select><p class="err">Please choose an option.</p></div>
+        <div class="fld"><label for="r2">Experience guiding or facilitating groups <span class="req">*</span></label>
+          <select id="r2" name="RFTA — Facilitation experience" required>
+            <option value="">Select&hellip;</option><option>Extensive (5+ years)</option><option>Some (1–5 years)</option><option>A little</option><option>None yet</option>
+          </select><p class="err">Please choose an option.</p></div>
+        <div class="fld"><label for="r3">Cohort format preference <span class="req">*</span></label>
+          <select id="r3" name="RFTA — Format preference" required>
+            <option value="">Select&hellip;</option><option>Online first, then in-person immersion</option><option>In-person first, then online integration</option><option>Not sure yet</option>
+          </select><p class="err">Please choose an option.</p></div>
+        <div class="fld"><label for="r4">Do you have regular access to a natural area for practicum walks? <span class="req">*</span></label>
+          <select id="r4" name="RFTA — Practicum land access" required>
+            <option value="">Select&hellip;</option><option>Yes</option><option>Somewhat / seasonal</option><option>No, I would need to arrange it</option>
+          </select><p class="err">Please choose an option.</p></div>
+        <div class="fld"><label for="r5">Your current nature-connection practice</label>
+          <input type="text" id="r5" name="RFTA — Current practice" placeholder="e.g. sit spot, walking, gardening, none yet"></div>
+        <div class="fld"><label for="r6">Anything about your health or mobility we should know to support you on the land?</label>
+          <input type="text" id="r6" name="RFTA — Support needs"></div>
+        <div class="fld"><label for="r7">What draws you to guide training now? <span class="req">*</span></label>
+          <textarea id="r7" name="RFTA — Intention" required></textarea><p class="err">A sentence or two helps our admissions circle know you.</p></div>
+      </fieldset>
+
+      <fieldset class="acad-fs" data-acad="Nature as Medicine" hidden disabled>
+        <legend>Your clinical background</legend>
+        <div class="fld"><label for="n1">Licensed profession <span class="req">*</span></label>
+          <select id="n1" name="NaM — Licensed profession" required>
+            <option value="">Select&hellip;</option><option>Physician (MD/DO)</option><option>Nurse / Nurse practitioner</option>
+            <option>Physician assistant</option><option>Psychologist / Therapist</option><option>Social worker</option>
+            <option>Physical / Occupational therapist</option><option>Other licensed health professional</option>
+          </select><p class="err">Please choose your profession.</p></div>
+        <div class="fld"><label for="n2">Years in clinical practice <span class="req">*</span></label>
+          <select id="n2" name="NaM — Years in practice" required>
+            <option value="">Select&hellip;</option><option>0–4</option><option>5–14</option><option>15–24</option><option>25+</option>
+          </select><p class="err">Please choose a range.</p></div>
+        <div class="fld"><label for="n3">Primary clinical setting <span class="req">*</span></label>
+          <select id="n3" name="NaM — Clinical setting" required>
+            <option value="">Select&hellip;</option><option>Hospital</option><option>Private practice</option><option>Community / public health</option><option>Academic / research</option><option>Other</option>
+          </select><p class="err">Please choose a setting.</p></div>
+        <div class="fld"><label for="n4">Are continuing education credits important to you? <span class="req">*</span></label>
+          <select id="n4" name="NaM — CE credits interest" required>
+            <option value="">Select&hellip;</option><option>Yes, essential</option><option>Helpful but not essential</option><option>Not important</option>
+          </select><p class="err">Please choose an option.</p></div>
+        <div class="fld"><label for="n5">License type and jurisdiction</label>
+          <input type="text" id="n5" name="NaM — License jurisdiction" placeholder="e.g. RN, State of Oregon"></div>
+        <div class="fld"><label for="n6">Prior exposure to forest therapy or nature-based care</label>
+          <input type="text" id="n6" name="NaM — Prior exposure"></div>
+        <div class="fld"><label for="n7">How do you imagine bringing nature into your practice? <span class="req">*</span></label>
+          <textarea id="n7" name="NaM — Clinical intention" required></textarea><p class="err">A sentence or two helps our admissions circle know you.</p></div>
+      </fieldset>
+
+      <fieldset class="acad-fs" data-acad="Academy of Place" hidden disabled>
+        <legend>Your place</legend>
+        <div class="fld"><label for="p1">Which offering are you most interested in? <span class="req">*</span></label>
+          <select id="p1" name="Place — Offering" required>
+            <option value="">Select&hellip;</option><option>Trail certification consultant training</option><option>Certifying a trail or site I steward</option><option>Both / not sure yet</option>
+          </select><p class="err">Please choose an option.</p></div>
+        <div class="fld"><label for="p2">Your relationship to the land in question <span class="req">*</span></label>
+          <select id="p2" name="Place — Land relationship" required>
+            <option value="">Select&hellip;</option><option>Owner / long-term steward</option><option>Work for the managing organization</option><option>Community member / volunteer</option><option>Exploring, no specific site yet</option>
+          </select><p class="err">Please choose an option.</p></div>
+        <div class="fld"><label for="p3">Type of place <span class="req">*</span></label>
+          <select id="p3" name="Place — Site type" required>
+            <option value="">Select&hellip;</option><option>Forest / woodland</option><option>Park or botanical garden</option><option>Retreat or healing center grounds</option><option>Coastal / wetland / other landscape</option><option>Not applicable yet</option>
+          </select><p class="err">Please choose an option.</p></div>
+        <div class="fld"><label for="p4">Organization or community affiliation (if any)</label>
+          <input type="text" id="p4" name="Place — Affiliation"></div>
+        <div class="fld"><label for="p5">Location of the place (region, country)</label>
+          <input type="text" id="p5" name="Place — Site location"></div>
+        <div class="fld"><label for="p6">Your background in ecology, land care, or trail work</label>
+          <input type="text" id="p6" name="Place — Background"></div>
+        <div class="fld"><label for="p7">Tell us about this place and your hopes for it <span class="req">*</span></label>
+          <textarea id="p7" name="Place — Intention" required></textarea><p class="err">A sentence or two helps our admissions circle know you.</p></div>
+      </fieldset>
+
+      <fieldset class="acad-fs" data-acad="Opus Academy" hidden disabled>
+        <legend>Your creative path</legend>
+        <div class="fld"><label for="o1">Which part of the Opus path calls first? <span class="req">*</span></label>
+          <select id="o1" name="Opus — First interest" required>
+            <option value="">Select&hellip;</option><option>Assemblage</option><option>The Alchimage process</option><option>Alchimage practices</option><option>The Atelier</option><option>Pilgrimage</option><option>Not sure yet</option>
+          </select><p class="err">Please choose an option.</p></div>
+        <div class="fld"><label for="o2">Your relationship with creative practice <span class="req">*</span></label>
+          <select id="o2" name="Opus — Creative background" required>
+            <option value="">Select&hellip;</option><option>Practicing artist / maker</option><option>Creative in another field</option><option>Returning after a long pause</option><option>New to creative practice</option>
+          </select><p class="err">Please choose an option.</p></div>
+        <div class="fld"><label for="o3">Mediums or materials you are drawn to</label>
+          <input type="text" id="o3" name="Opus — Mediums" placeholder="e.g. found objects, textile, writing, photography"></div>
+        <div class="fld"><label for="o4">Openness to a residential atelier period <span class="req">*</span></label>
+          <select id="o4" name="Opus — Residential openness" required>
+            <option value="">Select&hellip;</option><option>Yes, ready now</option><option>Yes, within the coming year</option><option>Uncertain — depends on details</option>
+          </select><p class="err">Please choose an option.</p></div>
+        <div class="fld"><label for="o5">Link to work or portfolio (optional)</label>
+          <input type="url" id="o5" name="Opus — Portfolio link" placeholder="https://"></div>
+        <div class="fld"><label for="o6">Is there a threshold or transition in your life this work would accompany?</label>
+          <input type="text" id="o6" name="Opus — Life threshold"></div>
+        <div class="fld"><label for="o7">What is the work you sense wanting to be made? <span class="req">*</span></label>
+          <textarea id="o7" name="Opus — Intention" required></textarea><p class="err">A sentence or two helps our admissions circle know you.</p></div>
+      </fieldset>
+
+      <fieldset class="acad-fs" data-acad="Academy of Applied Partnerships" hidden disabled>
+        <legend>Your proposed offering</legend>
+        <div class="fld"><label for="a1">Type of offering you propose <span class="req">*</span></label>
+          <select id="a1" name="Partnerships — Offering type" required>
+            <option value="">Select&hellip;</option><option>Workshop</option><option>Retreat</option><option>Specialized professional training</option><option>ANFT specialized training</option><option>Other / exploring</option>
+          </select><p class="err">Please choose an option.</p></div>
+        <div class="fld"><label for="a2">Organization (if applying on behalf of one)</label>
+          <input type="text" id="a2" name="Partnerships — Organization" autocomplete="organization"></div>
+        <div class="fld"><label for="a3">Your role <span class="req">*</span></label>
+          <input type="text" id="a3" name="Partnerships — Role" required><p class="err">Please describe your role.</p></div>
+        <div class="fld"><label for="a4">Intended audience <span class="req">*</span></label>
+          <select id="a4" name="Partnerships — Audience" required>
+            <option value="">Select&hellip;</option><option>General public</option><option>Health care professionals</option><option>Educators</option><option>Corporate / workplace</option><option>Guides and practitioners</option><option>Other</option>
+          </select><p class="err">Please choose an audience.</p></div>
+        <div class="fld"><label for="a5">Experience delivering programs like this <span class="req">*</span></label>
+          <select id="a5" name="Partnerships — Delivery experience" required>
+            <option value="">Select&hellip;</option><option>Extensive (5+ years)</option><option>Some (1–5 years)</option><option>This would be my first</option>
+          </select><p class="err">Please choose an option.</p></div>
+        <div class="fld"><label for="a6">Hoped-for timeline</label>
+          <input type="text" id="a6" name="Partnerships — Timeline" placeholder="e.g. spring 2027"></div>
+        <div class="fld"><label for="a7">Describe the offering and why it belongs with the Academies <span class="req">*</span></label>
+          <textarea id="a7" name="Partnerships — Proposal" required></textarea><p class="err">A sentence or two helps our admissions circle know you.</p></div>
+      </fieldset>
+
+      <div class="form-nav">
+        <span></span>
+        <button type="button" class="btn btn-gold" data-goto="2">Next &rarr;</button>
+      </div>
+    </section>
+
+    <!-- ============================ STEP 2 ============================ -->
+    <section class="fstep" data-step="2" hidden>
+      <fieldset>
+        <legend id="s2h" tabindex="-1">A little background</legend>
+        <p class="fs-note">These standardized answers help us understand, in aggregate, who the Academies serve. Individual answers stay within admissions.</p>
+        <div class="grid2">
+          <div class="fld"><label for="edu">Highest education completed <span class="req">*</span></label>
+            <select id="edu" name="Education" required>
+              <option value="">Select&hellip;</option>
+              <option>Primary / elementary</option>
+              <option>Secondary / high school</option>
+              <option>Some college or university</option>
+              <option>Vocational or technical certificate</option>
+              <option>Associate degree</option>
+              <option>Bachelor&rsquo;s degree</option>
+              <option>Master&rsquo;s degree</option>
+              <option>Doctorate or professional degree</option>
+              <option>Prefer not to say</option>
+            </select><p class="err">Please choose an option.</p></div>
+          <div class="fld"><label for="prof">Professional field <span class="req">*</span></label>
+            <select id="prof" name="Professional field" required>
+              <option value="">Select&hellip;</option>
+              <option>Health care</option>
+              <option>Mental health / counseling</option>
+              <option>Education</option>
+              <option>Environment / conservation</option>
+              <option>Wellness / coaching / bodywork</option>
+              <option>Arts / creative</option>
+              <option>Business / management</option>
+              <option>Technology</option>
+              <option>Government / nonprofit</option>
+              <option>Trades / agriculture</option>
+              <option>Student</option>
+              <option>Retired</option>
+              <option>Other</option>
+              <option>Prefer not to say</option>
+            </select><p class="err">Please choose an option.</p></div>
+          <div class="fld"><label for="country">Country of residence <span class="req">*</span></label>
+            <select id="country" name="Country" required>
+              <option value="">Select&hellip;</option>
+            </select><p class="err">Please choose your country.</p></div>
+          <div class="fld"><label for="age">Age range <span class="req">*</span></label>
+            <select id="age" name="Age range" required>
+              <option value="">Select&hellip;</option>
+              <option>18&ndash;24</option><option>25&ndash;34</option><option>35&ndash;44</option>
+              <option>45&ndash;54</option><option>55&ndash;64</option><option>65&ndash;74</option>
+              <option>75+</option><option>Prefer not to say</option>
+            </select><p class="err">Please choose an option.</p></div>
+          <div class="fld"><label for="gender">Gender <span class="req">*</span></label>
+            <select id="gender" name="Gender" required>
+              <option value="">Select&hellip;</option>
+              <option>Woman</option><option>Man</option><option>Non-binary</option>
+              <option>Prefer to self-describe (note in final step)</option><option>Prefer not to say</option>
+            </select><p class="err">Please choose an option.</p></div>
+        </div>
+      </fieldset>
+      <div class="form-nav">
+        <button type="button" class="btn btn-quiet" data-goto="1">&larr; Back</button>
+        <button type="button" class="btn btn-gold" data-goto="3">Review &rarr;</button>
+      </div>
+    </section>
+
+    <!-- ============================ STEP 3 ============================ -->
+    <section class="fstep" data-step="3" hidden>
+      <fieldset>
+        <legend id="s3h" tabindex="-1">Review your application</legend>
+        <p class="fs-note">Please check everything below. Use Back to change anything, or add clarifications here.</p>
+        <div id="reviewOut"></div>
+        <div class="fld"><label for="clarify">Clarifications or anything else you would like us to know</label>
+          <textarea id="clarify" name="Clarifications"></textarea></div>
+        <div class="confirm-row">
+          <input type="checkbox" id="confirmChk">
+          <label for="confirmChk">I confirm the information above is accurate, and I understand it will be sent to the ANFT admissions circle and that I will receive an email confirmation, as described in the <a href="privacy.html" target="_blank" style="color:var(--gold-deep)">privacy notice</a>. <span class="req">*</span></label>
+        </div>
+        <p class="err" id="confirmErr" style="display:none;color:#A33A2A;font-size:13px;font-weight:600">Please confirm before sending.</p>
+      </fieldset>
+      <div class="form-nav">
+        <button type="button" class="btn btn-quiet" data-goto="2">&larr; Back</button>
+        <button type="submit" class="btn btn-gold" id="submitBtn">Send application</button>
+      </div>
+    </section>
+  </form>
+
+  <div class="success" id="successBox" hidden>
+    <h2>Application received</h2>
+    <p>Thank you. Your application is on its way to our admissions circle, and a confirmation email is on its way to you. We will be in touch soon.</p>
+    <p style="margin-top:20px"><a class="btn btn-gold" href="index.html">Return to the Academies</a></p>
+  </div>
+</main>
+
+<footer>
+  <div class="foot-grid">
+    <div class="foot-col">
+      <div class="foot-brand">Association of Nature<br>and Forest Therapies</div>
+      <div class="foot-tagline">Knowledge &middot; Practice &middot; Transformation</div>
+      <p class="foot-mission">Supporting the wellbeing of people and planet by nurturing heart-centered relationship between all peoples and the more-than-human world of nature.</p>
+      <a class="foot-sys" href="a-living-system.html">A Living System &rarr;</a>
+    </div>
+    <div class="foot-col">
+      <h3>The Academies</h3>
+      <a href="forest-threshold.html">The Forest Threshold</a>
+      <a href="relational-forest-therapy-academy.html">Relational Forest Therapy</a>
+      <a href="nature-as-medicine.html">Nature as Medicine</a>
+      <a href="academy-of-place.html">Academy of Place</a>
+      <a href="opus-academy.html">Opus Academy</a>
+      <a href="academy-of-applied-partnerships.html">Applied Partnerships</a>
+    </div>
+    <div class="foot-col">
+      <h3>Participate</h3>
+      <a href="apply.html">Apply</a>
+      <a href="index.html#trainings">Upcoming trainings</a>
+      <a href="membership.html">Membership</a>
+      <a href="relational-forest-therapy-academy--global-guide-map.html">Find a guide</a>
+      <a href="academy-of-place--global-trail-map.html">Find a trail</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="foot-col foot-contact">
+      <h3>Reach Us</h3>
+      <p><a href="mailto:admissions@anft.earth">admissions@anft.earth</a><br>
+         <a href="mailto:info@anft.earth">info@anft.earth</a></p>
+      <p>1&#8209;707&#8209;385&#8209;1563<br>Monday&ndash;Friday, 9am&ndash;5pm PST</p>
+      <p>1745 Rustic Timbers Lane, Suite B<br>Prescott, AZ 86303, USA</p>
+      <div class="foot-social">
+        <a href="https://www.facebook.com/natureandforesttherapy/">Facebook</a>
+        <a href="https://www.instagram.com/natureandforesttherapy/">Instagram</a>
+        <a href="https://www.linkedin.com/company/nature-and-forest-therapy">LinkedIn</a>
+        <a href="https://www.youtube.com/channel/UCE-q1cBI6E6s0mHo_FcvTiA">YouTube</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-land">The land itself is the elder here and everywhere in our world. From our home in Prescott, Arizona, we work on land that has hosted many lives across its long existence &mdash; human and other-than-human, some now gone from the Earth &mdash; and many cultures, most recently, before those of us here now, the Yavapai and Apache peoples and their relations. We honor the land, and all whom it has held, and its infinite threads of relational connections, in which we and our work are embedded, which we live into with awe and love, and for which we are profoundly grateful.</div>
+  <div class="foot-legal">
+    <span>&copy; 2026 ANFT.earth LLC, doing business as the Association of Nature and Forest Therapies. All rights reserved.</span>
+    <span><a href="privacy.html">Privacy</a> &nbsp;&middot;&nbsp; <a href="#top" aria-label="Back to top">Back to top &uarr;</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var form=document.getElementById('appForm');
+
+  /* ---------- success state after redirect back ---------- */
+  if(location.search.indexOf('submitted=1')>-1){
+    form.hidden=true;
+    document.querySelector('.steps').hidden=true;
+    document.getElementById('successBox').hidden=false;
+    document.querySelector('.lede').hidden=true;
+  }
+  document.getElementById('nextUrl').value=
+    location.origin+location.pathname+'?submitted=1';
+
+  /* ---------- country pick list (ISO-based short names) ---------- */
+  var COUNTRIES=["Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","Brunei","Bulgaria","Burkina Faso","Burundi","Cabo Verde","Cambodia","Cameroon","Canada","Central African Republic","Chad","Chile","China","Colombia","Comoros","Congo (Republic)","Congo (DRC)","Costa Rica","C\u00f4te d'Ivoire","Croatia","Cuba","Cyprus","Czechia","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Eswatini","Ethiopia","Fiji","Finland","France","Gabon","Gambia","Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Honduras","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kiribati","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","North Korea","North Macedonia","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russia","Rwanda","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor-Leste","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe","Prefer not to say"];
+  var cSel=document.getElementById('country');
+  COUNTRIES.forEach(function(c){var o=document.createElement('option');o.textContent=c;cSel.appendChild(o);});
+
+  /* ---------- academy-specific fieldsets ---------- */
+  var acadFs=Array.prototype.slice.call(document.querySelectorAll('.acad-fs'));
+  function showAcad(name){
+    acadFs.forEach(function(fs){
+      var on=fs.getAttribute('data-acad')===name;
+      fs.hidden=!on; fs.disabled=!on;
+    });
+    document.getElementById('acadGhost').hidden=true;
+    document.getElementById('acadErr').style.display='none';
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('input[name="Academy"]'),function(r){
+    r.addEventListener('change',function(){ showAcad(r.getAttribute('data-shows')||r.value); });
+  });
+
+  /* ---------- step navigation with per-step validation ---------- */
+  var steps=Array.prototype.slice.call(document.querySelectorAll('.fstep'));
+  function stepEl(n){return steps.filter(function(s){return s.getAttribute('data-step')==String(n);})[0];}
+  function markInvalid(input,bad){
+    var fld=input.closest('.fld');
+    if(fld) fld.classList.toggle('invalid',bad);
+  }
+  function validateStep(n){
+    var ok=true, first=null;
+    var scope=stepEl(n);
+    var fields=scope.querySelectorAll('input,select,textarea');
+    Array.prototype.forEach.call(fields,function(f){
+      if(f.disabled||f.closest('[disabled]')||f.type==='hidden'||f.type==='checkbox'||f.type==='radio')return;
+      var bad=f.required && !f.value.trim();
+      if(!bad && f.type==='email' && f.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value)) bad=true;
+      markInvalid(f,bad);
+      if(bad){ ok=false; if(!first) first=f; }
+    });
+    if(n===1){
+      var chosen=form.querySelector('input[name="Academy"]:checked');
+      if(!chosen){ ok=false; document.getElementById('acadErr').style.display='block';
+        if(!first) first=form.querySelector('input[name="Academy"]'); }
+    }
+    if(first) first.focus();
+    return ok;
+  }
+  function goTo(n){
+    steps.forEach(function(s){ s.hidden = s.getAttribute('data-step')!=String(n); });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-step-dot]'),function(d){
+      var dn=+d.getAttribute('data-step-dot');
+      d.classList.toggle('active',dn===n);
+      d.classList.toggle('done',dn<n);
+    });
+    if(n===3) buildReview();
+    var h=document.getElementById('s'+n+'h');
+    if(h){ h.focus(); }
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-goto]'),function(b){
+    b.addEventListener('click',function(){
+      var target=+b.getAttribute('data-goto');
+      var current=+b.closest('.fstep').getAttribute('data-step');
+      if(target>current && !validateStep(current)) return;
+      goTo(target);
+    });
+  });
+
+  /* ---------- review builder ---------- */
+  function buildReview(){
+    var out=document.getElementById('reviewOut');
+    var groups=[
+      {title:'Your path', names:['Academy','First name','Last name','Email','Phone','City','Preferred language']},
+      {title:'Academy questions', names:[]},
+      {title:'Background', names:['Education','Professional field','Country','Age range','Gender']}
+    ];
+    var active=document.querySelector('.acad-fs:not([disabled])');
+    if(active){
+      Array.prototype.forEach.call(active.querySelectorAll('[name]'),function(f){
+        groups[1].names.push(f.getAttribute('name'));
+      });
+    }
+    var html='';
+    groups.forEach(function(g){
+      var rows='';
+      g.names.forEach(function(nm){
+        var f=form.querySelector('[name="'+nm.replace(/"/g,'\\"')+'"]');
+        var val='';
+        if(!f)return;
+        if(f.type==='radio'){ var c=form.querySelector('input[name="'+nm+'"]:checked'); val=c?c.value:''; }
+        else val=f.value;
+        if(!val) val='\u2014';
+        rows+='<dt>'+esc(nm.replace(/^[A-Za-z]+ \u2014 /,''))+'</dt><dd>'+esc(val)+'</dd>';
+      });
+      if(rows) html+='<div class="review"><h3>'+g.title+'</h3><dl>'+rows+'</dl></div>';
+    });
+    out.innerHTML=html;
+  }
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+
+  /* ---------- final confirmation gate ---------- */
+  form.addEventListener('submit',function(e){
+    if(!document.getElementById('confirmChk').checked){
+      e.preventDefault();
+      document.getElementById('confirmErr').style.display='block';
+      document.getElementById('confirmChk').focus();
+      return;
+    }
+    document.getElementById('confirmErr').style.display='none';
+    document.getElementById('submitBtn').disabled=true;
+    document.getElementById('submitBtn').textContent='Sending\u2026';
+  });
+})();
+</script>
+</body>
+</html>

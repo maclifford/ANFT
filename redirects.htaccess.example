@@ -1,0 +1,53 @@
+# =====================================================================
+# 301 REDIRECT MAP — for deployment when this site replaces anft.earth
+# =====================================================================
+#
+# PURPOSE: preserve a decade of inbound links and search rankings by
+# permanently redirecting replaced WordPress pages to their new
+# counterparts. Deploy these rules in the site's .htaccess (Apache) or
+# translate to your server's equivalent.
+#
+# ============================ CRITICAL ===============================
+# NOT EVERYTHING GETS REDIRECTED. The new static site deliberately
+# LINKS OUT to several anft.earth URLs that are functional systems
+# (enrollment listings, directories, maps, the member network page).
+# Those URLs must REMAIN LIVE on the WordPress side — redirecting them
+# would create redirect loops (new page -> old URL -> new page).
+#
+# MUST REMAIN LIVE (do NOT redirect these):
+#   /training-events/                                  (online-first cohort listings; linked from homepage)
+#   /combos/  and everything under it                  (in-person-first cohort pages; linked from training cards)
+#   /training-immersions/  and everything under it     (immersion event pages)
+#   /forest-therapy-guide-certification/online/        (enrollment; linked from guide-training page)
+#   /forest-therapy-guide-certification/in-person/     (enrollment; linked from guide-training page)
+#   /healthcare-professional-forest-therapy-training/  (NaM details & walkthrough calls; linked from nature-as-medicine page)
+#   /listings/                                         (guide directory; linked from global guide map page)
+#   /trails-overview/                                  (trail map; linked from global trail map page)
+#   /about-global-network/                             (network join page; linked from membership page)
+#   members.anft.earth                                 (member portal subdomain)
+#
+# If any of the above are later rebuilt inside the new site, update the
+# corresponding new-site link FIRST, then add the redirect here.
+# =====================================================================
+
+# ------------------ ACTIVE REDIRECTS (safe, no loops) ----------------
+
+# Marketing/overview pages fully replaced by the new site.
+# End-anchored so live child pages (/online/, /in-person/) are untouched:
+RedirectMatch 301 ^/forest-therapy-guide-certification/$ /relational-forest-therapy-academy--guide-training.html
+RedirectMatch 301 ^/guide-certification-process/$ /relational-forest-therapy-academy--guide-training.html
+RedirectMatch 301 ^/guide-training-faqs/$ /relational-forest-therapy-academy--guide-training.html
+RedirectMatch 301 ^/relational-forest-therapy-course/$ /relational-forest-therapy-academy.html
+RedirectMatch 301 ^/certify-your-trail/$ /academy-of-place--trail-certification.html
+RedirectMatch 301 ^/become-a-consultant/$ /academy-of-place--consultant-training.html
+RedirectMatch 301 ^/contact/$ /contact.html
+
+# ---------------------------------------------------------------------
+# AFTER DEPLOYING: in Google Search Console, submit the new sitemap
+# (https://anft.earth/sitemap.xml) and use URL Inspection on a few of
+# the redirected old URLs to confirm Google sees the 301s.
+# ---------------------------------------------------------------------
+
+# ------------------------- CUSTOM 404 PAGE ---------------------------
+# Serve the branded not-found page for any missing URL:
+ErrorDocument 404 /404.html
