@@ -49,6 +49,22 @@
     font-family:"EB Garamond",Garamond,Georgia,serif;font-size:20px;color:var(--navy)}
   .quote cite{display:block;font-family:"Albert Sans",sans-serif;font-style:normal;
     font-size:13px;color:var(--ink-soft);margin-top:6px}
+  /* opening founder statement */
+  .opening{display:flex;gap:32px;align-items:center;margin:0 0 44px}
+  .opening-portrait{flex:none;width:180px;height:180px;border-radius:50%;object-fit:cover;
+    background:var(--fir-tint);border:1px solid var(--line)}
+  .opening-quote{border-left:3px solid var(--gold);margin:0;padding:6px 0 6px 26px;
+    font-family:"EB Garamond",Garamond,Georgia,serif;font-style:italic;font-size:20px;
+    line-height:1.5;color:var(--navy)}
+  .opening-quote p{margin:0 0 14px;max-width:60ch}
+  .opening-quote p.opening-final{font-weight:600;margin-bottom:0}
+  .opening-quote .opening-cite{display:block;margin-top:16px;font-family:"Albert Sans",sans-serif;
+    font-style:normal;font-variant:small-caps;letter-spacing:.08em;font-weight:600;
+    font-size:14px;color:var(--ink-soft)}
+  @media (max-width:640px){
+    .opening{flex-direction:column;align-items:flex-start;gap:20px;margin-bottom:36px}
+    .opening-portrait{width:140px;height:140px}
+  }
   .facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin:20px 0 6px;
     padding:0;list-style:none}
   .facts li{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;
@@ -132,6 +148,15 @@
 </header>
 <div class="banner"><img src="images/living-system-banner.webp" alt="A circle of people casting long shadows together on open ground" loading="eager" decoding="async"></div>
 <main class="section">
+  <section class="opening" aria-label="A word from our founder">
+    <img class="opening-portrait" src="[placeholder]" alt="[Founder name], Founder">
+    <blockquote class="opening-quote">
+      <p>For twenty years we said the forest is the therapist. That sentence served us; it also said slightly too much and slightly too little. Too much, because the forest doesn&rsquo;t practice therapy &mdash; clinicians do, and now they train with us. Too little, because it cast the forest as a provider of services, when what we&rsquo;ve learned is that it&rsquo;s a partner in relationship. What we understand now is this:</p>
+      <p class="opening-final">The forest is the landscape of discovery &mdash; a landscape of threshold invitations.</p>
+      <cite class="opening-cite">[Founder name], Founder</cite>
+    </blockquote>
+  </section>
+
   <div class="eyebrow">What This Is</div>
   <h1>A Living System</h1>
   <p class="lede">ANFT is not a school with students. It is something that has grown &mdash; more or less organically, over more than a decade &mdash; out of the interaction of many hands, many places, and one shared practice. This page describes what has grown. None of it is aspiration; all of it is already here.</p>
