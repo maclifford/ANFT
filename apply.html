@@ -595,6 +595,27 @@
   });
   acadSummary.addEventListener('click',openAcad);
 
+  /* ---------- preselect academy from ?path= query parameter ---------- */
+  var PATH_SLUGS={
+    'forest-threshold':'The Forest Threshold',
+    'relational-forest-therapy-academy':'Relational Forest Therapy Academy',
+    'nature-as-medicine':'Nature as Medicine',
+    'academy-of-place':'Academy of Place',
+    'opus-academy':'Opus Academy',
+    'academy-of-applied-partnerships':'Academy of Applied Partnerships'
+  };
+  (function(){
+    var m=location.search.match(/[?&]path=([^&]+)/);
+    if(!m) return;
+    var slug=decodeURIComponent(m[1].replace(/\+/g,' ')).toLowerCase();
+    var value=PATH_SLUGS[slug];
+    if(!value) return;
+    var radio=form.querySelector('input[name="Academy"][value="'+value+'"]');
+    if(!radio) return;
+    radio.checked=true;
+    radio.dispatchEvent(new Event('change'));
+  })();
+
   /* ---------- step navigation with per-step validation ---------- */
   var steps=Array.prototype.slice.call(document.querySelectorAll('.fstep'));
   function stepEl(n){return steps.filter(function(s){return s.getAttribute('data-step')==String(n);})[0];}
