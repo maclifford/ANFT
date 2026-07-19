@@ -1,0 +1,5 @@
+# Netlify 301 redirects — Opus sub-page renames (old path -> new path)
+/opus-academy--assemblage.html            /opus-academy--company.html     301
+/opus-academy--alchimage-process.html     /opus-academy--process.html     301
+/opus-academy--alchimage-practices.html   /opus-academy--practices.html   301
+/opus-academy--alchimage-atelier.html     /opus-academy--atelier.html     301
