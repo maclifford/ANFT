@@ -74,6 +74,17 @@
   .subnav a:hover{text-decoration:underline}
   .stub-note{background:var(--gold-tint);border:1px solid var(--gold);border-radius:10px;
     padding:14px 18px;font-size:14px;color:var(--bark-deep);margin-top:26px}
+  /* Shape of the Journey panel */
+  .journey{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 26px;margin:22px 0 6px}
+  .journey h3{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:600;color:var(--navy);
+    font-size:20px;margin-bottom:14px}
+  .journey dl{display:grid;grid-template-columns:minmax(110px,150px) 1fr;gap:12px 22px;margin:0}
+  .journey dt{font-weight:700;color:var(--fir);font-size:14.5px}
+  .journey dd{margin:0;font-size:14.5px;color:var(--ink);line-height:1.55}
+  @media (max-width:560px){.journey{padding:18px 20px}.journey dl{grid-template-columns:1fr;gap:2px 0}
+    .journey dt{margin-top:8px}.journey dd{margin:0 0 4px}}
+  .fineprint{font-size:12.5px;color:var(--ink-soft);margin-top:16px;max-width:72ch}
 
 
   /* comprehensive footer */
@@ -139,18 +150,21 @@
 <h2>The certification pathway</h2>
 <ul class="stepline">
 <li><b>Six-month remote training.</b> Live calls with trainers and your cohort, paired with extensive nature-connection practice outdoors. Completing it earns provisional certification as a Forest Therapy Guide.</li>
-<li><b>Four-day in-person immersion.</b> After reaching module four of the remote training you become eligible; you are guided by trainers and deepen the practice on the land. You have two years to complete this step.</li>
+<li><b>Four-day in-person immersion.</b> Once you are grounded in the fundamentals of the remote training you become eligible; you are guided by trainers and deepen the practice on the land. You have two years to complete this step.</li>
 <li><b>Permanent certification.</b> With both complete, you are a certified Forest Therapy Guide and part of the largest forest therapy guide community worldwide.</li>
 </ul>
-<h2>What the training includes</h2>
-<ul class="facts">
-<li><b>14 modules</b> with over 120 lessons and a downloadable manual</li>
-<li><b>Live calls</b> with trainers, plus small-group discussion calls</li>
-<li><b>30+ short videos</b> recorded by different trainers</li>
-<li><b>40+ assignments</b> and self-exploration activities</li>
-<li><b>20+ nature-connection activities</b> taken outdoors</li>
-<li><b>Guided practice</b> &mdash; be guided remotely, then guide and debrief your own walks</li>
-</ul>
+<p>Certification is not a stack of content &mdash; it is a season of practice with a shape. You will learn the craft of the guided walk: the pace, the sequence, the sit spot, and above all the invitation. You will practice it on the land where you live, inside a cohort that knows your voice, with a mentor who knows your name.</p>
+<div class="journey">
+  <h3>The Shape of the Journey</h3>
+  <dl>
+    <dt>Duration</dt><dd>[Six months] of mentored practicum, woven alongside your life.</dd>
+    <dt>Rhythm</dt><dd>[A cohort circle every other week; a practice walk of your own each week]. A mentor throughout.</dd>
+    <dt>Where</dt><dd>[On the land where you live, with online circles; details by cohort.]</dd>
+    <dt>Cost</dt><dd>[$X,XXX all-in. Payment plans available.]</dd>
+    <dt>Afterward</dt><dd>Certification as an ANFT forest therapy guide, and a global community of practicing guides.</dd>
+  </dl>
+</div>
+<p class="fineprint">For employers and credentialing bodies: the program comprises approximately [N] instructional and practicum hours.</p>
 <p><b>Prerequisite for certification:</b> a current Wilderness First Aid (WFA) or Wilderness First Responder (WFR) certificate from a third-party provider such as NOLS &mdash; typically a two-day course costing roughly $175&ndash;300 USD. The ability to respond to minor emergencies is an essential guiding skill.</p>
 <p>Cohorts run throughout the year in a choice of two orders &mdash; <a class="p-link" href="https://anft.earth/forest-therapy-guide-certification/online/">start online first</a> or <a class="p-link" href="https://anft.earth/forest-therapy-guide-certification/in-person/">start in-person first</a>.</p>
 <div class="cta-row"><a class="btn btn-gold" href="apply.html">Apply to Relational Forest Therapy Academy</a><a class="p-link" href="apply.html">Apply now &rarr;</a></div>
