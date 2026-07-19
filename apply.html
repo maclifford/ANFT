@@ -92,6 +92,16 @@
   .acad-opt input:checked + .card{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold-tint);background:var(--card)}
   .acad-opt input:focus-visible + .card{outline:2px solid var(--gold);outline-offset:2px}
 
+  /* collapsible academy chooser */
+  .acad-summary{display:none;width:100%;align-items:center;justify-content:space-between;gap:12px;
+    background:var(--card);border:1px solid var(--gold);border-left:4px solid var(--gold);border-radius:10px;
+    padding:14px 16px;margin-bottom:22px;font-family:inherit;font-size:15px;color:var(--navy);cursor:pointer;text-align:left}
+  .acad-summary:hover{box-shadow:0 0 0 2px var(--gold-tint)}
+  .acad-summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  .acad-summary .acad-change{flex:none;font-size:13px;font-weight:600;color:var(--gold-deep)}
+  .acad-accordion.collapsed .acad-grid{display:none}
+  .acad-accordion.collapsed .acad-summary{display:flex}
+
   .acad-ghost{border:1.5px dashed var(--line);border-radius:10px;padding:26px 24px;
     text-align:center;color:var(--ink-soft);font-size:14.5px;margin-bottom:8px;background:var(--paper)}
   .form-nav{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:26px;
@@ -212,7 +222,9 @@
       <fieldset>
         <legend id="s1h" tabindex="-1">Where is the call of the wild leading you?</legend>
         <p class="fs-note"><strong>Choose one</strong> &mdash; its questions will appear further down this page. You can change your mind at any time before sending.</p>
-        <div class="acad-grid" role="radiogroup" aria-label="Academy">
+        <div class="acad-accordion" id="acadAccordion">
+        <button type="button" class="acad-summary" id="acadSummary" aria-expanded="true" aria-controls="acadGrid"><span>Your path: <strong id="acadSummaryName"></strong></span><span class="acad-change">Change &uarr;</span></button>
+        <div class="acad-grid" id="acadGrid" role="radiogroup" aria-label="Academy">
           <label class="acad-opt c-fir"><input type="radio" name="Academy" value="The Forest Threshold" required>
             <span class="card"><span class="t">The Forest Threshold</span><span class="d">The shared beginning of every path</span></span></label>
           <label class="acad-opt c-fir"><input type="radio" name="Academy" value="Relational Forest Therapy Academy" required>
@@ -225,6 +237,7 @@
             <span class="card"><span class="t">Opus Academy</span><span class="d">The Alchimage creative-transformative path</span></span></label>
           <label class="acad-opt c-bark"><input type="radio" name="Academy" value="Academy of Applied Partnerships">
             <span class="card"><span class="t">Academy of Applied Partnerships</span><span class="d">Deliver your own offering through the Academies</span></span></label>
+        </div>
         </div>
         <p class="err" id="acadErr" style="display:none;color:#A33A2A;font-size:13px;font-weight:600;margin:-12px 0 16px">Please choose an academy to continue.</p>
       </fieldset>
@@ -568,9 +581,19 @@
     document.getElementById('acadGhost').hidden=true;
     document.getElementById('acadErr').style.display='none';
   }
+  var acadAccordion=document.getElementById('acadAccordion');
+  var acadSummary=document.getElementById('acadSummary');
+  var acadSummaryName=document.getElementById('acadSummaryName');
+  function collapseAcad(){ acadAccordion.classList.add('collapsed'); acadSummary.setAttribute('aria-expanded','false'); }
+  function openAcad(){ acadAccordion.classList.remove('collapsed'); acadSummary.setAttribute('aria-expanded','true'); }
   Array.prototype.forEach.call(document.querySelectorAll('input[name="Academy"]'),function(r){
-    r.addEventListener('change',function(){ showAcad(r.getAttribute('data-shows')||r.value); });
+    r.addEventListener('change',function(){
+      showAcad(r.getAttribute('data-shows')||r.value);
+      acadSummaryName.textContent=r.value;
+      collapseAcad();
+    });
   });
+  acadSummary.addEventListener('click',openAcad);
 
   /* ---------- step navigation with per-step validation ---------- */
   var steps=Array.prototype.slice.call(document.querySelectorAll('.fstep'));
