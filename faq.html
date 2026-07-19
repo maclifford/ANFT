@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Global Trail Map — Certified Forest Therapy Trails, Spaces, and Places</title>
-<meta name="description" content="Explore the world map of certified forest therapy trails, spaces, and places — from quiet woodlands and coastal paths to sacred groves and urban greenways.">
-<link rel="canonical" href="https://anft.earth/academy-of-place--global-trail-map.html">
-<meta property="og:url" content="https://anft.earth/academy-of-place--global-trail-map.html">
-<meta property="og:title" content="Global Trail Map">
-<meta property="og:description" content="Explore the world map of certified forest therapy trails, spaces, and places — from quiet woodlands and coastal paths to sacred groves and urban greenways.">
+<title>Questions, Answered | Association of Nature and Forest Therapies</title>
+<meta name="description" content="Answers to common questions about the Academies of Nature and Forest Therapies: cost, cohorts, refunds, experience needed, time commitment, Nature as Medicine, and what happens after you apply.">
+<link rel="canonical" href="https://anft.earth/faq.html">
+<meta property="og:url" content="https://anft.earth/faq.html">
+<meta property="og:title" content="Questions, Answered">
+<meta property="og:description" content="Answers to common questions about the Academies of Nature and Forest Therapies: cost, cohorts, refunds, experience needed, time commitment, Nature as Medicine, and what happens after you apply.">
 <meta property="og:type" content="website">
-
+<meta property="og:image" content="https://anft.earth/images/hero.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -49,31 +49,25 @@
     font-family:"EB Garamond",Garamond,Georgia,serif;font-size:20px;color:var(--navy)}
   .quote cite{display:block;font-family:"Albert Sans",sans-serif;font-style:normal;
     font-size:13px;color:var(--ink-soft);margin-top:6px}
-  .facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin:20px 0 6px;
-    padding:0;list-style:none}
-  .facts li{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;
-    font-size:14.5px}
-  .facts b{color:var(--navy)}
-  .stepline{counter-reset:st;list-style:none;margin:18px 0 8px;padding:0}
-  .stepline li{position:relative;padding:0 0 18px 52px}
-  .stepline li::before{counter-increment:st;content:counter(st);position:absolute;left:0;top:0;
-    width:34px;height:34px;border-radius:50%;background:var(--fir);color:#fff;font-weight:700;
-    display:flex;align-items:center;justify-content:center;font-size:15px}
-  .stepline b{color:var(--navy)}
-  .cta-row{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-  .btn{display:inline-block;font-size:14.5px;font-weight:600;border-radius:999px;padding:12px 26px;
-    text-decoration:none;cursor:pointer;border:1.5px solid transparent;font-family:inherit}
-  .btn-gold{background:var(--gold);color:#fff}
-  .btn-gold:hover{background:var(--gold-deep)}
-  .btn-quiet{background:transparent;color:var(--fir);border-color:var(--fir)}
-  .btn-quiet:hover{background:var(--fir-tint)}
   .p-link{font-size:14.5px;font-weight:600;color:var(--gold-deep);text-decoration:none}
   .p-link:hover{text-decoration:underline;text-underline-offset:4px}
   .subnav{margin-top:34px;padding-top:22px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-soft)}
   .subnav a{color:var(--fir);font-weight:600;text-decoration:none}
   .subnav a:hover{text-decoration:underline}
-  .stub-note{background:var(--gold-tint);border:1px solid var(--gold);border-radius:10px;
-    padding:14px 18px;font-size:14px;color:var(--bark-deep);margin-top:26px}
+
+  /* FAQ accordion */
+  .faq{margin:8px 0 0}
+  .faq details{background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:12px}
+  .faq summary{cursor:pointer;list-style:none;padding:16px 20px;font-family:inherit;font-weight:600;
+    color:var(--navy);font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";font-size:22px;font-weight:400;line-height:1;color:var(--gold-deep);flex:none}
+  .faq details[open] summary::after{content:"\2212"}
+  .faq summary:hover{color:var(--gold-deep)}
+  .faq summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:10px}
+  .faq .answer{padding:2px 20px 18px;color:var(--ink-soft);font-size:15px;line-height:1.6;max-width:72ch}
+  .faq .ph{display:inline-block;background:var(--gold-tint);border:1px solid var(--gold);border-radius:8px;
+    padding:6px 12px;color:var(--bark-deep);font-size:14px;font-weight:600}
 
 
   /* comprehensive footer */
@@ -130,16 +124,43 @@
     </nav>
   </div>
 </header>
-
 <main class="section">
-  <div class="eyebrow">Academy of Place</div>
-  <h1>The Global Trail Map</h1>
-  <p class="lede">From quiet woodlands to urban greenways &mdash; certified places, growing across continents.</p>
+  <div class="eyebrow">Frequently Asked</div>
+  <h1>Questions, Answered</h1>
+  <p class="lede">Short answers to the questions we hear most often. Still wondering about something? <a class="p-link" href="contact.html">Ask us directly &rarr;</a></p>
 
-<p>Each certified trail, space, and place is a unique expression of its landscape and culture, inviting people to slow down, listen, and remember their place in the web of life. The interactive map shows certified sites worldwide, along with projects in progress being developed in alignment with principles of relationship, reciprocity, and care for the land.</p>
-<div class="cta-row"><a class="btn btn-gold" href="https://anft.earth/trails-overview/">Open the trail map</a><a class="p-link" href="academy-of-place--trail-certification.html">Certify your own place &rarr;</a></div>
+  <div class="faq">
+    <details>
+      <summary>What does a training cost, and what does that include?</summary>
+      <div class="answer"><span class="ph">[placeholder &mdash; needs real answer]</span></div>
+    </details>
+    <details>
+      <summary>When and where do cohorts run?</summary>
+      <div class="answer"><span class="ph">[placeholder &mdash; needs real answer]</span></div>
+    </details>
+    <details>
+      <summary>What is the refund and cancellation policy?</summary>
+      <div class="answer"><span class="ph">[placeholder &mdash; needs real answer]</span></div>
+    </details>
+    <details>
+      <summary>Do I need experience to begin?</summary>
+      <div class="answer">No &mdash; every path begins at the Forest Threshold, which assumes nothing but willingness.</div>
+    </details>
+    <details>
+      <summary>What is the time commitment after the Threshold week?</summary>
+      <div class="answer"><span class="ph">[placeholder &mdash; needs real answer]</span></div>
+    </details>
+    <details>
+      <summary>Is Nature as Medicine only for physicians?</summary>
+      <div class="answer">It is open to any licensed health care professional.</div>
+    </details>
+    <details>
+      <summary>What happens after I apply?</summary>
+      <div class="answer">Our admissions circle reads every application, and we respond within three business days.</div>
+    </details>
+  </div>
 
-  <div class="subnav">Back to <a href="academy-of-place.html">Academy of Place</a></div>
+  <div class="subnav">Ready when you are: <a href="apply.html">Apply</a> &middot; <a href="forest-threshold.html">The Forest Threshold</a> &middot; <a href="contact.html">Contact</a></div>
 </main>
 <footer>
   <div class="foot-grid">
