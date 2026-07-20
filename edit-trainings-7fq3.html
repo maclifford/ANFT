@@ -61,7 +61,7 @@
 <div class="banner">Editing tool — changes are not live until the downloaded file is placed in /data and deployed.</div>
 <main>
   <h1 class="serif">Trainings Editor</h1>
-  <p class="routine">Internal tool. Update routine: <b>download</b> &rarr; <b>replace the file in <code>/data</code></b> &rarr; <b>deploy</b>. (Also re-run <code>tools/build-trainings.ps1</code> to refresh the homepage.)</p>
+  <p class="routine">Internal tool. Update routine: <b>replace <code>data/trainings.json</code></b> &rarr; <b>run <code>update-trainings</code></b> (or just deploy, if Netlify builds) &rarr; <b>verify</b>.</p>
   <div id="loadErr" class="notice" hidden>Couldn&rsquo;t fetch <code>data/trainings.json</code> automatically (normal when opening this file directly rather than via a server). Load it manually: <input type="file" id="fileInput" accept="application/json,.json"></div>
   <div class="toolbar">
     <button id="addTraining">+ Add training</button>
