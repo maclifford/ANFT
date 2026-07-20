@@ -1,0 +1,269 @@
+{
+  "_meta": {
+    "harvested_from": "https://anft.earth/ (homepage curated listings)",
+    "harvest_date": "2026-07-19",
+    "notes": "Statuses and deadlines are as of harvest date and change frequently — re-verify before leadership presentation and before launch. Detail/registration URLs point to the live anft.earth site by design during transition. Images are hotlinked from anft.earth; localize before launch. Categories with no entries yet (Opus Companies, Professional Development) are intentional placeholders so the accordion structure shows the full catalog shape.",
+    "categories_order": [
+      "Forest Therapy Guide Training",
+      "Nature as Medicine",
+      "Opus Companies",
+      "Professional Development",
+      "Open Calls & Events"
+    ]
+  },
+  "trainings": [
+    {
+      "id": "cb-ontario-2026-08",
+      "title": "Canada, Ontario — Dharma Centre of Canada",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "Start In-Person First (7-day training + 4 months online)",
+      "cohort": "Cohort 171",
+      "status": "Enrollment Open",
+      "enrollmentDeadline": "2026-08-28",
+      "language": "English",
+      "schedule": "Live calls Tuesdays 3:30–5:30 pm PST",
+      "url": "https://anft.earth/combos/cb-ontario-august-2026/",
+      "image": "https://anft.earth/wp-content/uploads/2025/10/Dharma-Centre-Front-scaled.jpg"
+    },
+    {
+      "id": "cb-georgia-2026-11",
+      "title": "USA, Georgia — Just Love Forest",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "Start In-Person First (7-day training + 4 months online)",
+      "cohort": "Cohort 176",
+      "status": "Enrollment Open",
+      "enrollmentDeadline": "2026-10-01",
+      "language": "English",
+      "schedule": "Live calls Wednesdays 4:00–6:00 pm PST",
+      "url": "https://anft.earth/combos/usa-georgia-just-love-forest-november-2026/",
+      "image": "https://anft.earth/wp-content/uploads/2026/01/Georgia-IMG_9945-scaled.jpg"
+    },
+    {
+      "id": "cb-thailand-2026-11",
+      "title": "Thailand, Koh Phra Thong — Baba Ecolodge",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "Start In-Person First (7-day training + 4 months online)",
+      "cohort": "Cohort 177",
+      "status": "Enrollment Open",
+      "enrollmentDeadline": "2026-11-15",
+      "language": "English",
+      "schedule": "Live calls Thursdays 3:30–5:30 am PST",
+      "url": "https://anft.earth/combos/thailand-koh-phra-thong-baba-ecolodge-november-2026/",
+      "image": "https://anft.earth/wp-content/uploads/2024/08/2.jpg"
+    },
+    {
+      "id": "on-pudu-2026-07",
+      "title": "Pudú — in Spanish",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "Start Online First (6 months online)",
+      "cohort": "Cohort 168",
+      "status": "Enrollment Open",
+      "enrollmentDeadline": "2026-07-22",
+      "firstCall": "2026-07-22",
+      "language": "Spanish",
+      "schedule": "Live calls Wednesdays 4:00–6:00 pm PST",
+      "url": "https://anft.earth/training-events/pudu-in-spanish/",
+      "image": "https://anft.earth/wp-content/uploads/2025/09/2026_trainings_pudu-deer-7829488_1280.jpg"
+    },
+    {
+      "id": "on-komorebi-2026-07",
+      "title": "Komorebi 木漏れ日",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "Start Online First (6 months online)",
+      "cohort": "Cohort 169",
+      "status": "Enrollment Open",
+      "enrollmentDeadline": "2026-07-29",
+      "firstCall": "2026-07-29",
+      "language": "English",
+      "schedule": "Live calls Wednesdays 5:30–7:30 pm PST",
+      "url": "https://anft.earth/training-events/komorebi-%e6%9c%a8%e6%bc%8f%e3%82%8c%e6%97%a5/",
+      "image": "https://anft.earth/wp-content/uploads/2025/09/2026_Trainings_Komorebi_bikesh-deshar-iN5jOYa724Y-unsplash-scaled.jpg"
+    },
+    {
+      "id": "on-peacock-2026-08",
+      "title": "Peacock",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "Start Online First (6 months online)",
+      "cohort": "Cohort 170",
+      "status": "Enrollment Open",
+      "enrollmentDeadline": "2026-08-26",
+      "firstCall": "2026-08-26",
+      "language": "English",
+      "schedule": "Live calls Wednesdays 3:30–5:30 pm PST",
+      "url": "https://anft.earth/training-events/peacock/",
+      "image": "https://anft.earth/wp-content/uploads/2025/09/2026-Trainings_Peacock_siddhant-kumar-lxJCMVSy3Ow-unsplash-scaled.jpg"
+    },
+    {
+      "id": "on-sea-otter-2026-09",
+      "title": "Sea Otter",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "Start Online First (6 months online)",
+      "cohort": "Cohort 179",
+      "status": "Enrollment Open",
+      "enrollmentDeadline": "2026-09-08",
+      "firstCall": "2026-09-08",
+      "language": "English",
+      "schedule": "Live calls Tuesdays 5:30–7:30 pm PST",
+      "url": "https://anft.earth/training-events/sea-otter/",
+      "image": "https://anft.earth/wp-content/uploads/2026/04/Sea-Otter.jpg"
+    },
+    {
+      "id": "on-cedar-2026-10",
+      "title": "Cedar",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "Start Online First (6 months online)",
+      "cohort": "Cohort 173",
+      "status": "Enrollment Open",
+      "enrollmentDeadline": "2026-10-06",
+      "firstCall": "2026-10-06",
+      "language": "English",
+      "schedule": "Live calls Tuesdays 3:30–5:30 pm PST",
+      "url": "https://anft.earth/training-events/cedar/",
+      "image": "https://anft.earth/wp-content/uploads/2025/09/2026-Trainings_Cedar_adam-kring-J3qfB1NojJU-unsplash-scaled.jpg"
+    },
+    {
+      "id": "on-winter-jasmine-2026-10",
+      "title": "Winter Jasmine",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "Start Online First (6 months online)",
+      "cohort": "Cohort 174",
+      "status": "Enrollment Open",
+      "enrollmentDeadline": "2026-10-26",
+      "firstCall": "2026-10-26",
+      "language": "English",
+      "schedule": "Live calls Mondays 9:00–11:00 am PST",
+      "url": "https://anft.earth/training-events/winter-jasmine/",
+      "image": "https://anft.earth/wp-content/uploads/2025/09/Winter-Jasmine-2-rotated.jpg"
+    },
+    {
+      "id": "im-maine-2026-08",
+      "title": "USA, Maine — Casa Portal",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "4-Day In-Person Immersion",
+      "status": "Event Full — Registration Closed",
+      "startDate": "2026-08-16",
+      "language": "English",
+      "url": "https://anft.earth/training-immersions/usa-maine-casa-portal-august-2026/",
+      "image": "https://anft.earth/wp-content/uploads/2025/08/Maine-1.-Banner-meadow-house-scaled.jpg"
+    },
+    {
+      "id": "im-ontario-2026-09",
+      "title": "Canada, Ontario — Dharma Centre of Canada",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "4-Day In-Person Immersion",
+      "status": "Enrollment Open",
+      "startDate": "2026-09-04",
+      "language": "English",
+      "url": "https://anft.earth/training-immersions/canada-ontario-dharma-centre-of-canada-september-2026/",
+      "image": "https://anft.earth/wp-content/uploads/2025/10/Dharma-Centre-Front-scaled.jpg"
+    },
+    {
+      "id": "im-tennessee-2026-09",
+      "title": "USA, Tennessee — Well Being Retreat Center",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "4-Day In-Person Immersion",
+      "status": "Fully Registered — Accepting Waitlist",
+      "startDate": "2026-09-16",
+      "language": "English",
+      "url": "https://anft.earth/training-immersions/usa-tennessee-well-being-retreat-center-september-2026-2/",
+      "image": "https://anft.earth/wp-content/uploads/2024/08/612cfe08f035b4edcb0413f5_BannerMain.jpg"
+    },
+    {
+      "id": "im-italy-2026-09",
+      "title": "Italy, Bagno di Romagna — Emilia Romagna",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "4-Day In-Person Immersion",
+      "status": "Enrollment Open",
+      "startDate": "2026-09-24",
+      "language": "English",
+      "url": "https://anft.earth/training-immersions/italy-bagno-di-romagna-emilia-romagna-september-2026/",
+      "image": "https://anft.earth/wp-content/uploads/2026/05/Italy3-santuario-la-verna.jpg"
+    },
+    {
+      "id": "im-colorado-2026-10",
+      "title": "USA, Colorado — Rocky Mountain Ecodharma Retreat Center",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "4-Day In-Person Immersion",
+      "status": "Enrollment Open",
+      "startDate": "2026-10-06",
+      "language": "English",
+      "url": "https://anft.earth/training-immersions/usa-colorado-rocky-mountain-ecodharma-retreat-center-october-2026/",
+      "image": "https://anft.earth/wp-content/uploads/2024/08/61eab84ac4777f4c99854302_Banner.jpg"
+    },
+    {
+      "id": "im-australia-2026-10",
+      "title": "Australia, QLD — Daintree Siesta",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "4-Day In-Person Immersion",
+      "status": "Enrollment Open",
+      "startDate": "2026-10-11",
+      "language": "English",
+      "url": "https://anft.earth/training-immersions/australia-qld-daintree-siesta-october-2026/",
+      "image": "https://anft.earth/wp-content/uploads/2026/01/Daintree-view-scaled.png"
+    },
+    {
+      "id": "im-chile-2026-10",
+      "title": "Chile, Pucón — Lodge Kod Kod Study Center (in Spanish)",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "4-Day In-Person Immersion",
+      "status": "Enrollment Open",
+      "startDate": "2026-10-19",
+      "language": "Spanish",
+      "url": "https://anft.earth/training-immersions/in-spanish-chile-pucon-lodge-kod-kod-study-center-october-2026/",
+      "image": "https://anft.earth/wp-content/uploads/2024/08/Banner-6.jpg"
+    },
+    {
+      "id": "im-thailand-2026-11",
+      "title": "Thailand, Ko Phra Thong — Baba Ecolodge",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "4-Day In-Person Immersion",
+      "status": "Enrollment Open",
+      "startDate": "2026-11-25",
+      "language": "English",
+      "url": "https://anft.earth/training-immersions/thailand-ko-phra-thong-baba-ecolodge-november-2026/",
+      "image": "https://anft.earth/wp-content/uploads/2024/08/Banner-2.jpg"
+    }
+  ],
+  "events": [
+    {
+      "id": "qa-2026-07-27",
+      "title": "Live Q&A with ANFT Trainers",
+      "category": "Open Calls & Events",
+      "date": "2026-07-27",
+      "time": "4:00 am PST",
+      "url": "https://us02web.zoom.us/meeting/register/IAYc4uVcT_Kd1AR8uTZx9g"
+    },
+    {
+      "id": "qa-2026-08-05",
+      "title": "Live Q&A with ANFT Trainers",
+      "category": "Open Calls & Events",
+      "date": "2026-08-05",
+      "time": "10:30 am PST",
+      "url": "https://us02web.zoom.us/meeting/register/bdR6e8-XQG6VqwwenTAuqA"
+    },
+    {
+      "id": "qa-2026-08-13",
+      "title": "Live Q&A with ANFT Trainers",
+      "category": "Open Calls & Events",
+      "date": "2026-08-13",
+      "time": "5:00 pm PST",
+      "url": "https://us02web.zoom.us/meeting/register/Jx_VOKxKTfWWThajOpLuBA"
+    },
+    {
+      "id": "nam-call-2026-08-04",
+      "title": "Nature as Medicine — Training Walkthrough Call",
+      "category": "Nature as Medicine",
+      "date": "2026-08-04",
+      "time": "5:00 pm PST",
+      "url": "https://us06web.zoom.us/meeting/register/a1B_jNGuTi2OWKpf9KzTQQ"
+    },
+    {
+      "id": "nam-call-2026-11-12",
+      "title": "Nature as Medicine — Training Walkthrough Call",
+      "category": "Nature as Medicine",
+      "date": "2026-11-12",
+      "time": "5:00 pm PST",
+      "url": "https://us06web.zoom.us/meeting/register/TpABfR_eTCm5LkwRvCToHQ"
+    }
+  ]
+}
