@@ -136,6 +136,33 @@
   .tr-status{display:inline-block;margin-top:12px;font-size:12px;font-weight:600;color:var(--fir);
     background:var(--fir-tint);border-radius:999px;padding:4px 12px}
   .tr-all{margin-top:22px}
+  /* trainings accordion */
+  .tr-acc{margin-top:26px}
+  .tr-cat{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:12px}
+  .tr-cat > summary{cursor:pointer;list-style:none;padding:16px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .tr-cat > summary::-webkit-details-marker{display:none}
+  .tr-cat-name{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:20px;font-weight:600;color:var(--navy)}
+  .tr-cat > summary::after{content:"+";font-size:22px;font-weight:400;color:var(--gold-deep);flex:none;line-height:1}
+  .tr-cat[open] > summary::after{content:"\2212"}
+  .tr-cat > summary:hover .tr-cat-name{color:var(--gold-deep)}
+  .tr-cat > summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:12px}
+  .tr-count{font-size:12px;font-weight:600;letter-spacing:.03em;color:var(--ink-soft);white-space:nowrap}
+  .tr-cat-body{padding:2px 22px 18px}
+  .tr-cat-body > .tr-item:first-child{border-top:0}
+  .tr-subhead{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--gold-deep);margin:18px 0 4px}
+  .tr-subhead + .tr-item{border-top:0}
+  .tr-item{padding:14px 0;border-top:1px solid var(--line)}
+  .tr-item-title{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:17px;color:var(--navy);font-weight:600;margin-top:3px}
+  .tr-item-cohort{font-family:"Albert Sans",sans-serif;font-size:13px;color:var(--ink-soft);font-weight:400}
+  .tr-meta{font-size:13.5px;color:var(--ink-soft);margin-top:5px;line-height:1.6}
+  .tr-meta b{color:var(--ink);font-weight:600}
+  .tr-badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;border-radius:999px;padding:3px 11px}
+  .tr-badge.open{background:var(--fir-tint);color:var(--fir)}
+  .tr-badge.wait{background:var(--gold-tint);color:var(--gold-deep)}
+  .tr-badge.closed{background:#E7EAE1;color:var(--ink-soft)}
+  .tr-link{display:inline-block;margin-top:8px;font-size:13.5px;font-weight:600;color:var(--gold-deep);text-decoration:none}
+  .tr-link:hover{text-decoration:underline;text-underline-offset:3px}
+  .tr-empty{color:var(--ink-soft);font-size:14.5px;margin:2px 0 4px}
 
   /* accreditation + testimonial */
   .cred .cred-in{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;
@@ -350,40 +377,333 @@
        UPCOMING TRAININGS - placeholder data drawn from anft.earth, July 2026.
        Update each card: location, venue, dates, format, status, and href.
        ====================================================================== -->
-  <!-- Hidden until real cohort data exists — see CTA audit P1.
   <section class="section" id="trainings" aria-label="Upcoming trainings">
     <div class="eyebrow">Take the First Step</div>
     <h2>Upcoming Trainings</h2>
     <p class="lede">Cohorts begin throughout the year, online and on the land, in multiple languages.</p>
-    <div class="tr-grid" id="trGrid"></div>
-    <p class="tr-all" id="trAll" hidden><a class="p-link" href="https://anft.earth/training-events/">View all upcoming trainings \u2192</a>
-      &nbsp;&nbsp;<a class="p-link" href="apply.html">Apply to an academy \u2192</a></p>
-    <p id="trEmpty" hidden style="color:var(--ink-soft)">New cohorts are being scheduled \u2014 <a class="p-link" href="https://anft.earth/training-events/">see the full calendar</a> or <a class="p-link" href="apply.html">apply now</a> and we\u2019ll be in touch.</p>
-    <script src="courses.js"></script>
+    <div class="tr-acc" id="trAccordion"></div>
+    <noscript>
+      <p style="color:var(--ink-soft);margin-top:22px">Our current categories: Forest Therapy Guide Training &middot; Nature as Medicine &middot; Opus Companies &middot; Professional Development &middot; Open Calls &amp; Events.</p>
+      <p><a class="p-link" href="apply.html">Apply to an academy &rarr;</a></p>
+    </noscript>
+    <script type="application/json" id="trainingsData">{
+  "_meta": {
+    "harvested_from": "https://anft.earth/ (homepage curated listings)",
+    "harvest_date": "2026-07-19",
+    "notes": "Statuses and deadlines are as of harvest date and change frequently — re-verify before leadership presentation and before launch. Detail/registration URLs point to the live anft.earth site by design during transition. Images are hotlinked from anft.earth; localize before launch. Categories with no entries yet (Opus Companies, Professional Development) are intentional placeholders so the accordion structure shows the full catalog shape.",
+    "categories_order": [
+      "Forest Therapy Guide Training",
+      "Nature as Medicine",
+      "Opus Companies",
+      "Professional Development",
+      "Open Calls & Events"
+    ]
+  },
+  "trainings": [
+    {
+      "id": "cb-ontario-2026-08",
+      "title": "Canada, Ontario — Dharma Centre of Canada",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "Start In-Person First (7-day training + 4 months online)",
+      "cohort": "Cohort 171",
+      "status": "Enrollment Open",
+      "enrollmentDeadline": "2026-08-28",
+      "language": "English",
+      "schedule": "Live calls Tuesdays 3:30–5:30 pm PST",
+      "url": "https://anft.earth/combos/cb-ontario-august-2026/",
+      "image": "https://anft.earth/wp-content/uploads/2025/10/Dharma-Centre-Front-scaled.jpg"
+    },
+    {
+      "id": "cb-georgia-2026-11",
+      "title": "USA, Georgia — Just Love Forest",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "Start In-Person First (7-day training + 4 months online)",
+      "cohort": "Cohort 176",
+      "status": "Enrollment Open",
+      "enrollmentDeadline": "2026-10-01",
+      "language": "English",
+      "schedule": "Live calls Wednesdays 4:00–6:00 pm PST",
+      "url": "https://anft.earth/combos/usa-georgia-just-love-forest-november-2026/",
+      "image": "https://anft.earth/wp-content/uploads/2026/01/Georgia-IMG_9945-scaled.jpg"
+    },
+    {
+      "id": "cb-thailand-2026-11",
+      "title": "Thailand, Koh Phra Thong — Baba Ecolodge",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "Start In-Person First (7-day training + 4 months online)",
+      "cohort": "Cohort 177",
+      "status": "Enrollment Open",
+      "enrollmentDeadline": "2026-11-15",
+      "language": "English",
+      "schedule": "Live calls Thursdays 3:30–5:30 am PST",
+      "url": "https://anft.earth/combos/thailand-koh-phra-thong-baba-ecolodge-november-2026/",
+      "image": "https://anft.earth/wp-content/uploads/2024/08/2.jpg"
+    },
+    {
+      "id": "on-pudu-2026-07",
+      "title": "Pudú — in Spanish",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "Start Online First (6 months online)",
+      "cohort": "Cohort 168",
+      "status": "Enrollment Open",
+      "enrollmentDeadline": "2026-07-22",
+      "firstCall": "2026-07-22",
+      "language": "Spanish",
+      "schedule": "Live calls Wednesdays 4:00–6:00 pm PST",
+      "url": "https://anft.earth/training-events/pudu-in-spanish/",
+      "image": "https://anft.earth/wp-content/uploads/2025/09/2026_trainings_pudu-deer-7829488_1280.jpg"
+    },
+    {
+      "id": "on-komorebi-2026-07",
+      "title": "Komorebi 木漏れ日",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "Start Online First (6 months online)",
+      "cohort": "Cohort 169",
+      "status": "Enrollment Open",
+      "enrollmentDeadline": "2026-07-29",
+      "firstCall": "2026-07-29",
+      "language": "English",
+      "schedule": "Live calls Wednesdays 5:30–7:30 pm PST",
+      "url": "https://anft.earth/training-events/komorebi-%e6%9c%a8%e6%bc%8f%e3%82%8c%e6%97%a5/",
+      "image": "https://anft.earth/wp-content/uploads/2025/09/2026_Trainings_Komorebi_bikesh-deshar-iN5jOYa724Y-unsplash-scaled.jpg"
+    },
+    {
+      "id": "on-peacock-2026-08",
+      "title": "Peacock",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "Start Online First (6 months online)",
+      "cohort": "Cohort 170",
+      "status": "Enrollment Open",
+      "enrollmentDeadline": "2026-08-26",
+      "firstCall": "2026-08-26",
+      "language": "English",
+      "schedule": "Live calls Wednesdays 3:30–5:30 pm PST",
+      "url": "https://anft.earth/training-events/peacock/",
+      "image": "https://anft.earth/wp-content/uploads/2025/09/2026-Trainings_Peacock_siddhant-kumar-lxJCMVSy3Ow-unsplash-scaled.jpg"
+    },
+    {
+      "id": "on-sea-otter-2026-09",
+      "title": "Sea Otter",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "Start Online First (6 months online)",
+      "cohort": "Cohort 179",
+      "status": "Enrollment Open",
+      "enrollmentDeadline": "2026-09-08",
+      "firstCall": "2026-09-08",
+      "language": "English",
+      "schedule": "Live calls Tuesdays 5:30–7:30 pm PST",
+      "url": "https://anft.earth/training-events/sea-otter/",
+      "image": "https://anft.earth/wp-content/uploads/2026/04/Sea-Otter.jpg"
+    },
+    {
+      "id": "on-cedar-2026-10",
+      "title": "Cedar",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "Start Online First (6 months online)",
+      "cohort": "Cohort 173",
+      "status": "Enrollment Open",
+      "enrollmentDeadline": "2026-10-06",
+      "firstCall": "2026-10-06",
+      "language": "English",
+      "schedule": "Live calls Tuesdays 3:30–5:30 pm PST",
+      "url": "https://anft.earth/training-events/cedar/",
+      "image": "https://anft.earth/wp-content/uploads/2025/09/2026-Trainings_Cedar_adam-kring-J3qfB1NojJU-unsplash-scaled.jpg"
+    },
+    {
+      "id": "on-winter-jasmine-2026-10",
+      "title": "Winter Jasmine",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "Start Online First (6 months online)",
+      "cohort": "Cohort 174",
+      "status": "Enrollment Open",
+      "enrollmentDeadline": "2026-10-26",
+      "firstCall": "2026-10-26",
+      "language": "English",
+      "schedule": "Live calls Mondays 9:00–11:00 am PST",
+      "url": "https://anft.earth/training-events/winter-jasmine/",
+      "image": "https://anft.earth/wp-content/uploads/2025/09/Winter-Jasmine-2-rotated.jpg"
+    },
+    {
+      "id": "im-maine-2026-08",
+      "title": "USA, Maine — Casa Portal",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "4-Day In-Person Immersion",
+      "status": "Event Full — Registration Closed",
+      "startDate": "2026-08-16",
+      "language": "English",
+      "url": "https://anft.earth/training-immersions/usa-maine-casa-portal-august-2026/",
+      "image": "https://anft.earth/wp-content/uploads/2025/08/Maine-1.-Banner-meadow-house-scaled.jpg"
+    },
+    {
+      "id": "im-ontario-2026-09",
+      "title": "Canada, Ontario — Dharma Centre of Canada",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "4-Day In-Person Immersion",
+      "status": "Enrollment Open",
+      "startDate": "2026-09-04",
+      "language": "English",
+      "url": "https://anft.earth/training-immersions/canada-ontario-dharma-centre-of-canada-september-2026/",
+      "image": "https://anft.earth/wp-content/uploads/2025/10/Dharma-Centre-Front-scaled.jpg"
+    },
+    {
+      "id": "im-tennessee-2026-09",
+      "title": "USA, Tennessee — Well Being Retreat Center",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "4-Day In-Person Immersion",
+      "status": "Fully Registered — Accepting Waitlist",
+      "startDate": "2026-09-16",
+      "language": "English",
+      "url": "https://anft.earth/training-immersions/usa-tennessee-well-being-retreat-center-september-2026-2/",
+      "image": "https://anft.earth/wp-content/uploads/2024/08/612cfe08f035b4edcb0413f5_BannerMain.jpg"
+    },
+    {
+      "id": "im-italy-2026-09",
+      "title": "Italy, Bagno di Romagna — Emilia Romagna",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "4-Day In-Person Immersion",
+      "status": "Enrollment Open",
+      "startDate": "2026-09-24",
+      "language": "English",
+      "url": "https://anft.earth/training-immersions/italy-bagno-di-romagna-emilia-romagna-september-2026/",
+      "image": "https://anft.earth/wp-content/uploads/2026/05/Italy3-santuario-la-verna.jpg"
+    },
+    {
+      "id": "im-colorado-2026-10",
+      "title": "USA, Colorado — Rocky Mountain Ecodharma Retreat Center",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "4-Day In-Person Immersion",
+      "status": "Enrollment Open",
+      "startDate": "2026-10-06",
+      "language": "English",
+      "url": "https://anft.earth/training-immersions/usa-colorado-rocky-mountain-ecodharma-retreat-center-october-2026/",
+      "image": "https://anft.earth/wp-content/uploads/2024/08/61eab84ac4777f4c99854302_Banner.jpg"
+    },
+    {
+      "id": "im-australia-2026-10",
+      "title": "Australia, QLD — Daintree Siesta",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "4-Day In-Person Immersion",
+      "status": "Enrollment Open",
+      "startDate": "2026-10-11",
+      "language": "English",
+      "url": "https://anft.earth/training-immersions/australia-qld-daintree-siesta-october-2026/",
+      "image": "https://anft.earth/wp-content/uploads/2026/01/Daintree-view-scaled.png"
+    },
+    {
+      "id": "im-chile-2026-10",
+      "title": "Chile, Pucón — Lodge Kod Kod Study Center (in Spanish)",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "4-Day In-Person Immersion",
+      "status": "Enrollment Open",
+      "startDate": "2026-10-19",
+      "language": "Spanish",
+      "url": "https://anft.earth/training-immersions/in-spanish-chile-pucon-lodge-kod-kod-study-center-october-2026/",
+      "image": "https://anft.earth/wp-content/uploads/2024/08/Banner-6.jpg"
+    },
+    {
+      "id": "im-thailand-2026-11",
+      "title": "Thailand, Ko Phra Thong — Baba Ecolodge",
+      "category": "Forest Therapy Guide Training",
+      "subcategory": "4-Day In-Person Immersion",
+      "status": "Enrollment Open",
+      "startDate": "2026-11-25",
+      "language": "English",
+      "url": "https://anft.earth/training-immersions/thailand-ko-phra-thong-baba-ecolodge-november-2026/",
+      "image": "https://anft.earth/wp-content/uploads/2024/08/Banner-2.jpg"
+    }
+  ],
+  "events": [
+    {
+      "id": "qa-2026-07-27",
+      "title": "Live Q&A with ANFT Trainers",
+      "category": "Open Calls & Events",
+      "date": "2026-07-27",
+      "time": "4:00 am PST",
+      "url": "https://us02web.zoom.us/meeting/register/IAYc4uVcT_Kd1AR8uTZx9g"
+    },
+    {
+      "id": "qa-2026-08-05",
+      "title": "Live Q&A with ANFT Trainers",
+      "category": "Open Calls & Events",
+      "date": "2026-08-05",
+      "time": "10:30 am PST",
+      "url": "https://us02web.zoom.us/meeting/register/bdR6e8-XQG6VqwwenTAuqA"
+    },
+    {
+      "id": "qa-2026-08-13",
+      "title": "Live Q&A with ANFT Trainers",
+      "category": "Open Calls & Events",
+      "date": "2026-08-13",
+      "time": "5:00 pm PST",
+      "url": "https://us02web.zoom.us/meeting/register/Jx_VOKxKTfWWThajOpLuBA"
+    },
+    {
+      "id": "nam-call-2026-08-04",
+      "title": "Nature as Medicine — Training Walkthrough Call",
+      "category": "Nature as Medicine",
+      "date": "2026-08-04",
+      "time": "5:00 pm PST",
+      "url": "https://us06web.zoom.us/meeting/register/a1B_jNGuTi2OWKpf9KzTQQ"
+    },
+    {
+      "id": "nam-call-2026-11-12",
+      "title": "Nature as Medicine — Training Walkthrough Call",
+      "category": "Nature as Medicine",
+      "date": "2026-11-12",
+      "time": "5:00 pm PST",
+      "url": "https://us06web.zoom.us/meeting/register/TpABfR_eTCm5LkwRvCToHQ"
+    }
+  ]
+}
+</script>
     <script>
     (function(){
-      var today = new Date(); today.setHours(0,0,0,0);
-      var live = (window.ANFT_COURSES||[]).filter(function(c){
-        return new Date(c.listFrom+'T00:00:00') <= today && today <= new Date(c.listUntil+'T23:59:59');
-      }).sort(function(a,b){ return a.listUntil < b.listUntil ? -1 : 1; });
-      var grid = document.getElementById('trGrid');
-      if(!live.length){ document.getElementById('trEmpty').hidden = false; return; }
-      function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;'); }
-      grid.innerHTML = live.map(function(c){
-        return '<a class="tr-card" href="'+(c.id?'course.html?id='+esc(c.id):esc(c.url))+'">'
-          +(c.image ? '<img src="'+esc(c.image)+'" alt="" loading="lazy" decoding="async">' : '')
-          +'<div class="tr-card-body">'
-          +'<div class="tr-format">'+esc(c.format)+'</div>'
-          +'<div class="tr-place">'+esc(c.place)+'</div>'
-          +'<div class="tr-venue">'+esc(c.venue)+'</div>'
-          +'<div class="tr-date">'+esc(c.dateLabel)+'</div>'
-          +'<div class="tr-status">'+esc(c.status)+'</div></div></a>';
-      }).join('');
-      document.getElementById('trAll').hidden = false;
+      var el=document.getElementById('trainingsData'), acc=document.getElementById('trAccordion');
+      if(!el||!acc) return;
+      var data; try{ data=JSON.parse(el.textContent); }catch(e){ return; }
+      var order=(data._meta&&data._meta.categories_order)||[];
+      var items=(data.trainings||[]).concat(data.events||[]);
+      function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+      var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      function relDate(x){return x.enrollmentDeadline||x.startDate||x.date||'9999-12-31';}
+      function fmt(d){if(!d)return '';var p=String(d).split('-');if(p.length!==3)return d;return MON[parseInt(p[1],10)-1]+' '+parseInt(p[2],10)+', '+p[0];}
+      function badgeClass(s){s=(s||'').toLowerCase();if(s.indexOf('waitlist')>-1)return 'wait';if(s.indexOf('closed')>-1||s.indexOf('full')>-1)return 'closed';if(s.indexOf('open')>-1)return 'open';return 'closed';}
+      function item(x){
+        var h='<div class="tr-item">';
+        if(x.status){h+='<span class="tr-badge '+badgeClass(x.status)+'">'+esc(x.status)+'</span>';}
+        h+='<div class="tr-item-title">'+esc(x.title)+(x.cohort?' <span class="tr-item-cohort">'+esc(x.cohort)+'</span>':'')+'</div>';
+        var m=[];
+        if(x.enrollmentDeadline&&x.firstCall&&x.enrollmentDeadline===x.firstCall){m.push('<b>Enroll by / first call</b> '+fmt(x.enrollmentDeadline));}
+        else{if(x.enrollmentDeadline)m.push('<b>Enroll by</b> '+fmt(x.enrollmentDeadline));if(x.firstCall)m.push('<b>First call</b> '+fmt(x.firstCall));}
+        if(x.startDate)m.push('<b>Begins</b> '+fmt(x.startDate));
+        if(x.date)m.push('<b>'+fmt(x.date)+'</b>'+(x.time?' &middot; '+esc(x.time):''));
+        if(x.language)m.push(esc(x.language));
+        if(x.schedule)m.push(esc(x.schedule));
+        if(m.length)h+='<div class="tr-meta">'+m.join(' &middot; ')+'</div>';
+        if(x.url){var ext=/^https?:/i.test(x.url);h+='<a class="tr-link" href="'+esc(x.url)+'"'+(ext?' target="_blank" rel="noopener"':'')+'>Details &amp; registration &rarr;</a>';}
+        return h+'</div>';
+      }
+      function byDate(a,b){return relDate(a)<relDate(b)?-1:(relDate(a)>relDate(b)?1:0);}
+      var html='';
+      order.forEach(function(cat,ci){
+        var list=items.filter(function(x){return x.category===cat;}).sort(byDate);
+        var body='';
+        if(!list.length){
+          body='<p class="tr-empty">New offerings are being composed &mdash; the seasonal letter will carry the news.</p>';
+        } else if(cat==='Forest Therapy Guide Training'){
+          var subs=[],seen={};
+          list.forEach(function(x){var s=x.subcategory||'Other';if(!seen[s]){seen[s]=[];subs.push(s);}seen[s].push(x);});
+          subs.forEach(function(s){ body+='<div class="tr-subhead">'+esc(s)+'</div>'+seen[s].map(item).join(''); });
+        } else {
+          body=list.map(item).join('');
+        }
+        var cnt=list.length;
+        html+='<details class="tr-cat"'+(ci===0?' open':'')+'><summary><span class="tr-cat-name">'+esc(cat)+'</span><span class="tr-count">'+(cnt?cnt+' listed':'coming soon')+'</span></summary><div class="tr-cat-body">'+body+'</div></details>';
+      });
+      acc.innerHTML=html;
     })();
     </script>
   </section>
-  -->
 
   <!-- ======================================================================
        CREDIBILITY - accreditation is factual per anft.earth; swap the
