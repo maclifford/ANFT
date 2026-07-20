@@ -131,6 +131,28 @@
   .success h2{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:500;color:var(--fir);font-size:30px}
   .success p{color:var(--ink-soft);max-width:52ch;margin:12px auto 0}
 
+  /* selected-training summary card (shown when ?event= is present) */
+  .event-card{background:var(--card);border:1px solid var(--gold);border-left:4px solid var(--gold);
+    border-radius:var(--radius);padding:20px 24px;margin:0 0 26px}
+  .event-card .ec-eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--gold-deep);font-weight:600;margin-bottom:6px}
+  .event-card h2{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:500;color:var(--navy);font-size:22px;line-height:1.2}
+  .event-card .ec-meta{font-size:14px;color:var(--ink-soft);margin-top:8px;line-height:1.7}
+  .event-card .ec-meta b{color:var(--ink);font-weight:600}
+  .event-card .ec-money{margin-top:10px;font-size:15px;color:var(--navy);font-weight:600}
+  .event-card .ec-money .ec-soft{color:var(--ink-soft);font-weight:400;font-size:14px}
+  .event-card .ec-change{display:inline-block;margin-top:12px;font-size:13px;font-weight:600;
+    color:var(--gold-deep);text-decoration:none}
+  .event-card .ec-change:hover{text-decoration:underline;text-underline-offset:3px}
+
+  /* optional deposit block in the success state */
+  .deposit-block{border:1px solid var(--gold);background:var(--gold-tint);border-radius:12px;
+    padding:20px 22px;margin:24px auto 0;max-width:46ch;text-align:left}
+  .deposit-block h3{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:500;color:var(--navy);font-size:19px;margin-bottom:6px}
+  .deposit-block p{color:var(--ink-soft);font-size:14px;margin:0 0 14px;max-width:none}
+  .btn-deposit{background:transparent;color:var(--gold-deep);border-color:var(--gold)}
+  .btn-deposit:hover{background:#fff;border-color:var(--gold-deep);color:var(--gold-deep)}
+
   [hidden]{display:none !important}
 
 
@@ -202,6 +224,16 @@
     <span class="step-dot" data-step-dot="3"><span class="n">3</span> Review &amp; send</span>
   </div>
 
+  <!-- Summary of the training chosen from the homepage (populated when the
+       page is opened as apply.html?event=<id>; hidden otherwise). -->
+  <div class="event-card" id="eventCard" hidden>
+    <div class="ec-eyebrow">You&rsquo;re applying for</div>
+    <h2 id="ecTitle"></h2>
+    <div class="ec-meta" id="ecMeta"></div>
+    <div class="ec-money" id="ecMoney"></div>
+    <a class="ec-change" href="index.html#trainings">&larr; Choose a different training</a>
+  </div>
+
   <!-- ====================================================================
        Submission backend: FormSubmit (https://formsubmit.co) — no account
        needed. IMPORTANT: the FIRST submission triggers a one-time activation
@@ -216,6 +248,14 @@
     <input type="hidden" name="_autoresponse" value="Thank you for your application to the Association of Nature and Forest Therapies. Our admissions circle has received it and will be in touch soon. — ANFT Admissions">
     <input type="hidden" name="_next" value="" id="nextUrl">
     <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+    <!-- Selected-training reference for the admissions/invoicing email.
+         Populated only when opened as apply.html?event=<id>; empty otherwise. -->
+    <input type="hidden" name="event_id" id="ev_id" value="">
+    <input type="hidden" name="event_title" id="ev_title" value="">
+    <input type="hidden" name="event_cohort" id="ev_cohort" value="">
+    <input type="hidden" name="event_price" id="ev_price" value="">
+    <input type="hidden" name="event_deposit" id="ev_deposit" value="">
 
     <!-- ============================ STEP 1 ============================ -->
     <section class="fstep" data-step="1">
@@ -500,7 +540,8 @@
 
   <div class="success" id="successBox" hidden>
     <h2>Application received</h2>
-    <p>Thank you. Your application is on its way to our admissions circle, and a confirmation email is on its way to you. We will be in touch soon.</p>
+    <p>Thank you &mdash; our admissions circle reads every application, and we respond within three business days.</p>
+    <div class="deposit-block" id="depositBlock" hidden></div>
     <p style="margin-top:20px"><a class="btn btn-gold" href="index.html">Return to the Academies</a></p>
   </div>
 </main>
@@ -567,6 +608,71 @@
   }
   document.getElementById('nextUrl').value=
     location.origin+location.pathname+'?submitted=1';
+
+  /* ---------- selected training (?event=<id>) ---------- */
+  var CATEGORY_TO_PATH={
+    'Forest Therapy Guide Training':'Relational Forest Therapy Academy',
+    'Nature as Medicine':'Nature as Medicine',
+    'Opus Companies':'Opus Academy',
+    'Professional Development':'Academy of Applied Partnerships'
+  };
+  function qparam(n){var m=location.search.match(new RegExp('[?&]'+n+'=([^&]+)'));return m?decodeURIComponent(m[1].replace(/\+/g,' ')):'';}
+  function money(v){if(v==null||v==='')return '';var n=Number(v);if(isNaN(n))return '';return '$'+n.toLocaleString('en-US');}
+  var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function fmtDate(d){if(!d)return '';var p=String(d).split('-');if(p.length!==3)return d;return MON[parseInt(p[1],10)-1]+' '+parseInt(p[2],10)+', '+p[0];}
+  var _trCache=null;
+  function loadTrainings(){ if(!_trCache){_trCache=fetch('data/trainings.json').then(function(r){if(!r.ok)throw 0;return r.json();});} return _trCache; }
+  function findEvent(data,id){ var all=(data.trainings||[]).concat(data.events||[]); for(var i=0;i<all.length;i++){if(all[i].id===id)return all[i];} return null; }
+  var eventId=qparam('event');
+  var isSubmitted=location.search.indexOf('submitted=1')>-1;
+
+  /* application view: summary card + preselect path + fill hidden fields */
+  if(eventId && !isSubmitted){
+    loadTrainings().then(function(data){
+      var ev=findEvent(data,eventId);
+      if(!ev) return;  // id not found -> normal form, no card
+      document.getElementById('ecTitle').textContent=ev.title||'';
+      var meta=[];
+      if(ev.cohort)meta.push('<b>'+esc(ev.cohort)+'</b>');
+      if(ev.category)meta.push(esc(ev.category));
+      if(ev.enrollmentDeadline)meta.push('<b>Enroll by</b> '+esc(fmtDate(ev.enrollmentDeadline)));
+      if(ev.firstCall && ev.firstCall!==ev.enrollmentDeadline)meta.push('<b>First call</b> '+esc(fmtDate(ev.firstCall)));
+      if(ev.startDate)meta.push('<b>Begins</b> '+esc(fmtDate(ev.startDate)));
+      if(ev.date)meta.push('<b>'+esc(fmtDate(ev.date))+'</b>');
+      if(ev.language)meta.push(esc(ev.language));
+      document.getElementById('ecMeta').innerHTML=meta.join(' &middot; ');
+      var mparts=[];
+      if(money(ev.price))mparts.push('Tuition: '+money(ev.price));
+      if(money(ev.deposit))mparts.push('Deposit to reserve: '+money(ev.deposit));
+      document.getElementById('ecMoney').innerHTML=mparts.length?mparts.join(' &middot; ')
+        :'<span class="ec-soft">Tuition details will be confirmed with your acceptance.</span>';
+      document.getElementById('eventCard').hidden=false;
+      document.getElementById('ev_id').value=ev.id||'';
+      document.getElementById('ev_title').value=ev.title||'';
+      document.getElementById('ev_cohort').value=ev.cohort||'';
+      document.getElementById('ev_price').value=(ev.price!=null?ev.price:'');
+      document.getElementById('ev_deposit').value=(ev.deposit!=null?ev.deposit:'');
+      document.getElementById('nextUrl').value=location.origin+location.pathname+'?submitted=1&event='+encodeURIComponent(ev.id);
+      var path=CATEGORY_TO_PATH[ev.category];
+      if(path){var radio=form.querySelector('input[name="Academy"][value="'+path+'"]');
+        if(radio){radio.checked=true;radio.dispatchEvent(new Event('change'));}}
+    }).catch(function(){/* fetch failed -> normal form */});
+  }
+
+  /* success view: optional, secondary deposit block */
+  if(eventId && isSubmitted){
+    loadTrainings().then(function(data){
+      var ev=findEvent(data,eventId);
+      if(!ev || !ev.depositUrl) return;  // no deposit link -> no block
+      var amt=money(ev.deposit);
+      var block=document.getElementById('depositBlock');
+      block.innerHTML='<h3>Want to secure your place now?</h3>'+
+        '<p>You can make your deposit today &mdash; fully refundable if this circle turns out not to be the right fit.</p>'+
+        '<a class="btn btn-deposit" href="'+esc(ev.depositUrl)+'" target="_blank" rel="noopener">'+
+        (amt?('Reserve with a '+amt+' deposit'):'Reserve your place')+'</a>';
+      block.hidden=false;
+    }).catch(function(){});
+  }
 
   /* ---------- country pick list (ISO-based short names) ---------- */
   var COUNTRIES=["Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","Brunei","Bulgaria","Burkina Faso","Burundi","Cabo Verde","Cambodia","Cameroon","Canada","Central African Republic","Chad","Chile","China","Colombia","Comoros","Congo (Republic)","Congo (DRC)","Costa Rica","C\u00f4te d'Ivoire","Croatia","Cuba","Cyprus","Czechia","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Eswatini","Ethiopia","Fiji","Finland","France","Gabon","Gambia","Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Honduras","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kiribati","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","North Korea","North Macedonia","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russia","Rwanda","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor-Leste","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe","Prefer not to say"];

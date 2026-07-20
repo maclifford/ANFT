@@ -162,6 +162,11 @@
   .tr-badge.closed{background:#E7EAE1;color:var(--ink-soft)}
   .tr-link{display:inline-block;margin-top:8px;font-size:13.5px;font-weight:600;color:var(--gold-deep);text-decoration:none}
   .tr-link:hover{text-decoration:underline;text-underline-offset:3px}
+  .tr-links{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin-top:10px}
+  .tr-links .tr-link{margin-top:0}
+  .tr-choose{display:inline-block;font-size:13.5px;font-weight:700;background:var(--gold);color:#fff;
+    border-radius:999px;padding:8px 18px;text-decoration:none;border:1.5px solid var(--gold)}
+  .tr-choose:hover{background:var(--gold-deep);border-color:var(--gold-deep)}
   .tr-empty{color:var(--ink-soft);font-size:14.5px;margin:2px 0 4px}
 
   /* accreditation + testimonial */
@@ -662,7 +667,7 @@
       if(!el||!acc) return;
       var data; try{ data=JSON.parse(el.textContent); }catch(e){ return; }
       var order=(data._meta&&data._meta.categories_order)||[];
-      var items=(data.trainings||[]).concat(data.events||[]);
+      var items=(data.trainings||[]).map(function(x){x._choose=true;return x;}).concat(data.events||[]);
       function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
       var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
       function relDate(x){return x.enrollmentDeadline||x.startDate||x.date||'9999-12-31';}
@@ -680,7 +685,10 @@
         if(x.language)m.push(esc(x.language));
         if(x.schedule)m.push(esc(x.schedule));
         if(m.length)h+='<div class="tr-meta">'+m.join(' &middot; ')+'</div>';
-        if(x.url){var ext=/^https?:/i.test(x.url);h+='<a class="tr-link" href="'+esc(x.url)+'"'+(ext?' target="_blank" rel="noopener"':'')+'>Details &amp; registration &rarr;</a>';}
+        var links='';
+        if(x._choose&&x.id){links+='<a class="tr-choose" href="apply.html?event='+encodeURIComponent(x.id)+'">Choose this one &rarr;</a>';}
+        if(x.url){var ext=/^https?:/i.test(x.url);links+='<a class="tr-link" href="'+esc(x.url)+'"'+(ext?' target="_blank" rel="noopener"':'')+'>Details &amp; registration &rarr;</a>';}
+        if(links)h+='<div class="tr-links">'+links+'</div>';
         return h+'</div>';
       }
       function byDate(a,b){return relDate(a)<relDate(b)?-1:(relDate(a)>relDate(b)?1:0);}

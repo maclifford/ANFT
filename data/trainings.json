@@ -2,7 +2,7 @@
   "_meta": {
     "harvested_from": "https://anft.earth/ (homepage curated listings)",
     "harvest_date": "2026-07-19",
-    "notes": "Statuses and deadlines are as of harvest date and change frequently — re-verify before leadership presentation and before launch. Detail/registration URLs point to the live anft.earth site by design during transition. Images are hotlinked from anft.earth; localize before launch. Categories with no entries yet (Opus Companies, Professional Development) are intentional placeholders so the accordion structure shows the full catalog shape.",
+    "notes": "Statuses and deadlines are as of harvest date and change frequently — re-verify before leadership presentation and before launch. Detail/registration URLs point to the live anft.earth site by design during transition. Images are hotlinked from anft.earth; localize before launch. Categories with no entries yet (Opus Companies, Professional Development) are intentional placeholders so the accordion structure shows the full catalog shape. Optional per-training fields are supported and read by the homepage accordion and the apply page: 'price' (number, full tuition in USD), 'deposit' (number, USD), and 'depositUrl' (a Stripe Payment Link). They are intentionally left absent until real values exist — do not invent them.",
     "categories_order": [
       "Forest Therapy Guide Training",
       "Nature as Medicine",
