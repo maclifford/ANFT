@@ -88,6 +88,18 @@
   .opus-list li{margin:0 0 8px}
   .closing-line{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:22px;color:var(--navy);
     line-height:1.35;margin-top:44px;padding-top:26px;border-top:1px solid var(--line);max-width:none}
+  /* interlude: a firsthand story set apart from the curriculum sections */
+  .interlude{display:grid;grid-template-columns:minmax(0,300px) 1fr;gap:28px;align-items:start;
+    background:var(--bark-tint);border:1px solid var(--line);border-left:4px solid var(--gold);
+    border-radius:var(--radius);padding:26px 30px;margin:34px 0}
+  .interlude figure{margin:0}
+  .interlude img{width:100%;height:auto;display:block;border-radius:10px;border:1px solid var(--line)}
+  .interlude h3{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:600;color:var(--navy);
+    font-size:22px;margin-bottom:10px}
+  .interlude p{margin:0 0 12px;font-size:15.5px;color:var(--ink);max-width:none}
+  .interlude .sig{margin:4px 0 0;text-align:right;font-style:italic;color:var(--ink-soft)}
+  @media (max-width:640px){.interlude{grid-template-columns:1fr;padding:22px 22px}
+    .interlude figure{max-width:300px;margin:0 auto}}
 
 
   /* comprehensive footer */
@@ -183,6 +195,19 @@
 
   <h2>Pilgrimage</h2>
   <p>Pilgrimage gives transformation its shape. The pilgrim leaves ordinary life, crosses a threshold, travels through territory where different rules apply, encounters something that changes them, and returns to integrate what was found. You don&rsquo;t need the Camino de Santiago for this. Every walk through a forest, every season of honest inner work, can carry the structure of pilgrimage when approached with intention. The soul, it turns out, speaks at three miles an hour.</p>
+
+  <div class="interlude" aria-label="A pilgrim&rsquo;s staff &mdash; a story">
+    <figure>
+      <img src="images/PilgrimStaffDark.png" width="1254" height="1254" loading="lazy" decoding="async" alt="A pilgrim&rsquo;s staff made of holly, darkened with a patina from many miles of walking">
+    </figure>
+    <div class="interlude-body">
+      <h3>A Pilgrim&rsquo;s Staff</h3>
+      <p>Along the way we are given (or we discover) the artifacts, encouragement, and tools for the journey. Here is my staff. I didn&rsquo;t go looking for it. Here is how it came to me.</p>
+      <p>I was guiding a training for Forest Therapy Guides in Ireland. We had a wonderful old forest to work in, with stones, tangles of brush, ancient trees, streams, and bogs. There lived next to the forest a man named Flor. He tended the forest; he knew it in its broad scope and in the particulars of its tiny details, hidden places, and wild living presences. On the fourth day of our training I noticed he was in his workshop, fiddling with a branch. I did not know what he was making. Two days later he presented me with this staff &mdash; a delightful surprise.</p>
+      <p>It is made of Holly. The wood is white but now, after many miles and many trails, it has taken on a patina and become darker.</p>
+      <p class="sig">&mdash; M. Amos Clifford, your fellow pilgrim</p>
+    </div>
+  </div>
 
   <h2>Alchimage: The Alchemy of Pilgrimage</h2>
   <p>Put these together and something new appears. Alchemy tells us what transformation is; pilgrimage tells us how it moves. When the inner refinement of the alchemist joins the outer journey of the pilgrim &mdash; when the laboratory becomes a landscape and the landscape becomes a laboratory &mdash; we call this the alchemy of pilgrimage.</p>
