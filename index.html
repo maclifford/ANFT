@@ -813,12 +813,7 @@
            {k:'Global trail map', u:'academy-of-place--global-trail-map.html'}]},
     {id:'opus', tag:'Your Life, Your Work, Your Light', academy:'Opus Academy',
      angle:126, url:'opus-academy.html',
-     desc:'Alchemy of Pilgrimage \u2014 process, practices, and atelier \u2014 a creative-transformative path of assemblage and pilgrimage for your life, your work, and your light.',
-     kids:[{k:'Company', u:'opus-academy--company.html'},
-           {k:'Process', u:'opus-academy--process.html'},
-           {k:'Practices', u:'opus-academy--practices.html'},
-           {k:'Atelier', u:'opus-academy--atelier.html'},
-           {k:'Pilgrimage', u:'opus-academy--pilgrimage.html'}]},
+     desc:'Alchemy of Pilgrimage \u2014 process, practices, and atelier \u2014 a creative-transformative path of assemblage and pilgrimage for your life, your work, and your light.'},
     {id:'applied', tag:'Bringing Your Offering to the World', academy:'Academy of Applied Partnerships',
      angle:198, url:'academy-of-applied-partnerships.html',
      desc:'Propose and deliver your own offering through the academy \u2014 workshops, retreats, and specialized training that carry your gifts into the world.',
@@ -900,9 +895,12 @@
         g+='<text x="'+px.toFixed(1)+'" y="'+(ty+i*20).toFixed(1)+'" font-size="15.5" font-weight="500" fill="'+c.text+'" text-anchor="middle" font-family="EB Garamond, Garamond, Georgia, serif">'+esc(ln)+'</text>';
       });
       g+='<text x="'+px.toFixed(1)+'" y="'+(py+(lines.length>1?30:26)).toFixed(1)+'" font-size="10.5" fill="#4E5A47" text-anchor="middle" letter-spacing="0.6">'+esc(s.academy.toUpperCase())+'</text>';
-      var afx=px+PW/2-17, afy=py-PH/2+17;
-      g+='<g class="aff"><circle cx="'+afx.toFixed(1)+'" cy="'+afy.toFixed(1)+'" r="8.5" fill="#FFFFFF" stroke="'+c.stroke+'" stroke-width="1.2"/>';
-      g+='<text x="'+afx.toFixed(1)+'" y="'+(afy+3.8).toFixed(1)+'" font-size="12" font-weight="700" fill="'+c.text+'" text-anchor="middle">'+(open?'\u2212':'+')+'</text></g>';
+      // Opus navigates on click, so it omits the +/- expand badge the other boxes carry
+      if(s.id!=='opus'){
+        var afx=px+PW/2-17, afy=py-PH/2+17;
+        g+='<g class="aff"><circle cx="'+afx.toFixed(1)+'" cy="'+afy.toFixed(1)+'" r="8.5" fill="#FFFFFF" stroke="'+c.stroke+'" stroke-width="1.2"/>';
+        g+='<text x="'+afx.toFixed(1)+'" y="'+(afy+3.8).toFixed(1)+'" font-size="12" font-weight="700" fill="'+c.text+'" text-anchor="middle">'+(open?'\u2212':'+')+'</text></g>';
+      }
       g+='</g>';
       pills+=g;
 
@@ -1021,9 +1019,18 @@
   function render(){
     holder.innerHTML=buildSvg(openId);
     holder.querySelectorAll('.sat').forEach(function(el){
-      el.addEventListener('click', function(){ toggle(el.dataset.div); });
+      var id=el.dataset.div;
+      if(id==='opus'){
+        // Opus Academy box navigates straight to its page — no subbox reveal
+        el.addEventListener('click', function(){ window.location.href='opus-academy.html'; });
+        el.addEventListener('keydown', function(e){
+          if(e.key==='Enter'||e.key===' '){ e.preventDefault(); window.location.href='opus-academy.html'; }
+        });
+        return;
+      }
+      el.addEventListener('click', function(){ toggle(id); });
       el.addEventListener('keydown', function(e){
-        if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(el.dataset.div); }
+        if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(id); }
       });
     });
     var isMoveOpen=MOVES.some(function(m){return m.id===openId;});
