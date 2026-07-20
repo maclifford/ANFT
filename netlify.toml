@@ -1,0 +1,16 @@
+# Netlify configuration.
+#
+# IMPORTANT — this only takes effect if this repository is connected to Netlify
+# as a GIT-BASED site (Netlify: Site settings -> Build & deploy -> linked repo).
+# As of this writing the repo has NO git remote, so no automatic git deploy is
+# connected. Until you link it, keep running update-trainings.bat before you
+# deploy (e.g. drag-and-drop uploads do NOT run this build).
+#
+# Once the repo IS connected via git, Netlify runs the build command on every
+# deploy, so the published index.html and apply.html are ALWAYS rebuilt from the
+# current data/trainings.json and no local build is ever required for the live
+# site. The build uses only Node built-ins (no npm install needed).
+
+[build]
+  command = "node tools/build-trainings.js"
+  publish = "."
