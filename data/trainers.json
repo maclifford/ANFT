@@ -1,0 +1,266 @@
+{
+  "_meta": {
+    "harvested_from": "https://anft.earth/our-trainers/",
+    "harvest_date": "2026-07-19",
+    "notes": "Names, roles, regions, and contacts are complete. bio_excerpt fields are the visible opening lines only — FULL bios and photo URLs live inside the page's click-to-open popups, which a remote fetch cannot open. Completion path: save the live page from a browser (Ctrl/Cmd-S, 'Webpage, Complete') into data/source/, then run the companion prompt so Claude Code extracts full bios and images locally. Emails were public on the source page; decide deliberately whether to display them on the new site.",
+    "teams_order": [
+      "Specialty Training Team",
+      "Training Team"
+    ]
+  },
+  "trainers": [
+    {
+      "id": "summer-crider",
+      "name": "Summer Crider",
+      "role": "Trainer",
+      "team": "Specialty Training Team",
+      "region": "USA",
+      "email": null,
+      "bio_excerpt": "Summer Crider is a cultural studies educator, certified Forest and Nature Therapy guide, and founder...",
+      "bio_full": null,
+      "photo": null
+    },
+    {
+      "id": "susan-abookire",
+      "name": "Dr. Susan Abookire",
+      "role": "Trainer",
+      "team": "Specialty Training Team",
+      "region": "USA",
+      "email": null,
+      "bio_excerpt": "BSEE, MD, MPH, FACP, is an Assistant Professor at Harvard Medical School and a senior executive with...",
+      "bio_full": null,
+      "photo": null
+    },
+    {
+      "id": "amos-clifford",
+      "name": "Amos Clifford",
+      "role": "Trainer",
+      "team": "Training Team",
+      "region": "Arizona, USA",
+      "email": "amos@natureandforesttherapy.org",
+      "bio_excerpt": "Amos' current focus is on building scalable systems to support ANFT's training, membership, and trai...",
+      "bio_full": null,
+      "photo": null
+    },
+    {
+      "id": "jackie-kuang",
+      "name": "Jackie Kuang",
+      "role": "Trainer",
+      "team": "Training Team",
+      "region": "Arizona, USA",
+      "email": "jackie@jsconnect.us",
+      "bio_excerpt": "Jackie was trained in cohort 16 and has mentored and/or trained guides from the following cohorts: 2...",
+      "bio_full": null,
+      "photo": null
+    },
+    {
+      "id": "tam-willey",
+      "name": "Tam Willey",
+      "role": "Trainer",
+      "team": "Training Team",
+      "region": "Massachusetts, USA",
+      "email": "tamwilley@gmail.com",
+      "bio_excerpt": "Tam has mentored and trained guides from cohorts 23, 29, 34, 41, 45, 50, Red Maple, Flying Squirrel,...",
+      "bio_full": null,
+      "photo": null
+    },
+    {
+      "id": "nadine-mazzola",
+      "name": "Nadine Mazzola",
+      "role": "Trainer",
+      "team": "Training Team",
+      "region": "Massachusetts, USA",
+      "email": "nadine@amongthetrees.net",
+      "bio_excerpt": "In 2015 Nadine trained with Cohort 4 (before the cohorts had names) in North Carolina at Kanati Lodg...",
+      "bio_full": null,
+      "photo": null
+    },
+    {
+      "id": "stana-luxford-oddie",
+      "name": "Stana Luxford Oddie",
+      "role": "Trainer",
+      "team": "Training Team",
+      "region": "Ontario, Canada",
+      "email": "sloforest@kingston.net",
+      "bio_excerpt": "Stana (she/her) trained with ANFT in cohort 6 in 2016. In 2017 she took on a mentor role and in 2018...",
+      "bio_full": null,
+      "photo": null
+    },
+    {
+      "id": "geeta-stilwell",
+      "name": "Geeta Stilwell",
+      "role": "Trainer",
+      "team": "Training Team",
+      "region": "Portugal",
+      "email": "info@renature.pt",
+      "bio_excerpt": "Trained in Cohort 7 in Ireland, Assisted in Cohort 12 in France, Assisted in Cohort 19 in Costa Rica...",
+      "bio_full": null,
+      "photo": null
+    },
+    {
+      "id": "vicky-kyan",
+      "name": "Vicky Kyan",
+      "role": "Trainer",
+      "team": "Training Team",
+      "region": "New Zealand",
+      "email": "vicky@gbi.nz",
+      "bio_excerpt": "Cohort 2 - CA/USA 2015, Cohort 9 - NZ 2016, Cohort 17 - Australia 2017, Cohort 22 - CA/USA 2018, Coh...",
+      "bio_full": null,
+      "photo": null
+    },
+    {
+      "id": "ronna-schneberger",
+      "name": "Ronna Schneberger",
+      "role": "Trainer",
+      "team": "Training Team",
+      "region": "Alberta, Canada",
+      "email": "ronna@forestfix.ca",
+      "bio_excerpt": "I trained in cohort 5 and I have been on the training team for cohorts 11, 14, 20, 21, 37, 43, 47, R...",
+      "bio_full": null,
+      "photo": null
+    },
+    {
+      "id": "caitlin-c-williams",
+      "name": "Caitlin C. Williams",
+      "role": "Trainer",
+      "team": "Training Team",
+      "region": "North Carolina, USA",
+      "email": "caitlinchero@gmail.com",
+      "bio_excerpt": "Trained in Cohort 1. ANFT Mentor and Trainer since 2014. Upcoming Cohorts: Coyote, Yarrow, Swallow-t...",
+      "bio_full": null,
+      "photo": null
+    },
+    {
+      "id": "youmin-yap",
+      "name": "Youmin Yap",
+      "role": "Trainer",
+      "team": "Training Team",
+      "region": "Singapore",
+      "email": "youmin@forestwithyou.com",
+      "bio_excerpt": "Youmin is one of Southeast Asia's pioneer ANFT certified forest therapy guides. She trained with Coh...",
+      "bio_full": null,
+      "photo": null
+    },
+    {
+      "id": "darlene-rooney-keller",
+      "name": "Darlene Rooney-Keller",
+      "role": "Trainer",
+      "team": "Training Team",
+      "region": "Colorado, USA",
+      "email": "darlroon@gmail.com",
+      "bio_excerpt": "Darlene was trained in Cohort 22. She has mentored/ trained in Cohorts 35,43,46,50, River Otter, Win...",
+      "bio_full": null,
+      "photo": null
+    },
+    {
+      "id": "amanda-yik",
+      "name": "Amanda Yik",
+      "role": "Trainer",
+      "team": "Training Team",
+      "region": "Hong Kong",
+      "email": "amanda@shinrinyokuhk.com",
+      "bio_excerpt": "Amanda's deep connection with nature has supported her through life's many challenges, including mul...",
+      "bio_full": null,
+      "photo": null
+    },
+    {
+      "id": "marcela-morales",
+      "name": "Marcela Morales",
+      "role": "Trainer",
+      "team": "Training Team",
+      "region": "Costa Rica",
+      "email": "marcelaguidecr@gmail.com",
+      "bio_excerpt": "Participant in ANFT - ICT Immersion 'Principles of Forest Bathing', Costa Rica, 2018. Trained in Coh...",
+      "bio_full": null,
+      "photo": null
+    },
+    {
+      "id": "ken-ouendag",
+      "name": "Ken Ouendag",
+      "role": "Trainer",
+      "team": "Training Team",
+      "region": "Canada",
+      "email": "natureconnectedwalks@gmail.com",
+      "bio_excerpt": "Ken Ouendag became the first certified Forest Therapy Guide in Vancouver, BC after training with ANF...",
+      "bio_full": null,
+      "photo": null
+    },
+    {
+      "id": "carla-zorzanelli",
+      "name": "Carla Zorzanelli",
+      "role": "Trainer",
+      "team": "Training Team",
+      "region": "Brazil",
+      "email": "carlazorzanelli@gmail.com",
+      "bio_excerpt": "Trained in cohort 40 in Slovenia in 2018. Assisted in the trainings in Costa Rica in 2019 and in the...",
+      "bio_full": null,
+      "photo": null
+    },
+    {
+      "id": "giovanna-raineri",
+      "name": "Giovanna Raineri",
+      "role": "Trainer",
+      "team": "Training Team",
+      "region": "Pucón, Chile",
+      "email": "giobosquealma@gmail.com",
+      "bio_excerpt": "Giovanna was trained in Cohort 44 in France.",
+      "bio_full": null,
+      "photo": null
+    },
+    {
+      "id": "mario-reyes",
+      "name": "Mario Reyes",
+      "role": "Trainer",
+      "team": "Training Team",
+      "region": "Chile",
+      "email": "mario.reyes.aliaga@gmail.com",
+      "bio_excerpt": "Mario was trained in the Hedgehog Cohort",
+      "bio_full": null,
+      "photo": null
+    },
+    {
+      "id": "katarina-cuk",
+      "name": "Katarina Cuk",
+      "role": "Trainer",
+      "team": "Training Team",
+      "region": "Slovenia",
+      "email": "katarina.cuk.slo@gmail.com",
+      "bio_excerpt": "Katarina Cuk become the first ANFT certified forest therapy guide in Slovenia, EU, trained in cohort...",
+      "bio_full": null,
+      "photo": null
+    },
+    {
+      "id": "makiko-sugishita",
+      "name": "Makiko Sugishita",
+      "role": "Trainer",
+      "team": "Training Team",
+      "region": "Yakushima, Japan",
+      "email": "makiko007@gmail.com",
+      "bio_excerpt": "Makiko Sugishita is a Forest Therapy Guide based in Yakushima, Japan—the first site in the world to ...",
+      "bio_full": null,
+      "photo": null
+    },
+    {
+      "id": "christine-hoyer",
+      "name": "Christine Hoyer",
+      "role": "Trainer",
+      "team": "Training Team",
+      "region": "Tennessee, USA",
+      "email": "mindfulmeanders@gmail.com",
+      "bio_excerpt": "Christine has been an active guide since 2019 and she also serves as a coach and junior trainer for ...",
+      "bio_full": null,
+      "photo": null
+    },
+    {
+      "id": "bansi-shah",
+      "name": "Bansi Shah",
+      "role": "Trainer",
+      "team": "Training Team",
+      "region": null,
+      "email": null,
+      "bio_excerpt": "Bansi was born in Kenya, where her early years were shaped by time spent in wild, open landscapes. H...",
+      "bio_full": null,
+      "photo": null
+    }
+  ]
+}
