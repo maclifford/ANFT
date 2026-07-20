@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Trainings Editor (internal tool) — ANFT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#F2F3EC;--card:#FBFCF8;--ink:#26301F;--ink-soft:#4E5A47;--navy:#1E3A5F;
+    --fir:#2E5B3E;--fir-tint:#E1EBDD;--gold:#A9862C;--gold-deep:#7C6118;--gold-tint:#F3EDD9;
+    --bark-deep:#4E3324;--line:#C9D0BE;--radius:12px;--warn:#A33A2A}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:"Albert Sans",system-ui,sans-serif;font-size:15px;line-height:1.5}
+  .serif{font-family:"EB Garamond",Garamond,Georgia,serif}
+  .banner{background:var(--gold-tint);border-bottom:2px solid var(--gold);color:var(--bark-deep);
+    padding:12px 20px;font-size:14px;font-weight:600;position:sticky;top:0;z-index:20}
+  main{max-width:960px;margin:0 auto;padding:24px 20px 80px}
+  h1{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:500;color:var(--navy);font-size:30px;margin-bottom:4px}
+  .routine{color:var(--ink-soft);font-size:13.5px;margin-bottom:18px}
+  .routine code{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .notice{background:#FDF6F4;border:1px solid var(--warn);border-radius:10px;padding:12px 16px;margin-bottom:18px;font-size:14px}
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;align-items:center}
+  button{font-family:inherit;font-size:14px;font-weight:600;border-radius:999px;padding:9px 18px;
+    border:1.5px solid var(--line);background:#fff;color:var(--navy);cursor:pointer}
+  button:hover{border-color:var(--navy)}
+  button.primary{background:var(--gold);border-color:var(--gold);color:#fff}
+  button.primary:hover{background:var(--gold-deep);border-color:var(--gold-deep)}
+  button.danger{color:var(--warn);border-color:#e3c4bd}
+  button.danger:hover{border-color:var(--warn)}
+  .validation{border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin-bottom:20px;background:var(--card);font-size:13.5px}
+  .validation h3{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:8px}
+  .validation ul{margin:0;padding-left:18px}
+  .validation li{color:var(--warn);margin:2px 0}
+  .validation .ok{color:var(--fir);font-weight:600}
+  .cards{display:grid;gap:12px}
+  .grp-head{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:20px;color:var(--navy);margin:18px 0 4px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px;
+    display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .card-title{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:17px;color:var(--navy);font-weight:600}
+  .card-sub{font-size:13px;color:var(--ink-soft);margin-top:3px}
+  .card-actions{display:flex;gap:8px;flex:none}
+  .modal{position:fixed;inset:0;background:rgba(20,32,22,.5);display:flex;align-items:flex-start;
+    justify-content:center;padding:30px 16px;overflow:auto;z-index:40}
+  .modal-box{background:var(--paper);border-radius:var(--radius);max-width:600px;width:100%;padding:24px 26px}
+  .modal-box h2{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:500;color:var(--navy);font-size:23px;margin-bottom:14px}
+  .fld{display:block;margin-bottom:14px}
+  .fld > span{display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:5px}
+  .fld input,.fld select,.fld textarea{width:100%;font-family:inherit;font-size:14px;color:var(--ink);
+    background:#fff;border:1px solid var(--line);border-radius:8px;padding:9px 11px}
+  .fld textarea{min-height:80px;resize:vertical}
+  .fld input:focus,.fld select:focus,.fld textarea:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
+  .other-input{margin-top:6px}
+  .modal-actions{display:flex;gap:10px;margin-top:8px}
+  .copied{color:var(--fir);font-size:13px;font-weight:600;margin-left:6px}
+</style>
+</head>
+<body>
+<div class="banner">Editing tool — changes are not live until the downloaded file is placed in /data and deployed.</div>
+<main>
+  <h1 class="serif">Trainings Editor</h1>
+  <p class="routine">Internal tool. Update routine: <b>download</b> &rarr; <b>replace the file in <code>/data</code></b> &rarr; <b>deploy</b>. (Also re-run <code>tools/build-trainings.ps1</code> to refresh the homepage.)</p>
+  <div id="loadErr" class="notice" hidden>Couldn&rsquo;t fetch <code>data/trainings.json</code> automatically (normal when opening this file directly rather than via a server). Load it manually: <input type="file" id="fileInput" accept="application/json,.json"></div>
+  <div class="toolbar">
+    <button id="addTraining">+ Add training</button>
+    <button id="addEvent">+ Add event</button>
+    <button id="download" class="primary">Download updated trainings.json</button>
+    <button id="copy">Copy to clipboard</button>
+    <span id="copied" class="copied" hidden>Copied ✓</span>
+  </div>
+  <div id="validation" class="validation">Loading&hellip;</div>
+  <div id="cards" class="cards"></div>
+</main>
+
+<div id="modal" class="modal" hidden>
+  <div class="modal-box">
+    <h2 id="modalTitle">Edit</h2>
+    <form id="entryForm" onsubmit="return false"></form>
+    <div class="modal-actions">
+      <button type="button" id="save" class="primary">Save</button>
+      <button type="button" id="cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var FIELDS={
+    training:[
+      {k:'title',l:'Title',t:'text',req:true},
+      {k:'category',l:'Category',t:'select'},
+      {k:'subcategory',l:'Subcategory',t:'select'},
+      {k:'cohort',l:'Cohort',t:'text'},
+      {k:'status',l:'Status',t:'select'},
+      {k:'enrollmentDeadline',l:'Enrollment deadline',t:'date'},
+      {k:'firstCall',l:'First call',t:'date'},
+      {k:'startDate',l:'Start date',t:'date'},
+      {k:'language',l:'Language',t:'select'},
+      {k:'schedule',l:'Schedule',t:'text'},
+      {k:'url',l:'Details / registration URL',t:'url'},
+      {k:'price',l:'Full tuition, USD (optional)',t:'number'},
+      {k:'deposit',l:'Deposit to reserve, USD (optional)',t:'number'},
+      {k:'depositUrl',l:'Deposit payment link — Stripe URL (optional)',t:'url'}
+    ],
+    event:[
+      {k:'title',l:'Title',t:'text',req:true},
+      {k:'category',l:'Category',t:'select'},
+      {k:'date',l:'Date',t:'date'},
+      {k:'time',l:'Time',t:'text'},
+      {k:'url',l:'Registration URL',t:'url'}
+    ]
+  };
+  var ORDER={
+    training:['id','title','category','subcategory','cohort','status','enrollmentDeadline','firstCall','startDate','language','schedule','url','price','deposit','depositUrl','image'],
+    event:['id','title','category','date','time','url']
+  };
+  var state={meta:{},trainings:[],events:[],seq:1};
+  var edit={type:null,key:null};
+  var $=function(id){return document.getElementById(id);};
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function today(){return new Date().toISOString().slice(0,10);}
+  function arr(type){return type==='training'?state.trainings:state.events;}
+  function allItems(){return state.trainings.concat(state.events);}
+  function slug(s){return String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,60)||'item';}
+  function uniqueId(base){var ids={};allItems().forEach(function(o){if(o.id)ids[o.id]=1;});var id=base,n=2;while(ids[id])id=base+'-'+(n++);return id;}
+  function uniqueValues(k){var set={},out=[];allItems().forEach(function(o){if(o[k]!=null&&o[k]!==''&&!set[o[k]]){set[o[k]]=1;out.push(o[k]);}});return out.sort();}
+
+  function init(data){
+    state.meta=data._meta||{};
+    state.trainings=(data.trainings||[]).map(function(o){o._key=state.seq++;return o;});
+    state.events=(data.events||[]).map(function(o){o._key=state.seq++;return o;});
+    renderAll();
+  }
+  function renderAll(){renderCards();validate();}
+
+  function cardLine(o,type){
+    var bits=[type==='training'?'Training':'Event'];
+    if(o.category)bits.push(esc(o.category));
+    if(o.status)bits.push(esc(o.status));
+    var d=o.enrollmentDeadline||o.startDate||o.date; if(d)bits.push(esc(d));
+    return '<div class="card"><div><div class="card-title">'+esc(o.title||'(untitled)')+
+      (o.cohort?' <span style="font-size:13px;color:var(--ink-soft);font-weight:400">'+esc(o.cohort)+'</span>':'')+
+      '</div><div class="card-sub">'+bits.join(' &middot; ')+'</div></div>'+
+      '<div class="card-actions"><button data-a="edit" data-t="'+type+'" data-k="'+o._key+'">Edit</button>'+
+      '<button class="danger" data-a="rm" data-t="'+type+'" data-k="'+o._key+'">Remove</button></div></div>';
+  }
+  function renderCards(){
+    var h='';
+    h+='<div class="grp-head serif">Trainings ('+state.trainings.length+')</div>';
+    h+=state.trainings.map(function(o){return cardLine(o,'training');}).join('')||'<p class="routine">No trainings.</p>';
+    h+='<div class="grp-head serif">Events ('+state.events.length+')</div>';
+    h+=state.events.map(function(o){return cardLine(o,'event');}).join('')||'<p class="routine">No events.</p>';
+    $('cards').innerHTML=h;
+  }
+
+  function buildForm(type,entry){
+    var f=$('entryForm'),h='';
+    FIELDS[type].forEach(function(fd){
+      h+='<label class="fld"><span>'+esc(fd.l)+(fd.req?' *':'')+'</span>';
+      if(fd.t==='select'){
+        var opts=uniqueValues(fd.k),cur=entry?entry[fd.k]:'',known=cur&&opts.indexOf(cur)>-1;
+        h+='<select id="f_'+fd.k+'"><option value=""></option>';
+        opts.forEach(function(o){h+='<option'+(o===cur?' selected':'')+'>'+esc(o)+'</option>';});
+        h+='<option value="__other__"'+((cur&&!known)?' selected':'')+'>Other&hellip;</option></select>';
+        h+='<input type="text" class="other-input" id="f_'+fd.k+'_other" placeholder="Custom '+esc(fd.l.toLowerCase())+'" value="'+((cur&&!known)?esc(cur):'')+'"'+((cur&&!known)?'':' hidden')+'>';
+      } else if(fd.t==='textarea'){
+        h+='<textarea id="f_'+fd.k+'">'+(entry?esc(entry[fd.k]):'')+'</textarea>';
+      } else {
+        var extra=(fd.t==='number')?' step="0.01" min="0" inputmode="decimal"':'';
+        h+='<input type="'+fd.t+'" id="f_'+fd.k+'"'+extra+' value="'+(entry&&entry[fd.k]!=null?esc(entry[fd.k]):'')+'">';
+      }
+      h+='</label>';
+    });
+    f.innerHTML=h;
+    FIELDS[type].forEach(function(fd){
+      if(fd.t==='select'){var s=$('f_'+fd.k),oi=$('f_'+fd.k+'_other');s.addEventListener('change',function(){oi.hidden=(s.value!=='__other__');});}
+    });
+  }
+  function readForm(type){
+    var vals={};
+    FIELDS[type].forEach(function(fd){
+      var el=$('f_'+fd.k),v;
+      if(fd.t==='select'){v=(el.value==='__other__')?($('f_'+fd.k+'_other').value||'').trim():el.value;}
+      else if(fd.t==='number'){var raw=(el.value||'').trim();v=(raw==='')?'':(isNaN(parseFloat(raw))?raw:parseFloat(raw));}
+      else{v=(el.value||'').trim();}
+      vals[fd.k]=v;
+    });
+    return vals;
+  }
+  function openModal(type,key){
+    edit={type:type,key:key};
+    var entry=key?arr(type).filter(function(o){return o._key===key;})[0]:null;
+    $('modalTitle').textContent=(key?'Edit ':'Add ')+type;
+    buildForm(type,entry);
+    $('modal').hidden=false;
+  }
+  function closeModal(){$('modal').hidden=true;}
+  function saveEntry(){
+    var type=edit.type,vals=readForm(type);
+    if(edit.key){
+      var o=arr(type).filter(function(x){return x._key===edit.key;})[0];
+      FIELDS[type].forEach(function(fd){ if(vals[fd.k]!=='')o[fd.k]=vals[fd.k]; else delete o[fd.k]; });
+    } else {
+      var n={_key:state.seq++};
+      n.id=uniqueId(slug(vals.title));
+      FIELDS[type].forEach(function(fd){ if(vals[fd.k]!=='')n[fd.k]=vals[fd.k]; });
+      n.category=n.category||vals.category; // ensure category placed
+      arr(type).push(n);
+    }
+    closeModal();renderAll();
+  }
+  function removeEntry(type,key){
+    var o=arr(type).filter(function(x){return x._key===key;})[0];
+    if(!confirm('Remove "'+(o&&o.title||'this entry')+'"? This cannot be undone (until you reload).'))return;
+    var a=arr(type),i=a.map(function(x){return x._key;}).indexOf(key);
+    if(i>-1)a.splice(i,1);
+    renderAll();
+  }
+
+  function validate(){
+    var w=[],seen={};
+    function chk(o,label,isEvent){
+      if(!o.title)w.push(label+': missing title');
+      if(!o.category)w.push(label+': missing category');
+      if(isEvent){ if(!o.date)w.push(label+': no date'); }
+      else if(!o.enrollmentDeadline&&!o.startDate&&!o.date)w.push(label+': no date (enrollment / start / date)');
+      if(o.url&&!/^https?:\/\//i.test(o.url))w.push(label+': URL should start with http(s)://');
+      if(o.depositUrl&&!/^https?:\/\//i.test(o.depositUrl))w.push(label+': deposit link should start with http(s)://');
+      ['price','deposit'].forEach(function(kk){if(o[kk]!==undefined&&o[kk]!==''&&(typeof o[kk]!=='number'||o[kk]<0))w.push(label+': '+kk+' must be a non-negative number');});
+      if(o.id){ if(seen[o.id])w.push('Duplicate id "'+o.id+'"'); seen[o.id]=true; }
+    }
+    state.trainings.forEach(function(o,i){chk(o,'Training: '+(o.title||'#'+(i+1)),false);});
+    state.events.forEach(function(o,i){chk(o,'Event: '+(o.title||'#'+(i+1)),true);});
+    var v=$('validation');
+    if(!w.length){v.innerHTML='<h3>Validation</h3><div class="ok">&#10003; No warnings.</div>';}
+    else{v.innerHTML='<h3>Validation ('+w.length+' warning'+(w.length>1?'s':'')+' &mdash; download not blocked)</h3><ul>'+w.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>';}
+  }
+
+  function ordered(o,order){
+    var r={};
+    order.forEach(function(k){if(o.hasOwnProperty(k)&&k!=='_key')r[k]=o[k];});
+    Object.keys(o).forEach(function(k){if(k!=='_key'&&!r.hasOwnProperty(k))r[k]=o[k];});
+    return r;
+  }
+  function buildOutput(){
+    var meta=JSON.parse(JSON.stringify(state.meta));
+    meta.harvest_date=today();
+    meta.notes=(state.meta.notes||'')+' — edited via editor page '+today();
+    var out={_meta:meta,
+      trainings:state.trainings.map(function(o){return ordered(o,ORDER.training);}),
+      events:state.events.map(function(o){return ordered(o,ORDER.event);})};
+    return JSON.stringify(out,null,2)+'\n';
+  }
+  function download(){
+    var blob=new Blob([buildOutput()],{type:'application/json'});
+    var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='trainings.json';
+    document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(a.href);},1000);
+  }
+  function copy(){
+    var txt=buildOutput();
+    function done(){var c=$('copied');c.hidden=false;setTimeout(function(){c.hidden=true;},1800);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,function(){fallback(txt,done);});}
+    else fallback(txt,done);
+  }
+  function fallback(txt,done){var t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();try{document.execCommand('copy');done();}catch(e){alert('Copy failed — select the downloaded file instead.');}document.body.removeChild(t);}
+
+  // wiring
+  $('addTraining').addEventListener('click',function(){openModal('training',null);});
+  $('addEvent').addEventListener('click',function(){openModal('event',null);});
+  $('save').addEventListener('click',saveEntry);
+  $('cancel').addEventListener('click',closeModal);
+  $('download').addEventListener('click',download);
+  $('copy').addEventListener('click',copy);
+  $('cards').addEventListener('click',function(e){
+    var b=e.target.closest('button[data-a]');if(!b)return;
+    var a=b.getAttribute('data-a'),t=b.getAttribute('data-t'),k=+b.getAttribute('data-k');
+    if(a==='edit')openModal(t,k);else if(a==='rm')removeEntry(t,k);
+  });
+  $('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+  // load
+  fetch('data/trainings.json').then(function(r){if(!r.ok)throw 0;return r.json();}).then(init).catch(function(){
+    $('loadErr').hidden=false;$('validation').innerHTML='<h3>Validation</h3><div class="routine">Load a JSON file to begin.</div>';
+    $('fileInput').addEventListener('change',function(e){
+      var f=e.target.files[0];if(!f)return;var rd=new FileReader();
+      rd.onload=function(){try{init(JSON.parse(rd.result));$('loadErr').hidden=true;}catch(err){alert('Invalid JSON: '+err);}};
+      rd.readAsText(f);
+    });
+  });
+})();
+</script>
+</body>
+</html>
