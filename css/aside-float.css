@@ -1,0 +1,19 @@
+/* Reusable 50%-width float "aside" sidebar — one source of truth so the two
+   uses can't drift apart.
+     Desktop: floats right; the page's main text wraps alongside it.
+     Mobile (<=640px): the float releases and it returns to full width.
+   Used by:
+     - opus-academy.html  .interlude  (the Pilgrim's Staff story box)
+     - relational forest-threshold.html  .aside-float  (The Five Movements)
+   Each page still sets its own internal layout and decides what element clears
+   the float after the wrapping text. Colour tokens (--bark-tint, --line,
+   --gold, --radius) are defined in every page's :root. */
+.aside-float{
+  float:right;width:50%;margin:6px 0 20px 34px;
+  background:var(--bark-tint);border:1px solid var(--line);border-left:4px solid var(--gold);
+  border-radius:var(--radius);padding:20px 24px;
+}
+.aside-float h2{margin-top:0}
+@media (max-width:640px){
+  .aside-float{float:none;width:auto;margin:34px 0;padding:22px 22px}
+}

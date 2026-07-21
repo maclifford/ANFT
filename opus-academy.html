@@ -14,6 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/aside-float.css">
 <style>
   :root{
     --paper:#F2F3EC; --card:#FBFCF8; --ink:#26301F; --ink-soft:#4E5A47;
@@ -88,11 +89,10 @@
   .opus-list li{margin:0 0 8px}
   .closing-line{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:22px;color:var(--navy);
     line-height:1.35;margin-top:44px;padding-top:26px;border-top:1px solid var(--line);max-width:none}
-  /* interlude: a firsthand story set apart from the curriculum sections */
-  .interlude{display:grid;grid-template-columns:1fr;gap:12px;align-items:start;
-    float:right;width:50%;
-    background:var(--bark-tint);border:1px solid var(--line);border-left:4px solid var(--gold);
-    border-radius:var(--radius);padding:20px 24px;margin:6px 0 20px 34px}
+  /* interlude: a firsthand story set apart from the curriculum sections.
+     Float/box treatment comes from the shared .aside-float class (css/aside-float.css);
+     only the internal photo-over-story layout is set here. */
+  .interlude{display:grid;grid-template-columns:1fr;gap:12px;align-items:start}
   /* the Pilgrimage-story section text (Alchimage) wraps alongside the floated box;
      every later section heading clears so it starts below the box, not beside it */
   main h2{clear:both}
@@ -103,8 +103,7 @@
     font-size:22px;margin-bottom:10px}
   .interlude p{margin:0 0 12px;font-size:15.5px;color:var(--ink);max-width:none}
   .interlude .sig{margin:4px 0 0;text-align:right;font-style:italic;color:var(--ink-soft)}
-  @media (max-width:640px){.interlude{float:none;width:auto;grid-template-columns:1fr;padding:22px 22px;margin:34px 0}
-    .interlude figure{max-width:300px;margin:0 auto}}
+  @media (max-width:640px){.interlude figure{max-width:300px;margin:0 auto}}
   /* upcoming events list */
   .ev-list{display:grid;gap:14px;margin:20px 0 6px}
   .events-empty{color:var(--ink-soft);font-size:15px;margin:14px 0 4px}
@@ -214,7 +213,7 @@
   <h2>Pilgrimage</h2>
   <p>Pilgrimage gives transformation its shape. The pilgrim leaves ordinary life, crosses a threshold, travels through territory where different rules apply, encounters something that changes them, and returns to integrate what was found. You don&rsquo;t need the Camino de Santiago for this. Every walk through a forest, every season of honest inner work, can carry the structure of pilgrimage when approached with intention. The soul, it turns out, speaks at three miles an hour.</p>
 
-  <div class="interlude" aria-label="A pilgrim&rsquo;s staff &mdash; a story">
+  <div class="interlude aside-float" aria-label="A pilgrim&rsquo;s staff &mdash; a story">
     <figure>
       <img src="images/PilgrimStaffDark.png" width="1254" height="1254" loading="lazy" decoding="async" alt="A pilgrim&rsquo;s staff made of holly, darkened with a patina from many miles of walking">
     </figure>
