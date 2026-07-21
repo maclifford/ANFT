@@ -100,6 +100,19 @@
   .interlude .sig{margin:4px 0 0;text-align:right;font-style:italic;color:var(--ink-soft)}
   @media (max-width:640px){.interlude{grid-template-columns:1fr;padding:22px 22px}
     .interlude figure{max-width:300px;margin:0 auto}}
+  /* upcoming events list */
+  .ev-list{display:grid;gap:14px;margin:20px 0 6px}
+  .events-empty{color:var(--ink-soft);font-size:15px;margin:14px 0 4px}
+  .ev-card{display:block;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--gold);
+    border-radius:var(--radius);padding:18px 22px;text-decoration:none;color:inherit;
+    transition:box-shadow .15s ease,border-color .15s ease}
+  .ev-card:hover,.ev-card:focus-visible{box-shadow:0 4px 14px rgba(38,48,31,.10);border-color:var(--gold-deep);outline:none}
+  .ev-title{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:19px;color:var(--navy);font-weight:600}
+  .ev-cohort{font-family:"Albert Sans",sans-serif;font-size:13px;color:var(--ink-soft);font-weight:400}
+  .ev-meta{font-size:14px;color:var(--ink-soft);margin-top:6px;line-height:1.6}
+  .ev-meta b{color:var(--ink);font-weight:600}
+  .ev-go{display:inline-block;margin-top:10px;font-size:13.5px;font-weight:700;color:var(--gold-deep)}
+  .ev-card:hover .ev-go,.ev-card:focus-visible .ev-go{text-decoration:underline;text-underline-offset:3px}
 
 
   /* comprehensive footer */
@@ -247,6 +260,9 @@
   <p>We will begin with a few practices; after that, you and the others in your company will discover more. You will share, learn from, and teach each other. It is a world of wild weathers, each with its particular ways of announcing itself, each with its transformational gifts. After your ten introductory weeks you will have come to understand this well.</p>
   <p>The weathers, the company, the practices co-create the curriculum. It is a living system, with all the spaciousness needed to welcome you.</p>
 
+  <h2 id="events">Upcoming Alchimage Events</h2>
+  <div id="opusEvents" class="ev-list"><p class="events-empty">Upcoming events will be announced here.</p></div>
+
   <p class="closing-line">The Opus Academy &mdash; where who you become and what you create arise together.</p>
 
   <div class="subnav">In this academy: <a href="opus-academy--company.html">Company</a> &middot; <a href="opus-academy--process.html">Process</a> &middot; <a href="opus-academy--practices.html">Practices</a> &middot; <a href="opus-academy--atelier.html">Atelier</a> &middot; <a href="opus-academy--pilgrimage.html">Pilgrimage</a></div>
@@ -299,5 +315,45 @@
     <span><a href="privacy.html">Privacy</a> &nbsp;&middot;&nbsp; <a href="#top" aria-label="Back to top">Back to top &uarr;</a></span>
   </div>
 </footer>
+<script>
+/* Upcoming Alchimage Events: fetch data/trainings.json, show only category
+   "Opus Training", drop past ones, soonest first. Each card opens the apply
+   page with the event preselected and the Opus question set loaded. Quiet
+   fallback line if the fetch fails or nothing is upcoming. */
+(function(){
+  var box=document.getElementById('opusEvents');
+  if(!box) return;
+  var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function fmt(d){if(!d)return '';var p=String(d).split('-');if(p.length!==3)return d;return MON[parseInt(p[1],10)-1]+' '+parseInt(p[2],10)+', '+p[0];}
+  function money(v){if(v==null||v==='')return '';var n=Number(v);return isNaN(n)?'':'$'+n.toLocaleString('en-US');}
+  var today=new Date().toISOString().slice(0,10);
+  function startKey(e){return e.startDate||e.firstCall||e.date||e.enrollmentDeadline||'9999-12-31';}
+  function lastKey(e){return [e.startDate,e.firstCall,e.date,e.enrollmentDeadline].filter(Boolean).sort().pop()||'0000-01-01';}
+  function quiet(){box.innerHTML='<p class="events-empty">Upcoming events will be announced here.</p>';}
+  fetch('data/trainings.json').then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(data){
+    var evs=(data.trainings||[]).concat(data.events||[])
+      .filter(function(e){return e.category==='Opus Training';})
+      .filter(function(e){return lastKey(e)>=today;})
+      .sort(function(a,b){var x=startKey(a),y=startKey(b);return x<y?-1:(x>y?1:0);});
+    if(!evs.length){quiet();return;}
+    box.innerHTML=evs.map(function(e){
+      var meta=[];
+      if(e.startDate)meta.push('<b>Begins</b> '+esc(fmt(e.startDate)));
+      else if(e.firstCall)meta.push('<b>First call</b> '+esc(fmt(e.firstCall)));
+      if(e.enrollmentDeadline)meta.push('<b>Enroll by</b> '+esc(fmt(e.enrollmentDeadline)));
+      if(e.schedule)meta.push(esc(e.schedule));
+      if(e.language)meta.push(esc(e.language));
+      var price=money(e.price), dep=money(e.deposit);
+      var href='apply.html?event='+encodeURIComponent(e.id)+'&path=opus-academy';
+      return '<a class="ev-card" href="'+href+'">'+
+        '<div class="ev-title">'+esc(e.title)+(e.cohort?' <span class="ev-cohort">Cohort '+esc(e.cohort)+'</span>':'')+'</div>'+
+        (meta.length?'<div class="ev-meta">'+meta.join(' &middot; ')+'</div>':'')+
+        (price?'<div class="ev-meta"><b>Tuition</b> '+price+(dep?' &middot; <b>Deposit</b> '+dep:'')+'</div>':'')+
+        '<span class="ev-go">Begin your application &rarr;</span></a>';
+    }).join('');
+  }).catch(function(){quiet();});
+})();
+</script>
 </body>
 </html>

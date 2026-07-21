@@ -1,8 +1,8 @@
 {
   "_meta": {
     "harvested_from": "https://anft.earth/ (homepage curated listings)",
-    "harvest_date": "2026-07-19",
-    "notes": "Statuses and deadlines are as of harvest date and change frequently — re-verify before leadership presentation and before launch. Detail/registration URLs point to the live anft.earth site by design during transition. Images are hotlinked from anft.earth; localize before launch. Categories with no entries yet (Opus Companies, Professional Development) are intentional placeholders so the accordion structure shows the full catalog shape. Optional per-training fields are supported and read by the homepage accordion and the apply page: 'price' (number, full tuition in USD), 'deposit' (number, USD), and 'depositUrl' (a Stripe Payment Link). They are intentionally left absent until real values exist — do not invent them.",
+    "harvest_date": "2026-07-21",
+    "notes": "Statuses and deadlines are as of harvest date and change frequently — re-verify before leadership presentation and before launch. Detail/registration URLs point to the live anft.earth site by design during transition. Images are hotlinked from anft.earth; localize before launch. Categories with no entries yet (Opus Companies, Professional Development) are intentional placeholders so the accordion structure shows the full catalog shape. Optional per-training fields are supported and read by the homepage accordion and the apply page: 'price' (number, full tuition in USD), 'deposit' (number, USD), and 'depositUrl' (a Stripe Payment Link). They are intentionally left absent until real values exist — do not invent them. — edited via editor page 2026-07-21",
     "categories_order": [
       "Forest Therapy Guide Training",
       "Nature as Medicine",
@@ -222,6 +222,32 @@
       "language": "English",
       "url": "https://anft.earth/training-immersions/thailand-ko-phra-thong-baba-ecolodge-november-2026/",
       "image": "https://anft.earth/wp-content/uploads/2024/08/Banner-2.jpg"
+    },
+    {
+      "id": "alchemy-of-pilgrimage",
+      "title": "Alchemy of Pilgrimage",
+      "category": "Opus Training",
+      "cohort": "2",
+      "status": "Enrollment Open",
+      "enrollmentDeadline": "2026-08-20",
+      "firstCall": "2026-08-25",
+      "language": "English",
+      "schedule": "Tuesdays, 11 am - 12:30 pm Pacific Time",
+      "price": 565,
+      "deposit": 50
+    },
+    {
+      "id": "alchemy-of-pilgrimage-2",
+      "title": "Alchemy of Pilgrimage",
+      "category": "Opus Training",
+      "cohort": "3",
+      "status": "Enrollment Open",
+      "enrollmentDeadline": "2026-08-20",
+      "startDate": "2026-07-30",
+      "language": "English",
+      "schedule": "6:00 pm - 7:30 pm Pacific Time",
+      "price": 565,
+      "deposit": 50
     }
   ],
   "events": [
