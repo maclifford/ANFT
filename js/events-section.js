@@ -27,6 +27,8 @@
   var today=new Date().toISOString().slice(0,10);
   function startKey(e){return e.startDate||e.firstCall||e.date||e.enrollmentDeadline||'9999-12-31';}
   function lastKey(e){return [e.startDate,e.firstCall,e.date,e.enrollmentDeadline].filter(Boolean).sort().pop()||'0000-01-01';}
+  // hide cohorts that are no longer joinable (full / waitlist / registration closed)
+  function isOpen(e){return !/waitlist|full|closed|sold\s*out/i.test(e.status||'');}
   function quiet(box){box.innerHTML='<p class="events-empty">'+esc(box.getAttribute('data-empty')||'Upcoming events will be announced here.')+'</p>';}
   function card(e,path){
     var meta=[];
@@ -50,6 +52,7 @@
       var evs=(data.trainings||[]).concat(data.events||[])
         .filter(function(e){return e.category===cat;})
         .filter(function(e){return lastKey(e)>=today;})
+        .filter(isOpen)
         .sort(function(a,b){var x=startKey(a),y=startKey(b);return x<y?-1:(x>y?1:0);});
       if(!evs.length){quiet(box);return;}
       box.innerHTML=evs.map(function(e){return card(e,path);}).join('');
