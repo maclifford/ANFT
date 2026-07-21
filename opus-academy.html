@@ -89,16 +89,21 @@
   .closing-line{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:22px;color:var(--navy);
     line-height:1.35;margin-top:44px;padding-top:26px;border-top:1px solid var(--line);max-width:none}
   /* interlude: a firsthand story set apart from the curriculum sections */
-  .interlude{display:grid;grid-template-columns:minmax(0,300px) 1fr;gap:28px;align-items:start;
+  .interlude{display:grid;grid-template-columns:1fr;gap:12px;align-items:start;
+    float:right;width:50%;
     background:var(--bark-tint);border:1px solid var(--line);border-left:4px solid var(--gold);
-    border-radius:var(--radius);padding:26px 30px;margin:34px 0}
-  .interlude figure{margin:0}
+    border-radius:var(--radius);padding:20px 24px;margin:6px 0 20px 34px}
+  /* the Pilgrimage-story section text (Alchimage) wraps alongside the floated box;
+     every later section heading clears so it starts below the box, not beside it */
+  main h2{clear:both}
+  .interlude + h2{clear:none}
+  .interlude figure{margin:0 auto;max-width:200px}
   .interlude img{width:100%;height:auto;display:block;border-radius:10px;border:1px solid var(--line)}
   .interlude h3{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:600;color:var(--navy);
     font-size:22px;margin-bottom:10px}
   .interlude p{margin:0 0 12px;font-size:15.5px;color:var(--ink);max-width:none}
   .interlude .sig{margin:4px 0 0;text-align:right;font-style:italic;color:var(--ink-soft)}
-  @media (max-width:640px){.interlude{grid-template-columns:1fr;padding:22px 22px}
+  @media (max-width:640px){.interlude{float:none;width:auto;grid-template-columns:1fr;padding:22px 22px;margin:34px 0}
     .interlude figure{max-width:300px;margin:0 auto}}
   /* upcoming events list */
   .ev-list{display:grid;gap:14px;margin:20px 0 6px}
