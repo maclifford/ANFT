@@ -45,6 +45,8 @@
   .card-actions{display:flex;gap:8px;flex:none}
   .modal{position:fixed;inset:0;background:rgba(20,32,22,.5);display:flex;align-items:flex-start;
     justify-content:center;padding:30px 16px;overflow:auto;z-index:40}
+  /* the hidden attribute must beat display:flex, or the modal shows on load and cannot be dismissed */
+  .modal[hidden]{display:none}
   .modal-box{background:var(--paper);border-radius:var(--radius);max-width:600px;width:100%;padding:24px 26px}
   .modal-box h2{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:500;color:var(--navy);font-size:23px;margin-bottom:14px}
   .fld{display:block;margin-bottom:14px}
