@@ -66,11 +66,11 @@
   /* ===== Concentric navigation wheel ===== */
   .wheel-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 20px 20px}
   .wheel-hint{text-align:center;font-size:13.5px;color:var(--ink-soft);max-width:62ch;margin:0 auto 4px}
-  .wheel{position:relative;width:100%;max-width:560px;margin:6px auto 0;aspect-ratio:1/1}
+  .wheel{position:relative;width:min(90vh,1040px,94vw);max-width:100%;margin:6px auto 0;aspect-ratio:1/1}
   .wheel-band{position:absolute;inset:0;border-radius:50%;opacity:.94;
     background:conic-gradient(var(--fir) 0deg,var(--river) 72deg,var(--navy) 144deg,var(--bark) 216deg,var(--gold) 288deg,var(--fir) 360deg);
-    -webkit-mask:radial-gradient(circle closest-side at center,transparent 48.8%,#000 49% 59%,transparent 59.2%);
-            mask:radial-gradient(circle closest-side at center,transparent 48.8%,#000 49% 59%,transparent 59.2%)}
+    -webkit-mask:radial-gradient(circle closest-side at center,transparent 57.1%,#000 57.3% 72.4%,transparent 72.6%);
+            mask:radial-gradient(circle closest-side at center,transparent 57.1%,#000 57.3% 72.4%,transparent 72.6%)}
   #wheelSvg{position:absolute;inset:0}
   #wheelSvg svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
   .wheel text{font-family:"Albert Sans",system-ui,sans-serif}
@@ -78,47 +78,55 @@
   .wz-hit{outline:none;cursor:pointer}
   .wz-tint{opacity:0;transition:opacity .16s ease;pointer-events:none}
   .wz.active .wz-tint{opacity:.9}
-  .wz-label{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:600;font-size:12.6px;fill:#fff;
-    letter-spacing:.01em;pointer-events:none;paint-order:stroke;stroke:rgba(20,32,22,.32);stroke-width:2px}
-  .wz-sub{font-size:10.5px;font-weight:600;fill:var(--ink-soft);pointer-events:none}
+  .wz-label{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:600;font-size:20px;fill:#fff;
+    letter-spacing:.01em;pointer-events:none;paint-order:stroke;stroke:rgba(20,32,22,.32);stroke-width:2.8px}
+  .wz-sub{font-size:18px;font-weight:600;fill:var(--ink-soft);pointer-events:none}
   .wz-focus{opacity:0;stroke:var(--gold);stroke-width:3.5;pointer-events:none}
   .wz-hit:focus-visible ~ .wz-focus{opacity:1}
   /* radiating children */
   .wz-kids{visibility:hidden;opacity:0;transition:opacity .16s ease,visibility 0s .16s}
   .wz.active .wz-kids{visibility:visible;opacity:1;transition:opacity .16s ease}
   .wkid{text-decoration:none;cursor:pointer}
-  .wkid line{stroke:var(--gold);stroke-width:1.4;opacity:.75}
-  .wkid text{font-size:11px;font-weight:600;fill:var(--ink)}
+  .wkid line{stroke:var(--gold);stroke-width:2;opacity:.75}
+  .wkid text{font-size:18px;font-weight:600;fill:var(--ink)}
   .wkid:hover text,.wkid:focus-visible text{fill:var(--navy);text-decoration:underline}
   .wkid:hover line,.wkid:focus-visible line{stroke:var(--gold-deep);opacity:1}
   /* verbs (middle ring) */
   .wverb{cursor:pointer;outline:none}
   .wverb-pill{fill:var(--card);stroke:var(--gold);stroke-width:1.1;transition:fill .15s ease}
   .wverb:hover .wverb-pill,.wverb:focus-visible .wverb-pill{fill:var(--gold-tint);stroke:var(--gold-deep)}
-  .wverb text{font-size:9.5px;font-weight:700;letter-spacing:1.3px;fill:var(--gold-deep);pointer-events:none}
+  .wverb text{font-size:18px;font-weight:700;letter-spacing:1.6px;fill:var(--gold-deep);pointer-events:none}
   /* centre */
   .wc{cursor:pointer;outline:none}
   .wc-face{transition:opacity .22s ease}
   .wc-back{opacity:0}
   .wc.flipped .wc-front{opacity:0}
   .wc.flipped .wc-back{opacity:1}
-  .wc-ringtext{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:11.5px;font-weight:600;letter-spacing:2px;fill:var(--bark-deep)}
+  .wc-ringtext{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:15px;font-weight:600;letter-spacing:2.4px;fill:var(--bark-deep)}
   .wc:focus-visible .wc-front>circle{stroke:var(--gold-deep);stroke-width:2.5}
   /* stacked fallback (built by JS; shown below the breakpoint) */
   .wheel-stack{display:none}
-  .ws-center{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
-  .ws-center img{width:120px;height:120px;border-radius:50%;object-fit:cover;border:2px solid var(--gold)}
-  .ws-reveal{max-width:52ch;color:var(--ink-soft);font-size:14.5px}
-  .ws-verbs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 4px}
-  .ws-verb{font:inherit;font-size:12px;font-weight:700;letter-spacing:.6px;color:var(--gold-deep);
-    background:var(--gold-tint);border:1px solid var(--gold);border-radius:999px;padding:8px 15px;cursor:pointer}
+  .ws-center{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px}
+  .ws-center img{width:132px;height:132px;border-radius:50%;object-fit:cover;border:2px solid var(--gold)}
+  .ws-reveal{max-width:56ch;color:var(--ink-soft);font-size:16px;line-height:1.6}
+  .ws-verbs{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:18px 0 4px}
+  .ws-verb{font:inherit;font-size:16px;font-weight:700;letter-spacing:.5px;color:var(--gold-deep);
+    background:var(--gold-tint);border:1px solid var(--gold);border-radius:999px;padding:11px 20px;cursor:pointer;min-height:44px}
   .ws-verb:hover{background:#EBE1C4}
-  .ws-verb-desc{max-width:56ch;margin:6px auto 4px;color:var(--ink-soft);font-size:14px;text-align:center}
-  .ws-bars{display:grid;gap:10px;margin-top:14px}
-  .wbar{display:block;padding:15px 18px;border-radius:12px;text-decoration:none;color:#fff}
-  .wbar b{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:18px;font-weight:600;display:block}
-  .wbar span{display:block;font-size:12.5px;opacity:.92;margin-top:2px}
-  .wbar:hover{filter:brightness(1.08)}
+  .ws-verb-desc{max-width:60ch;margin:8px auto 4px;color:var(--ink-soft);font-size:16px;line-height:1.6;text-align:center}
+  .ws-apply{display:block;width:100%;max-width:360px;margin:22px auto 6px;text-align:center;
+    font-size:17px;font-weight:700;color:var(--navy);background:var(--gold);border:1px solid var(--gold-deep);
+    border-radius:999px;padding:15px 22px;text-decoration:none}
+  .ws-apply:hover{filter:brightness(1.05)}
+  .ws-menu{display:grid;gap:14px;margin-top:20px}
+  .ws-item{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--accent,var(--gold));
+    border-radius:12px;padding:14px 16px 12px}
+  .ws-head{display:block;text-decoration:none;padding:6px 4px;border-radius:8px}
+  .ws-head b{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:20px;font-weight:600;color:var(--navy);display:block;line-height:1.2}
+  .ws-head span{display:block;font-size:15px;color:var(--ink-soft);margin-top:3px}
+  .ws-kids{list-style:none;margin:8px 0 0;padding:6px 0 0;display:grid;gap:2px;border-top:1px solid var(--line)}
+  .ws-kids a{display:block;padding:11px 10px 11px 14px;font-size:16px;color:var(--ink);text-decoration:none;border-radius:8px;min-height:44px}
+  .ws-kids a:hover{background:var(--gold-tint);color:var(--navy)}
   .p-link{font-size:14.5px;font-weight:600;color:var(--gold-deep);text-decoration:none}
   .p-link:hover{text-decoration:underline;text-underline-offset:4px}
 
@@ -197,11 +205,11 @@
   .stream-links a{color:var(--fir);font-weight:600;font-size:13.5px;text-decoration:none}
   .stream-links a:hover{text-decoration:underline}
 
-  /* wheel: below the breakpoint, swap the wheel for the stacked fallback */
-  @media (max-width:620px){
+  /* wheel: below the breakpoint, swap the wheel for the conventional menu */
+  @media (max-width:900px){
     .wheel,.wheel-hint{display:none}
     .wheel-stack{display:block}
-    .wheel-card{padding:20px 16px 18px}
+    .wheel-card{padding:20px 16px 18px;background:transparent;border:none}
   }
   @media (prefers-reduced-motion:reduce){
     .wc-face,.wz-tint,.wz-kids,.wverb-pill{transition:none}
@@ -833,10 +841,10 @@
       kids:[{k:'Workshops',u:'academy-of-applied-partnerships--workshops.html'},{k:'Retreats',u:'academy-of-applied-partnerships--retreats.html'},{k:'Specialized professional training',u:'academy-of-applied-partnerships--specialized-professional-training.html'},{k:'ANFT specialized training',u:'academy-of-applied-partnerships--anft-specialized-training.html'}]}
   ];
 
-  var D=Math.PI/180, C=400;
-  var IMG_R=80, HUB_R=105, VERB_R=150, VW=86, VH=22;
-  var ZIN=196, ZOUT=236, LAB_R=217, SUB_R=255;
-  var HIT_IN=178, HIT_OUT=352, KID0=242, KID1=290;
+  var D=Math.PI/180, C=450;
+  var IMG_R=112, HUB_R=146, VERB_R=200, VW=132, VH=36;
+  var ZIN=258, ZOUT=326, LAB_R=290, SUB_R=352;
+  var HIT_IN=236, HIT_OUT=440, KID0=334, KID1=396;
   function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
   function P(r,a){return [C+r*Math.cos(a*D), C+r*Math.sin(a*D)];}
   function sector(r0,r1,a0,a1){var p0=P(r1,a0),p1=P(r1,a1),p2=P(r0,a1),p3=P(r0,a0),lg=(a1-a0)>180?1:0;
@@ -861,8 +869,8 @@
   var verbs='';
   VERBS.forEach(function(v){var p=P(VERB_R,v.angle);
     verbs+='<g class="wverb" data-verb="'+v.id+'" role="button" tabindex="0" aria-label="'+v.name+' — a movement of The Forest Threshold; activate to reveal its meaning">';
-    verbs+='<rect class="wverb-pill" x="'+(p[0]-VW/2).toFixed(1)+'" y="'+(p[1]-VH/2).toFixed(1)+'" width="'+VW+'" height="'+VH+'" rx="11"/>';
-    verbs+='<text x="'+p[0].toFixed(1)+'" y="'+(p[1]+3.4).toFixed(1)+'" text-anchor="middle">'+v.name.toUpperCase()+'</text></g>';});
+    verbs+='<rect class="wverb-pill" x="'+(p[0]-VW/2).toFixed(1)+'" y="'+(p[1]-VH/2).toFixed(1)+'" width="'+VW+'" height="'+VH+'" rx="17"/>';
+    verbs+='<text x="'+p[0].toFixed(1)+'" y="'+(p[1]+6).toFixed(1)+'" text-anchor="middle">'+v.name.toUpperCase()+'</text></g>';});
 
   var zones='';
   ZONES.forEach(function(z,zi){
@@ -881,10 +889,10 @@
         var ka=k===1?z.c:(z.c-spread/2+spread*(i/(k-1)));
         var p0=P(KID0,ka), p1=P(KID1,ka), cosk=Math.cos(ka*D);
         var anch=Math.abs(cosk)<0.34?'middle':(cosk>0?'start':'end');
-        var tx=p1[0]+(anch==='start'?5:anch==='end'?-5:0), ty=p1[1]+(anch==='middle'?(Math.sin(ka*D)>0?12:-5):4);
-        var lines=wrap(kid.k,18);
+        var tx=p1[0]+(anch==='start'?7:anch==='end'?-7:0), ty=p1[1]+(anch==='middle'?(Math.sin(ka*D)>0?18:-8):6);
+        var lines=wrap(kid.k,16);
         g+='<a class="wkid" href="'+kid.u+'" aria-label="'+esc(kid.k)+' — '+esc(z.label)+'"><line x1="'+p0[0].toFixed(1)+'" y1="'+p0[1].toFixed(1)+'" x2="'+p1[0].toFixed(1)+'" y2="'+p1[1].toFixed(1)+'"/>';
-        lines.forEach(function(ln,j){ g+='<text x="'+tx.toFixed(1)+'" y="'+(ty+j*13).toFixed(1)+'" text-anchor="'+anch+'">'+esc(ln)+'</text>'; });
+        lines.forEach(function(ln,j){ g+='<text x="'+tx.toFixed(1)+'" y="'+(ty+j*18).toFixed(1)+'" text-anchor="'+anch+'">'+esc(ln)+'</text>'; });
         g+='</a>';
       });
       g+='</g>';
@@ -894,13 +902,13 @@
   });
 
   var defs='<defs><clipPath id="wImgClip"><circle cx="'+C+'" cy="'+C+'" r="'+IMG_R+'"/></clipPath>'+
-    '<path id="wTop" d="'+arc(93,-150,-30,false)+'"/><path id="wBot" d="'+arc(93,40,140,true)+'"/>'+arcDefs+'</defs>';
-  svgBox.innerHTML='<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Concentric navigation: the Forest Threshold at the centre, five movements, and five academy paths">'+defs+center+verbs+zones+'</svg>';
+    '<path id="wTop" d="'+arc(128,-150,-30,false)+'"/><path id="wBot" d="'+arc(128,40,140,true)+'"/>'+arcDefs+'</defs>';
+  svgBox.innerHTML='<svg viewBox="0 0 900 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Concentric navigation: the Forest Threshold at the centre, five movements, and five academy paths">'+defs+center+verbs+zones+'</svg>';
 
   function setBack(title,text){var g=svgBox.querySelector('#wcBackText');if(!g)return;
-    var lines=wrap(text,26), n=lines.length+(title?1:0), y=C-((n-1)*15)/2, h='';
-    if(title){h+='<text x="'+C+'" y="'+y+'" text-anchor="middle" font-size="11" font-weight="700" letter-spacing="2" fill="var(--gold-tint)">'+esc(title.toUpperCase())+'</text>';y+=17;}
-    lines.forEach(function(ln,i){h+='<text x="'+C+'" y="'+(y+i*15)+'" text-anchor="middle" font-size="12" fill="#F2F3EC">'+esc(ln)+'</text>';});
+    var lines=wrap(text,24), n=lines.length+(title?1:0), y=C-((n-1)*21)/2, h='';
+    if(title){h+='<text x="'+C+'" y="'+y+'" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="2.5" fill="var(--gold-tint)">'+esc(title.toUpperCase())+'</text>';y+=25;}
+    lines.forEach(function(ln,i){h+='<text x="'+C+'" y="'+(y+i*21)+'" text-anchor="middle" font-size="16.5" fill="#F2F3EC">'+esc(ln)+'</text>';});
     g.innerHTML=h;}
   setBack('',HUB.back);
 
@@ -924,14 +932,25 @@
       el.addEventListener('focusout',function(e){if(!el.contains(e.relatedTarget))off();});});
   }
 
-  var st='<div class="ws-center"><img src="'+HUB.img+'" alt="The Forest Threshold symbol" width="120" height="120">'+
+  var st='<div class="ws-center"><img src="'+HUB.img+'" alt="The Forest Threshold symbol" width="132" height="132">'+
     '<button class="ws-verb ws-call" data-wc type="button" aria-expanded="false">Reveal the call</button>'+
     '<p class="ws-reveal" hidden>'+esc(HUB.back)+'</p></div>'+
     '<div class="ws-verbs">';
   VERBS.forEach(function(v){st+='<button class="ws-verb" data-verb="'+v.id+'" type="button">'+esc(v.name)+'</button>';});
-  st+='</div><p class="ws-verb-desc" hidden></p><div class="ws-bars">';
-  ZONES.forEach(function(z){st+='<a class="wbar" href="'+z.url+'" style="background:var('+z.color+')"><b>'+esc(z.label)+'</b><span>'+esc(z.sub)+'</span></a>';});
-  st+='</div>';
+  st+='</div><p class="ws-verb-desc" hidden></p>'+
+    '<a class="ws-apply" href="apply.html">I’m ready to apply</a>'+
+    '<nav class="ws-menu" aria-label="Academies and paths">';
+  ZONES.forEach(function(z){
+    st+='<div class="ws-item" style="--accent:var('+z.color+')">'+
+      '<a class="ws-head" href="'+z.url+'"><b>'+esc(z.label)+'</b><span>'+esc(z.sub)+'</span></a>';
+    if(z.kids&&z.kids.length){
+      st+='<ul class="ws-kids">';
+      z.kids.forEach(function(kid){st+='<li><a href="'+kid.u+'">'+esc(kid.k)+'</a></li>';});
+      st+='</ul>';
+    }
+    st+='</div>';
+  });
+  st+='</nav>';
   stack.innerHTML=st;
   var wcBtn=stack.querySelector('[data-wc]'), wcTxt=stack.querySelector('.ws-reveal');
   wcBtn.addEventListener('click',function(){var open=wcTxt.hidden;wcTxt.hidden=!open;wcBtn.setAttribute('aria-expanded',String(open));});
