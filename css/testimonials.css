@@ -1,0 +1,49 @@
+/* Shared testimonial styles — reuse on any page by linking this file in <head>.
+   Two treatments share one attribution class (.testimonial-cite):
+     .testimonial-epigraph — a quiet voice beneath a section heading
+     .testimonial-callout  — a pull-quote set within body content
+   Canonical design tokens only (--card, --gold, --gold-deep, --navy, --ink-soft, --line). */
+
+.testimonial-epigraph{
+  margin:0 0 22px;
+  max-width:58ch;
+  padding-left:16px;
+  border-left:2px solid var(--line);
+  font-family:"EB Garamond",Garamond,Georgia,serif;
+  font-style:italic;
+  font-size:18px;
+  line-height:1.5;
+  color:var(--ink-soft);
+}
+
+.testimonial-callout{
+  clear:both;                 /* never wrap beside a floated aside (e.g. the staff-story box) */
+  margin:30px 0;
+  max-width:64ch;
+  padding:20px 24px;
+  background:var(--card);
+  border-left:4px solid var(--gold);
+  border-radius:0 10px 10px 0;
+  font-family:"EB Garamond",Garamond,Georgia,serif;
+  font-style:italic;
+  font-size:21px;
+  line-height:1.42;
+  color:var(--navy);
+}
+
+.testimonial-cite{
+  display:block;
+  margin-top:8px;
+  font-family:"Albert Sans",system-ui,sans-serif;
+  font-style:normal;
+  font-size:13.5px;
+  font-weight:600;
+  letter-spacing:.02em;
+  color:var(--gold-deep);
+}
+
+@media (max-width:560px){
+  .testimonial-epigraph,
+  .testimonial-callout{max-width:none}
+  .testimonial-callout{padding:16px 18px;font-size:19px}
+}
