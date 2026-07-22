@@ -842,7 +842,7 @@
   ];
 
   var D=Math.PI/180, C=450;
-  var IMG_R=100.8, HUB_R=146, VERB_R=184, VW=132, VH=36;
+  var HUB_R=146, IMG_R=Math.round(HUB_R*0.55), VERB_R=184, VW=132, VH=36;
   var ZIN=258, ZOUT=326, LAB_R=290, SUB_R=352;
   var HIT_IN=236, HIT_OUT=440, KID0=334, KID1=396;
   function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
@@ -861,7 +861,7 @@
   center+='<circle cx="'+C+'" cy="'+C+'" r="'+HUB_R+'" fill="var(--card)" stroke="var(--gold)" stroke-width="1"/>';
   center+='<text class="wc-ringtext"><textPath href="#wTop" startOffset="50%" text-anchor="middle">THE FOREST THRESHOLD</textPath></text>';
   center+='<text class="wc-ringtext"><textPath href="#wBot" startOffset="50%" text-anchor="middle">ANFT PATHS</textPath></text>';
-  center+='<image href="'+HUB.img+'" x="'+(C-IMG_R)+'" y="'+(C-IMG_R)+'" width="'+(2*IMG_R)+'" height="'+(2*IMG_R)+'" clip-path="url(#wImgClip)" preserveAspectRatio="xMidYMid slice"/>';
+  center+='<image href="'+HUB.img+'" x="'+(C-IMG_R)+'" y="'+(C-IMG_R)+'" width="'+(2*IMG_R)+'" height="'+(2*IMG_R)+'" clip-path="url(#wImgClip)" preserveAspectRatio="xMidYMid meet"/>';
   center+='<circle cx="'+C+'" cy="'+C+'" r="'+IMG_R+'" fill="none" stroke="var(--gold)" stroke-width="1"/></g>';
   center+='<g class="wc-face wc-back" aria-hidden="true"><circle cx="'+C+'" cy="'+C+'" r="'+HUB_R+'" fill="var(--fir)" stroke="var(--gold)" stroke-width="1"/><g id="wcBackText"></g></g>';
   center+='<circle class="wc-hit" cx="'+C+'" cy="'+C+'" r="'+HUB_R+'" fill="transparent"/></g>';
