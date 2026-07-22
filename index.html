@@ -63,61 +63,62 @@
     font-size:clamp(26px,3.6vw,38px);line-height:1.15}
   .section .lede{color:var(--ink-soft);max-width:62ch;margin-top:10px;margin-bottom:30px}
 
-  /* chart card (adapted from the organizational chart page) */
-  .chart-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 20px 8px}
-  .chart-caption{text-align:center;padding:10px 0 2px;font-family:"EB Garamond",Garamond,Georgia,serif;
-    font-size:22px;font-weight:600;color:#24492F;letter-spacing:.14em;text-transform:uppercase}
-  .chart-caption span{display:block;font-family:"Albert Sans",system-ui,sans-serif;font-size:11px;
-    letter-spacing:.2em;color:#7C6118;margin-top:4px}
-  .chart-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
-    padding:4px 6px 14px;border-bottom:1px solid var(--line)}
-  .hint{font-size:13.5px;color:var(--ink-soft)}
-  .cbtn{font:inherit;font-size:13.5px;font-weight:600;color:#fff;background:var(--fir);
-    border:1px solid var(--fir);border-radius:999px;padding:9px 18px;cursor:pointer}
-  .cbtn:hover{background:#24492F}
-  .cbtn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-  #svgHolder{width:100%}
-  #svgHolder svg{display:block;width:100%;height:auto}
-  #svgHolder text{font-family:"Albert Sans",system-ui,sans-serif}
-  .leaf{cursor:pointer;text-decoration:none}
-  .leaf:hover rect,.leaf:focus rect{stroke-width:2.2}
-  .leaf:focus{outline:none}
-  .sat{cursor:pointer}
-  .sat:focus{outline:none}
-  .sat:focus-visible .pill,.sat:hover .pill{stroke-width:2.2}
-  .sat .pill{transition:stroke-width .2s ease,filter .2s ease,transform .2s ease;
-    transform-box:fill-box;transform-origin:center;
-    filter:drop-shadow(0 1.5px 2.5px rgba(38,48,31,.18))}
-  .sat:hover .pill{filter:drop-shadow(0 4px 7px rgba(38,48,31,.26))}
-  .sat:not(.hub):hover .pill{transform:translateY(-2px)}
-  .leaf rect{filter:drop-shadow(0 1px 2px rgba(38,48,31,.14))}
-  .aff{pointer-events:none}
-  .hub-ringtext{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:13.5px;font-weight:600;
-    letter-spacing:2.4px;fill:#4E3324}
-  @keyframes hubPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.045)}}
-  .pulse-once .hub{transform-box:fill-box;transform-origin:center;animation:hubPulse 1.5s ease-in-out 2}
-  .leafgrp,.leafline{transition:opacity .5s ease,transform .5s cubic-bezier(.22,.9,.3,1),visibility 0s;
-    transform-box:fill-box;transform-origin:center}
-  .leafgrp.hidden{opacity:0;pointer-events:none;visibility:hidden;
-    transform:translate(var(--cx),var(--cy)) scale(.55);transition:opacity .5s ease,transform .5s,visibility 0s .5s}
-  .leafline{transition:opacity .5s ease,visibility 0s}
-  .leafline.hidden{opacity:0;visibility:hidden;transition:opacity .5s ease,visibility 0s .5s}
-  a.leafgrp text{fill:#4E5A47}
-  a.leafgrp:hover text,a.leafgrp:focus-visible text{fill:var(--navy);text-decoration:underline}
-  .legend{display:flex;gap:26px;flex-wrap:wrap;justify-content:center;padding:14px 6px 12px;
-    border-top:1px solid var(--line);font-size:13px;color:var(--ink-soft)}
-  .legend span{display:inline-flex;align-items:center;gap:8px}
-  .dot{width:11px;height:11px;border-radius:50%;display:inline-block}
-  .panel{margin-top:26px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
-    padding:28px 32px;display:none}
-  .panel.open{display:block}
-  .panel .p-eyebrow{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;margin-bottom:8px}
-  .panel h3{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:500;font-size:26px;color:var(--navy);margin-bottom:6px}
-  .panel .p-desc{color:var(--ink-soft);max-width:64ch;margin-bottom:18px;font-size:15.5px}
-  .fn-list{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px 22px;margin-bottom:20px}
-  .fn-list a{display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-size:14.5px;
-    font-weight:500;background:var(--paper);color:var(--ink);text-decoration:none}
-  .fn-list a:hover{border-color:var(--river);color:var(--navy)}
+  /* ===== Concentric navigation wheel ===== */
+  .wheel-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 20px 20px}
+  .wheel-hint{text-align:center;font-size:13.5px;color:var(--ink-soft);max-width:62ch;margin:0 auto 4px}
+  .wheel{position:relative;width:100%;max-width:560px;margin:6px auto 0;aspect-ratio:1/1}
+  .wheel-band{position:absolute;inset:0;border-radius:50%;opacity:.94;
+    background:conic-gradient(var(--fir) 0deg,var(--river) 72deg,var(--navy) 144deg,var(--bark) 216deg,var(--gold) 288deg,var(--fir) 360deg);
+    -webkit-mask:radial-gradient(circle closest-side at center,transparent 48.8%,#000 49% 59%,transparent 59.2%);
+            mask:radial-gradient(circle closest-side at center,transparent 48.8%,#000 49% 59%,transparent 59.2%)}
+  #wheelSvg{position:absolute;inset:0}
+  #wheelSvg svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+  .wheel text{font-family:"Albert Sans",system-ui,sans-serif}
+  /* zones */
+  .wz-hit{outline:none;cursor:pointer}
+  .wz-tint{opacity:0;transition:opacity .16s ease;pointer-events:none}
+  .wz.active .wz-tint{opacity:.9}
+  .wz-label{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:600;font-size:12.6px;fill:#fff;
+    letter-spacing:.01em;pointer-events:none;paint-order:stroke;stroke:rgba(20,32,22,.32);stroke-width:2px}
+  .wz-sub{font-size:10.5px;font-weight:600;fill:var(--ink-soft);pointer-events:none}
+  .wz-focus{opacity:0;stroke:var(--gold);stroke-width:3.5;pointer-events:none}
+  .wz-hit:focus-visible ~ .wz-focus{opacity:1}
+  /* radiating children */
+  .wz-kids{visibility:hidden;opacity:0;transition:opacity .16s ease,visibility 0s .16s}
+  .wz.active .wz-kids{visibility:visible;opacity:1;transition:opacity .16s ease}
+  .wkid{text-decoration:none;cursor:pointer}
+  .wkid line{stroke:var(--gold);stroke-width:1.4;opacity:.75}
+  .wkid text{font-size:11px;font-weight:600;fill:var(--ink)}
+  .wkid:hover text,.wkid:focus-visible text{fill:var(--navy);text-decoration:underline}
+  .wkid:hover line,.wkid:focus-visible line{stroke:var(--gold-deep);opacity:1}
+  /* verbs (middle ring) */
+  .wverb{cursor:pointer;outline:none}
+  .wverb-pill{fill:var(--card);stroke:var(--gold);stroke-width:1.1;transition:fill .15s ease}
+  .wverb:hover .wverb-pill,.wverb:focus-visible .wverb-pill{fill:var(--gold-tint);stroke:var(--gold-deep)}
+  .wverb text{font-size:9.5px;font-weight:700;letter-spacing:1.3px;fill:var(--gold-deep);pointer-events:none}
+  /* centre */
+  .wc{cursor:pointer;outline:none}
+  .wc-face{transition:opacity .22s ease}
+  .wc-back{opacity:0}
+  .wc.flipped .wc-front{opacity:0}
+  .wc.flipped .wc-back{opacity:1}
+  .wc-ringtext{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:11.5px;font-weight:600;letter-spacing:2px;fill:var(--bark-deep)}
+  .wc:focus-visible .wc-front>circle{stroke:var(--gold-deep);stroke-width:2.5}
+  /* stacked fallback (built by JS; shown below the breakpoint) */
+  .wheel-stack{display:none}
+  .ws-center{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
+  .ws-center img{width:120px;height:120px;border-radius:50%;object-fit:cover;border:2px solid var(--gold)}
+  .ws-reveal{max-width:52ch;color:var(--ink-soft);font-size:14.5px}
+  .ws-verbs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 4px}
+  .ws-verb{font:inherit;font-size:12px;font-weight:700;letter-spacing:.6px;color:var(--gold-deep);
+    background:var(--gold-tint);border:1px solid var(--gold);border-radius:999px;padding:8px 15px;cursor:pointer}
+  .ws-verb:hover{background:#EBE1C4}
+  .ws-verb-desc{max-width:56ch;margin:6px auto 4px;color:var(--ink-soft);font-size:14px;text-align:center}
+  .ws-bars{display:grid;gap:10px;margin-top:14px}
+  .wbar{display:block;padding:15px 18px;border-radius:12px;text-decoration:none;color:#fff}
+  .wbar b{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:18px;font-weight:600;display:block}
+  .wbar span{display:block;font-size:12.5px;opacity:.92;margin-top:2px}
+  .wbar:hover{filter:brightness(1.08)}
   .p-link{font-size:14.5px;font-weight:600;color:var(--gold-deep);text-decoration:none}
   .p-link:hover{text-decoration:underline;text-underline-offset:4px}
 
@@ -196,22 +197,16 @@
   .stream-links a{color:var(--fir);font-weight:600;font-size:13.5px;text-decoration:none}
   .stream-links a:hover{text-decoration:underline}
 
-  /* hub flip: hover or keyboard focus turns the circle to its second side */
-  .hub-face{transform-box:fill-box;transform-origin:center;pointer-events:none}
-  .hub-front{transition:transform .24s ease .24s}
-  .hub-back{transform:scaleX(0);transition:transform .24s ease 0s}
-  .hub:hover .hub-front,.hub:focus-visible .hub-front,.hub.flipped .hub-front{transform:scaleX(0);transition-delay:0s}
-  .hub:hover .hub-back,.hub:focus-visible .hub-back,.hub.flipped .hub-back{transform:scaleX(1);transition-delay:.24s}
-
-  /* stronger keyboard focus on the chart */
-  .sat:focus-visible .pill,.leaf:focus-visible rect{stroke-width:3;filter:drop-shadow(0 0 4px rgba(169,134,44,.85))}
-
-  /* mobile: the SVG chart becomes unreadable — fall back to the list */
-  @media (max-width:760px){
-    .chart-card,.panel{display:none !important}
-    .streams-list{margin-top:8px}
+  /* wheel: below the breakpoint, swap the wheel for the stacked fallback */
+  @media (max-width:620px){
+    .wheel,.wheel-hint{display:none}
+    .wheel-stack{display:block}
+    .wheel-card{padding:20px 16px 18px}
   }
-  @media (prefers-reduced-motion:reduce){.leafgrp,.leafline,.sat .pill,.hub-face{transition:none}.pulse-once .hub{animation:none}html{scroll-behavior:auto}}
+  @media (prefers-reduced-motion:reduce){
+    .wc-face,.wz-tint,.wz-kids,.wverb-pill{transition:none}
+    html{scroll-behavior:auto}
+  }
 
 
   /* comprehensive footer */
@@ -320,8 +315,7 @@
     <h1 class="serif">Something in you remembers.</h1>
     <p>Time in nature quiets the tamed world &mdash; and an older, essential self begins to stir. Jack London called it the call of the wild. We call it The Forest Threshold: an awakening we witness, and from which five paths open &mdash; four academies, and Nature as Medicine.</p>
     <div class="hero-cta">
-      <a class="btn btn-gold" href="#structure">See the five paths</a>
-      <a class="btn btn-ghost" href="forest-threshold.html">About the Forest Threshold</a>
+      <a class="btn btn-gold" href="apply.html">I&rsquo;m ready to apply</a>
     </div>
   </div>
 </section>
@@ -333,14 +327,11 @@
     <div class="eyebrow">Begin at the Source</div>
     <h2>The Forest Threshold</h2>
     <p class="lede">The Forest Threshold is not a place or a program &mdash; it is the moment the call reaches you. Its five movements are Connect, Discover, Embody, Remember, and Shine &mdash; and from that awakening, five paths open — four academies, and Nature as Medicine, a partnership program for health care professionals. Click the Threshold, a movement, or any path to explore.</p>
-    <div class="chart-card">
-      <div class="chart-bar">
-        <span class="hint">Click any circle or path to open it. The center is the Threshold itself &mdash; the call &mdash; and the branches are the five paths, also summarized below.</span>
-      </div>
-      <div id="svgHolder"></div>
-      <div class="chart-caption">The Forest Threshold<span>the call of the wild, welcomed</span></div>
+    <div class="wheel-card">
+      <p class="wheel-hint">Click the centre to reveal the call, a movement for its meaning, or any path to open it. Hover a path to see where it leads.</p>
+      <div class="wheel" id="wheel" role="group" aria-label="The Forest Threshold at the centre, five movements around it, and five paths in the outer ring"><div class="wheel-band" aria-hidden="true"></div><div id="wheelSvg"></div></div>
+      <div class="wheel-stack" id="wheelStack"></div>
     </div>
-    <section class="panel" id="panel" aria-live="polite"></section>
 
     <div class="streams-list" id="streams" aria-label="The five paths, summarized">
       <h3 class="serif">The five paths, in plain terms</h3>
@@ -808,292 +799,147 @@
   </div>
 </footer>
 
-<script>var HUB_IMG='images/symbol.png';</script>
-
-
-
 <script>
+/* ===== Concentric navigation wheel ===== */
 (function(){
-  var COLORS = {
-    fir:{fill:'#E1EBDD', stroke:'#2E5B3E', text:'#24492F', line:'#6F9276'},
-    gold:{fill:'#F3EDD9', stroke:'#A9862C', text:'#7C6118', line:'#BBA25A'},
-    bark:{fill:'#EFE7DF', stroke:'#6B4F3A', text:'#4E3324', line:'#98816F'}
-  };
+  var wheel=document.getElementById('wheel'), svgBox=document.getElementById('wheelSvg'), stack=document.getElementById('wheelStack');
+  if(!wheel||!svgBox) return;
+  var TOUCH = !(window.matchMedia && window.matchMedia('(hover:hover)').matches);
 
-  var STREAMS = [
-    {id:'rfta', tag:"The World's Premier Guide Training Experience", academy:'Relational Forest Therapy Academy',
-     angle:-90, url:'relational-forest-therapy-academy.html',
-     desc:'The mentored path to certification as a forest therapy guide \u2014 an immersive practicum completed in cohorts, stewarded by the Relational Forest Therapy Academy, and joined to a global community of practicing guides.',
-     kids:[{k:'Guide Training and Certification', u:'relational-forest-therapy-academy--guide-training.html#guide-training-certification'},
-           {k:'Lineage', u:'relational-forest-therapy-academy--guide-training.html#lineage'},
-           {k:'Learning the Way', u:'relational-forest-therapy-academy--guide-training.html#learning-the-way'},
-           {k:'The Vocation and the Avocation', u:'relational-forest-therapy-academy--guide-training.html#vocation-avocation'}]},
-    {id:'nam', tag:'Nature in the Practice of Medicine', academy:'Nature as Medicine', ramp:'gold',
-     angle:-18, url:'nature-as-medicine.html',
-     desc:'Training for physicians and other health care professionals in nature-based approaches to health and healing \u2014 offered in partnership with Dr. Susan Abookirie, who teaches for Harvard Medical School.',
-     kids:[{k:'About the program', u:'nature-as-medicine.html'}]},
-    {id:'place', tag:'Tending the Heart of the Planet and its Peoples', academy:'Academy of Place',
-     angle:54, url:'academy-of-place.html',
-     desc:'Training for place-based stewards and certified trail consultants \u2014 shaping, certifying, and tending the places that hold this work, and the communities who belong to them.',
-     kids:[{k:'Consultant training', u:'academy-of-place--consultant-training.html'},
-           {k:'Trail certification', u:'academy-of-place--trail-certification.html'},
-           {k:'Global trail map', u:'academy-of-place--global-trail-map.html'}]},
-    {id:'opus', tag:'Your Life, Your Work, Your Light', academy:'Opus Academy',
-     angle:126, url:'opus-academy.html',
-     desc:'Alchemy of Pilgrimage \u2014 process, practices, and atelier \u2014 a creative-transformative path of assemblage and pilgrimage for your life, your work, and your light.',
-     kids:[{k:'The Journey Begins', u:'opus-academy.html#journey-begins'},
-           {k:'Alchemy of Pilgrimage', u:'opus-academy.html#alchemy-of-pilgrimage'},
-           {k:'The Pathways Beyond', u:'opus-academy.html#pathways-beyond'},
-           {k:'Co-Emergence of Self and Opus', u:'opus-academy.html#co-emergence'},
-           {k:'More than a Curriculum', u:'opus-academy.html#more-than-curriculum'}]},
-    {id:'applied', tag:'Bringing Your Offering to the World', academy:'Academy of Applied Partnerships',
-     angle:198, url:'academy-of-applied-partnerships.html',
-     desc:'Propose and deliver your own offering through the academy \u2014 workshops, retreats, and specialized training that carry your gifts into the world.',
-     kids:[{k:'Workshops', u:'academy-of-applied-partnerships--workshops.html'},
-           {k:'Retreats', u:'academy-of-applied-partnerships--retreats.html'},
-           {k:'Specialized professional training', u:'academy-of-applied-partnerships--specialized-professional-training.html'},
-           {k:'ANFT specialized training', u:'academy-of-applied-partnerships--anft-specialized-training.html'}]}
+  var HUB={img:'images/symbol.png',
+    back:'The Forest Threshold is the stirring of your essential self — the call of the wild — welcomed here, and opening into five paths.'};
+  var VERBS=[
+    {id:'connect',name:'Connect',angle:-126,desc:'Arriving in relationship — with the land, the more-than-human world, and the circle of fellow travelers. Practices of presence, invitation, and reciprocity open the way.'},
+    {id:'discover',name:'Discover',angle:-54,desc:'The ideas beneath the work — the lineages, sciences, and stories of relational practice, partnership, place, and the creative path.'},
+    {id:'embody',name:'Embody',angle:18,desc:'Skills lived rather than studied — guiding practice, sensory and somatic work, council, and creative process, taken into the body each day on the land.'},
+    {id:'remember',name:'Remember',angle:90,desc:'Integration and return — honoring the crossing as complete in itself, carrying it home, and recognizing which path, if any, calls you onward.'},
+    {id:'shine',name:'Shine',angle:162,desc:'Letting what the crossing has kindled be seen — voice, gifts, and light offered first to the circle, then carried into the world.'}
+  ];
+  var ZONES=[
+    {id:'rfta',c:-90,color:'--fir',hover:'--river',url:'relational-forest-therapy-academy.html',
+      label:'Relational Forest Therapy Academy',sub:'The World’s Premier Guide Training Experience',
+      kids:[{k:'Guide Training and Certification',u:'relational-forest-therapy-academy--guide-training.html#guide-training-certification'},{k:'Lineage',u:'relational-forest-therapy-academy--guide-training.html#lineage'},{k:'Learning the Way',u:'relational-forest-therapy-academy--guide-training.html#learning-the-way'},{k:'The Vocation and the Avocation',u:'relational-forest-therapy-academy--guide-training.html#vocation-avocation'}]},
+    {id:'nam',c:-18,color:'--river',hover:'--navy',url:'nature-as-medicine.html',
+      label:'Nature as Medicine',sub:'Nature in the Practice of Medicine',
+      kids:[{k:'About the program',u:'nature-as-medicine.html'}]},
+    {id:'place',c:54,color:'--navy',hover:'--bark',url:'academy-of-place.html',
+      label:'Academy of Place',sub:'Tending the Heart of the Planet and its Peoples',
+      kids:[{k:'Consultant training',u:'academy-of-place--consultant-training.html'},{k:'Trail certification',u:'academy-of-place--trail-certification.html'},{k:'Global trail map',u:'academy-of-place--global-trail-map.html'}]},
+    {id:'opus',c:126,color:'--bark',hover:'--gold',url:'opus-academy.html',
+      label:'Opus Academy',sub:'Your Life, Your Work, Your Light',
+      kids:[{k:'The Journey Begins',u:'opus-academy.html#journey-begins'},{k:'Alchemy of Pilgrimage',u:'opus-academy.html#alchemy-of-pilgrimage'},{k:'The Pathways Beyond',u:'opus-academy.html#pathways-beyond'},{k:'Co-Emergence of Self and Opus',u:'opus-academy.html#co-emergence'},{k:'More than a Curriculum',u:'opus-academy.html#more-than-curriculum'}]},
+    {id:'applied',c:198,color:'--gold',hover:'--fir',url:'academy-of-applied-partnerships.html',
+      label:'Academy of Applied Partnerships',sub:'Bringing Your Offering to the World',
+      kids:[{k:'Workshops',u:'academy-of-applied-partnerships--workshops.html'},{k:'Retreats',u:'academy-of-applied-partnerships--retreats.html'},{k:'Specialized professional training',u:'academy-of-applied-partnerships--specialized-professional-training.html'},{k:'ANFT specialized training',u:'academy-of-applied-partnerships--anft-specialized-training.html'}]}
   ];
 
-  var MOVES = [
-    {id:'connect', name:'Connect', angle:-126,
-     desc:'Arriving in relationship \u2014 with the land, the more-than-human world, and the circle of fellow travelers. Practices of presence, invitation, and reciprocity open the way.'},
-    {id:'discover', name:'Discover', angle:-54,
-     desc:'The ideas beneath the work \u2014 the lineages, sciences, and stories of relational practice, partnership, place, and the creative path.'},
-    {id:'embody', name:'Embody', angle:18,
-     desc:'Skills lived rather than studied \u2014 guiding practice, sensory and somatic work, council, and creative process, taken into the body each day on the land.'},
-    {id:'remember', name:'Remember', angle:90,
-     desc:'Integration and return \u2014 honoring the crossing as complete in itself, carrying it home, and recognizing which path, if any, calls you onward.'},
-    {id:'shine', name:'Shine', angle:162,
-     desc:'Letting what the crossing has kindled be seen \u2014 voice, gifts, and light offered first to the circle, then carried into the world.'}
-  ];
+  var D=Math.PI/180, C=400;
+  var IMG_R=80, HUB_R=105, VERB_R=150, VW=86, VH=22;
+  var ZIN=196, ZOUT=236, LAB_R=217, SUB_R=255;
+  var HIT_IN=178, HIT_OUT=352, KID0=242, KID1=290;
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function P(r,a){return [C+r*Math.cos(a*D), C+r*Math.sin(a*D)];}
+  function sector(r0,r1,a0,a1){var p0=P(r1,a0),p1=P(r1,a1),p2=P(r0,a1),p3=P(r0,a0),lg=(a1-a0)>180?1:0;
+    return 'M'+p0[0].toFixed(1)+' '+p0[1].toFixed(1)+' A'+r1+' '+r1+' 0 '+lg+' 1 '+p1[0].toFixed(1)+' '+p1[1].toFixed(1)+' L'+p2[0].toFixed(1)+' '+p2[1].toFixed(1)+' A'+r0+' '+r0+' 0 '+lg+' 0 '+p3[0].toFixed(1)+' '+p3[1].toFixed(1)+' Z';}
+  function arc(r,a0,a1,flip){if(flip){var t=a0;a0=a1;a1=t;}var p0=P(r,a0),p1=P(r,a1);
+    return 'M'+p0[0].toFixed(1)+' '+p0[1].toFixed(1)+' A'+r+' '+r+' 0 0 '+(flip?0:1)+' '+p1[0].toFixed(1)+' '+p1[1].toFixed(1);}
+  function wrap(t,max){var out=[],cur='';t.split(' ').forEach(function(w){if(cur&&(cur+' '+w).length>max){out.push(cur);cur=w;}else cur=cur?cur+' '+w:w;});if(cur)out.push(cur);return out;}
 
-  var HUB = {id:'hub', name:'The Forest Threshold', academy:'The Source',
-    url:'forest-threshold.html',
-    desc:'A crossing sparked by time in nature: the tamed world loosens its hold, and an ancestral *memory of essential self* begins to stir; *something calls.* We get you; we\'ve been there. Our community has evolved five paths to live into what is calling.'};
+  var arcDefs='';
+  // center + verbs first (nicer tab order), then zones
+  var backLines=wrap(HUB.back,26);
+  var center='<g class="wc" data-wc role="button" tabindex="0" aria-label="The Forest Threshold, the source — activate to reveal the call">';
+  center+='<g class="wc-face wc-front">';
+  center+='<circle cx="'+C+'" cy="'+C+'" r="'+HUB_R+'" fill="var(--card)" stroke="var(--gold)" stroke-width="1"/>';
+  center+='<text class="wc-ringtext"><textPath href="#wTop" startOffset="50%" text-anchor="middle">THE FOREST THRESHOLD</textPath></text>';
+  center+='<text class="wc-ringtext"><textPath href="#wBot" startOffset="50%" text-anchor="middle">ANFT PATHS</textPath></text>';
+  center+='<image href="'+HUB.img+'" x="'+(C-IMG_R)+'" y="'+(C-IMG_R)+'" width="'+(2*IMG_R)+'" height="'+(2*IMG_R)+'" clip-path="url(#wImgClip)" preserveAspectRatio="xMidYMid slice"/>';
+  center+='<circle cx="'+C+'" cy="'+C+'" r="'+IMG_R+'" fill="none" stroke="var(--gold)" stroke-width="1"/></g>';
+  center+='<g class="wc-face wc-back" aria-hidden="true"><circle cx="'+C+'" cy="'+C+'" r="'+HUB_R+'" fill="var(--fir)" stroke="var(--gold)" stroke-width="1"/><g id="wcBackText"></g></g>';
+  center+='<circle class="wc-hit" cx="'+C+'" cy="'+C+'" r="'+HUB_R+'" fill="transparent"/></g>';
 
-  var CX=470, CY=350, D=Math.PI/180;
-  var HUB_R=108, RING_R=155, PW=260, PH=86, AX=335, AY=230;
-  var LAX=AX+152, LAY=AY+120, LH=30;
+  var verbs='';
+  VERBS.forEach(function(v){var p=P(VERB_R,v.angle);
+    verbs+='<g class="wverb" data-verb="'+v.id+'" role="button" tabindex="0" aria-label="'+v.name+' — a movement of The Forest Threshold; activate to reveal its meaning">';
+    verbs+='<rect class="wverb-pill" x="'+(p[0]-VW/2).toFixed(1)+'" y="'+(p[1]-VH/2).toFixed(1)+'" width="'+VW+'" height="'+VH+'" rx="11"/>';
+    verbs+='<text x="'+p[0].toFixed(1)+'" y="'+(p[1]+3.4).toFixed(1)+'" text-anchor="middle">'+v.name.toUpperCase()+'</text></g>';});
 
-  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
-  function wrap(t,max){
-    var out=[], cur='';
-    t.split(' ').forEach(function(w){
-      if(cur && (cur+' '+w).length>max){out.push(cur);cur=w;}
-      else cur=cur?cur+' '+w:w;
-    });
-    if(cur)out.push(cur);
-    return out;
-  }
-
-  function buildSvg(openId){
-    var minX=0, minY=0, maxX=940, maxY=700;
-
-    var IMG_R=84;
-    var defs='<defs><clipPath id="thClip"><circle cx="'+CX+'" cy="'+CY+'" r="'+IMG_R+'"/></clipPath>'+
-      '<path id="thTopArc" d="M '+(CX-92)+' '+CY+' A 92 92 0 0 1 '+(CX+92)+' '+CY+'" fill="none"/>'+
-      '<path id="thBotArc" d="M '+(CX-102)+' '+CY+' A 102 102 0 0 0 '+(CX+102)+' '+CY+'" fill="none"/>'+
-      '</defs>';
-    var base='<circle cx="'+CX+'" cy="'+CY+'" r="'+RING_R+'" fill="none" stroke="#A9862C" stroke-width="1.1" stroke-dasharray="2 5" opacity="0.8"/>';
-
-    var streams='', connectors='', pills='', leaves='';
-    var pillRects = STREAMS.map(function(s){
-      var px=CX+AX*Math.cos(s.angle*D), py=CY+AY*Math.sin(s.angle*D);
-      return [px-PW/2, py-PH/2, PW, PH];
-    });
-    function hitsPill(x,y,w,hh){
-      return pillRects.some(function(r){
-        return !(x+w<=r[0]||r[0]+r[2]<=x||y+hh<=r[1]||r[1]+r[3]<=y);
+  var zones='';
+  ZONES.forEach(function(z,zi){
+    var a0=z.c-36, a1=z.c+36, flip=Math.sin(z.c*D)>0.02;
+    arcDefs+='<path id="wzl'+zi+'" d="'+arc(flip?LAB_R+4:LAB_R,a0+4,a1-4,flip)+'"/><path id="wzs'+zi+'" d="'+arc(flip?SUB_R+4:SUB_R,a0+5,a1-5,flip)+'"/>';
+    var g='<g class="wz" data-zone="'+z.id+'">';
+    g+='<path class="wz-tint" d="'+sector(ZIN,ZOUT,a0+0.4,a1-0.4)+'" fill="var('+z.hover+')"/>';
+    g+='<a class="wz-hit" href="'+z.url+'" aria-label="'+esc(z.label)+' — '+esc(z.sub)+'"><path d="'+sector(HIT_IN,HIT_OUT,a0,a1)+'" fill="transparent"/></a>';
+    g+='<text class="wz-label"><textPath href="#wzl'+zi+'" startOffset="50%" text-anchor="middle">'+esc(z.label)+'</textPath></text>';
+    g+='<text class="wz-sub"><textPath href="#wzs'+zi+'" startOffset="50%" text-anchor="middle">'+esc(z.sub)+'</textPath></text>';
+    g+='<path class="wz-focus" d="'+sector(ZIN-3,ZOUT+3,a0,a1)+'" fill="none"/>';
+    if(!TOUCH && z.kids && z.kids.length){
+      g+='<g class="wz-kids">';
+      var k=z.kids.length, spread=Math.min(58,20*(k-1));
+      z.kids.forEach(function(kid,i){
+        var ka=k===1?z.c:(z.c-spread/2+spread*(i/(k-1)));
+        var p0=P(KID0,ka), p1=P(KID1,ka), cosk=Math.cos(ka*D);
+        var anch=Math.abs(cosk)<0.34?'middle':(cosk>0?'start':'end');
+        var tx=p1[0]+(anch==='start'?5:anch==='end'?-5:0), ty=p1[1]+(anch==='middle'?(Math.sin(ka*D)>0?12:-5):4);
+        var lines=wrap(kid.k,18);
+        g+='<a class="wkid" href="'+kid.u+'" aria-label="'+esc(kid.k)+' — '+esc(z.label)+'"><line x1="'+p0[0].toFixed(1)+'" y1="'+p0[1].toFixed(1)+'" x2="'+p1[0].toFixed(1)+'" y2="'+p1[1].toFixed(1)+'"/>';
+        lines.forEach(function(ln,j){ g+='<text x="'+tx.toFixed(1)+'" y="'+(ty+j*13).toFixed(1)+'" text-anchor="'+anch+'">'+esc(ln)+'</text>'; });
+        g+='</a>';
       });
-    }
-    STREAMS.forEach(function(s){
-      var c=COLORS[s.ramp]||COLORS.fir;
-      var dx=Math.cos(s.angle*D), dy=Math.sin(s.angle*D);
-      var px=CX+AX*dx, py=CY+AY*dy;
-      var sx=CX+dx*(HUB_R+4), sy=CY+dy*(HUB_R+4);
-      var tEnd=Math.min(Math.abs(dx)>1e-6?(PW/2)/Math.abs(dx):1e9, Math.abs(dy)>1e-6?(PH/2)/Math.abs(dy):1e9)+8;
-      var ex=px-dx*tEnd, ey=py-dy*tEnd;
-      var mx=(sx+ex)/2, my=(sy+ey)/2;
-      var qx=mx+(-dy)*30, qy=my+(dx)*30;
-      streams+='<path d="M '+sx.toFixed(1)+' '+sy.toFixed(1)+' Q '+qx.toFixed(1)+' '+qy.toFixed(1)+' '+ex.toFixed(1)+' '+ey.toFixed(1)+'" fill="none" stroke="'+c.line+'" stroke-width="1.8" opacity="0.9"/>';
-
-      var open = (openId===s.id);
-      var lines=wrap(s.tag,24);
-      var g='<g class="sat" data-div="'+s.id+'" role="button" tabindex="0" aria-expanded="'+(open?'true':'false')+'" aria-label="'+esc(s.tag)+' \u2014 '+esc(s.academy)+'">';
-      g+='<rect class="pill" x="'+(px-PW/2).toFixed(1)+'" y="'+(py-PH/2).toFixed(1)+'" width="'+PW+'" height="'+PH+'" rx="18" fill="'+c.fill+'" stroke="'+c.stroke+'" stroke-width="'+(open?'2.6':'1.6')+'"/>';
-      var ty=py-((lines.length-1)*10)-4;
-      lines.forEach(function(ln,i){
-        g+='<text x="'+px.toFixed(1)+'" y="'+(ty+i*20).toFixed(1)+'" font-size="15.5" font-weight="500" fill="'+c.text+'" text-anchor="middle" font-family="EB Garamond, Garamond, Georgia, serif">'+esc(ln)+'</text>';
-      });
-      g+='<text x="'+px.toFixed(1)+'" y="'+(py+(lines.length>1?30:26)).toFixed(1)+'" font-size="10.5" fill="#4E5A47" text-anchor="middle" letter-spacing="0.6">'+esc(s.academy.toUpperCase())+'</text>';
-      var afx=px+PW/2-17, afy=py-PH/2+17;
-      g+='<g class="aff"><circle cx="'+afx.toFixed(1)+'" cy="'+afy.toFixed(1)+'" r="8.5" fill="#FFFFFF" stroke="'+c.stroke+'" stroke-width="1.2"/>';
-      g+='<text x="'+afx.toFixed(1)+'" y="'+(afy+3.8).toFixed(1)+'" font-size="12" font-weight="700" fill="'+c.text+'" text-anchor="middle">'+(open?'\u2212':'+')+'</text></g>';
       g+='</g>';
-      pills+=g;
-
-      if(open && s.kids && s.kids.length){
-        var k=s.kids.length;
-        var span=Math.min(78, 22*(k-1));
-        s.kids.forEach(function(kid, i){
-          var off = k===1 ? 0 : -span/2 + span*(i/(k-1));
-          var a=(s.angle+off)*D;
-          var stag=(i%2===1)?56:(k===1?46:0);
-          var lx=CX+(LAX+stag)*Math.cos(a), ly=CY+(LAY+stag*0.82)*Math.sin(a);
-          var klines=wrap(kid.k,18);
-          var longest=klines.reduce(function(m,t){return Math.max(m,t.length);},0);
-          var lw=Math.max(96, longest*6.4+26);
-          var lh=klines.length>1?44:LH;
-          var guard=0;
-          while(hitsPill(lx-lw/2, ly-lh/2, lw, lh) && guard<30){
-            lx+=Math.cos(a)*12; ly+=Math.sin(a)*12; guard++;
-          }
-          connectors+='<line x1="'+px.toFixed(1)+'" y1="'+py.toFixed(1)+'" x2="'+lx.toFixed(1)+'" y2="'+ly.toFixed(1)+'" stroke="'+c.line+'" stroke-width="1.2" opacity="0.85"/>';
-          leaves+='<a href="'+kid.u+'" class="leaf" aria-label="'+esc(kid.k)+' \u2014 '+esc(s.academy)+'">';
-          leaves+='<rect x="'+(lx-lw/2).toFixed(1)+'" y="'+(ly-lh/2).toFixed(1)+'" width="'+lw.toFixed(0)+'" height="'+lh+'" rx="15" fill="#FBFCF8" stroke="'+c.stroke+'" stroke-width="1.2"/>';
-          var kty=ly-((klines.length-1)*7)+4;
-          klines.forEach(function(ln,j){
-            leaves+='<text x="'+lx.toFixed(1)+'" y="'+(kty+j*14).toFixed(1)+'" font-size="11.5" font-weight="600" fill="'+c.text+'" text-anchor="middle">'+esc(ln)+'</text>';
-          });
-          leaves+='</a>';
-          minX=Math.min(minX, lx-lw/2-14); maxX=Math.max(maxX, lx+lw/2+14);
-          minY=Math.min(minY, ly-lh/2-14); maxY=Math.max(maxY, ly+lh/2+14);
-        });
-      }
-    });
-
-    var moves='';
-    MOVES.forEach(function(m){
-      var MR=RING_R+7;
-      var mx=CX+MR*Math.cos(m.angle*D), my=CY+MR*Math.sin(m.angle*D);
-      var w=92, h=24;
-      var g='<g class="sat" data-div="'+m.id+'" role="button" tabindex="0" aria-expanded="'+(openId===m.id?'true':'false')+'" aria-label="'+m.name+' \u2014 a movement of The Forest Threshold. '+esc(m.desc)+'">';
-      g+='<rect class="pill" x="'+(mx-w/2).toFixed(1)+'" y="'+(my-h/2).toFixed(1)+'" width="'+w+'" height="'+h+'" rx="12" fill="#FBFCF8" stroke="#BBA25A" stroke-width="1.1"/>';
-      g+='<text x="'+mx.toFixed(1)+'" y="'+(my+3.5).toFixed(1)+'" font-size="10" font-weight="600" fill="#7C6118" text-anchor="middle" letter-spacing="1.6">'+m.name.toUpperCase()+'</text>';
-      var mopen=(openId===m.id);
-      g+='<g class="aff"><circle cx="'+(mx+w/2).toFixed(1)+'" cy="'+(my-h/2).toFixed(1)+'" r="7" fill="#FFFFFF" stroke="#BBA25A" stroke-width="1.1"/>';
-      g+='<text x="'+(mx+w/2).toFixed(1)+'" y="'+(my-h/2+3.4).toFixed(1)+'" font-size="10.5" font-weight="700" fill="#7C6118" text-anchor="middle">'+(mopen?'\u2212':'+')+'</text></g>';
-      g+='</g>';
-      moves+=g;
-    });
-
-    var HUB_BACK_TEXT='The Forest Threshold is the stirring of your essential self \u2014 the call of the wild \u2014 welcomed here, and opening into five paths.';
-    var mvOpen = null;
-    MOVES.forEach(function(m){ if(m.id===openId) mvOpen=m; });
-    var hub='<g class="sat hub" data-div="hub" role="button" tabindex="0" aria-expanded="'+(openId==='hub'?'true':'false')+'" aria-label="The Forest Threshold \u2014 the source. '+HUB_BACK_TEXT+'">';
-    hub+='<g class="hub-face hub-front">';
-    hub+='<circle class="pill" cx="'+CX+'" cy="'+CY+'" r="'+HUB_R+'" fill="#FBFCF8" stroke="#A9862C" stroke-width="1"/>';
-    hub+='<text class="hub-ringtext"><textPath href="#thTopArc" startOffset="50%" text-anchor="middle">THE FOREST THRESHOLD</textPath></text>';
-    hub+='<text class="hub-ringtext"><textPath href="#thBotArc" startOffset="50%" text-anchor="middle">ANFT PATHS</textPath></text>';
-    hub+='<circle cx="'+CX+'" cy="'+CY+'" r="'+(IMG_R+2)+'" fill="none" stroke="#A9862C" stroke-width="1"/>';
-    hub+='<image href="'+HUB_IMG+'" x="'+(CX-IMG_R-2)+'" y="'+(CY-IMG_R-2)+'" width="'+(2*IMG_R+4)+'" height="'+(2*IMG_R+4)+'" clip-path="url(#thClip)" preserveAspectRatio="xMidYMid meet"/>';
-    hub+='</g>';
-    hub+='<g class="hub-face hub-back" aria-hidden="true">';
-    hub+='<circle cx="'+CX+'" cy="'+CY+'" r="'+HUB_R+'" fill="#2E5B3E" stroke="#A9862C" stroke-width="1"/>';
-    var backLines=wrap(mvOpen?mvOpen.desc:HUB_BACK_TEXT,24);
-    var totalLines=backLines.length+(mvOpen?1:0);
-    var bStart=CY-((totalLines-1)*16)/2;
-    if(mvOpen){
-      hub+='<text x="'+CX+'" y="'+bStart+'" font-size="11" font-weight="700" fill="#F3EDD9" text-anchor="middle" letter-spacing="2.2">'+mvOpen.name.toUpperCase()+'</text>';
-      bStart+=16;
     }
-    backLines.forEach(function(ln,i){
-      hub+='<text x="'+CX+'" y="'+(bStart+i*16)+'" font-size="12.5" fill="#F2F3EC" text-anchor="middle">'+esc(ln)+'</text>';
-    });
-    hub+='</g>';
-    hub+='<circle class="hub-hit" cx="'+CX+'" cy="'+CY+'" r="'+HUB_R+'" fill="transparent"/>';
-    hub+='</g>';
+    g+='</g>';
+    zones+=g;
+  });
 
-    var vb=minX.toFixed(0)+' '+minY.toFixed(0)+' '+(maxX-minX).toFixed(0)+' '+(maxY-minY).toFixed(0);
-    return '<svg viewBox="'+vb+'" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Forest Threshold and the five paths leading from it">'+
-      defs+base+streams+connectors+pills+leaves+moves+hub+'</svg>';
+  var defs='<defs><clipPath id="wImgClip"><circle cx="'+C+'" cy="'+C+'" r="'+IMG_R+'"/></clipPath>'+
+    '<path id="wTop" d="'+arc(93,-150,-30,false)+'"/><path id="wBot" d="'+arc(93,40,140,true)+'"/>'+arcDefs+'</defs>';
+  svgBox.innerHTML='<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Concentric navigation: the Forest Threshold at the centre, five movements, and five academy paths">'+defs+center+verbs+zones+'</svg>';
+
+  function setBack(title,text){var g=svgBox.querySelector('#wcBackText');if(!g)return;
+    var lines=wrap(text,26), n=lines.length+(title?1:0), y=C-((n-1)*15)/2, h='';
+    if(title){h+='<text x="'+C+'" y="'+y+'" text-anchor="middle" font-size="11" font-weight="700" letter-spacing="2" fill="var(--gold-tint)">'+esc(title.toUpperCase())+'</text>';y+=17;}
+    lines.forEach(function(ln,i){h+='<text x="'+C+'" y="'+(y+i*15)+'" text-anchor="middle" font-size="12" fill="#F2F3EC">'+esc(ln)+'</text>';});
+    g.innerHTML=h;}
+  setBack('',HUB.back);
+
+  var wc=svgBox.querySelector('.wc');
+  function centerToggle(){ if(wc.classList.contains('flipped')){wc.classList.remove('flipped');}else{setBack('',HUB.back);wc.classList.add('flipped');} }
+  wc.addEventListener('click',centerToggle);
+  wc.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();centerToggle();}});
+  svgBox.querySelectorAll('.wverb').forEach(function(el){var v=VERBS.filter(function(x){return x.id===el.dataset.verb;})[0];
+    function act(){setBack(v.name,v.desc);wc.classList.add('flipped');}
+    el.addEventListener('click',act);
+    el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});});
+
+  if(!TOUCH){
+    var zoneEls=[].slice.call(svgBox.querySelectorAll('.wz'));
+    zoneEls.forEach(function(el){var t;
+      function on(){clearTimeout(t);zoneEls.forEach(function(z){if(z!==el)z.classList.remove('active');});el.classList.add('active');}
+      function off(){t=setTimeout(function(){el.classList.remove('active');},150);}
+      el.addEventListener('mouseover',on);
+      el.addEventListener('mouseout',off);
+      el.addEventListener('focusin',on);
+      el.addEventListener('focusout',function(e){if(!el.contains(e.relatedTarget))off();});});
   }
 
-  var holder=document.getElementById('svgHolder');
-  var panel=document.getElementById('panel');
-  var openId='hub';
-
-  function renderPanel(){
-    if(!openId){ panel.classList.remove('open'); panel.innerHTML=''; return; }
-    var d, kind;
-    if(openId==='hub'){ d=HUB; kind='hub'; }
-    else {
-      d=STREAMS.find(function(x){return x.id===openId;});
-      if(d){ kind='stream'; }
-      else { panel.classList.remove('open'); panel.innerHTML=''; return; }
-    }
-    var html='';
-    if(kind==='stream'){
-      var ec=(COLORS[d.ramp]||COLORS.fir).stroke;
-      html+='<div class="p-eyebrow" style="color:'+ec+'">'+esc(d.academy)+'</div>';
-      html+='<h3>'+esc(d.tag)+'</h3>';
-      html+='<p class="p-desc">'+esc(d.desc).replace(/\*([^*]+)\*/g,'<em>$1</em>')+'</p>';
-      if(d.kids && d.kids.length){
-        html+='<div class="fn-list">';
-        d.kids.forEach(function(kid){ html+='<a href="'+kid.u+'">'+esc(kid.k)+'</a>'; });
-        html+='</div>';
-      }
-      html+='<a class="p-link" href="'+d.url+'">Follow this path \u2192</a>';
-    } else {
-      html+='<div class="p-eyebrow" style="color:#4E3324">'+esc(d.academy)+'</div>';
-      html+='<h3>'+esc(d.name)+'</h3>';
-      html+='<p class="p-desc">'+esc(d.desc).replace(/\*([^*]+)\*/g,'<em>$1</em>')+'</p>';
-      html+='<a class="p-link" href="'+d.url+'">Learn about the journey \u2192</a>';
-    }
-    panel.innerHTML=html;
-    panel.classList.add('open');
-  }
-
-  function render(){
-    holder.innerHTML=buildSvg(openId);
-    holder.querySelectorAll('.sat').forEach(function(el){
-      el.addEventListener('click', function(){ toggle(el.dataset.div); });
-      el.addEventListener('keydown', function(e){
-        if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(el.dataset.div); }
-      });
-    });
-    var isMoveOpen=MOVES.some(function(m){return m.id===openId;});
-    if(isMoveOpen){
-      var hubEl=holder.querySelector('.hub');
-      var raf=window.requestAnimationFrame||function(f){f();};
-      raf(function(){raf(function(){ if(hubEl) hubEl.classList.add('flipped'); });});
-    }
-    renderPanel();
-  }
-  function toggle(id){
-    openId = (openId===id) ? null : id;
-    render();
-
-  // one-time attention pulse on the hub, first time the chart is seen
-  if('IntersectionObserver' in window){
-    var pulsed=false;
-    var io=new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if(en.isIntersecting && !pulsed){
-          pulsed=true;
-          holder.classList.add('pulse-once');
-          setTimeout(function(){holder.classList.remove('pulse-once');},3300);
-          io.disconnect();
-        }
-      });
-    },{threshold:0.35});
-    io.observe(holder);
-  }
-
-    // the SVG is rebuilt, so restore keyboard focus to the toggled element
-    var el = holder.querySelector('[data-div="'+id+'"]');
-    if(el) el.focus();
-    // make sure the detail panel is actually seen on smaller viewports
-    var moveSel=MOVES.some(function(m){return m.id===openId;});
-    if(openId && !moveSel && window.innerWidth < 1100){
-      panel.scrollIntoView({behavior:'smooth', block:'nearest'});
-    }
-  }
-  render();
+  var st='<div class="ws-center"><img src="'+HUB.img+'" alt="The Forest Threshold symbol" width="120" height="120">'+
+    '<button class="ws-verb ws-call" data-wc type="button" aria-expanded="false">Reveal the call</button>'+
+    '<p class="ws-reveal" hidden>'+esc(HUB.back)+'</p></div>'+
+    '<div class="ws-verbs">';
+  VERBS.forEach(function(v){st+='<button class="ws-verb" data-verb="'+v.id+'" type="button">'+esc(v.name)+'</button>';});
+  st+='</div><p class="ws-verb-desc" hidden></p><div class="ws-bars">';
+  ZONES.forEach(function(z){st+='<a class="wbar" href="'+z.url+'" style="background:var('+z.color+')"><b>'+esc(z.label)+'</b><span>'+esc(z.sub)+'</span></a>';});
+  st+='</div>';
+  stack.innerHTML=st;
+  var wcBtn=stack.querySelector('[data-wc]'), wcTxt=stack.querySelector('.ws-reveal');
+  wcBtn.addEventListener('click',function(){var open=wcTxt.hidden;wcTxt.hidden=!open;wcBtn.setAttribute('aria-expanded',String(open));});
+  var vdesc=stack.querySelector('.ws-verb-desc');
+  stack.querySelectorAll('.ws-verbs .ws-verb').forEach(function(el){var v=VERBS.filter(function(x){return x.id===el.dataset.verb;})[0];
+    el.addEventListener('click',function(){vdesc.textContent=v.desc;vdesc.hidden=false;});});
 })();
 </script>
-
 
 </body>
 </html>
