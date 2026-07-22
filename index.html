@@ -874,7 +874,7 @@
   var zones='';
   ZONES.forEach(function(z,zi){
     var a0=z.c-36, a1=z.c+36, flip=Math.sin(z.c*D)>0.02;
-    arcDefs+='<path id="wzl'+zi+'" d="'+arc(flip?LAB_R+4:LAB_R,a0+4,a1-4,flip)+'"/><path id="wzs'+zi+'" d="'+arc(flip?SUB_R+4:SUB_R,a0+5,a1-5,flip)+'"/>';
+    arcDefs+='<path id="wzl'+zi+'" d="'+arc(flip?LAB_R+4:LAB_R,a0+4,a1-4,flip)+'"/><path id="wzs'+zi+'" d="'+arc(flip?SUB_R+4:SUB_R,a0+2,a1-2,flip)+'"/>';
     var g='<g class="wz" data-zone="'+z.id+'">';
     g+='<path class="wz-tint" d="'+sector(ZIN,ZOUT,a0+0.4,a1-0.4)+'" fill="var('+z.hover+')"/>';
     g+='<a class="wz-hit" href="'+z.url+'" aria-label="'+esc(z.label)+' — '+esc(z.sub)+'"><path d="'+sector(HIT_IN,HIT_OUT,a0,a1)+'" fill="transparent"/></a>';
@@ -920,16 +920,9 @@
     el.addEventListener('click',act);
     el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});});
 
-  if(!TOUCH){
-    var zoneEls=[].slice.call(svgBox.querySelectorAll('.wz'));
-    zoneEls.forEach(function(el){var t;
-      function on(){clearTimeout(t);zoneEls.forEach(function(z){if(z!==el)z.classList.remove('active');});el.classList.add('active');}
-      function off(){t=setTimeout(function(){el.classList.remove('active');},150);}
-      el.addEventListener('mouseover',on);
-      el.addEventListener('mouseout',off);
-      el.addEventListener('focusin',on);
-      el.addEventListener('focusout',function(e){if(!el.contains(e.relatedTarget))off();});});
-  }
+  // Hover/focus reveal of path child elements is intentionally disabled:
+  // the .wz-kids stay hidden at all times. Click navigation on the paths
+  // (the <a> links) and the centre's click-to-reveal remain intact.
 
   var st='<div class="ws-center"><img src="'+HUB.img+'" alt="The Forest Threshold symbol" width="132" height="132">'+
     '<button class="ws-verb ws-call" data-wc type="button" aria-expanded="false">Reveal the call</button>'+
