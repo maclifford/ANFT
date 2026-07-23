@@ -1,0 +1,14 @@
+# Treat binary asset types as binary so line-ending normalization (core.autocrlf)
+# never corrupts them. Without this, committed images/fonts can be mangled.
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.webp  binary
+*.ico   binary
+*.pdf   binary
+*.zip   binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary

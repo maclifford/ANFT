@@ -14,3 +14,10 @@
 [build]
   command = "node tools/build-trainings.js"
   publish = "."
+
+# Belt-and-suspenders: tell crawlers to ignore the staging site at the HTTP
+# header level, even if a page's noindex meta tag is missed.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
