@@ -67,70 +67,26 @@
     font-size:clamp(26px,3.6vw,38px);line-height:1.15}
   .section .lede{color:var(--ink-soft);max-width:62ch;margin-top:10px;margin-bottom:30px}
 
-  /* ===== Concentric navigation wheel ===== */
+  /* ===== Threshold: two-column menu ===== */
   .wheel-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 20px 20px}
-  .wheel-hint{text-align:center;font-size:13.5px;color:var(--ink-soft);max-width:62ch;margin:0 auto 4px}
-  .wheel{position:relative;width:min(90vh,1040px,94vw);max-width:100%;margin:6px auto 0;aspect-ratio:1/1}
-  .wheel-band{position:absolute;inset:0;border-radius:50%;opacity:.94;
-    background:conic-gradient(var(--fir) 0deg,var(--river) 72deg,var(--navy) 144deg,var(--bark) 216deg,var(--gold) 288deg,var(--fir) 360deg);
-    -webkit-mask:radial-gradient(circle closest-side at center,transparent 57.1%,#000 57.3% 72.4%,transparent 72.6%);
-            mask:radial-gradient(circle closest-side at center,transparent 57.1%,#000 57.3% 72.4%,transparent 72.6%)}
-  #wheelSvg{position:absolute;inset:0}
-  #wheelSvg svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-  .wheel text{font-family:"Albert Sans",system-ui,sans-serif}
-  /* zones */
-  .wz-hit{outline:none;cursor:pointer}
-  .wz-tint{opacity:0;transition:opacity .16s ease;pointer-events:none}
-  .wz:hover .wz-tint{opacity:.9}
-  .wz-label{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:600;font-size:20px;fill:#fff;
-    letter-spacing:.01em;pointer-events:none;paint-order:stroke;stroke:rgba(20,32,22,.32);stroke-width:2.8px}
-  .wz-sub{font-size:18px;font-weight:600;fill:var(--ink-soft);pointer-events:none}
-  .wz-focus{opacity:0;stroke:var(--gold);stroke-width:3.5;pointer-events:none}
-  .wz-hit:focus-visible ~ .wz-focus{opacity:1}
-  /* radiating children */
-  .wz-kids{visibility:hidden;opacity:0;transition:opacity .16s ease,visibility 0s .16s}
-  .wz.active .wz-kids{visibility:visible;opacity:1;transition:opacity .16s ease}
-  .wkid{text-decoration:none;cursor:pointer}
-  .wkid line{stroke:var(--gold);stroke-width:2;opacity:.75}
-  .wkid text{font-size:18px;font-weight:600;fill:var(--ink)}
-  .wkid:hover text,.wkid:focus-visible text{fill:var(--navy);text-decoration:underline}
-  .wkid:hover line,.wkid:focus-visible line{stroke:var(--gold-deep);opacity:1}
-  /* verbs (middle ring) */
-  .wverb{cursor:pointer;outline:none}
-  .wverb-pill{fill:var(--card);stroke:var(--gold);stroke-width:1.1;transition:fill .15s ease}
-  .wverb:hover .wverb-pill,.wverb:focus-visible .wverb-pill{fill:var(--gold-tint);stroke:var(--gold-deep)}
-  .wverb text{font-size:18px;font-weight:700;letter-spacing:1.6px;fill:var(--gold-deep);pointer-events:none}
-  /* centre */
-  .wc{cursor:pointer;outline:none}
-  .wc-face{transition:opacity .22s ease}
-  .wc-back{opacity:0}
-  .wc.flipped .wc-front{opacity:0}
-  .wc.flipped .wc-back{opacity:1}
-  .wc-ringtext{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:15px;font-weight:600;letter-spacing:2.4px;fill:var(--bark-deep)}
-  .wc:focus-visible .wc-front>circle{stroke:var(--gold-deep);stroke-width:2.5}
-  /* stacked fallback (built by JS; shown below the breakpoint) */
-  .wheel-stack{display:none}
-  .ws-center{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px}
-  .ws-center img{width:132px;height:132px;border-radius:50%;object-fit:cover;border:2px solid var(--gold)}
-  .ws-reveal{max-width:56ch;color:var(--ink-soft);font-size:16px;line-height:1.6}
-  .ws-verbs{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:18px 0 4px}
-  .ws-verb{font:inherit;font-size:16px;font-weight:700;letter-spacing:.5px;color:var(--gold-deep);
-    background:var(--gold-tint);border:1px solid var(--gold);border-radius:999px;padding:11px 20px;cursor:pointer;min-height:44px}
-  .ws-verb:hover{background:#EBE1C4}
-  .ws-verb-desc{max-width:60ch;margin:8px auto 4px;color:var(--ink-soft);font-size:16px;line-height:1.6;text-align:center}
-  .ws-apply{display:block;width:100%;max-width:360px;margin:22px auto 6px;text-align:center;
-    font-size:17px;font-weight:700;color:var(--navy);background:var(--gold);border:1px solid var(--gold-deep);
-    border-radius:999px;padding:15px 22px;text-decoration:none}
-  .ws-apply:hover{filter:brightness(1.05)}
-  .ws-menu{display:grid;gap:14px;margin-top:20px}
-  .ws-item{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--accent,var(--gold));
-    border-radius:12px;padding:14px 16px 12px}
-  .ws-head{display:block;text-decoration:none;padding:6px 4px;border-radius:8px}
-  .ws-head b{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:20px;font-weight:600;color:var(--navy);display:block;line-height:1.2}
-  .ws-head span{display:block;font-size:15px;color:var(--ink-soft);margin-top:3px}
-  .ws-kids{list-style:none;margin:8px 0 0;padding:6px 0 0;display:grid;gap:2px;border-top:1px solid var(--line)}
-  .ws-kids a{display:block;padding:11px 10px 11px 14px;font-size:16px;color:var(--ink);text-decoration:none;border-radius:8px;min-height:44px}
-  .ws-kids a:hover{background:var(--gold-tint);color:var(--navy)}
+  .thr{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
+  .thr-menu{display:flex;flex-direction:column;gap:14px}
+  .thr-btn{display:block;text-decoration:none;background:var(--card);border:1px solid var(--line);
+    border-left:6px solid var(--accent,var(--gold));border-radius:12px;padding:16px 20px;
+    transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease}
+  .thr-btn b{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:20px;font-weight:600;
+    color:var(--navy);display:block;line-height:1.2}
+  .thr-btn span{display:block;font-size:14.5px;color:var(--ink-soft);margin-top:4px;line-height:1.5}
+  .thr-btn:hover{border-color:var(--fir);transform:translateY(-2px);box-shadow:0 6px 16px rgba(38,48,31,.10)}
+  .thr-btn:focus-visible{outline:2.5px solid var(--gold);outline-offset:2px}
+  .thr-center{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px 28px}
+  .thr-center h3{font-weight:500;color:var(--navy);font-size:clamp(24px,3vw,30px);line-height:1.15}
+  .thr-center > p{color:var(--ink-soft);margin-top:12px}
+  .thr-verbs{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+  .thr-verb{font:inherit;font-size:15px;font-weight:700;letter-spacing:1.4px;color:var(--gold-deep);
+    background:var(--gold-tint);border:1px solid var(--gold);border-radius:999px;padding:9px 16px;cursor:pointer;min-height:44px}
+  .thr-verb:hover,.thr-verb:focus-visible{background:#EBE1C4}
+  .thr-verb-desc{color:var(--ink-soft);margin-top:14px;line-height:1.6}
   .p-link{font-size:14.5px;font-weight:600;color:var(--gold-deep);text-decoration:none}
   .p-link:hover{text-decoration:underline;text-underline-offset:4px}
 
@@ -209,14 +165,13 @@
   .stream-links a{color:var(--fir);font-weight:600;font-size:13.5px;text-decoration:none}
   .stream-links a:hover{text-decoration:underline}
 
-  /* wheel: below the breakpoint, swap the wheel for the conventional menu */
-  @media (max-width:900px){
-    .wheel,.wheel-hint{display:none}
-    .wheel-stack{display:block}
-    .wheel-card{padding:20px 16px 18px;background:transparent;border:none}
+  /* Threshold menu: one column under 768px, centre panel above the buttons */
+  @media (max-width:767px){
+    .thr{grid-template-columns:1fr}
+    .thr-center{order:-1}
   }
   @media (prefers-reduced-motion:reduce){
-    .wc-face,.wz-tint,.wz-kids,.wverb-pill{transition:none}
+    .thr-btn{transition:none}
     html{scroll-behavior:auto}
   }
 
@@ -326,7 +281,7 @@
   <div class="hero-veil" aria-hidden="true"></div>
   <div class="hero-copy">
     <h1 class="serif">Something in you remembers.</h1>
-    <p>Time in nature quiets the tamed world &mdash; and an older, essential self begins to stir. Jack London called it the call of the wild. We call it The Forest Threshold: an awakening we witness, and from which five paths open &mdash; four academies, and Nature as Medicine.</p>
+    <p>Time in nature quiets the tamed world &mdash; and an older, essential self begins to stir. Jack London called it the call of the wild. We call it The Forest Threshold: an awakening we witness, and from which six paths open.</p>
     <div class="hero-cta">
       <a class="btn btn-gold" href="apply.html">I&rsquo;m ready to apply</a>
     </div>
@@ -339,10 +294,48 @@
   <section class="section" id="structure">
     <div class="eyebrow">Begin at the Source</div>
     <h2>The Forest Threshold</h2>
-    <p class="lede">The Forest Threshold is where the call reaches you. ANFT has stood at this threshold with thousands of people just like you. In over 70 nations spread across the globe. In the wild places; those within and those without. From this threshold, five paths open. We are standing by at whichever path you choose and will walk it with you.</p>
+    <p class="lede">The Forest Threshold is where the call reaches you. ANFT has stood at this threshold with thousands of people just like you. In over 70 nations spread across the globe. In the wild places; those within and those without. From this threshold, six paths open. We are standing by at whichever path you choose and will walk it with you.</p>
     <div class="wheel-card">
-      <div class="wheel" id="wheel" role="group" aria-label="The Forest Threshold at the centre, five movements around it, and five paths in the outer ring"><div class="wheel-band" aria-hidden="true"></div><div id="wheelSvg"></div></div>
-      <div class="wheel-stack" id="wheelStack"></div>
+      <div class="thr">
+        <nav class="thr-menu" aria-label="The paths">
+          <a class="thr-btn" style="--accent:var(--fir)" href="relational-forest-therapy-academy.html">
+            <b>Relational Forest Therapy</b>
+            <span>The World&rsquo;s Premier Guide Training Experience</span>
+          </a>
+          <a class="thr-btn" style="--accent:var(--river)" href="nature-as-medicine.html">
+            <b>Nature as Medicine</b>
+            <span>Nature in the Practice of Medicine</span>
+          </a>
+          <a class="thr-btn" style="--accent:var(--navy)" href="academy-of-place.html">
+            <b>Certified Trails Network</b>
+            <span>Tending the Heart of the Planet and its Peoples</span>
+          </a>
+          <a class="thr-btn" style="--accent:var(--bark)" href="opus-academy.html">
+            <b>Alchemy of Pilgrimage</b>
+            <span>Your Life, Your Work, Your Light</span>
+          </a>
+          <a class="thr-btn" style="--accent:var(--gold)" href="academy-of-applied-partnerships.html">
+            <b>Applied Forest Therapy</b>
+            <span>Bringing Your Offering to the World</span>
+          </a>
+          <a class="thr-btn" style="--accent:var(--river)" href="council-of-waters-and-trees.html">
+            <b>Council of Waters and Trees</b>
+            <span>Our original Forest Threshold Experience</span>
+          </a>
+        </nav>
+        <div class="thr-center">
+          <h3 class="serif">The Forest Threshold</h3>
+          <p>The Forest Threshold is the stirring of your essential self &mdash; the call of the wild &mdash; welcomed here, and opening into six paths.</p>
+          <div class="thr-verbs">
+            <button class="thr-verb" type="button" data-desc="Arriving in relationship &mdash; with the land, the more-than-human world, and the circle of fellow travelers. Practices of presence, invitation, and reciprocity open the way.">Connect</button>
+            <button class="thr-verb" type="button" data-desc="The ideas beneath the work &mdash; the lineages, sciences, and stories of relational practice, partnership, place, and the creative path.">Discover</button>
+            <button class="thr-verb" type="button" data-desc="Skills lived rather than studied &mdash; guiding practice, sensory and somatic work, council, and creative process, taken into the body each day on the land.">Embody</button>
+            <button class="thr-verb" type="button" data-desc="Integration and return &mdash; honoring the crossing as complete in itself, carrying it home, and recognizing which path, if any, calls you onward.">Remember</button>
+            <button class="thr-verb" type="button" data-desc="Letting what the crossing has kindled be seen &mdash; voice, gifts, and light offered first to the circle, then carried into the world.">Shine</button>
+          </div>
+          <p class="thr-verb-desc" hidden></p>
+        </div>
+      </div>
     </div>
 
     <div class="streams-list" id="streams" aria-label="The five paths, summarized">
@@ -812,148 +805,13 @@
 </footer>
 
 <script>
-/* ===== Concentric navigation wheel ===== */
+/* Threshold verbs: clicking a verb reveals its meaning below the row. */
 (function(){
-  var wheel=document.getElementById('wheel'), svgBox=document.getElementById('wheelSvg'), stack=document.getElementById('wheelStack');
-  if(!wheel||!svgBox) return;
-  var TOUCH = !(window.matchMedia && window.matchMedia('(hover:hover)').matches);
-
-  var HUB={img:'images/symbol.png',
-    back:'The Forest Threshold is the stirring of your essential self — the call of the wild — welcomed here, and opening into five paths.'};
-  var VERBS=[
-    {id:'connect',name:'Connect',angle:-126,desc:'Arriving in relationship — with the land, the more-than-human world, and the circle of fellow travelers. Practices of presence, invitation, and reciprocity open the way.'},
-    {id:'discover',name:'Discover',angle:-54,desc:'The ideas beneath the work — the lineages, sciences, and stories of relational practice, partnership, place, and the creative path.'},
-    {id:'embody',name:'Embody',angle:18,desc:'Skills lived rather than studied — guiding practice, sensory and somatic work, council, and creative process, taken into the body each day on the land.'},
-    {id:'remember',name:'Remember',angle:90,desc:'Integration and return — honoring the crossing as complete in itself, carrying it home, and recognizing which path, if any, calls you onward.'},
-    {id:'shine',name:'Shine',angle:162,desc:'Letting what the crossing has kindled be seen — voice, gifts, and light offered first to the circle, then carried into the world.'}
-  ];
-  var ZONES=[
-    {id:'rfta',c:-90,color:'--fir',hover:'--river',url:'relational-forest-therapy-academy.html',
-      label:'Relational Forest Therapy',sub:'The World’s Premier Guide Training Experience',
-      kids:[{k:'Guide Training and Certification',u:'relational-forest-therapy-academy--guide-training.html#guide-training-certification'},{k:'Lineage',u:'relational-forest-therapy-academy--guide-training.html#lineage'},{k:'Learning the Way',u:'relational-forest-therapy-academy--guide-training.html#learning-the-way'},{k:'The Vocation and the Avocation',u:'relational-forest-therapy-academy--guide-training.html#vocation-avocation'}]},
-    {id:'nam',c:-18,color:'--river',hover:'--navy',url:'nature-as-medicine.html',
-      label:'Nature as Medicine',sub:'Nature in the Practice of Medicine',
-      kids:[{k:'About the program',u:'nature-as-medicine.html'}]},
-    {id:'place',c:54,color:'--navy',hover:'--bark',url:'academy-of-place.html',
-      label:'Certified Trails Network',sub:'Tending the Heart of the Planet and its Peoples',
-      kids:[{k:'Consultant training',u:'academy-of-place--consultant-training.html'},{k:'Trail certification',u:'academy-of-place--trail-certification.html'},{k:'Global trail map',u:'academy-of-place--global-trail-map.html'}]},
-    {id:'opus',c:126,color:'--bark',hover:'--gold',url:'opus-academy.html',
-      label:'Alchemy of Pilgrimage',sub:'Your Life, Your Work, Your Light',
-      kids:[{k:'The Journey Begins',u:'opus-academy.html#journey-begins'},{k:'Alchemy of Pilgrimage',u:'opus-academy.html#alchemy-of-pilgrimage'},{k:'The Pathways Beyond',u:'opus-academy.html#pathways-beyond'},{k:'Co-Emergence of Self and Opus',u:'opus-academy.html#co-emergence'},{k:'More than a Curriculum',u:'opus-academy.html#more-than-curriculum'}]},
-    {id:'applied',c:198,color:'--gold',hover:'--fir',url:'academy-of-applied-partnerships.html',
-      label:'Applied Forest Therapy',sub:'Bringing Your Offering to the World',
-      kids:[{k:'Council of Waters and Trees',u:'council-of-waters-and-trees.html'},{k:'Workshops',u:'academy-of-applied-partnerships--workshops.html'},{k:'Retreats',u:'academy-of-applied-partnerships--retreats.html'},{k:'Specialized professional training',u:'academy-of-applied-partnerships--specialized-professional-training.html'},{k:'ANFT specialized training',u:'academy-of-applied-partnerships--anft-specialized-training.html'}]}
-  ];
-
-  var D=Math.PI/180, C=450;
-  var HUB_R=146, IMG_R=Math.round(HUB_R*0.55), VERB_R=184, VW=132, VH=36;
-  var ZIN=258, ZOUT=326, LAB_R=290, SUB_R=352;
-  var HIT_IN=236, HIT_OUT=440, KID0=334, KID1=396;
-  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-  function P(r,a){return [C+r*Math.cos(a*D), C+r*Math.sin(a*D)];}
-  function sector(r0,r1,a0,a1){var p0=P(r1,a0),p1=P(r1,a1),p2=P(r0,a1),p3=P(r0,a0),lg=(a1-a0)>180?1:0;
-    return 'M'+p0[0].toFixed(1)+' '+p0[1].toFixed(1)+' A'+r1+' '+r1+' 0 '+lg+' 1 '+p1[0].toFixed(1)+' '+p1[1].toFixed(1)+' L'+p2[0].toFixed(1)+' '+p2[1].toFixed(1)+' A'+r0+' '+r0+' 0 '+lg+' 0 '+p3[0].toFixed(1)+' '+p3[1].toFixed(1)+' Z';}
-  function arc(r,a0,a1,flip){if(flip){var t=a0;a0=a1;a1=t;}var p0=P(r,a0),p1=P(r,a1);
-    return 'M'+p0[0].toFixed(1)+' '+p0[1].toFixed(1)+' A'+r+' '+r+' 0 0 '+(flip?0:1)+' '+p1[0].toFixed(1)+' '+p1[1].toFixed(1);}
-  function wrap(t,max){var out=[],cur='';t.split(' ').forEach(function(w){if(cur&&(cur+' '+w).length>max){out.push(cur);cur=w;}else cur=cur?cur+' '+w:w;});if(cur)out.push(cur);return out;}
-
-  var arcDefs='';
-  // center + verbs first (nicer tab order), then zones
-  var backLines=wrap(HUB.back,26);
-  var center='<g class="wc" data-wc role="button" tabindex="0" aria-label="The Forest Threshold, the source — activate to reveal the call">';
-  center+='<g class="wc-face wc-front">';
-  center+='<circle cx="'+C+'" cy="'+C+'" r="'+HUB_R+'" fill="var(--card)" stroke="var(--gold)" stroke-width="1"/>';
-  center+='<text class="wc-ringtext"><textPath href="#wTop" startOffset="50%" text-anchor="middle">THE FOREST THRESHOLD</textPath></text>';
-  center+='<text class="wc-ringtext"><textPath href="#wBot" startOffset="50%" text-anchor="middle">ANFT PATHS</textPath></text>';
-  center+='<image href="'+HUB.img+'" x="'+(C-IMG_R)+'" y="'+(C-IMG_R)+'" width="'+(2*IMG_R)+'" height="'+(2*IMG_R)+'" clip-path="url(#wImgClip)" preserveAspectRatio="xMidYMid meet"/>';
-  center+='<circle cx="'+C+'" cy="'+C+'" r="'+IMG_R+'" fill="none" stroke="var(--gold)" stroke-width="1"/></g>';
-  center+='<g class="wc-face wc-back" aria-hidden="true"><circle cx="'+C+'" cy="'+C+'" r="'+HUB_R+'" fill="var(--fir)" stroke="var(--gold)" stroke-width="1"/><g id="wcBackText"></g></g>';
-  center+='<circle class="wc-hit" cx="'+C+'" cy="'+C+'" r="'+HUB_R+'" fill="transparent"/></g>';
-
-  var verbs='';
-  VERBS.forEach(function(v){var p=P(VERB_R,v.angle);
-    verbs+='<g class="wverb" data-verb="'+v.id+'" role="button" tabindex="0" aria-label="'+v.name+' — a movement of The Forest Threshold; activate to reveal its meaning">';
-    verbs+='<rect class="wverb-pill" x="'+(p[0]-VW/2).toFixed(1)+'" y="'+(p[1]-VH/2).toFixed(1)+'" width="'+VW+'" height="'+VH+'" rx="17"/>';
-    verbs+='<text x="'+p[0].toFixed(1)+'" y="'+(p[1]+6).toFixed(1)+'" text-anchor="middle">'+v.name.toUpperCase()+'</text></g>';});
-
-  var zones='';
-  ZONES.forEach(function(z,zi){
-    var a0=z.c-36, a1=z.c+36, flip=Math.sin(z.c*D)>0.02;
-    arcDefs+='<path id="wzl'+zi+'" d="'+arc(flip?LAB_R+4:LAB_R,a0+4,a1-4,flip)+'"/><path id="wzs'+zi+'" d="'+arc(flip?SUB_R+4:SUB_R,a0+2,a1-2,flip)+'"/>';
-    var g='<g class="wz" data-zone="'+z.id+'">';
-    g+='<path class="wz-tint" d="'+sector(ZIN,ZOUT,a0+0.4,a1-0.4)+'" fill="var('+z.hover+')"/>';
-    g+='<a class="wz-hit" href="'+z.url+'" aria-label="'+esc(z.label)+' — '+esc(z.sub)+'"><path d="'+sector(HIT_IN,HIT_OUT,a0,a1)+'" fill="transparent"/></a>';
-    g+='<text class="wz-label"><textPath href="#wzl'+zi+'" startOffset="50%" text-anchor="middle">'+esc(z.label)+'</textPath></text>';
-    g+='<text class="wz-sub"><textPath href="#wzs'+zi+'" startOffset="50%" text-anchor="middle">'+esc(z.sub)+'</textPath></text>';
-    g+='<path class="wz-focus" d="'+sector(ZIN-3,ZOUT+3,a0,a1)+'" fill="none"/>';
-    if(!TOUCH && z.kids && z.kids.length){
-      g+='<g class="wz-kids">';
-      var k=z.kids.length, spread=Math.min(58,20*(k-1));
-      z.kids.forEach(function(kid,i){
-        var ka=k===1?z.c:(z.c-spread/2+spread*(i/(k-1)));
-        var p0=P(KID0,ka), p1=P(KID1,ka), cosk=Math.cos(ka*D);
-        var anch=Math.abs(cosk)<0.34?'middle':(cosk>0?'start':'end');
-        var tx=p1[0]+(anch==='start'?7:anch==='end'?-7:0), ty=p1[1]+(anch==='middle'?(Math.sin(ka*D)>0?18:-8):6);
-        var lines=wrap(kid.k,16);
-        g+='<a class="wkid" href="'+kid.u+'" aria-label="'+esc(kid.k)+' — '+esc(z.label)+'"><line x1="'+p0[0].toFixed(1)+'" y1="'+p0[1].toFixed(1)+'" x2="'+p1[0].toFixed(1)+'" y2="'+p1[1].toFixed(1)+'"/>';
-        lines.forEach(function(ln,j){ g+='<text x="'+tx.toFixed(1)+'" y="'+(ty+j*18).toFixed(1)+'" text-anchor="'+anch+'">'+esc(ln)+'</text>'; });
-        g+='</a>';
-      });
-      g+='</g>';
-    }
-    g+='</g>';
-    zones+=g;
+  var box=document.querySelector('.thr-verb-desc');
+  if(!box) return;
+  document.querySelectorAll('.thr-verb').forEach(function(b){
+    b.addEventListener('click',function(){box.textContent=b.getAttribute('data-desc');box.hidden=false;});
   });
-
-  var defs='<defs><clipPath id="wImgClip"><circle cx="'+C+'" cy="'+C+'" r="'+IMG_R+'"/></clipPath>'+
-    '<path id="wTop" d="'+arc(128,-150,-30,false)+'"/><path id="wBot" d="'+arc(128,40,140,true)+'"/>'+arcDefs+'</defs>';
-  svgBox.innerHTML='<svg viewBox="0 0 900 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Concentric navigation: the Forest Threshold at the centre, five movements, and five academy paths">'+defs+center+verbs+zones+'</svg>';
-
-  function setBack(title,text){var g=svgBox.querySelector('#wcBackText');if(!g)return;
-    var lines=wrap(text,24), n=lines.length+(title?1:0), y=C-((n-1)*21)/2, h='';
-    if(title){h+='<text x="'+C+'" y="'+y+'" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="2.5" fill="var(--gold-tint)">'+esc(title.toUpperCase())+'</text>';y+=25;}
-    lines.forEach(function(ln,i){h+='<text x="'+C+'" y="'+(y+i*21)+'" text-anchor="middle" font-size="16.5" fill="#F2F3EC">'+esc(ln)+'</text>';});
-    g.innerHTML=h;}
-  setBack('',HUB.back);
-
-  var wc=svgBox.querySelector('.wc');
-  function centerToggle(){ if(wc.classList.contains('flipped')){wc.classList.remove('flipped');}else{setBack('',HUB.back);wc.classList.add('flipped');} }
-  wc.addEventListener('click',centerToggle);
-  wc.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();centerToggle();}});
-  svgBox.querySelectorAll('.wverb').forEach(function(el){var v=VERBS.filter(function(x){return x.id===el.dataset.verb;})[0];
-    function act(){setBack(v.name,v.desc);wc.classList.add('flipped');}
-    el.addEventListener('click',act);
-    el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});});
-
-  // Hover/focus reveal of path child elements is intentionally disabled:
-  // the .wz-kids stay hidden at all times. Click navigation on the paths
-  // (the <a> links) and the centre's click-to-reveal remain intact.
-
-  var st='<div class="ws-center"><img src="'+HUB.img+'" alt="The Forest Threshold symbol" width="132" height="132">'+
-    '<button class="ws-verb ws-call" data-wc type="button" aria-expanded="false">Reveal the call</button>'+
-    '<p class="ws-reveal" hidden>'+esc(HUB.back)+'</p></div>'+
-    '<div class="ws-verbs">';
-  VERBS.forEach(function(v){st+='<button class="ws-verb" data-verb="'+v.id+'" type="button">'+esc(v.name)+'</button>';});
-  st+='</div><p class="ws-verb-desc" hidden></p>'+
-    '<a class="ws-apply" href="apply.html">I’m ready to apply</a>'+
-    '<nav class="ws-menu" aria-label="Academies and paths">';
-  ZONES.forEach(function(z){
-    st+='<div class="ws-item" style="--accent:var('+z.color+')">'+
-      '<a class="ws-head" href="'+z.url+'"><b>'+esc(z.label)+'</b><span>'+esc(z.sub)+'</span></a>';
-    if(z.kids&&z.kids.length){
-      st+='<ul class="ws-kids">';
-      z.kids.forEach(function(kid){st+='<li><a href="'+kid.u+'">'+esc(kid.k)+'</a></li>';});
-      st+='</ul>';
-    }
-    st+='</div>';
-  });
-  st+='</nav>';
-  stack.innerHTML=st;
-  var wcBtn=stack.querySelector('[data-wc]'), wcTxt=stack.querySelector('.ws-reveal');
-  wcBtn.addEventListener('click',function(){var open=wcTxt.hidden;wcTxt.hidden=!open;wcBtn.setAttribute('aria-expanded',String(open));});
-  var vdesc=stack.querySelector('.ws-verb-desc');
-  stack.querySelectorAll('.ws-verbs .ws-verb').forEach(function(el){var v=VERBS.filter(function(x){return x.id===el.dataset.verb;})[0];
-    el.addEventListener('click',function(){vdesc.textContent=v.desc;vdesc.hidden=false;});});
 })();
 </script>
 
