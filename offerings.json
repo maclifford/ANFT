@@ -12,7 +12,6 @@
       "The four-stage cutoff is anchored to a cohort number, not a date."
     ],
     "openItems": [
-      "cutoffCohort number not yet set (most recent cohort on record is 171)",
       "Package price for the four stages not yet set",
       "Every price marked with a placeholder note needs course leader confirmation",
       "Nature as Medicine venue and dates unconfirmed",
@@ -67,7 +66,7 @@
     }
   ],
   "pathway": {
-    "cutoffCohort": null,
+    "cutoffCohort": 190,
     "current": {
       "label": "Current model",
       "appliesTo": "Cohorts before cutoffCohort",
