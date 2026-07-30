@@ -70,9 +70,8 @@
     "current": {
       "label": "Current model",
       "appliesTo": "Cohorts before cutoffCohort",
-      "description": "A seven-day in-person training plus four months online, or six months of mentored remote training plus a four-day immersion — offered as start-online-first or start-in-person-first.",
-      "priceAllIn": null,
-      "note": "Two conflicting descriptions exist in current copy. Reconcile before launch."
+      "description": "Six months with a four-day immersion.",
+      "priceAllIn": null
     },
     "fourStage": {
       "label": "Four-stage pathway",
