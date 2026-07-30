@@ -90,6 +90,24 @@
   .p-link{font-size:14.5px;font-weight:600;color:var(--gold-deep);text-decoration:none}
   .p-link:hover{text-decoration:underline;text-underline-offset:4px}
 
+  /* upcoming trainings — card grid */
+  .tcards{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:26px}
+  @media(max-width:640px){.tcards{grid-template-columns:1fr}}
+  .tcard{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);
+    border-radius:var(--radius);overflow:hidden;text-decoration:none;color:var(--ink);
+    transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease}
+  a.tcard:hover{border-color:var(--fir);transform:translateY(-2px);box-shadow:0 6px 16px rgba(38,48,31,.10)}
+  .tcard-media{width:100%;aspect-ratio:3/2;object-fit:cover;object-position:center;display:block;background:var(--fir)}
+  .tcard-ph{width:100%;aspect-ratio:3/2;background:var(--fir);display:block}
+  .tcard-body{display:flex;flex-direction:column;flex:1;padding:18px 20px 20px}
+  .tcard-title{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:21px;font-weight:600;color:var(--navy);line-height:1.2}
+  .tcard-cohort{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-deep);font-weight:700;margin-top:9px}
+  .tcard-dates{font-size:14px;color:var(--ink-soft);margin-top:8px;line-height:1.5}
+  .tcard-status{margin-top:auto;padding-top:16px}
+  .tcard-badge{display:inline-block;font-size:12px;font-weight:600;border-radius:999px;padding:5px 13px}
+  .badge-open{color:var(--fir);background:var(--fir-tint)}
+  .badge-wait{color:var(--gold-deep);background:var(--gold-tint)}
+  .badge-closed{color:#7a2e2e;background:#efdada}
   /* upcoming trainings */
   .tr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-top:26px}
   .tr-card{display:block;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
@@ -378,7 +396,7 @@
     <div class="eyebrow">Take the First Step</div>
     <h2>Upcoming Trainings</h2>
     <p class="lede">Cohorts begin throughout the year, online and on the land, in multiple languages.</p>
-    <div class="tr-acc" id="trAccordion"></div>
+    <div class="tcards" id="trCards"></div>
     <noscript>
       <p style="color:var(--ink-soft);margin-top:22px">Our current categories: Forest Therapy Guide Training &middot; Nature as Medicine &middot; Opus Companies &middot; Professional Development &middot; Open Calls &amp; Events.</p>
       <p><a class="p-link" href="apply.html">Apply to an academy &rarr;</a></p>
@@ -682,52 +700,41 @@
 </script>
     <script>
     (function(){
-      var el=document.getElementById('trainingsData'), acc=document.getElementById('trAccordion');
-      if(!el||!acc) return;
+      var el=document.getElementById('trainingsData'), grid=document.getElementById('trCards');
+      if(!el||!grid) return;
       var data; try{ data=JSON.parse(el.textContent); }catch(e){ return; }
-      var order=(data._meta&&data._meta.categories_order)||[];
-      var items=(data.trainings||[]).map(function(x){x._choose=true;return x;}).concat(data.events||[]);
+      var items=(data.trainings||[]).slice();
       function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
       var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-      function relDate(x){return x.enrollmentDeadline||x.startDate||x.date||'9999-12-31';}
       function fmt(d){if(!d)return '';var p=String(d).split('-');if(p.length!==3)return d;return MON[parseInt(p[1],10)-1]+' '+parseInt(p[2],10)+', '+p[0];}
-      function badgeClass(s){s=(s||'').toLowerCase();if(s.indexOf('waitlist')>-1)return 'wait';if(s.indexOf('closed')>-1||s.indexOf('full')>-1)return 'closed';if(s.indexOf('open')>-1)return 'open';return 'closed';}
-      function item(x){
-        var h='<div class="tr-item">';
-        if(x.status){h+='<span class="tr-badge '+badgeClass(x.status)+'">'+esc(x.status)+'</span>';}
-        h+='<div class="tr-item-title">'+esc(x.title)+(x.cohort?' <span class="tr-item-cohort">'+esc(x.cohort)+'</span>':'')+'</div>';
-        var m=[];
-        if(x.enrollmentDeadline&&x.firstCall&&x.enrollmentDeadline===x.firstCall){m.push('<b>Enroll by / first call</b> '+fmt(x.enrollmentDeadline));}
-        else{if(x.enrollmentDeadline)m.push('<b>Enroll by</b> '+fmt(x.enrollmentDeadline));if(x.firstCall)m.push('<b>First call</b> '+fmt(x.firstCall));}
-        if(x.startDate)m.push('<b>Begins</b> '+fmt(x.startDate));
-        if(x.date)m.push('<b>'+fmt(x.date)+'</b>'+(x.time?' &middot; '+esc(x.time):''));
-        if(x.language)m.push(esc(x.language));
-        if(x.schedule)m.push(esc(x.schedule));
-        if(m.length)h+='<div class="tr-meta">'+m.join(' &middot; ')+'</div>';
-        var links='';
-        if(x._choose&&x.id){links+='<a class="tr-choose" href="apply.html?event='+encodeURIComponent(x.id)+'">Choose this one &rarr;</a>';}
-        if(x.url){var ext=/^https?:/i.test(x.url);links+='<a class="tr-link" href="'+esc(x.url)+'"'+(ext?' target="_blank" rel="noopener"':'')+'>Details &amp; registration &rarr;</a>';}
-        if(links)h+='<div class="tr-links">'+links+'</div>';
-        return h+'</div>';
+      function sortKey(x){return x.startDate||x.firstCall||x.enrollmentDeadline||'9999-12-31';}
+      function dateLine(x){
+        if(x.startDate)return 'Begins '+fmt(x.startDate);
+        if(x.firstCall)return 'First call '+fmt(x.firstCall);
+        if(x.enrollmentDeadline)return 'Enroll by '+fmt(x.enrollmentDeadline);
+        return '';
       }
-      function byDate(a,b){return relDate(a)<relDate(b)?-1:(relDate(a)>relDate(b)?1:0);}
-      var html='';
-      order.forEach(function(cat,ci){
-        var list=items.filter(function(x){return x.category===cat;}).sort(byDate);
-        var body='';
-        if(!list.length){
-          body='<p class="tr-empty">New offerings are being composed &mdash; the seasonal letter will carry the news.</p>';
-        } else if(cat==='Forest Therapy Guide Training'){
-          var subs=[],seen={};
-          list.forEach(function(x){var s=x.subcategory||'Other';if(!seen[s]){seen[s]=[];subs.push(s);}seen[s].push(x);});
-          subs.forEach(function(s){ body+='<div class="tr-subhead">'+esc(s)+'</div>'+seen[s].map(item).join(''); });
-        } else {
-          body=list.map(item).join('');
+      function badgeClass(s){s=(s||'').toLowerCase();if(s.indexOf('waitlist')>-1)return 'wait';if(s.indexOf('closed')>-1||s.indexOf('full')>-1)return 'closed';if(s.indexOf('open')>-1)return 'open';return 'closed';}
+      function cohort(x){if(!x.cohort)return '';var c=String(x.cohort);return /cohort/i.test(c)?c:'Cohort '+c;}
+      items.sort(function(a,b){var ka=sortKey(a),kb=sortKey(b);return ka<kb?-1:(ka>kb?1:0);});
+      var html=items.map(function(x){
+        var media=x.image
+          ? '<img class="tcard-media" src="'+esc(x.image)+'" alt="'+esc(x.title)+'" loading="lazy" decoding="async">'
+          : '<span class="tcard-ph" aria-hidden="true"></span>';
+        var coh=cohort(x), dl=dateLine(x);
+        var body='<div class="tcard-body">'
+          +'<div class="tcard-title">'+esc(x.title)+'</div>'
+          +(coh?'<div class="tcard-cohort">'+esc(coh)+'</div>':'')
+          +(dl?'<div class="tcard-dates">'+esc(dl)+'</div>':'')
+          +(x.status?'<div class="tcard-status"><span class="tcard-badge badge-'+badgeClass(x.status)+'">'+esc(x.status)+'</span></div>':'')
+          +'</div>';
+        if(x.url){
+          var ext=/^https?:/i.test(x.url);
+          return '<a class="tcard" href="'+esc(x.url)+'"'+(ext?' target="_blank" rel="noopener"':'')+'>'+media+body+'</a>';
         }
-        var cnt=list.length;
-        html+='<details class="tr-cat"'+(ci===0?' open':'')+'><summary><span class="tr-cat-name">'+esc(cat)+'</span><span class="tr-count">'+(cnt?cnt+' listed':'coming soon')+'</span></summary><div class="tr-cat-body">'+body+'</div></details>';
-      });
-      acc.innerHTML=html;
+        return '<div class="tcard">'+media+body+'</div>';
+      }).join('');
+      grid.innerHTML=html;
     })();
     </script>
   </section>
