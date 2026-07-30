@@ -1,6 +1,6 @@
 # ANFT site
 
-Static marketing site for the Association of Nature and Forest Therapies.
+Static marketing site for the Academies of Nature and Forest Therapies.
 Plain HTML/CSS/JS — no build framework. Deployed on Netlify.
 
 ## Trainings data — the one-line routine
