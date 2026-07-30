@@ -1,0 +1,457 @@
+{
+  "_meta": {
+    "organization": "Academies of Nature and Forest Therapies",
+    "acronym": "ANFT",
+    "generated": "2026-07-29",
+    "rulings": [
+      "Four-stage guide training applies from cutoffCohort onward; earlier cohorts keep the current two-step description.",
+      "Reader-state doors lead on the homepage; academies remain in the nav. Both indexes resolve to the same offering page.",
+      "Organization name is Academies of Nature and Forest Therapies everywhere. DBA filing pending.",
+      "All prices publish at launch, confirmed by course leaders first.",
+      "All thirteen offerings get pages; unfinished ones carry status in-development.",
+      "The four-stage cutoff is anchored to a cohort number, not a date."
+    ],
+    "openItems": [
+      "cutoffCohort number not yet set (most recent cohort on record is 171)",
+      "Package price for the four stages not yet set",
+      "Every price marked with a placeholder note needs course leader confirmation",
+      "Nature as Medicine venue and dates unconfirmed",
+      "Healing Trails revenue model under review pending Holly Jo"
+    ],
+    "copy": "American spellings throughout."
+  },
+  "doors": [
+    {
+      "id": "something-calling",
+      "label": "Something is calling me",
+      "summary": "Retreats and Opus"
+    },
+    {
+      "id": "want-to-guide",
+      "label": "I want to guide",
+      "summary": "The four stages"
+    },
+    {
+      "id": "already-guide",
+      "label": "I already guide",
+      "summary": "Guild, trails, partnerships"
+    },
+    {
+      "id": "health-care",
+      "label": "I work in health care",
+      "summary": "Nature as Medicine"
+    }
+  ],
+  "academies": [
+    {
+      "id": "relational-forest-therapy",
+      "name": "Relational Forest Therapy Academy",
+      "slug": "relational-forest-therapy-academy"
+    },
+    {
+      "id": "place",
+      "name": "Academy of Place",
+      "slug": "academy-of-place",
+      "aka": "Certified Trails Network"
+    },
+    {
+      "id": "opus",
+      "name": "Opus Academy",
+      "slug": "opus-academy",
+      "aka": "Alchemy of Pilgrimage"
+    },
+    {
+      "id": "applied-forest-therapy",
+      "name": "Academy of Applied Forest Therapy",
+      "slug": "academy-of-applied-forest-therapy"
+    }
+  ],
+  "pathway": {
+    "cutoffCohort": null,
+    "current": {
+      "label": "Current model",
+      "appliesTo": "Cohorts before cutoffCohort",
+      "description": "A seven-day in-person training plus four months online, or six months of mentored remote training plus a four-day immersion — offered as start-online-first or start-in-person-first.",
+      "priceAllIn": null,
+      "note": "Two conflicting descriptions exist in current copy. Reconcile before launch."
+    },
+    "fourStage": {
+      "label": "Four-stage pathway",
+      "appliesTo": "Cohorts from cutoffCohort onward",
+      "stages": [
+        "fundamentals",
+        "immersion",
+        "practicum",
+        "practice"
+      ],
+      "stagesTotal": 3545,
+      "packagePrice": null,
+      "certificationAfter": "practicum",
+      "note": "Each stage is purchased separately. Stopping at any stage counts as complete."
+    },
+    "prerequisite": {
+      "name": "Wilderness First Aid or Wilderness First Responder",
+      "provider": "Third party, such as NOLS",
+      "typicalCost": "$175–300 USD",
+      "included": false
+    }
+  },
+  "verbs": [
+    {
+      "id": "book",
+      "label": "Book a place",
+      "friction": "Pick a date and pay. No application."
+    },
+    {
+      "id": "enroll",
+      "label": "Enroll",
+      "friction": "Application, cohort start date, mentor assigned."
+    },
+    {
+      "id": "join",
+      "label": "Join",
+      "friction": "Eligibility check, then subscription."
+    },
+    {
+      "id": "commission",
+      "label": "Commission",
+      "friction": "Inquiry and a conversation."
+    }
+  ],
+  "offerings": [
+    {
+      "id": "fundamentals",
+      "name": "Fundamentals",
+      "slug": "guide-training/fundamentals",
+      "academy": "relational-forest-therapy",
+      "door": "want-to-guide",
+      "verb": "enroll",
+      "status": "live",
+      "model": "four-stage",
+      "stage": 1,
+      "proposition": "Learn the practice for your own life. Decide about guiding later.",
+      "price": {
+        "amount": 950,
+        "currency": "USD",
+        "tiers": null,
+        "note": "Placeholder pending course leader confirmation"
+      },
+      "length": "8 sessions",
+      "format": "Online, plus mentored fieldwork near you",
+      "prerequisite": null,
+      "bookIncluded": "Your Guide to Forest Bathing",
+      "isNot": "Not a certification, and not a commitment to one. Many people stop here on purpose.",
+      "context": "Stage 1 of four. All four total $3,545."
+    },
+    {
+      "id": "immersion",
+      "name": "Immersion",
+      "slug": "guide-training/immersion",
+      "academy": "relational-forest-therapy",
+      "door": "want-to-guide",
+      "verb": "enroll",
+      "status": "live",
+      "model": "four-stage",
+      "stage": 2,
+      "proposition": "Where understanding becomes embodiment. Most guides change here.",
+      "price": {
+        "amount": 595,
+        "currency": "USD",
+        "tiers": null,
+        "note": "Placeholder pending course leader confirmation"
+      },
+      "length": "4 days",
+      "format": "In person, residential",
+      "prerequisite": "Fundamentals",
+      "bookIncluded": "Your Guide to Forest Bathing — A Journal: Invitations for Practice and Reflection",
+      "isNot": "Not the place to begin. Fundamentals comes first, and the immersion lands two to ten months in.",
+      "context": "Stage 2 of four. All four total $3,545."
+    },
+    {
+      "id": "practicum",
+      "name": "Practicum",
+      "slug": "guide-training/practicum",
+      "academy": "relational-forest-therapy",
+      "door": "want-to-guide",
+      "verb": "enroll",
+      "status": "live",
+      "model": "four-stage",
+      "stage": 3,
+      "proposition": "Supervised practice held to a standard worth certifying.",
+      "price": {
+        "amount": 1200,
+        "currency": "USD",
+        "tiers": null,
+        "note": "Placeholder pending course leader confirmation"
+      },
+      "length": "4 months, 16 sessions",
+      "format": "Online, with fieldwork you run yourself",
+      "prerequisite": "Immersion",
+      "bookIncluded": "A Guide's Handbook of Forest Therapy — print, exclusive to participants",
+      "isNot": "Not a guarantee of certification. This is the stage where you are assessed, and some people are asked to do more.",
+      "context": "Stage 3 of four. All four total $3,545."
+    },
+    {
+      "id": "practice",
+      "name": "Practice",
+      "slug": "guide-training/practice",
+      "academy": "relational-forest-therapy",
+      "door": "want-to-guide",
+      "verb": "enroll",
+      "status": "live",
+      "model": "four-stage",
+      "stage": 4,
+      "proposition": "Turns a certificate into a livelihood. The stage we never had.",
+      "price": {
+        "amount": 800,
+        "currency": "USD",
+        "tiers": null,
+        "note": "Placeholder pending course leader confirmation"
+      },
+      "length": "8 sessions",
+      "format": "Online",
+      "prerequisite": "Certification",
+      "bookIncluded": "ANFT Practicum Manual",
+      "isNot": "Not general business training, and not required for certification. It is about earning a living from this practice specifically.",
+      "context": "Stage 4 of four. All four total $3,545."
+    },
+    {
+      "id": "guild",
+      "name": "The Guild",
+      "slug": "guild",
+      "academy": null,
+      "door": "already-guide",
+      "verb": "join",
+      "status": "live",
+      "model": null,
+      "stage": null,
+      "proposition": "Replaces membership. Meets the real need, not the conventional one.",
+      "price": {
+        "amount": 2400,
+        "currency": "USD",
+        "tiers": [
+          {
+            "amount": 2400,
+            "qualifier": "a year, at $200 a month"
+          },
+          {
+            "amount": 2200,
+            "qualifier": "paid in one payment"
+          }
+        ],
+        "note": "About $92 an atelier across 26 a year"
+      },
+      "length": "Ongoing, renewed annually",
+      "format": "An atelier every other week, online",
+      "prerequisite": "Guide certification or completion of Opus Academy",
+      "bookIncluded": null,
+      "isNot": "Not a benefits package and not a directory listing you buy. You belong by contributing, and what you bring is held in common.",
+      "context": "Open to certified guides and to Opus graduates. Replaces the membership program."
+    },
+    {
+      "id": "forest-threshold",
+      "name": "The Forest Threshold",
+      "slug": "retreats/forest-threshold",
+      "academy": "applied-forest-therapy",
+      "door": "something-calling",
+      "verb": "book",
+      "status": "live",
+      "model": null,
+      "stage": null,
+      "proposition": "A doorway for people who arrive looking, not shopping.",
+      "price": {
+        "amount": 1295,
+        "currency": "USD",
+        "tiers": null,
+        "note": "Six cohorts a year, 18 places each"
+      },
+      "length": "4 to 8 days",
+      "format": "Residential retreat",
+      "prerequisite": null,
+      "bookIncluded": "May This Be Love",
+      "isNot": "Not an introduction to our trainings. Nobody will sell you anything while you are here.",
+      "context": "No prerequisite. Held by the Academy of Applied Forest Therapy."
+    },
+    {
+      "id": "council-of-waters-and-trees",
+      "name": "Council of Waters and Trees",
+      "slug": "retreats/council-of-waters-and-trees",
+      "academy": "applied-forest-therapy",
+      "door": "something-calling",
+      "verb": "book",
+      "status": "live",
+      "model": null,
+      "stage": null,
+      "proposition": "For those who want to hold gatherings, not only walks.",
+      "price": {
+        "amount": 1250,
+        "currency": "USD",
+        "tiers": null,
+        "note": "Placeholder pending course leader confirmation"
+      },
+      "length": "5 days",
+      "format": "Residential",
+      "prerequisite": null,
+      "bookIncluded": null,
+      "isNot": "Not a guide training and not a route to certification. This is council practice.",
+      "context": "Our original Forest Threshold experience."
+    },
+    {
+      "id": "healing-trails",
+      "name": "Healing Trails",
+      "slug": "academy-of-place/consultant-training",
+      "academy": "place",
+      "door": "already-guide",
+      "verb": "enroll",
+      "status": "live",
+      "model": null,
+      "stage": null,
+      "proposition": "Carries the practice into landscapes and the institutions holding them.",
+      "price": {
+        "amount": 750,
+        "currency": "USD",
+        "tiers": null,
+        "note": "Revenue model under review"
+      },
+      "length": "5 days",
+      "format": "In person",
+      "prerequisite": "Guide certification",
+      "bookIncluded": null,
+      "isNot": "Not a way into guiding. Certification comes first, and this is what you can do with it.",
+      "context": "Consultants and ambassadors for the Certified Trails Network."
+    },
+    {
+      "id": "opus-academy",
+      "name": "Opus Academy",
+      "slug": "opus-academy",
+      "academy": "opus",
+      "door": "something-calling",
+      "verb": "enroll",
+      "status": "live",
+      "model": null,
+      "stage": null,
+      "proposition": "The transformational path. Not a credential, and not sold as one.",
+      "price": {
+        "amount": 1200,
+        "currency": "USD",
+        "tiers": null,
+        "note": "Placeholder pending course leader confirmation"
+      },
+      "length": "10 weeks",
+      "format": "Online",
+      "prerequisite": null,
+      "bookIncluded": "The Alchimage series",
+      "isNot": "Not a professional qualification. It will not make you a guide and is not intended to.",
+      "context": "Opens the Guild. Alchemy of Pilgrimage."
+    },
+    {
+      "id": "nature-as-medicine",
+      "name": "Nature as Medicine",
+      "slug": "nature-as-medicine",
+      "academy": null,
+      "door": "health-care",
+      "verb": "enroll",
+      "status": "live",
+      "model": null,
+      "stage": null,
+      "proposition": "The practice in clinical vocabulary, for people who hold a license.",
+      "price": {
+        "amount": 5155,
+        "currency": "USD",
+        "tiers": [
+          {
+            "amount": 5585,
+            "qualifier": "private room and bath"
+          },
+          {
+            "amount": 5290,
+            "qualifier": "shared double, queen bed"
+          },
+          {
+            "amount": 5155,
+            "qualifier": "shared room, six twin beds"
+          }
+        ],
+        "note": "All meals created on site by a chef"
+      },
+      "length": "9 days",
+      "format": "Residential",
+      "prerequisite": "A current health care license",
+      "bookIncluded": null,
+      "isNot": "Not a guide certification. It will not qualify you to guide.",
+      "context": "Accredited by Mass General Brigham. Up to 86 continuing education credits. In partnership with Dr. Susan Abookirie of Harvard Medical School."
+    },
+    {
+      "id": "camino",
+      "name": "Camino de Santiago",
+      "slug": "opus-academy/camino",
+      "academy": "opus",
+      "door": "something-calling",
+      "verb": "book",
+      "status": "in-development",
+      "model": null,
+      "stage": null,
+      "proposition": "Pilgrimage as a form, with the cost borne in the body.",
+      "price": {
+        "amount": 1000,
+        "currency": "USD",
+        "tiers": null,
+        "note": "Guide fee only"
+      },
+      "length": "14 days",
+      "format": "Walking, in Spain",
+      "prerequisite": null,
+      "bookIncluded": null,
+      "isNot": "Not a package holiday. Travel, lodging and meals are yours to arrange and to pay for.",
+      "context": "In development. Dates not yet set."
+    },
+    {
+      "id": "guiding-in-sign-language",
+      "name": "Guiding in sign language",
+      "slug": "guide-training/sign-language",
+      "academy": "applied-forest-therapy",
+      "door": "want-to-guide",
+      "verb": "enroll",
+      "status": "in-development",
+      "model": null,
+      "stage": null,
+      "proposition": "The practice in a language the deaf community shapes itself.",
+      "price": {
+        "amount": null,
+        "currency": "USD",
+        "tiers": null,
+        "note": "Placeholder pending course leader confirmation"
+      },
+      "length": null,
+      "format": "Taught by deaf trainers, for deaf guides",
+      "prerequisite": null,
+      "bookIncluded": null,
+      "isNot": "Not an interpreted version of the standard training. The vocabulary and the culture belong to the deaf community to choose.",
+      "context": "In development. Full certification on the same standard."
+    },
+    {
+      "id": "custom-training",
+      "name": "Custom training",
+      "slug": "academy-of-applied-forest-therapy/custom",
+      "academy": "applied-forest-therapy",
+      "door": "already-guide",
+      "verb": "commission",
+      "status": "in-development",
+      "model": null,
+      "stage": null,
+      "proposition": "Brought to an organization's own people and their own land.",
+      "price": {
+        "amount": null,
+        "currency": "USD",
+        "tiers": null,
+        "note": "Priced per engagement rather than per seat"
+      },
+      "length": "Scoped per client",
+      "format": "On your land where possible",
+      "prerequisite": null,
+      "bookIncluded": null,
+      "isNot": "Not a discounted route to certification for individuals. This is for organizations.",
+      "context": "In development. Scoped by inquiry."
+    }
+  ]
+}

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Where We Are on the Journey — Academies of Nature and Forest Therapies</title>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Albert+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#F2F3EC;--card:#FBFCF8;--ink:#26301F;--soft:#4E5A47;--fir:#2E5B3E;
+    --fir-deep:#24492F;--gold:#A9862C;--gold-deep:#7C6118;--line:#C9D0BE}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:"Albert Sans",system-ui,sans-serif;
+    min-height:100vh;display:flex;flex-direction:column}
+  header{padding:18px 24px 6px;text-align:center}
+  header .eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--gold-deep)}
+  header h1{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:500;font-size:clamp(20px,3vw,28px);color:var(--fir-deep)}
+  .stage{flex:1;display:flex;align-items:center;justify-content:center;padding:10px 64px;position:relative}
+  .frame{position:relative;width:min(1100px,100%);aspect-ratio:16/9;background:var(--card);
+    border:1px solid var(--line);border-radius:10px;overflow:hidden;
+    box-shadow:0 10px 30px rgba(38,48,31,.12)}
+  .frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
+    opacity:0;transition:opacity .35s ease}
+  .frame img.on{opacity:1}
+  @media (prefers-reduced-motion: reduce){ .frame img{transition:none} }
+  .navbtn{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;
+    border-radius:50%;border:1px solid var(--gold);background:var(--card);color:var(--gold-deep);
+    font-size:20px;cursor:pointer;transition:background .15s}
+  .navbtn:hover{background:#F3EDD9}
+  .navbtn:disabled{opacity:.3;cursor:default}
+  #prev{left:10px} #next{right:10px}
+  .bar{display:flex;align-items:center;justify-content:center;gap:18px;padding:10px 24px 8px;flex-wrap:wrap}
+  .counter{font-size:13.5px;color:var(--soft);letter-spacing:.08em;min-width:64px;text-align:center}
+  .dots{display:flex;gap:8px}
+  .dot{width:9px;height:9px;border-radius:50%;border:1px solid var(--gold);background:transparent;
+    cursor:pointer;padding:0}
+  .dot.on{background:var(--gold)}
+  .tool{border:1px solid var(--line);background:var(--card);color:var(--soft);border-radius:8px;
+    padding:6px 12px;font-size:12.5px;cursor:pointer;font-family:inherit}
+  .tool:hover{border-color:var(--gold);color:var(--gold-deep)}
+  .notes{max-width:1100px;margin:0 auto;padding:0 24px 8px;display:none}
+  .notes.open{display:block}
+  .notes-in{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--gold);
+    border-radius:10px;padding:12px 18px;font-size:14px;color:var(--ink);line-height:1.55}
+  .notes-in .nlabel{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
+    color:var(--gold-deep);margin-bottom:4px}
+  footer{padding:8px 24px 16px;text-align:center;font-size:11.5px;color:var(--soft)}
+  footer em{color:var(--gold-deep)}
+  @media (max-width:700px){ .stage{padding:6px 8px} #prev{left:2px} #next{right:2px} }
+</style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">Academies of Nature and Forest Therapies</div>
+  <h1>Where We Are on the Journey</h1>
+</header>
+
+<div class="stage">
+  <div class="frame" id="frame" aria-live="polite" aria-label="Slide viewer"></div>
+  <button class="navbtn" id="prev" aria-label="Previous slide">&#8592;</button>
+  <button class="navbtn" id="next" aria-label="Next slide">&#8594;</button>
+</div>
+
+<div class="bar">
+  <div class="counter" id="counter">1 / 9</div>
+  <div class="dots" id="dots"></div>
+  <button class="tool" id="notesBtn" aria-expanded="false">Show notes</button>
+  <button class="tool" id="fsBtn">Fullscreen</button>
+</div>
+
+<div class="notes" id="notes">
+  <div class="notes-in"><div class="nlabel">Presenter notes</div><div id="noteText"></div></div>
+</div>
+
+<footer>Use &#8592; &#8594; keys, the arrows, or swipe. <em>Unlisted page — one slide is reserved for the leadership room and does not appear here.</em></footer>
+
+<script>
+(function(){
+  var N = 9, i = 0;
+  var NOTES = [
+    'Open in silence; let the photo and quote be read. This is the succession moment: the founding motto honored and completed, not discarded. The rest of the deck is the story of how we got to this sentence.',
+    'Loose chronology by design \u2014 eras, not dates. The point of the slide: we are at a known chapter of a known story, not improvising.',
+    'Era I \u2014 the founding craft. The invitation, learned here, returns in Era IV as "threshold invitations."',
+    'Era II \u2014 name the clumsiness generously: added in earnest, ahead of the systems. Naming it plainly is how an organization proves it learns.',
+    'Era III \u2014 the quiet deepening; relationship with place becomes pedagogy, and seeds the venue architecture.',
+    'Era IV \u2014 now. One letter changed, a world widened. Membership named openly as the era\u2019s open question.',
+    'Trainer-safe framing: the Threshold as concept and vocabulary \u2014 the completion of the motto\u2019s second clause. Program-structure implications are for the leadership room.',
+    'Era V \u2014 gated, not dated. Concept A is built and waiting as the future front door.',
+    'Close: the sequence is the strategy. End on the landscape of invitations.'
+  ];
+  var frame = document.getElementById('frame');
+  var imgs = [];
+  for (var k = 1; k <= N; k++){
+    var im = document.createElement('img');
+    im.alt = 'Slide ' + k + ' of ' + N;
+    if (k <= 2) im.src = 'assets/journey/slide-0' + k + '.jpg';
+    else im.dataset.src = 'assets/journey/slide-' + (k<10?'0':'') + k + '.jpg';
+    frame.appendChild(im); imgs.push(im);
+  }
+  var dots = document.getElementById('dots');
+  for (var d = 0; d < N; d++){
+    var b = document.createElement('button');
+    b.className = 'dot'; b.setAttribute('aria-label','Go to slide '+(d+1));
+    (function(dd){ b.addEventListener('click', function(){ go(dd); }); })(d);
+    dots.appendChild(b);
+  }
+  function ensure(k){
+    if (k>=0 && k<N && imgs[k].dataset.src){ imgs[k].src = imgs[k].dataset.src; delete imgs[k].dataset.src; }
+  }
+  function render(){
+    imgs.forEach(function(im, k){ im.classList.toggle('on', k===i); });
+    ensure(i); ensure(i+1); ensure(i-1);
+    document.getElementById('counter').textContent = (i+1) + ' / ' + N;
+    [].forEach.call(dots.children, function(dot, k){ dot.classList.toggle('on', k===i); });
+    document.getElementById('prev').disabled = (i===0);
+    document.getElementById('next').disabled = (i===N-1);
+    document.getElementById('noteText').textContent = NOTES[i] || '';
+  }
+  function go(k){ i = Math.max(0, Math.min(N-1, k)); render(); }
+  document.getElementById('prev').addEventListener('click', function(){ go(i-1); });
+  document.getElementById('next').addEventListener('click', function(){ go(i+1); });
+  document.addEventListener('keydown', function(e){
+    if (e.key==='ArrowRight' || e.key===' ') { e.preventDefault(); go(i+1); }
+    if (e.key==='ArrowLeft') { e.preventDefault(); go(i-1); }
+    if (e.key==='Home') go(0);
+    if (e.key==='End') go(N-1);
+  });
+  var tx = null;
+  frame.addEventListener('touchstart', function(e){ tx = e.touches[0].clientX; }, {passive:true});
+  frame.addEventListener('touchend', function(e){
+    if (tx===null) return;
+    var dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 45) go(i + (dx<0?1:-1));
+    tx = null;
+  }, {passive:true});
+  var notesOpen = false;
+  document.getElementById('notesBtn').addEventListener('click', function(){
+    notesOpen = !notesOpen;
+    document.getElementById('notes').classList.toggle('open', notesOpen);
+    this.textContent = notesOpen ? 'Hide notes' : 'Show notes';
+    this.setAttribute('aria-expanded', String(notesOpen));
+  });
+  document.getElementById('fsBtn').addEventListener('click', function(){
+    var el = document.documentElement;
+    if (!document.fullscreenElement && el.requestFullscreen) el.requestFullscreen();
+    else if (document.exitFullscreen) document.exitFullscreen();
+  });
+  render();
+})();
+</script>
+</body>
+</html>
