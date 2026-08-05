@@ -184,7 +184,7 @@
   .stream-links a:hover{text-decoration:underline}
 
   /* ===== Offering menu: tabbed, tap-friendly, readable without JS ===== */
-  .omenu{margin-top:40px}
+  .omenu{margin-top:10px}
   .omenu-tabs{display:none;gap:10px;flex-wrap:wrap;margin-bottom:22px}
   .js .omenu-tabs{display:flex}
   .omenu-tab{font:inherit;font-weight:700;font-size:15px;color:var(--ink-soft);background:var(--card);
@@ -208,9 +208,10 @@
   .omenu-item:hover{border-color:var(--fir);transform:translateY(-2px);box-shadow:0 6px 16px rgba(38,48,31,.10)}
   .omenu-item:focus-visible{outline:2.5px solid var(--gold);outline-offset:2px}
   .omenu-name{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:18px;font-weight:600;color:var(--navy);line-height:1.25}
-  .omenu-meta{font-size:14px;color:var(--ink-soft);font-weight:600}
-  .omenu-item--stack{flex-direction:column;align-items:flex-start;gap:5px}
-  .omenu-benefit{font-size:14.5px;color:var(--ink-soft);line-height:1.5;font-weight:400}
+  .omenu-meta{font-size:13.5px;color:var(--ink-soft);font-weight:600;margin-top:9px}
+  .omenu-meta b{color:var(--gold-deep);font-weight:700}
+  .omenu-item--stack{flex-direction:column;align-items:flex-start}
+  .omenu-benefit{font-size:14.5px;color:var(--ink-soft);line-height:1.5;font-weight:400;margin-top:4px}
   .omenu-soon{color:var(--ink-soft);font-size:14.5px}
 
   /* Threshold menu: one column under 768px, centre panel above the buttons */
@@ -344,90 +345,34 @@
     <div class="eyebrow">Begin at the Source</div>
     <h2>The Forest Threshold</h2>
     <p class="lede">The Forest Threshold is where the call reaches you. ANFT has stood at this threshold with thousands of people just like you. In over 70 nations spread across the globe. In the wild places; those within and those without. From this threshold, five paths open. We are standing by at whichever path you choose and will walk it with you.</p>
-    <div class="wheel-card">
-      <div class="thr">
-        <div class="thr-center">
-          <h3 class="serif">The Forest Threshold</h3>
-          <p>The Forest Threshold is the stirring of your essential self &mdash; the call of the wild &mdash; welcomed here, and opening into five paths.</p>
-          <div class="thr-verbs">
-            <button class="thr-verb" type="button" data-desc="Arriving in relationship &mdash; with the land, the more-than-human world, and the circle of fellow travelers. Practices of presence, invitation, and reciprocity open the way.">Connect</button>
-            <button class="thr-verb" type="button" data-desc="The ideas beneath the work &mdash; the lineages, sciences, and stories of relational practice, partnership, place, and the creative path.">Discover</button>
-            <button class="thr-verb" type="button" data-desc="Skills lived rather than studied &mdash; guiding practice, sensory and somatic work, council, and creative process, taken into the body each day on the land.">Embody</button>
-            <button class="thr-verb" type="button" data-desc="Integration and return &mdash; honoring the crossing as complete in itself, carrying it home, and recognizing which path, if any, calls you onward.">Remember</button>
-            <button class="thr-verb" type="button" data-desc="Letting what the crossing has kindled be seen &mdash; voice, gifts, and light offered first to the circle, then carried into the world.">Shine</button>
-          </div>
-          <p class="thr-verb-desc" hidden></p>
-        </div>
-      </div>
-    </div>
-
     <div class="omenu">
-      <div class="omenu-tabs" role="tablist" aria-label="Offering menu views">
-        <button class="omenu-tab" type="button" role="tab" id="otab-courses" aria-controls="opanel-courses" aria-selected="true">Courses and Programs</button>
-        <button class="omenu-tab" type="button" role="tab" id="otab-benefits" aria-controls="opanel-benefits" aria-selected="false" tabindex="-1">Benefits and Value</button>
+      <div class="omenu-group">
+        <h3 class="omenu-h">Guide training pathway</h3>
+        <ul class="omenu-list">
+          <li><a class="omenu-item omenu-item--stack" href="re-collection.html"><span class="omenu-name">Re-collection</span><span class="omenu-benefit">Recover the practice you are already in. Decide about guiding later.</span><span class="omenu-meta">8 sessions &middot; <b>$950</b></span></a></li>
+          <li><a class="omenu-item omenu-item--stack" href="immersion.html"><span class="omenu-name">Immersion</span><span class="omenu-benefit">Where understanding becomes embodiment; most guides change here.</span><span class="omenu-meta">4 days &middot; <b>$595</b></span></a></li>
+          <li><a class="omenu-item omenu-item--stack" href="practicum.html"><span class="omenu-name">Practicum</span><span class="omenu-benefit">Supervised practice held to a standard worth certifying.</span><span class="omenu-meta">4 months, 16 sessions &middot; <b>$1,200</b></span></a></li>
+          <li><a class="omenu-item omenu-item--stack" href="practice.html"><span class="omenu-name">Practice</span><span class="omenu-benefit">Integrate the practice into your relationships, your work, your life.</span><span class="omenu-meta">8 sessions &middot; <b>$800</b></span></a></li>
+        </ul>
       </div>
-
-      <section class="omenu-panel is-active" id="opanel-courses" role="tabpanel" aria-labelledby="otab-courses">
-        <h3 class="omenu-ph">Courses and Programs</h3>
-        <div class="omenu-group">
-          <h4 class="omenu-h">Guide training pathway</h4>
-          <ul class="omenu-list">
-            <li><a class="omenu-item" href="re-collection.html"><span class="omenu-name">Re-collection</span><span class="omenu-meta">8 sessions &middot; $950</span></a></li>
-            <li><a class="omenu-item" href="immersion.html"><span class="omenu-name">Immersion</span><span class="omenu-meta">4 days &middot; $595</span></a></li>
-            <li><a class="omenu-item" href="practicum.html"><span class="omenu-name">Practicum</span><span class="omenu-meta">4 months, 16 sessions &middot; $1,200</span></a></li>
-            <li><a class="omenu-item" href="practice.html"><span class="omenu-name">Practice</span><span class="omenu-meta">8 sessions &middot; $800</span></a></li>
-          </ul>
-        </div>
-        <div class="omenu-group">
-          <h4 class="omenu-h">After certification</h4>
-          <ul class="omenu-list">
-            <li><a class="omenu-item" href="membership.html"><span class="omenu-name">Member Symposia and Events</span><span class="omenu-meta">Ongoing &middot; $1,200 per year</span></a></li>
-          </ul>
-        </div>
-        <div class="omenu-group">
-          <h4 class="omenu-h">Open to anyone</h4>
-          <ul class="omenu-list">
-            <li><a class="omenu-item" href="forest-threshold.html"><span class="omenu-name">The Forest Threshold</span><span class="omenu-meta">4 to 8 days &middot; $1,295</span></a></li>
-            <li><a class="omenu-item" href="council-of-waters-and-trees.html"><span class="omenu-name">Council of Waters and Trees</span><span class="omenu-meta">5 days &middot; $1,250</span></a></li>
-            <li><a class="omenu-item" href="academy-of-place--consultant-training.html"><span class="omenu-name">Healing Trails</span><span class="omenu-meta">5 days &middot; $750</span></a></li>
-            <li><a class="omenu-item" href="opus-academy.html"><span class="omenu-name">Opus Academy</span><span class="omenu-meta">10 weeks &middot; $1,200</span></a></li>
-            <li><a class="omenu-item" href="nature-as-medicine.html"><span class="omenu-name">Nature as Medicine</span><span class="omenu-meta">9 days &middot; from $5,155</span></a></li>
-            <li><a class="omenu-item" href="guiding-in-sign-language.html"><span class="omenu-name">Guiding in sign language</span><span class="omenu-meta">In development</span></a></li>
-            <li><a class="omenu-item" href="custom-training.html"><span class="omenu-name">Custom training</span><span class="omenu-meta">Scoped per client &middot; By inquiry</span></a></li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="omenu-panel" id="opanel-benefits" role="tabpanel" aria-labelledby="otab-benefits">
-        <h3 class="omenu-ph">Benefits and Value</h3>
-        <div class="omenu-group">
-          <h4 class="omenu-h">Guide training pathway</h4>
-          <ul class="omenu-list">
-            <li><a class="omenu-item omenu-item--stack" href="re-collection.html"><span class="omenu-name">Re-collection</span><span class="omenu-benefit">Recover the practice you are already in. Decide about guiding later.</span></a></li>
-            <li><a class="omenu-item omenu-item--stack" href="immersion.html"><span class="omenu-name">Immersion</span><span class="omenu-benefit">Where understanding becomes embodiment; most guides change here.</span></a></li>
-            <li><a class="omenu-item omenu-item--stack" href="practicum.html"><span class="omenu-name">Practicum</span><span class="omenu-benefit">Supervised practice held to a standard worth certifying.</span></a></li>
-            <li><a class="omenu-item omenu-item--stack" href="practice.html"><span class="omenu-name">Practice</span><span class="omenu-benefit">Integrate the practice into your relationships, your work, your life.</span></a></li>
-          </ul>
-        </div>
-        <div class="omenu-group">
-          <h4 class="omenu-h">After certification</h4>
-          <ul class="omenu-list">
-            <li><a class="omenu-item omenu-item--stack" href="membership.html"><span class="omenu-name">Member Symposia and Events</span><span class="omenu-benefit">One real question a month, thought through together and written down.</span></a></li>
-          </ul>
-        </div>
-        <div class="omenu-group">
-          <h4 class="omenu-h">Open to anyone</h4>
-          <ul class="omenu-list">
-            <li><a class="omenu-item omenu-item--stack" href="forest-threshold.html"><span class="omenu-name">The Forest Threshold</span><span class="omenu-benefit">A doorway for when you arrive looking, not shopping.</span></a></li>
-            <li><a class="omenu-item omenu-item--stack" href="council-of-waters-and-trees.html"><span class="omenu-name">Council of Waters and Trees</span><span class="omenu-benefit">For when you want to hold gatherings, and not only walks.</span></a></li>
-            <li><a class="omenu-item omenu-item--stack" href="academy-of-place--consultant-training.html"><span class="omenu-name">Healing Trails</span><span class="omenu-benefit">Carry the practice into landscapes, and to the institutions holding them.</span></a></li>
-            <li><a class="omenu-item omenu-item--stack" href="opus-academy.html"><span class="omenu-name">Opus Academy</span><span class="omenu-benefit">The transformational path: come to be guided, not to learn to guide.</span></a></li>
-            <li><a class="omenu-item omenu-item--stack" href="nature-as-medicine.html"><span class="omenu-name">Nature as Medicine</span><span class="omenu-benefit">The practice in clinical vocabulary, if you already hold a license.</span></a></li>
-            <li><a class="omenu-item omenu-item--stack" href="guiding-in-sign-language.html"><span class="omenu-name">Guiding in sign language</span><span class="omenu-benefit">The practice in a language the deaf community shapes for itself.</span></a></li>
-            <li><a class="omenu-item omenu-item--stack" href="custom-training.html"><span class="omenu-name">Custom training</span><span class="omenu-benefit">Brought to your own people, and onto your own land.</span></a></li>
-          </ul>
-        </div>
-      </section>
+      <div class="omenu-group">
+        <h3 class="omenu-h">After certification</h3>
+        <ul class="omenu-list">
+          <li><a class="omenu-item omenu-item--stack" href="membership.html"><span class="omenu-name">Member Symposia and Events</span><span class="omenu-benefit">One real question a month, thought through together and written down.</span><span class="omenu-meta">Ongoing &middot; <b>$1,200 per year</b></span></a></li>
+        </ul>
+      </div>
+      <div class="omenu-group">
+        <h3 class="omenu-h">Open to anyone</h3>
+        <ul class="omenu-list">
+          <li><a class="omenu-item omenu-item--stack" href="forest-threshold.html"><span class="omenu-name">The Forest Threshold</span><span class="omenu-benefit">A doorway for when you arrive looking, not shopping.</span><span class="omenu-meta">4 to 8 days &middot; <b>$1,295</b></span></a></li>
+          <li><a class="omenu-item omenu-item--stack" href="council-of-waters-and-trees.html"><span class="omenu-name">Council of Waters and Trees</span><span class="omenu-benefit">For when you want to hold gatherings, and not only walks.</span><span class="omenu-meta">5 days &middot; <b>$1,250</b></span></a></li>
+          <li><a class="omenu-item omenu-item--stack" href="academy-of-place--consultant-training.html"><span class="omenu-name">Healing Trails</span><span class="omenu-benefit">Carry the practice into landscapes, and to the institutions holding them.</span><span class="omenu-meta">5 days &middot; <b>$750</b></span></a></li>
+          <li><a class="omenu-item omenu-item--stack" href="opus-academy.html"><span class="omenu-name">Opus Academy</span><span class="omenu-benefit">The transformational path: come to be guided, not to learn to guide.</span><span class="omenu-meta">10 weeks &middot; <b>$1,200</b></span></a></li>
+          <li><a class="omenu-item omenu-item--stack" href="nature-as-medicine.html"><span class="omenu-name">Nature as Medicine</span><span class="omenu-benefit">The practice in clinical vocabulary, if you already hold a license.</span><span class="omenu-meta">9 days &middot; <b>from $5,155</b></span></a></li>
+          <li><a class="omenu-item omenu-item--stack" href="guiding-in-sign-language.html"><span class="omenu-name">Guiding in sign language</span><span class="omenu-benefit">The practice in a language the deaf community shapes for itself.</span><span class="omenu-meta">In development</span></a></li>
+          <li><a class="omenu-item omenu-item--stack" href="custom-training.html"><span class="omenu-name">Custom training</span><span class="omenu-benefit">Brought to your own people, and onto your own land.</span><span class="omenu-meta">Scoped per client &middot; <b>By inquiry</b></span></a></li>
+        </ul>
+      </div>
     </div>
   </section>
   <!-- ======================================================================
