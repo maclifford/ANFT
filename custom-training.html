@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Custom Training — Academy of Applied Forest Therapy</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="description" content="Forest therapy training brought to an organization's own people and their own land. In development, scoped by inquiry.">
+<link rel="canonical" href="https://anft.earth/custom-training.html">
+<meta property="og:url" content="https://anft.earth/custom-training.html">
+<meta property="og:title" content="Custom Training — Academy of Applied Forest Therapy">
+<meta property="og:description" content="Forest therapy training brought to an organization's own people and their own land. In development, scoped by inquiry.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://anft.earth/images/guide-banner.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2F3EC; --card:#FBFCF8; --ink:#26301F; --ink-soft:#4E5A47;
+    --navy:#1E3A5F; --fir:#2E5B3E; --fir-tint:#E1EBDD; --river:#2E6E6A;
+    --gold:#A9862C; --gold-deep:#7C6118; --gold-tint:#F3EDD9;
+    --bark:#6B4F3A; --bark-deep:#4E3324; --bark-tint:#EFE7DF;
+    --line:#C9D0BE; --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:"Albert Sans",system-ui,sans-serif;
+    font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .serif{font-family:"EB Garamond",Garamond,Georgia,serif}
+  .site-header{background:#fff;border-bottom:1px solid var(--line)}
+  .hdr-in{max-width:1120px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;
+    justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .hdr-in img{height:66px;width:auto;display:block}
+  nav{display:flex;gap:26px;flex-wrap:wrap}
+  nav a{color:var(--navy);text-decoration:none;font-size:14.5px;font-weight:600;letter-spacing:.02em}
+  nav a:hover{color:var(--gold-deep);text-decoration:underline;text-underline-offset:4px}
+  .banner{max-width:1120px;margin:0 auto}
+  .banner img{display:block;width:100%;height:clamp(180px,26vw,320px);object-fit:cover;
+    border-radius:0 0 var(--radius) var(--radius)}
+  .section{max-width:880px;margin:0 auto;padding:48px 28px 72px}
+  .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);
+    font-weight:600;margin-bottom:10px}
+  h1{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:500;color:var(--navy);
+    font-size:clamp(28px,4vw,40px);line-height:1.15}
+  .lede{margin-top:12px;color:var(--ink-soft);font-size:17.5px;max-width:64ch}
+  h2{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:500;color:var(--navy);
+    font-size:25px;margin:38px 0 10px}
+  p{margin:0 0 14px;max-width:70ch}
+  .cta-row{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .btn{display:inline-block;font-size:14.5px;font-weight:600;border-radius:999px;padding:12px 26px;
+    text-decoration:none;cursor:pointer;border:1.5px solid transparent;font-family:inherit}
+  .btn-gold{background:var(--gold);color:#fff}
+  .btn-gold:hover{background:var(--gold-deep)}
+  .btn-quiet{background:transparent;color:var(--fir);border-color:var(--fir)}
+  .btn-quiet:hover{background:var(--fir-tint)}
+  .p-link{font-size:14.5px;font-weight:600;color:var(--gold-deep);text-decoration:none}
+  .p-link:hover{text-decoration:underline;text-underline-offset:4px}
+  .stub-note{background:var(--gold-tint);border:1px solid var(--gold);border-radius:10px;
+    padding:14px 18px;font-size:14px;color:var(--bark-deep);margin-top:26px}
+  .stub-note a{color:var(--gold-deep);font-weight:600}
+  .journey{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 26px;margin:22px 0 6px}
+  .journey h3{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:600;color:var(--navy);
+    font-size:20px;margin-bottom:14px}
+  .journey dl{display:grid;grid-template-columns:minmax(110px,150px) 1fr;gap:12px 22px;margin:0}
+  .journey dt{font-weight:700;color:var(--fir);font-size:14.5px}
+  .journey dd{margin:0;font-size:14.5px;color:var(--ink);line-height:1.55}
+  @media (max-width:560px){.journey{padding:18px 20px}.journey dl{grid-template-columns:1fr;gap:2px 0}
+    .journey dt{margin-top:8px}.journey dd{margin:0 0 4px}}
+
+  /* comprehensive footer */
+  footer{margin-top:72px;background:var(--navy);color:#F4F7FB;
+    border-top:3px solid var(--gold);padding:48px 28px 26px}
+  .foot-grid{max-width:1120px;margin:0 auto;display:grid;
+    grid-template-columns:1.6fr 1fr 1fr 1.3fr;gap:34px 44px}
+  @media (max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
+  @media (max-width:540px){.foot-grid{grid-template-columns:1fr}}
+  .foot-brand{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:21px;line-height:1.3;color:#FFFFFF}
+  .foot-tagline{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:14.5px;
+    color:#E7D9A8;letter-spacing:.06em;margin-top:8px}
+  .foot-mission{font-size:14px;color:#C9D5E6;margin:16px 0 0;max-width:40ch;line-height:1.65}
+  .foot-sys{display:inline-block;margin-top:16px;font-size:13.5px;font-weight:600;
+    color:#E7D9A8;text-decoration:none;border:1px solid rgba(231,217,168,.45);
+    border-radius:999px;padding:7px 16px}
+  .foot-sys:hover{background:rgba(231,217,168,.12);border-color:#E7D9A8}
+  .foot-col h3{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:#E7D9A8;
+    font-weight:700;margin:0 0 14px}
+  .foot-col a{display:block;color:#EDF2F8;text-decoration:none;font-size:14px;
+    padding:4px 0;line-height:1.5}
+  .foot-col a:hover{color:#FFFFFF;text-decoration:underline;text-underline-offset:3px;
+    text-decoration-color:var(--gold)}
+  .foot-contact p{font-size:14px;color:#C9D5E6;margin:0 0 12px;line-height:1.7;max-width:none}
+  .foot-contact a{display:inline;color:#EDF2F8;text-decoration:none;font-size:14px;
+    overflow-wrap:anywhere}
+  .foot-contact a:hover{text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px}
+  .foot-social{display:flex;gap:8px 18px;flex-wrap:wrap;margin-top:14px}
+  .foot-social a{display:inline;font-size:13.5px;color:#C9D5E6;text-decoration:none;
+    font-weight:600;padding:0}
+  .foot-social a:hover{color:#FFFFFF;text-decoration:underline;text-underline-offset:3px}
+  .foot-land{max-width:1120px;margin:40px auto 0;padding-top:24px;
+    border-top:1px solid rgba(244,247,251,.22);
+    font-family:"EB Garamond",Garamond,Georgia,serif;font-style:italic;font-size:15.5px;
+    color:#D8E0EC;line-height:1.7;max-width:76ch}
+  .foot-legal{max-width:1120px;margin:26px auto 0;padding-top:16px;
+    border-top:1px solid rgba(244,247,251,.16);
+    font-size:12.5px;color:#B9C6D9;display:flex;justify-content:space-between;
+    gap:10px 24px;flex-wrap:wrap;line-height:1.6}
+  .foot-legal a{color:#C9D5E6;text-decoration:none}
+  .foot-legal a:hover{color:#FFFFFF;text-decoration:underline}
+</style>
+</head>
+<body id="top">
+<header class="site-header">
+  <div class="hdr-in">
+    <a href="index.html" aria-label="Academies of Nature and Forest Therapies — home"><img src="images/anft-logo-horizontal-tight.webp?v=3" width="1721" height="535" decoding="async" alt="Academies of Nature and Forest Therapies"></a>
+    <nav aria-label="Primary">
+      <a href="forest-threshold.html">The Forest Threshold</a>
+      <a href="a-living-system.html">About &mdash; A Living System</a>
+      <a href="academies.html">The Academies</a>
+      <a href="the-book.html">The Book</a>
+      <a href="apply.html">Apply</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+<div class="banner"><img src="images/guide-banner.webp" alt="A forest therapy gathering on the land" loading="eager" decoding="async"></div>
+<main class="section">
+  <div class="eyebrow">Academy of Applied Forest Therapy</div>
+  <h1>Custom training</h1>
+
+  <p class="lede">Brought to an organization&rsquo;s own people and their own land.</p>
+
+  <div class="stub-note"><b>In development.</b> Custom engagements are scoped by inquiry, and dates are set per engagement. <a href="contact.html">Get in touch</a> to start a conversation.</div>
+
+  <div class="journey">
+    <h3>At a glance</h3>
+    <dl>
+      <dt>Duration</dt><dd>Scoped per client, on your land where possible</dd>
+    </dl>
+  </div>
+
+  <div class="cta-row"><a class="btn btn-quiet" href="contact.html">Start a conversation</a><a class="p-link" href="academies.html">The Academies &rarr;</a></div>
+</main>
+<footer>
+  <div class="foot-grid">
+    <div class="foot-col">
+      <div class="foot-brand">Academies of Nature<br>and Forest Therapies</div>
+      <div class="foot-tagline">Knowledge &middot; Practice &middot; Transformation</div>
+      <p class="foot-mission">Supporting the wellbeing of people and planet by nurturing heart-centered relationship between all peoples and the more-than-human world of nature.</p>
+      <a class="foot-sys" href="a-living-system.html">A Living System &rarr;</a>
+    </div>
+    <div class="foot-col">
+      <h3>The Academies</h3>
+      <a href="forest-threshold.html">The Forest Threshold</a>
+      <a href="relational-forest-therapy-academy.html">Relational Forest Therapy</a>
+      <a href="re-collection.html" style="padding-left:14px;font-size:13px">Re-collection</a>
+      <a href="immersion.html" style="padding-left:14px;font-size:13px">Immersion</a>
+      <a href="practicum.html" style="padding-left:14px;font-size:13px">Practicum</a>
+      <a href="practice.html" style="padding-left:14px;font-size:13px">Practice</a>
+      <a href="nature-as-medicine.html">Nature as Medicine</a>
+      <a href="academy-of-place.html">Academy of Place</a>
+      <a href="opus-academy.html">Opus Academy</a>
+      <a href="academy-of-applied-partnerships.html">Applied Forest Therapy</a>
+    </div>
+    <div class="foot-col">
+      <h3>Participate</h3>
+      <a href="apply.html">Apply</a>
+      <a href="index.html#trainings">Upcoming trainings</a>
+      <a href="guild.html">The Guild</a>
+      <a href="membership.html">Membership</a>
+      <a href="relational-forest-therapy-academy--global-guide-map.html">Find a guide</a>
+      <a href="academy-of-place--global-trail-map.html">Find a trail</a>
+      <a href="faq.html">FAQ</a>
+      <a href="field-glossary.html">Field Glossary</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="foot-col foot-contact">
+      <h3>Reach Us</h3>
+      <p><a href="mailto:admissions@anft.earth">admissions@anft.earth</a><br>
+         <a href="mailto:info@anft.earth">info@anft.earth</a></p>
+      <p>1&#8209;707&#8209;385&#8209;1563<br>Monday&ndash;Friday, 9am&ndash;5pm PST</p>
+      <p>1745 Rustic Timbers Lane, Suite B<br>Prescott, AZ 86303, USA</p>
+      <div class="foot-social">
+        <a href="https://www.facebook.com/natureandforesttherapy/">Facebook</a>
+        <a href="https://www.instagram.com/natureandforesttherapy/">Instagram</a>
+        <a href="https://www.linkedin.com/company/nature-and-forest-therapy">LinkedIn</a>
+        <a href="https://www.youtube.com/channel/UCE-q1cBI6E6s0mHo_FcvTiA">YouTube</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-land">The land itself is the elder here and everywhere in our world. From our home in Prescott, Arizona, we work on land that has hosted many lives across its long existence &mdash; human and other-than-human, some now gone from the Earth &mdash; and many cultures, most recently, before those of us here now, the Yavapai and Apache peoples and their relations. We honor the land, and all whom it has held, and its infinite threads of relational connections, in which we and our work are embedded, which we live into with awe and love, and for which we are profoundly grateful.</div>
+  <div class="foot-legal">
+    <span>&copy; 2026 ANFT.earth LLC, doing business as the Association of Nature and Forest Therapies. All rights reserved.</span>
+    <span><a href="privacy.html">Privacy</a> &nbsp;&middot;&nbsp; <a href="#top" aria-label="Back to top">Back to top &uarr;</a></span>
+  </div>
+</footer>
+</body>
+</html>
