@@ -380,30 +380,6 @@
       "context": "Accredited by Mass General Brigham. Up to 86 continuing education credits. In partnership with Dr. Susan Abookirie of Harvard Medical School."
     },
     {
-      "id": "camino",
-      "name": "Camino de Santiago",
-      "slug": "opus-academy/camino",
-      "academy": "opus",
-      "door": "something-calling",
-      "verb": "book",
-      "status": "in-development",
-      "model": null,
-      "stage": null,
-      "proposition": "Pilgrimage as a form, with the cost borne in the body.",
-      "price": {
-        "amount": 1000,
-        "currency": "USD",
-        "tiers": null,
-        "note": "Guide fee only"
-      },
-      "length": "14 days",
-      "format": "Walking, in Spain",
-      "prerequisite": null,
-      "bookIncluded": null,
-      "isNot": "Not a package holiday. Travel, lodging and meals are yours to arrange and to pay for.",
-      "context": "In development. Dates not yet set."
-    },
-    {
       "id": "guiding-in-sign-language",
       "name": "Guiding in sign language",
       "slug": "guide-training/sign-language",
