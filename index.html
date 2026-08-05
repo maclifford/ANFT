@@ -69,7 +69,7 @@
 
   /* ===== Threshold: two-column menu ===== */
   .wheel-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 20px 20px}
-  .thr{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
+  .thr{display:grid;grid-template-columns:1fr;gap:30px;align-items:start}
   .thr-menu{display:flex;flex-direction:column;gap:14px}
   .thr-btn{display:block;text-decoration:none;background:var(--card);border:1px solid var(--line);
     border-left:6px solid var(--accent,var(--gold));border-radius:12px;padding:16px 20px;
@@ -183,6 +183,36 @@
   .stream-links a{color:var(--fir);font-weight:600;font-size:13.5px;text-decoration:none}
   .stream-links a:hover{text-decoration:underline}
 
+  /* ===== Offering menu: tabbed, tap-friendly, readable without JS ===== */
+  .omenu{margin-top:40px}
+  .omenu-tabs{display:none;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+  .js .omenu-tabs{display:flex}
+  .omenu-tab{font:inherit;font-weight:700;font-size:15px;color:var(--ink-soft);background:var(--card);
+    border:1.5px solid var(--line);border-radius:999px;padding:10px 20px;min-height:44px;cursor:pointer;
+    transition:background .2s ease,border-color .2s ease,color .2s ease}
+  .omenu-tab:hover{border-color:var(--fir);color:var(--gold-deep)}
+  .omenu-tab[aria-selected="true"]{background:var(--gold);border-color:var(--gold);color:#fff}
+  .omenu-tab:focus-visible{outline:2.5px solid var(--gold);outline-offset:2px}
+  .js .omenu-panel{display:none}
+  .js .omenu-panel.is-active{display:block}
+  .omenu-ph{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:500;color:var(--navy);font-size:22px;margin-bottom:16px}
+  .js .omenu-ph{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+  .omenu-group{margin-top:24px}
+  .omenu-group:first-of-type{margin-top:0}
+  .omenu-h{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--gold-deep);margin-bottom:10px}
+  .omenu-list{list-style:none;display:grid;gap:12px;margin:0;padding:0}
+  .omenu-item{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 20px;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;
+    text-decoration:none;color:var(--ink);
+    transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease}
+  .omenu-item:hover{border-color:var(--fir);transform:translateY(-2px);box-shadow:0 6px 16px rgba(38,48,31,.10)}
+  .omenu-item:focus-visible{outline:2.5px solid var(--gold);outline-offset:2px}
+  .omenu-name{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:18px;font-weight:600;color:var(--navy);line-height:1.25}
+  .omenu-meta{font-size:14px;color:var(--ink-soft);font-weight:600}
+  .omenu-item--stack{flex-direction:column;align-items:flex-start;gap:5px}
+  .omenu-benefit{font-size:14.5px;color:var(--ink-soft);line-height:1.5;font-weight:400}
+  .omenu-soon{color:var(--ink-soft);font-size:14.5px}
+
   /* Threshold menu: one column under 768px, centre panel above the buttons */
   @media (max-width:767px){
     .thr{grid-template-columns:1fr}
@@ -240,6 +270,7 @@
     box-shadow:0 2px 10px rgba(0,0,0,.28)}
   .ab-toggle:hover{background:var(--gold)}
 </style>
+<script>document.documentElement.classList.add('js');</script>
 
 <script type="application/ld+json">
 {
@@ -315,28 +346,6 @@
     <p class="lede">The Forest Threshold is where the call reaches you. ANFT has stood at this threshold with thousands of people just like you. In over 70 nations spread across the globe. In the wild places; those within and those without. From this threshold, five paths open. We are standing by at whichever path you choose and will walk it with you.</p>
     <div class="wheel-card">
       <div class="thr">
-        <nav class="thr-menu" aria-label="The paths">
-          <a class="thr-btn" style="--accent:var(--fir)" href="relational-forest-therapy-academy.html">
-            <b>Relational Forest Therapy</b>
-            <span>The World&rsquo;s Premier Guide Training Experience</span>
-          </a>
-          <a class="thr-btn" style="--accent:var(--river)" href="nature-as-medicine.html">
-            <b>Nature as Medicine</b>
-            <span>Nature in the Practice of Medicine</span>
-          </a>
-          <a class="thr-btn" style="--accent:var(--navy)" href="academy-of-place.html">
-            <b>Certified Trails Network</b>
-            <span>Tending the Heart of the Planet and its Peoples</span>
-          </a>
-          <a class="thr-btn" style="--accent:var(--bark)" href="opus-academy.html">
-            <b>Alchemy of Pilgrimage</b>
-            <span>Your Life, Your Work, Your Light</span>
-          </a>
-          <a class="thr-btn" style="--accent:var(--gold)" href="academy-of-applied-partnerships.html">
-            <b>Applied Forest Therapy</b>
-            <span>Bringing Your Offering to the World</span>
-          </a>
-        </nav>
         <div class="thr-center">
           <h3 class="serif">The Forest Threshold</h3>
           <p>The Forest Threshold is the stirring of your essential self &mdash; the call of the wild &mdash; welcomed here, and opening into five paths.</p>
@@ -352,40 +361,73 @@
       </div>
     </div>
 
-    <div class="streams-list" id="streams" aria-label="The five paths, summarized">
-      <h3 class="serif">The five paths, in plain terms</h3>
-      <ul>
-        <li class="stream s-fir">
-          <a class="stream-title" href="relational-forest-therapy-academy.html">Relational Forest Therapy Academy</a>
-          <p>Become a certified forest therapy guide through a mentored, cohort-based practicum &mdash; and join a global community of practicing guides.</p>
-          <p class="stream-links"><a href="relational-forest-therapy-academy--guide-training.html">Guide training</a> &middot; <a href="relational-forest-therapy-academy--global-guide-map.html">Global guide map</a></p>
-        </li>
-        <li class="stream s-gold">
-          <a class="stream-title" href="nature-as-medicine.html">Nature as Medicine</a>
-          <p>Training for physicians and other health care professionals in nature-based approaches to health and healing, offered in partnership with Dr. Susan Abookirie of Harvard Medical School.</p>
-          <p class="stream-links"><a href="nature-as-medicine.html">About the program</a></p>
-        </li>
-        <li class="stream s-fir">
-          <a class="stream-title" href="academy-of-place.html">Academy of Place</a>
-          <p>Training for place-based stewards and certified trail consultants &mdash; shaping, certifying, and tending the places that hold this work.</p>
-          <p class="stream-links"><a href="academy-of-place--consultant-training.html">Healing Trails</a> &middot; <a href="academy-of-place--trail-certification.html">Trail certification</a> &middot; <a href="academy-of-place--global-trail-map.html">Global trail map</a></p>
-        </li>
-        <li class="stream s-bark">
-          <a class="stream-title" href="opus-academy.html">Opus Academy</a>
-          <p>Alchemy of Pilgrimage &mdash; process, practices, and atelier &mdash; a creative-transformative path of assemblage and pilgrimage for your life and work.</p>
-          <p class="stream-links"><a href="opus-academy.html#more-than-curriculum">Company</a> &middot; <a href="opus-academy.html#alchemy-of-pilgrimage">Process</a> &middot; <a href="opus-academy.html#ten-week-journey">Practices</a> &middot; <a href="opus-academy.html#atelier">Atelier</a> &middot; <a href="opus-academy.html#pilgrimage">Pilgrimage</a></p>
-        </li>
-        <li class="stream s-bark">
-          <a class="stream-title" href="academy-of-applied-partnerships.html">Academy of Applied Forest Therapy</a>
-          <p>Propose and deliver your own offering through the academy &mdash; workshops, retreats, and specialized professional training.</p>
-          <p class="stream-links"><a href="academy-of-applied-partnerships--workshops.html">Workshops</a> &middot; <a href="academy-of-applied-partnerships--retreats.html">Retreats</a> &middot; <a href="council-of-waters-and-trees.html">Council of Waters and Trees</a> &middot; <a href="academy-of-applied-partnerships--specialized-professional-training.html">Specialized training</a> &middot; <a href="academy-of-applied-partnerships--anft-specialized-training.html">ANFT specialized training</a></p>
-        </li>
-        <li class="stream stream-cta">
-          <span class="stream-title">Ready to begin?</span>
-          <p>Whichever path is calling you, the application takes only a few minutes &mdash; and our admissions circle reads every one.</p>
-          <p style="margin-top:14px"><a class="btn btn-gold" href="apply.html">Apply now</a></p>
-        </li>
-      </ul>
+    <div class="omenu">
+      <div class="omenu-tabs" role="tablist" aria-label="Offering menu views">
+        <button class="omenu-tab" type="button" role="tab" id="otab-courses" aria-controls="opanel-courses" aria-selected="true">Courses and Programs</button>
+        <button class="omenu-tab" type="button" role="tab" id="otab-benefits" aria-controls="opanel-benefits" aria-selected="false" tabindex="-1">Benefits and Value</button>
+      </div>
+
+      <section class="omenu-panel is-active" id="opanel-courses" role="tabpanel" aria-labelledby="otab-courses">
+        <h3 class="omenu-ph">Courses and Programs</h3>
+        <div class="omenu-group">
+          <h4 class="omenu-h">Guide training pathway</h4>
+          <ul class="omenu-list">
+            <li><a class="omenu-item" href="re-collection.html"><span class="omenu-name">Re-collection</span><span class="omenu-meta">8 sessions &middot; $950</span></a></li>
+            <li><a class="omenu-item" href="immersion.html"><span class="omenu-name">Immersion</span><span class="omenu-meta">4 days &middot; $595</span></a></li>
+            <li><a class="omenu-item" href="practicum.html"><span class="omenu-name">Practicum</span><span class="omenu-meta">4 months, 16 sessions &middot; $1,200</span></a></li>
+            <li><a class="omenu-item" href="practice.html"><span class="omenu-name">Practice</span><span class="omenu-meta">8 sessions &middot; $800</span></a></li>
+          </ul>
+        </div>
+        <div class="omenu-group">
+          <h4 class="omenu-h">After certification</h4>
+          <ul class="omenu-list">
+            <li><a class="omenu-item" href="membership.html"><span class="omenu-name">Member Symposia and Events</span><span class="omenu-meta">Ongoing &middot; $1,200 per year</span></a></li>
+          </ul>
+        </div>
+        <div class="omenu-group">
+          <h4 class="omenu-h">Open to anyone</h4>
+          <ul class="omenu-list">
+            <li><a class="omenu-item" href="forest-threshold.html"><span class="omenu-name">The Forest Threshold</span><span class="omenu-meta">4 to 8 days &middot; $1,295</span></a></li>
+            <li><a class="omenu-item" href="council-of-waters-and-trees.html"><span class="omenu-name">Council of Waters and Trees</span><span class="omenu-meta">5 days &middot; $1,250</span></a></li>
+            <li><a class="omenu-item" href="academy-of-place--consultant-training.html"><span class="omenu-name">Healing Trails</span><span class="omenu-meta">5 days &middot; $750</span></a></li>
+            <li><a class="omenu-item" href="opus-academy.html"><span class="omenu-name">Opus Academy</span><span class="omenu-meta">10 weeks &middot; $1,200</span></a></li>
+            <li><a class="omenu-item" href="nature-as-medicine.html"><span class="omenu-name">Nature as Medicine</span><span class="omenu-meta">9 days &middot; from $5,155</span></a></li>
+            <li><a class="omenu-item" href="guiding-in-sign-language.html"><span class="omenu-name">Guiding in sign language</span><span class="omenu-meta">In development</span></a></li>
+            <li><a class="omenu-item" href="custom-training.html"><span class="omenu-name">Custom training</span><span class="omenu-meta">Scoped per client &middot; By inquiry</span></a></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="omenu-panel" id="opanel-benefits" role="tabpanel" aria-labelledby="otab-benefits">
+        <h3 class="omenu-ph">Benefits and Value</h3>
+        <div class="omenu-group">
+          <h4 class="omenu-h">Guide training pathway</h4>
+          <ul class="omenu-list">
+            <li><a class="omenu-item omenu-item--stack" href="re-collection.html"><span class="omenu-name">Re-collection</span><span class="omenu-benefit">Recover the practice you are already in. Decide about guiding later.</span></a></li>
+            <li><a class="omenu-item omenu-item--stack" href="immersion.html"><span class="omenu-name">Immersion</span><span class="omenu-benefit">Where understanding becomes embodiment; most guides change here.</span></a></li>
+            <li><a class="omenu-item omenu-item--stack" href="practicum.html"><span class="omenu-name">Practicum</span><span class="omenu-benefit">Supervised practice held to a standard worth certifying.</span></a></li>
+            <li><a class="omenu-item omenu-item--stack" href="practice.html"><span class="omenu-name">Practice</span><span class="omenu-benefit">Integrate the practice into your relationships, your work, your life.</span></a></li>
+          </ul>
+        </div>
+        <div class="omenu-group">
+          <h4 class="omenu-h">After certification</h4>
+          <ul class="omenu-list">
+            <li><a class="omenu-item omenu-item--stack" href="membership.html"><span class="omenu-name">Member Symposia and Events</span><span class="omenu-benefit">One real question a month, thought through together and written down.</span></a></li>
+          </ul>
+        </div>
+        <div class="omenu-group">
+          <h4 class="omenu-h">Open to anyone</h4>
+          <ul class="omenu-list">
+            <li><a class="omenu-item omenu-item--stack" href="forest-threshold.html"><span class="omenu-name">The Forest Threshold</span><span class="omenu-benefit">A doorway for when you arrive looking, not shopping.</span></a></li>
+            <li><a class="omenu-item omenu-item--stack" href="council-of-waters-and-trees.html"><span class="omenu-name">Council of Waters and Trees</span><span class="omenu-benefit">For when you want to hold gatherings, and not only walks.</span></a></li>
+            <li><a class="omenu-item omenu-item--stack" href="academy-of-place--consultant-training.html"><span class="omenu-name">Healing Trails</span><span class="omenu-benefit">Carry the practice into landscapes, and to the institutions holding them.</span></a></li>
+            <li><a class="omenu-item omenu-item--stack" href="opus-academy.html"><span class="omenu-name">Opus Academy</span><span class="omenu-benefit">The transformational path: come to be guided, not to learn to guide.</span></a></li>
+            <li><a class="omenu-item omenu-item--stack" href="nature-as-medicine.html"><span class="omenu-name">Nature as Medicine</span><span class="omenu-benefit">The practice in clinical vocabulary, if you already hold a license.</span></a></li>
+            <li><a class="omenu-item omenu-item--stack" href="guiding-in-sign-language.html"><span class="omenu-name">Guiding in sign language</span><span class="omenu-benefit">The practice in a language the deaf community shapes for itself.</span></a></li>
+            <li><a class="omenu-item omenu-item--stack" href="custom-training.html"><span class="omenu-name">Custom training</span><span class="omenu-benefit">Brought to your own people, and onto your own land.</span></a></li>
+          </ul>
+        </div>
+      </section>
     </div>
   </section>
   <!-- ======================================================================
@@ -839,6 +881,35 @@
   document.querySelectorAll('.thr-verb').forEach(function(b){
     b.addEventListener('click',function(){box.textContent=b.getAttribute('data-desc');box.hidden=false;});
   });
+})();
+</script>
+
+<script>
+/* Offering menu tabs: progressive enhancement — without JS both lists stay visible. */
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.omenu-tab'));
+  if(!tabs.length) return;
+  var panels=tabs.map(function(t){return document.getElementById(t.getAttribute('aria-controls'));});
+  function select(i){
+    tabs.forEach(function(t,j){
+      var on=(j===i);
+      t.setAttribute('aria-selected',on?'true':'false');
+      t.tabIndex=on?0:-1;
+      if(panels[j]) panels[j].classList.toggle('is-active',on);
+    });
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){select(i);});
+    t.addEventListener('keydown',function(e){
+      var n=null;
+      if(e.key==='ArrowRight'||e.key==='ArrowDown') n=(i+1)%tabs.length;
+      else if(e.key==='ArrowLeft'||e.key==='ArrowUp') n=(i-1+tabs.length)%tabs.length;
+      else if(e.key==='Home') n=0;
+      else if(e.key==='End') n=tabs.length-1;
+      if(n!==null){e.preventDefault();tabs[n].focus();select(n);}
+    });
+  });
+  select(0);
 })();
 </script>
 
