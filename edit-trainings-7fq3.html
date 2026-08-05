@@ -105,9 +105,11 @@
       {k:'language',l:'Language',t:'select'},
       {k:'schedule',l:'Schedule',t:'text'},
       {k:'url',l:'Details / registration URL',t:'url'},
+      {k:'registrationUrl',l:'Thinkific registration link',t:'url'},
       {k:'price',l:'Full tuition, USD (optional)',t:'number'},
       {k:'deposit',l:'Deposit to reserve, USD (optional)',t:'number'},
-      {k:'depositUrl',l:'Deposit payment link — Stripe URL (optional)',t:'url'}
+      {k:'depositUrl',l:'Deposit payment link — Stripe URL (optional)',t:'url'},
+      {k:'image',l:'Image (banner) URL',t:'url'}
     ],
     event:[
       {k:'title',l:'Title',t:'text',req:true},
@@ -118,7 +120,7 @@
     ]
   };
   var ORDER={
-    training:['id','title','category','subcategory','cohort','status','enrollmentDeadline','firstCall','startDate','language','schedule','url','price','deposit','depositUrl','image'],
+    training:['id','title','category','subcategory','cohort','status','enrollmentDeadline','firstCall','startDate','language','schedule','url','registrationUrl','price','deposit','depositUrl','image'],
     event:['id','title','category','date','time','url']
   };
   var state={meta:{},trainings:[],events:[],seq:1};
