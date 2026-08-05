@@ -77,7 +77,7 @@
       "label": "Four-stage pathway",
       "appliesTo": "Cohorts from cutoffCohort onward",
       "stages": [
-        "fundamentals",
+        "re-collection",
         "immersion",
         "practicum",
         "practice"
@@ -118,9 +118,9 @@
   ],
   "offerings": [
     {
-      "id": "fundamentals",
-      "name": "Fundamentals",
-      "slug": "guide-training/fundamentals",
+      "id": "re-collection",
+      "name": "Re-collection",
+      "slug": "guide-training/re-collection",
       "academy": "relational-forest-therapy",
       "door": "want-to-guide",
       "verb": "enroll",
@@ -160,9 +160,9 @@
       },
       "length": "4 days",
       "format": "In person, residential",
-      "prerequisite": "Fundamentals",
+      "prerequisite": "Re-collection",
       "bookIncluded": "Your Guide to Forest Bathing — A Journal: Invitations for Practice and Reflection",
-      "isNot": "Not the place to begin. Fundamentals comes first, and the immersion lands two to ten months in.",
+      "isNot": "Not the place to begin. Re-collection comes first, and the immersion lands two to ten months in.",
       "context": "Stage 2 of four. All four total $3,545."
     },
     {
