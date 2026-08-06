@@ -78,16 +78,25 @@
   .subnav a:hover{text-decoration:underline}
   .stub-note{background:var(--gold-tint);border:1px solid var(--gold);border-radius:10px;
     padding:14px 18px;font-size:14px;color:var(--bark-deep);margin-top:26px}
-  /* Shape of the Journey panel */
-  .journey{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
-    padding:22px 26px;margin:22px 0 6px}
-  .journey h3{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:600;color:var(--navy);
-    font-size:20px;margin-bottom:14px}
-  .journey dl{display:grid;grid-template-columns:minmax(110px,150px) 1fr;gap:12px 22px;margin:0}
-  .journey dt{font-weight:700;color:var(--fir);font-size:14.5px}
-  .journey dd{margin:0;font-size:14.5px;color:var(--ink);line-height:1.55}
-  @media (max-width:560px){.journey{padding:18px 20px}.journey dl{grid-template-columns:1fr;gap:2px 0}
-    .journey dt{margin-top:8px}.journey dd{margin:0 0 4px}}
+  /* green Academy of Relational Forest Therapy panel (same block as the home page) */
+  .gt-panel{background:var(--fir);border-radius:var(--radius);padding:36px 34px;margin:22px 0 24px}
+  .gt-panel .omenu-list{margin:0}
+  .gt-panel .eyebrow{color:var(--gold-tint);margin-bottom:6px}
+  .gt-heading{font-family:"EB Garamond",Garamond,Georgia,serif;color:var(--paper);
+    font-weight:700;font-size:clamp(28px,4.6vw,44px);line-height:1.15;margin-bottom:22px}
+  @media (max-width:560px){.gt-panel{padding:22px 18px;margin-bottom:20px}.gt-heading{margin-bottom:16px}}
+  .omenu-list{list-style:none;display:grid;gap:12px;margin:0;padding:0}
+  .omenu-item{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 20px;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;
+    text-decoration:none;color:var(--ink);
+    transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease}
+  .omenu-item:hover{border-color:var(--fir);transform:translateY(-2px);box-shadow:0 6px 16px rgba(38,48,31,.10)}
+  .omenu-item:focus-visible{outline:2.5px solid var(--gold);outline-offset:2px}
+  .omenu-name{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:18px;font-weight:600;color:var(--navy);line-height:1.25}
+  .omenu-meta{font-size:13.5px;color:var(--ink-soft);font-weight:600;margin-top:9px}
+  .omenu-meta b{color:var(--gold-deep);font-weight:700}
+  .omenu-item--stack{flex-direction:column;align-items:flex-start}
+  .omenu-benefit{font-size:14.5px;color:var(--ink-soft);line-height:1.5;font-weight:400;margin-top:4px}
 
 
   /* comprehensive footer */
@@ -156,15 +165,15 @@
 <p>Relational Forest Therapy&trade; is a heart-based practice: people and planet heal together, and healing happens in the context of relationship. Our guide training is more than a set of techniques &mdash; it is a pathway back into relationship with the more-than-human world.</p>
 <p>We train guides, not therapists. A guide&rsquo;s role is to facilitate an environment in which the forest itself does the therapeutic work, offering carefully crafted invitations that help participants slow down, open their senses, and meet the natural world directly. The method rests on a research-informed standard sequence &mdash; a strong framework that is also culturally adaptable to a great diversity of populations and places.</p>
 <p>Guides bring this practice into psychotherapy, coaching, expressive arts, mindfulness, education, and community work &mdash; or build standalone guiding practices of their own. Certified guides now practice in more than 65 countries.</p>
-<div class="journey">
-  <h3>The Shape of the Journey</h3>
-  <dl>
-    <dt>Duration</dt><dd>[Six months of mentored practicum, plus a four-day immersion.] [placeholder]</dd>
-    <dt>Rhythm</dt><dd>[A cohort circle with trainers; practice walks of your own.] [placeholder]</dd>
-    <dt>Where</dt><dd>[Remote, with an in-person immersion on the land; details by cohort.] [placeholder]</dd>
-    <dt>Cost</dt><dd>[$X,XXX all-in. Payment plans available.] [placeholder]</dd>
-    <dt>Afterward</dt><dd>Certification as an ANFT forest therapy guide, and a global community of practicing guides.</dd>
-  </dl>
+<div class="gt-panel">
+  <div class="eyebrow">Academy of Relational Forest Therapy</div>
+  <h3 class="gt-heading">Relational Forest Therapy Guide Training Pathway</h3>
+  <ul class="omenu-list">
+    <li><a class="omenu-item omenu-item--stack" href="re-collection.html"><span class="omenu-name">Re-collection</span><span class="omenu-benefit">Recover the practice you are already in. Decide about guiding later.</span><span class="omenu-meta">8 sessions &middot; <b>$950</b></span></a></li>
+    <li><a class="omenu-item omenu-item--stack" href="immersion.html"><span class="omenu-name">Immersion</span><span class="omenu-benefit">Where understanding becomes embodiment; most guides change here.</span><span class="omenu-meta">4 days &middot; <b>$595</b></span></a></li>
+    <li><a class="omenu-item omenu-item--stack" href="practicum.html"><span class="omenu-name">Practicum</span><span class="omenu-benefit">Supervised practice held to a standard worth certifying.</span><span class="omenu-meta">4 months, 16 sessions &middot; <b>$1,200</b></span></a></li>
+    <li><a class="omenu-item omenu-item--stack" href="practice.html"><span class="omenu-name">Practice</span><span class="omenu-benefit">Integrate the practice into your relationships, your work, your life.</span><span class="omenu-meta">8 sessions &middot; <b>$800</b></span></a></li>
+  </ul>
 </div>
 <div class="cta-row"><a class="btn btn-gold" href="apply.html?path=relational-forest-therapy-academy">Apply to this academy</a><a class="p-link" href="index.html#trainings">See upcoming trainings &rarr;</a></div>
 <p style="margin-top:16px;font-size:14px;color:var(--ink-soft)">Not sure yet? <a class="p-link" href="walkthrough-calls.html">Join a monthly open call</a> &mdash; an unhurried conversation about what this path asks and offers.</p>
