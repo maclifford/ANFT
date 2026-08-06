@@ -8,3 +8,7 @@
 /indexb        /   301
 /indexb.html   /   301
 /indexB.html   /   301
+
+# Guild page removed -> homepage
+/guild         /   301
+/guild.html    /   301
