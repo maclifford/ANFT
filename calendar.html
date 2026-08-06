@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendar — Academies of Nature and Forest Therapies</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="description" content="Upcoming trainings, immersions, gatherings, and calls from the Academies of Nature and Forest Therapies, in date order.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Albert+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2F3EC; --card:#FBFCF8; --ink:#26301F; --ink-soft:#4E5A47;
+    --navy:#1E3A5F; --fir:#2E5B3E; --fir-tint:#E1EBDD; --river:#2E6E6A;
+    --gold:#A9862C; --gold-deep:#7C6118; --gold-tint:#F3EDD9;
+    --bark:#6B4F3A; --bark-deep:#4E3324; --bark-tint:#EFE7DF;
+    --line:#C9D0BE; --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:"Albert Sans",system-ui,sans-serif;
+    font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .serif{font-family:"EB Garamond",Garamond,Georgia,serif}
+
+  /* header */
+  .site-header{background:#fff;border-bottom:1px solid var(--line)}
+  .hdr-in{max-width:1120px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;
+    justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .hdr-in img{height:66px;width:auto;display:block}
+  nav{display:flex;gap:26px;flex-wrap:wrap}
+  nav a{color:var(--navy);text-decoration:none;font-size:14.5px;font-weight:600;letter-spacing:.02em}
+  nav a:hover{color:var(--gold-deep);text-decoration:underline;text-underline-offset:4px}
+
+  /* sections */
+  .section{max-width:1120px;margin:0 auto;padding:64px 28px 8px}
+  .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);
+    font-weight:600;margin-bottom:10px}
+  .section h2{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:500;color:var(--navy);
+    font-size:clamp(26px,3.6vw,38px);line-height:1.15}
+  .section .lede{color:var(--ink-soft);max-width:62ch;margin-top:10px;margin-bottom:30px}
+
+  /* calendar */
+  .cal-month{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:600;color:var(--navy);
+    font-size:22px;margin:34px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .cal-list{list-style:none;display:grid;gap:12px;margin:0;padding:0}
+  .cal-item{display:grid;grid-template-columns:56px 1fr;gap:6px 20px;align-items:start;
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:15px 20px}
+  .cal-item--nodate{grid-template-columns:1fr}
+  .cal-date{text-align:center}
+  .cal-date .dow{display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-deep)}
+  .cal-date .dnum{display:block;font-family:"EB Garamond",Garamond,Georgia,serif;font-size:26px;font-weight:600;color:var(--navy);line-height:1.1}
+  .cal-body{min-width:0}
+  .cal-kind{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+    color:#fff;border-radius:999px;padding:3px 10px;margin-bottom:8px}
+  .k-training-start{background:var(--navy)}
+  .k-cohort-start{background:var(--fir)}
+  .k-immersion{background:var(--bark)}
+  .k-call{background:var(--gold-deep)}
+  .k-workshop{background:var(--river)}
+  .cal-name{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:18px;font-weight:600;color:var(--navy);line-height:1.25}
+  .cal-name a{color:var(--navy);text-decoration:none}
+  .cal-name a:hover{color:var(--gold-deep);text-decoration:underline;text-underline-offset:3px}
+  .cal-meta{font-size:14px;color:var(--ink-soft);margin-top:4px;line-height:1.5}
+  .cal-tba{margin-top:46px}
+  .cal-empty{color:var(--ink-soft);font-size:17px;margin-top:8px;max-width:60ch}
+  @media (max-width:520px){
+    .cal-item{grid-template-columns:48px 1fr;gap:6px 14px;padding:13px 16px}
+    .cal-date .dnum{font-size:22px}
+  }
+
+  /* comprehensive footer */
+  footer{margin-top:72px;background:var(--navy);color:#F4F7FB;
+    border-top:3px solid var(--gold);padding:48px 28px 26px}
+  .foot-grid{max-width:1120px;margin:0 auto;display:grid;
+    grid-template-columns:1.6fr 1fr 1fr 1.3fr;gap:34px 44px}
+  @media (max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
+  @media (max-width:540px){.foot-grid{grid-template-columns:1fr}}
+  .foot-brand{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:21px;line-height:1.3;color:#FFFFFF}
+  .foot-tagline{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:14.5px;
+    color:#E7D9A8;letter-spacing:.06em;margin-top:8px}
+  .foot-mission{font-size:14px;color:#C9D5E6;margin:16px 0 0;max-width:40ch;line-height:1.65}
+  .foot-sys{display:inline-block;margin-top:16px;font-size:13.5px;font-weight:600;
+    color:#E7D9A8;text-decoration:none;border:1px solid rgba(231,217,168,.45);
+    border-radius:999px;padding:7px 16px}
+  .foot-sys:hover{background:rgba(231,217,168,.12);border-color:#E7D9A8}
+  .foot-col h3{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:#E7D9A8;
+    font-weight:700;margin:0 0 14px}
+  .foot-col a{display:block;color:#EDF2F8;text-decoration:none;font-size:14px;
+    padding:4px 0;line-height:1.5}
+  .foot-col a:hover{color:#FFFFFF;text-decoration:underline;text-underline-offset:3px;
+    text-decoration-color:var(--gold)}
+  .foot-contact p{font-size:14px;color:#C9D5E6;margin:0 0 12px;line-height:1.7;max-width:none}
+  .foot-contact a{display:inline;color:#EDF2F8;text-decoration:none;font-size:14px;
+    overflow-wrap:anywhere}
+  .foot-contact a:hover{text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px}
+  .foot-social{display:flex;gap:8px 18px;flex-wrap:wrap;margin-top:14px}
+  .foot-social a{display:inline;font-size:13.5px;color:#C9D5E6;text-decoration:none;
+    font-weight:600;padding:0}
+  .foot-social a:hover{color:#FFFFFF;text-decoration:underline;text-underline-offset:3px}
+  .foot-land{max-width:1120px;margin:40px auto 0;padding-top:24px;
+    border-top:1px solid rgba(244,247,251,.22);
+    font-family:"EB Garamond",Garamond,Georgia,serif;font-style:italic;font-size:15.5px;
+    color:#D8E0EC;line-height:1.7;max-width:76ch}
+  .foot-legal{max-width:1120px;margin:26px auto 0;padding-top:16px;
+    border-top:1px solid rgba(244,247,251,.16);
+    font-size:12.5px;color:#B9C6D9;display:flex;justify-content:space-between;
+    gap:10px 24px;flex-wrap:wrap;line-height:1.6}
+  .foot-legal a{color:#C9D5E6;text-decoration:none}
+  .foot-legal a:hover{color:#FFFFFF;text-decoration:underline}
+</style>
+</head>
+<body id="top">
+<header class="site-header">
+  <div class="hdr-in">
+    <a href="index.html" aria-label="Academies of Nature and Forest Therapies — home"><img src="images/anft-logo-horizontal-tight.webp?v=3" width="1721" height="535" decoding="async" alt="Academies of Nature and Forest Therapies"></a>
+    <nav aria-label="Primary">
+      <a href="forest-threshold.html">The Forest Threshold</a>
+      <a href="a-living-system.html">About &mdash; A Living System</a>
+      <a href="academies.html">The Academies</a>
+      <a href="the-book.html">The Book</a>
+      <a href="apply.html">Apply</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <section class="section">
+    <div class="eyebrow">What&rsquo;s coming up</div>
+    <h2>Calendar</h2>
+    <p class="lede">Upcoming trainings, immersions, gatherings, and calls, in date order. Dates that have already passed drop off on their own.</p>
+    <div id="cal" aria-live="polite"><p class="cal-empty">Loading the calendar&hellip;</p></div>
+  </section>
+</main>
+<footer>
+  <div class="foot-grid">
+    <div class="foot-col">
+      <div class="foot-brand">Academies of Nature<br>and Forest Therapies</div>
+      <div class="foot-tagline">Knowledge &middot; Practice &middot; Transformation</div>
+      <p class="foot-mission">Supporting the wellbeing of people and planet by nurturing heart-centered relationship between all peoples and the more-than-human world of nature.</p>
+      <a class="foot-sys" href="a-living-system.html">A Living System &rarr;</a>
+    </div>
+    <div class="foot-col">
+      <h3>The Academies</h3>
+      <a href="forest-threshold.html">The Forest Threshold</a>
+      <a href="relational-forest-therapy-academy.html">Relational Forest Therapy</a>
+      <a href="re-collection.html" style="padding-left:14px;font-size:13px">Re-collection</a>
+      <a href="immersion.html" style="padding-left:14px;font-size:13px">Immersion</a>
+      <a href="practicum.html" style="padding-left:14px;font-size:13px">Practicum</a>
+      <a href="practice.html" style="padding-left:14px;font-size:13px">Practice</a>
+      <a href="nature-as-medicine.html">Nature as Medicine</a>
+      <a href="academy-of-place.html">Academy of Place</a>
+      <a href="opus-academy.html">Opus Academy</a>
+      <a href="academy-of-applied-partnerships.html">Applied Forest Therapy</a>
+    </div>
+    <div class="foot-col">
+      <h3>Participate</h3>
+      <a href="apply.html">Apply</a>
+      <a href="index.html#trainings">Upcoming trainings</a>
+      <a href="membership.html">Membership</a>
+      <a href="relational-forest-therapy-academy--global-guide-map.html">Find a guide</a>
+      <a href="academy-of-place--global-trail-map.html">Find a trail</a>
+      <a href="faq.html">FAQ</a>
+      <a href="field-glossary.html">Field Glossary</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="foot-col foot-contact">
+      <h3>Reach Us</h3>
+      <p><a href="mailto:admissions@anft.earth">admissions@anft.earth</a><br>
+         <a href="mailto:info@anft.earth">info@anft.earth</a></p>
+      <p>1&#8209;707&#8209;385&#8209;1563<br>Monday&ndash;Friday, 9am&ndash;5pm PST</p>
+      <p>1745 Rustic Timbers Lane, Suite B<br>Prescott, AZ 86303, USA</p>
+      <div class="foot-social">
+        <a href="https://www.facebook.com/natureandforesttherapy/">Facebook</a>
+        <a href="https://www.instagram.com/natureandforesttherapy/">Instagram</a>
+        <a href="https://www.linkedin.com/company/nature-and-forest-therapy">LinkedIn</a>
+        <a href="https://www.youtube.com/channel/UCE-q1cBI6E6s0mHo_FcvTiA">YouTube</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-land">The land itself is the elder here and everywhere in our world. From our home in Prescott, Arizona, we work on land that has hosted many lives across its long existence &mdash; human and other-than-human, some now gone from the Earth &mdash; and many cultures, most recently, before those of us here now, the Yavapai and Apache peoples and their relations. We honor the land, and all whom it has held, and its infinite threads of relational connections, in which we and our work are embedded, which we live into with awe and love, and for which we are profoundly grateful.</div>
+  <div class="foot-legal">
+    <span>&copy; 2026 ANFT.earth LLC, doing business as the Association of Nature and Forest Therapies. All rights reserved.</span>
+    <span><a href="privacy.html">Privacy</a> &nbsp;&middot;&nbsp; <a href="#top" aria-label="Back to top">Back to top &uarr;</a></span>
+  </div>
+</footer>
+<script>
+/* Calendar: reads data/trainings.json at load time, so it stays current on its
+   own. "Past" is computed live in the browser, so old dates fall off with no
+   maintenance. Records use the 'start' (YYYY-MM-DD) and 'kind' fields. */
+(function(){
+  var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  var KINDLABEL={'training-start':'Training start','cohort-start':'Cohort start','immersion':'Immersion','call':'Call','workshop':'Workshop'};
+  var cal=document.getElementById('cal');
+
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function pad(n){return (n<10?'0':'')+n;}
+  function todayStr(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+  function parseYMD(s){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||'');return m?{y:+m[1],mo:+m[2],d:+m[3]}:null;}
+
+  function dateBlock(p){
+    var dt=new Date(p.y,p.mo-1,p.d);
+    return '<span class="dow">'+DOW[dt.getDay()]+'</span><span class="dnum">'+p.d+'</span>';
+  }
+  function detailOf(ev){
+    var d=ev.subcategory||ev.schedule||ev.time||'';
+    if(ev.language && ev.language!=='English') d = d ? (d+' &middot; '+ev.language) : ev.language;
+    return d;
+  }
+  function kindPill(ev){
+    var k=ev.kind;
+    if(!k || !KINDLABEL[k]) return '';
+    return '<span class="cal-kind k-'+esc(k)+'">'+esc(KINDLABEL[k])+'</span>';
+  }
+  function body(ev){
+    var name = ev.url ? '<a href="'+esc(ev.url)+'">'+esc(ev.title||'(untitled)')+'</a>' : esc(ev.title||'(untitled)');
+    var detail = detailOf(ev);
+    return '<div class="cal-body">'+kindPill(ev)+'<div class="cal-name">'+name+'</div>'+(detail?'<div class="cal-meta">'+detail+'</div>':'')+'</div>';
+  }
+
+  function render(data){
+    var recs=[].concat(data.trainings||[], data.events||[]);
+    var today=todayStr();
+    var dated=[], tba=[];
+    recs.forEach(function(ev){
+      var p=parseYMD(ev.start);
+      if(!p){ tba.push(ev); return; }   // no date (or blank) -> to be announced
+      if(ev.start < today) return;      // already passed -> hide
+      ev._p=p; dated.push(ev);
+    });
+    dated.sort(function(a,b){return a.start<b.start?-1:(a.start>b.start?1:0);});
+
+    var html='';
+    if(dated.length){
+      var cur=null;
+      dated.forEach(function(ev){
+        var key=ev._p.y+'-'+pad(ev._p.mo);
+        if(key!==cur){
+          if(cur!==null) html+='</ul>';
+          html+='<h3 class="cal-month">'+MONTHS[ev._p.mo-1]+' '+ev._p.y+'</h3><ul class="cal-list">';
+          cur=key;
+        }
+        html+='<li class="cal-item"><div class="cal-date">'+dateBlock(ev._p)+'</div>'+body(ev)+'</li>';
+      });
+      html+='</ul>';
+    } else {
+      html+='<p class="cal-empty">There&rsquo;s nothing on the calendar just now. Please check back soon &mdash; new dates are added regularly.</p>';
+    }
+
+    if(tba.length){
+      html+='<div class="cal-tba"><h3 class="cal-month">Dates to be announced</h3><ul class="cal-list">';
+      tba.forEach(function(ev){ html+='<li class="cal-item cal-item--nodate">'+body(ev)+'</li>'; });
+      html+='</ul></div>';
+    }
+    cal.innerHTML=html;
+  }
+
+  fetch('/data/trainings.json')
+    .then(function(r){ if(!r.ok) throw new Error('http '+r.status); return r.json(); })
+    .then(render)
+    .catch(function(){
+      cal.innerHTML='<p class="cal-empty">The calendar couldn&rsquo;t load its schedule just now. Please refresh the page, or view it on the live site.</p>';
+    });
+})();
+</script>
+</body>
+</html>
