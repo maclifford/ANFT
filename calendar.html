@@ -72,6 +72,21 @@
     .cal-date .dnum{font-size:22px}
   }
 
+  /* filter row */
+  .cal-filter{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 14px}
+  .fbtn{font:inherit;font-size:15px;font-weight:600;color:var(--fir);background:var(--card);
+    border:1.5px solid var(--line);border-radius:999px;padding:11px 20px;min-height:46px;cursor:pointer;
+    transition:background .15s ease,border-color .15s ease,color .15s ease}
+  .fbtn:hover{border-color:var(--fir)}
+  .fbtn.is-on{background:var(--fir);border-color:var(--fir);color:#fff}
+  .fbtn:focus-visible{outline:2.5px solid var(--gold);outline-offset:2px}
+  .fbtn[disabled]{color:var(--ink-soft);opacity:.5;cursor:not-allowed;border-style:dashed}
+  .fbtn[disabled]:hover{border-color:var(--line)}
+  .cal-count{font-size:14px;font-weight:600;color:var(--ink-soft);margin:0 0 20px}
+  .cal-clear{font:inherit;font-size:inherit;font-weight:600;color:var(--fir);background:none;border:0;
+    padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+  .cal-clear:hover{color:var(--gold-deep)}
+
   /* comprehensive footer */
   footer{margin-top:72px;background:var(--navy);color:#F4F7FB;
     border-top:3px solid var(--gold);padding:48px 28px 26px}
@@ -132,6 +147,8 @@
     <div class="eyebrow">What&rsquo;s coming up</div>
     <h2>Calendar</h2>
     <p class="lede">Upcoming trainings, immersions, gatherings, and calls, in date order. Dates that have already passed drop off on their own.</p>
+    <div id="calFilter" class="cal-filter" role="group" aria-label="Filter events by kind" hidden></div>
+    <p id="calCount" class="cal-count" hidden></p>
     <div id="cal" aria-live="polite"><p class="cal-empty">Loading the calendar&hellip;</p></div>
   </section>
 </main>
@@ -190,12 +207,24 @@
 <script>
 /* Calendar: reads data/trainings.json at load time, so it stays current on its
    own. "Past" is computed live in the browser, so old dates fall off with no
-   maintenance. Records use the 'start' (YYYY-MM-DD) and 'kind' fields. */
+   maintenance. The filter buttons are built from the kinds actually present in
+   the upcoming data, so an empty kind is shown unavailable, never blank. */
 (function(){
   var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
   var DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   var KINDLABEL={'training-start':'Training start','cohort-start':'Cohort start','immersion':'Immersion','call':'Call','workshop':'Workshop'};
+  var FILTERS=[
+    {k:'training-start',label:'Training starts'},
+    {k:'cohort-start',label:'Cohort starts'},
+    {k:'immersion',label:'Immersions'},
+    {k:'call',label:'Calls'},
+    {k:'workshop',label:'Workshops'}
+  ];
   var cal=document.getElementById('cal');
+  var filterEl=document.getElementById('calFilter');
+  var countEl=document.getElementById('calCount');
+  var DATA={dated:[],tba:[]};
+  var active={};   /* set of active kinds; empty means All */
 
   function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
   function pad(n){return (n<10?'0':'')+n;}
@@ -222,22 +251,65 @@
     return '<div class="cal-body">'+kindPill(ev)+'<div class="cal-name">'+name+'</div>'+(detail?'<div class="cal-meta">'+detail+'</div>':'')+'</div>';
   }
 
-  function render(data){
+  function process(data){
     var recs=[].concat(data.trainings||[], data.events||[]);
     var today=todayStr();
-    var dated=[], tba=[];
     recs.forEach(function(ev){
       var p=parseYMD(ev.start);
-      if(!p){ tba.push(ev); return; }   // no date (or blank) -> to be announced
-      if(ev.start < today) return;      // already passed -> hide
-      ev._p=p; dated.push(ev);
+      if(!p){ DATA.tba.push(ev); return; }   /* no date (or blank) -> to be announced */
+      if(ev.start < today) return;           /* already passed -> hide */
+      ev._p=p; DATA.dated.push(ev);
     });
-    dated.sort(function(a,b){return a.start<b.start?-1:(a.start>b.start?1:0);});
+    DATA.dated.sort(function(a,b){return a.start<b.start?-1:(a.start>b.start?1:0);});
+  }
+
+  function kindAvail(k){
+    var i;
+    for(i=0;i<DATA.dated.length;i++){ if(DATA.dated[i].kind===k) return true; }
+    for(i=0;i<DATA.tba.length;i++){ if(DATA.tba[i].kind===k) return true; }
+    return false;
+  }
+
+  function buildFilter(){
+    var html='<button type="button" class="fbtn" data-k="__all__" aria-pressed="true">All</button>';
+    FILTERS.forEach(function(f){
+      var avail=kindAvail(f.k);
+      html+='<button type="button" class="fbtn" data-k="'+f.k+'" aria-pressed="false"'+(avail?'':' disabled aria-disabled="true"')+'>'+esc(f.label)+'</button>';
+    });
+    filterEl.innerHTML=html;
+    filterEl.hidden=false;
+    filterEl.addEventListener('click',function(e){
+      var b=e.target.closest('button[data-k]');
+      if(!b || b.disabled) return;
+      var k=b.getAttribute('data-k');
+      if(k==='__all__'){ active={}; }
+      else { if(active[k]) delete active[k]; else active[k]=true; }
+      apply();
+    });
+  }
+
+  function isFiltering(){ for(var k in active) return true; return false; }
+
+  function apply(){
+    var filtering=isFiltering();
+    Array.prototype.forEach.call(filterEl.querySelectorAll('.fbtn'),function(b){
+      var k=b.getAttribute('data-k');
+      var on=(k==='__all__')?!filtering:!!active[k];
+      b.classList.toggle('is-on',on);
+      b.setAttribute('aria-pressed',on?'true':'false');
+    });
+
+    function match(ev){ return !filtering || (ev.kind && active[ev.kind]); }
+    var sd=DATA.dated.filter(match);
+    var st=DATA.tba.filter(match);
+
+    countEl.textContent=sd.length+(sd.length===1?' event':' events');
+    countEl.hidden=false;
 
     var html='';
-    if(dated.length){
+    if(sd.length){
       var cur=null;
-      dated.forEach(function(ev){
+      sd.forEach(function(ev){
         var key=ev._p.y+'-'+pad(ev._p.mo);
         if(key!==cur){
           if(cur!==null) html+='</ul>';
@@ -247,21 +319,34 @@
         html+='<li class="cal-item"><div class="cal-date">'+dateBlock(ev._p)+'</div>'+body(ev)+'</li>';
       });
       html+='</ul>';
-    } else {
-      html+='<p class="cal-empty">There&rsquo;s nothing on the calendar just now. Please check back soon &mdash; new dates are added regularly.</p>';
+    } else if(!st.length){
+      html = filtering
+        ? '<p class="cal-empty">No events match the filters you have selected. <button type="button" class="cal-clear" id="calClear">Show all events</button></p>'
+        : '<p class="cal-empty">There&rsquo;s nothing coming up on the calendar just now. Please check back soon &mdash; new dates are added regularly.</p>';
     }
 
-    if(tba.length){
+    if(st.length){
       html+='<div class="cal-tba"><h3 class="cal-month">Dates to be announced</h3><ul class="cal-list">';
-      tba.forEach(function(ev){ html+='<li class="cal-item cal-item--nodate">'+body(ev)+'</li>'; });
+      st.forEach(function(ev){ html+='<li class="cal-item cal-item--nodate">'+body(ev)+'</li>'; });
       html+='</ul></div>';
     }
     cal.innerHTML=html;
+
+    var cc=document.getElementById('calClear');
+    if(cc) cc.addEventListener('click',function(){ active={}; apply(); });
   }
 
   fetch('/data/trainings.json')
     .then(function(r){ if(!r.ok) throw new Error('http '+r.status); return r.json(); })
-    .then(render)
+    .then(function(data){
+      process(data);
+      if(!DATA.dated.length && !DATA.tba.length){
+        cal.innerHTML='<p class="cal-empty">There&rsquo;s nothing on the calendar just now. Please check back soon &mdash; new dates are added regularly.</p>';
+        return;
+      }
+      buildFilter();
+      apply();
+    })
     .catch(function(){
       cal.innerHTML='<p class="cal-empty">The calendar couldn&rsquo;t load its schedule just now. Please refresh the page, or view it on the live site.</p>';
     });
