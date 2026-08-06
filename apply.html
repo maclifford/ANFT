@@ -46,6 +46,10 @@
   h1{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:500;color:var(--navy);
     font-size:clamp(28px,4vw,40px);line-height:1.15}
   .lede{margin-top:12px;color:var(--ink-soft);max-width:62ch}
+  /* headline row: title with a secondary calendar link beside it, wrapping below on narrow screens */
+  .title-row{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 16px}
+  .p-link{font-size:14.5px;font-weight:600;color:var(--gold-deep);text-decoration:none}
+  .p-link:hover{text-decoration:underline;text-underline-offset:4px}
 
   /* step indicator */
   .steps{display:flex;gap:8px;margin:30px 0 26px;flex-wrap:wrap}
@@ -219,7 +223,10 @@
 
 <main class="section">
   <div class="eyebrow">Participation</div>
-  <h1>Apply to the Academies</h1>
+  <div class="title-row">
+    <h1>Apply to the Academies</h1>
+    <a class="p-link" href="calendar.html">See the calendar &rarr;</a>
+  </div>
   <p class="lede">Three short steps: choose your path and tell us about yourself, share a little background, then review and send. Applications go to our admissions circle, and you&rsquo;ll receive a confirmation by email.</p>
 
   <div class="steps" aria-hidden="true">
@@ -575,6 +582,7 @@
       <h3>Participate</h3>
       <a href="apply.html">Apply</a>
       <a href="index.html#trainings">Upcoming trainings</a>
+      <a href="calendar.html">Calendar</a>
       <a href="membership.html">Membership</a>
       <a href="relational-forest-therapy-academy--global-guide-map.html">Find a guide</a>
       <a href="academy-of-place--global-trail-map.html">Find a trail</a>

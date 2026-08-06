@@ -50,6 +50,31 @@
     font-size:25px;margin:38px 0 10px}
   p{margin:0 0 14px;max-width:70ch}
 
+  /* buttons + secondary links (shared site convention) */
+  .cta-row{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .btn{display:inline-block;font-size:14.5px;font-weight:600;border-radius:999px;padding:12px 26px;
+    text-decoration:none;cursor:pointer;border:1.5px solid transparent;font-family:inherit}
+  .btn-gold{background:var(--gold);color:#fff}
+  .btn-gold:hover{background:var(--gold-deep)}
+  .btn:focus-visible{outline:2.5px solid var(--gold-deep);outline-offset:2px}
+  .p-link{font-size:14.5px;font-weight:600;color:var(--gold-deep);text-decoration:none}
+  .p-link:hover{text-decoration:underline;text-underline-offset:4px}
+
+  /* hero with the page title overlaid on the banner image */
+  .hero{position:relative;max-width:1120px;margin:0 auto}
+  .hero-img{display:block;width:100%;height:clamp(260px,42vw,480px);object-fit:cover;
+    object-position:center;border-radius:0 0 var(--radius) var(--radius)}
+  .hero-cap{position:absolute;left:0;right:0;bottom:0;padding:26px 28px 22px;
+    border-radius:0 0 var(--radius) var(--radius);color:#fff;
+    background:linear-gradient(to top,rgba(12,20,12,.74),rgba(12,20,12,.30) 55%,rgba(12,20,12,0))}
+  .hero-cap h1{color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.55)}
+  .hero-link{display:inline-block;margin-top:8px;color:#fff;font-weight:600;font-size:14.5px;
+    text-decoration:none;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+  .hero-link:hover{text-decoration:underline;text-underline-offset:4px}
+
+  /* image placed inline within the text column */
+  .inline-img{display:block;width:100%;height:auto;border-radius:var(--radius);margin:6px 0 20px}
+
   /* comprehensive footer */
   footer{margin-top:72px;background:var(--navy);color:#F4F7FB;
     border-top:3px solid var(--gold);padding:48px 28px 26px}
@@ -105,9 +130,14 @@
     </nav>
   </div>
 </header>
-<div class="banner"><img src="/images/redwood-trunks.webp" alt="Redwood trunks in a grove" loading="eager" decoding="async"></div>
+<div class="hero">
+  <img class="hero-img" src="images/trees-green-on-red-banner.webp" width="2400" height="1350" alt="Spring-green trees in new leaf standing against a towering red sandstone canyon wall" loading="eager" decoding="async">
+  <div class="hero-cap">
+    <h1>The Academies</h1>
+    <a class="hero-link" href="calendar.html">See the calendar &rarr;</a>
+  </div>
+</div>
 <main class="section">
-  <h1>The Academies</h1>
   <p class="lede">"I can't wait to tell you…."<br>
   <em>— M. Amos Clifford</em></p>
 
@@ -123,7 +153,9 @@
 
   <h2>Academy of Place</h2>
 
-  <p>See that header image? The redwood trees? That was us before we became ANFT. That's Cooper's Grove, on Sonoma Mountain. I lived nearby. I took upon myself to tend the grove. I loved the feel of that identity: "Grove Tender." A couple of years in, a day came where I was resting, sitting with my back against the center of those three trees in the photo. And they spoke to me. They told me they were grateful for how I cared for the grove. And confirmed that I did so with their permission. But there was something else they asked of me: "Sometimes, don't bring the trash bags, don't labor. Just be here with us; just enjoy."</p>
+  <img class="inline-img" src="images/redwood-trunks.webp" width="2400" height="1350" alt="Three redwood trunks growing close together in Cooper's Grove on Sonoma Mountain" loading="lazy" decoding="async">
+
+  <p>See this image? The redwood trees? That was us before we became ANFT. That's Cooper's Grove, on Sonoma Mountain. I lived nearby. I took upon myself to tend the grove. I loved the feel of that identity: "Grove Tender." A couple of years in, a day came where I was resting, sitting with my back against the center of those three trees in the photo. And they spoke to me. They told me they were grateful for how I cared for the grove. And confirmed that I did so with their permission. But there was something else they asked of me: "Sometimes, don't bring the trash bags, don't labor. Just be here with us; just enjoy."</p>
 
   <p>That day, as I walked back to my home, I wondered: "Who is tending who?"</p>
 
@@ -150,6 +182,8 @@
   <p>Groups come together for journeys lasting 10 weeks, consisting of weekly meetings and a set of simple but powerful practices. The weathers of alchemy occur, responding to these practices. Self and Opus co-emerge. Witness and celebrate this together. Traditional walking pilgrimages emerge from those inspired to organize them: the Camino de Santiago; the Kumano Kodo; the Peace walk of the Julian Alps; any of the experiences curated by the British Pilgrimage Trust. We've learned not to try to predict what pilgrimages will occur, but to watch and trust that they will emerge when the timing is right.</p>
 
   <p>I will tell you a secret (well, it was a secret until I told you just here): the opus work, the practice of alchimage seems to me to be the capstone of my life's work. And that's saying something, coming from the guy most responsible for bringing relational forest therapy into the world. Relational Forest Therapy has been the powerful launch pad for me, and for many. We each find our own next steps; ANFT does not train you to guide the way our trainers guide; we train you to guide the way you guide. That way exists in you now; it is part of your Self, part of your Opus.</p>
+
+  <div class="cta-row"><a class="btn btn-gold" href="apply.html">Apply to the Academies</a><a class="p-link" href="calendar.html">See the calendar &rarr;</a></div>
 </main>
 <footer>
   <div class="foot-grid">
@@ -176,6 +210,7 @@
       <h3>Participate</h3>
       <a href="apply.html">Apply</a>
       <a href="index.html#trainings">Upcoming trainings</a>
+      <a href="calendar.html">Calendar</a>
       <a href="membership.html">Membership</a>
       <a href="relational-forest-therapy-academy--global-guide-map.html">Find a guide</a>
       <a href="academy-of-place--global-trail-map.html">Find a trail</a>
