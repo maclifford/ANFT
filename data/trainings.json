@@ -288,7 +288,8 @@
       "schedule": "Tuesdays, 11 am - 12:30 pm Pacific Time",
       "price": 565,
       "deposit": 50,
-      "registrationUrl": ""
+      "registrationUrl": "",
+      "image": "images/OPUS_WELL.webp"
     },
     {
       "id": "alchemy-of-pilgrimage-2",
