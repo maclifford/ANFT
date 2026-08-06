@@ -811,6 +811,46 @@
     </script>
   </section>
 
+  <section class="section" id="coming-up" aria-label="Coming up" hidden>
+    <div class="eyebrow">On the calendar</div>
+    <h2>Coming up</h2>
+    <div class="tcards" id="cuCards"></div>
+    <p class="tr-all"><a class="p-link" href="calendar.html">See the full calendar &rarr;</a></p>
+  </section>
+  <script>
+  /* Coming up: the next four upcoming events, read from the same inlined data
+     the trainings section already uses. Hides its whole section when nothing
+     is upcoming; "past" is worked out live in the browser. */
+  (function(){
+    var sec=document.getElementById('coming-up'), grid=document.getElementById('cuCards'), src=document.getElementById('trainingsData');
+    if(!sec||!grid||!src) return;
+    var data; try{ data=JSON.parse(src.textContent); }catch(e){ return; }
+    var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var KIND={'training-start':'Training start','cohort-start':'Cohort start','immersion':'Immersion','call':'Call','workshop':'Workshop'};
+    function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+    function pad(n){return (n<10?'0':'')+n;}
+    var d0=new Date(), today=d0.getFullYear()+'-'+pad(d0.getMonth()+1)+'-'+pad(d0.getDate());
+    var up=[].concat(data.trainings||[], data.events||[]).filter(function(ev){
+      var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(ev.start||'');
+      if(!m || ev.start<today) return false;
+      ev._m=m; return true;
+    });
+    up.sort(function(a,b){return a.start<b.start?-1:(a.start>b.start?1:0);});
+    up=up.slice(0,4);
+    if(!up.length) return;
+    grid.innerHTML=up.map(function(ev){
+      var dt=new Date(+ev._m[1],+ev._m[2]-1,+ev._m[3]);
+      var when=DOW[dt.getDay()]+', '+MON[+ev._m[2]-1]+' '+(+ev._m[3]);
+      var kind=(ev.kind && KIND[ev.kind]) ? ' &middot; '+KIND[ev.kind] : '';
+      var o=ev.url?'<a class="omenu-item omenu-item--stack" href="'+esc(ev.url)+'">':'<div class="omenu-item omenu-item--stack">';
+      var c=ev.url?'</a>':'</div>';
+      return o+'<span class="omenu-name">'+esc(ev.title||'(untitled)')+'</span><span class="omenu-meta">'+when+kind+'</span>'+c;
+    }).join('');
+    sec.hidden=false;
+  })();
+  </script>
+
   <!-- ======================================================================
        CREDIBILITY - accreditation is factual per anft.earth; swap the
        testimonial for your preferred quote and attribution.
