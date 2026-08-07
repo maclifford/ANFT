@@ -58,6 +58,7 @@ $data = $json | ConvertFrom-Json
 $offerings = @()
 try { $offerings = (Get-Content (Join-Path $root 'offerings.json') -Raw | ConvertFrom-Json).offerings } catch { $offerings = @() }
 $CAT = @{ 'Nature as Medicine' = 'nature-as-medicine'; 'Opus Training' = 'opus-academy' }
+$CAT_PATH = @{ 'Forest Therapy Guide Training' = 'relational-forest-therapy-academy'; 'Opus Training' = 'opus-academy'; 'Nature as Medicine' = 'nature-as-medicine' }
 
 function EvEsc($s){ if($null -eq $s){return ''}; return ([string]$s).Replace('&','&amp;').Replace('<','&lt;').Replace('>','&gt;').Replace('"','&quot;') }
 function EvAsset($u){ if([string]::IsNullOrEmpty([string]$u)){return ''}; if([string]$u -match '^(?i)https?://'){return [string]$u}; return '/' + ([string]$u -replace '^/+','') }
@@ -144,13 +145,19 @@ function EvPage($rec){
   elseif($rec.startDate){ $dateStr=[string]$rec.startDate } elseif($rec.firstCall){ $dateStr=[string]$rec.firstCall } elseif($rec.start){ $dateStr=[string]$rec.start } else { $dateStr='' }
   $trainers = ''
   if($rec.trainers -and @($rec.trainers).Count -gt 0){ $trainers = (@($rec.trainers) -join ', ') }
-  $reg = if($rec.registrationUrl){[string]$rec.registrationUrl}elseif($rec.url){[string]$rec.url}else{''}
+  $oid = if($CAT.ContainsKey([string]$rec.category)){$CAT[[string]$rec.category]}else{''}
+  $off = if($oid){ $offerings | Where-Object { $_.id -eq $oid } | Select-Object -First 1 } else { $null }
+  $regExt = $false
+  if([string]$rec.kind -eq 'call'){ $regHref = if($rec.zoomUrl){[string]$rec.zoomUrl}elseif($rec.registrationUrl){[string]$rec.registrationUrl}elseif($rec.url){[string]$rec.url}else{''}; $regExt = $true }
+  elseif($off -and $off.verb -eq 'book'){ $regHref = '/' + (([string]$off.slug -split '/')[-1]) + '.html' }
+  elseif($CAT_PATH.ContainsKey([string]$rec.category) -and $rec.id){ $regHref = '/apply.html?path=' + $CAT_PATH[[string]$rec.category] + '&event=' + [uri]::EscapeDataString([string]$rec.id) }
+  else { $regHref = if($rec.zoomUrl){[string]$rec.zoomUrl}elseif($rec.registrationUrl){[string]$rec.registrationUrl}elseif($rec.url){[string]$rec.url}else{''}; $regExt = $true }
   $facts = (EvFact 'Academy' $rec.academy)+(EvFact 'Subcategory' $rec.subcategory)+(EvFact 'Venue' $rec.venue)+(EvFact 'Country' $rec.country)+(EvFact 'Dates' $dateStr)+(EvFact 'Enrollment deadline' $rec.enrollmentDeadline)+(EvFact 'Language' $rec.language)+(EvFact 'Trainers' $trainers)+(EvFact 'Tuition' $rec.tuition)+(EvFact 'Lodging' $rec.lodging)
   $eyebrow = if([string]$rec.category){'  <div class="eyebrow">'+(EvEsc $rec.category)+"</div>`n"}else{''}
   $desc = if($description){'  <p class="lede">'+(EvEsc $description)+"</p>`n"}else{''}
   $factsBlock = if($facts){'  <ul class="facts">'+$facts+"</ul>`n"}else{''}
   $banner = if($rec.image){'<div class="banner"><img src="'+(EvEsc (EvAsset $rec.image))+'" alt="'+(EvEsc $title)+'" loading="eager" decoding="async"></div>'+"`n"}else{''}
-  $registerBtn = if($reg){'  <div class="cta-row"><a class="btn" href="'+(EvEsc $reg)+'" target="_blank" rel="noopener">Register</a></div>'+"`n"}else{''}
+  $registerBtn = if($regHref){'  <div class="cta-row"><a class="btn" href="'+(EvEsc $regHref)+'"'+$(if($regExt){' target="_blank" rel="noopener"'}else{''})+'>Register</a></div>'+"`n"}else{''}
   $descMeta = if($description){ $d=([string]$description -replace '\s+',' '); if($d.Length -gt 180){$d.Substring(0,180)}else{$d} }else{ 'Details for '+$title+'.' }
   $p = @()
   $p += '<!DOCTYPE html>'; $p += '<html lang="en">'; $p += '<head>'

@@ -51,6 +51,32 @@ function propositionFor(rec, offerings) {
   return (off && off.proposition) ? off.proposition : '';
 }
 
+// Which apply pathway (?path=) a record's category preselects on apply.html.
+const CATEGORY_TO_PATH = {
+  'Forest Therapy Guide Training': 'relational-forest-therapy-academy',
+  'Opus Training': 'opus-academy',
+  'Nature as Medicine': 'nature-as-medicine'
+};
+// Where the Register button points: a "book" offering -> its booking page; an
+// enroll pathway -> apply.html carrying the pathway and event id; otherwise the
+// record's own (external) registration link, opened in a new tab.
+function registerLink(rec, offerings) {
+  // Call/webinar listings register on Zoom (their own unique link), not via apply.
+  if (rec.kind === 'call') {
+    return { href: rec.zoomUrl || rec.registrationUrl || rec.url || '', ext: true };
+  }
+  const oid = CATEGORY_TO_OFFERING[rec.category];
+  const off = oid ? (offerings || []).filter(function (o) { return o.id === oid; })[0] : null;
+  if (off && off.verb === 'book') {
+    return { href: '/' + String(off.slug).split('/').pop() + '.html', ext: false };
+  }
+  const path = CATEGORY_TO_PATH[rec.category];
+  if (path && rec.id) {
+    return { href: '/apply.html?path=' + path + '&event=' + encodeURIComponent(rec.id), ext: false };
+  }
+  return { href: rec.zoomUrl || rec.registrationUrl || rec.url || '', ext: true };
+}
+
 // images may be absolute (https://...) or repo-relative ("images/..."); the
 // detail pages live in /events/, so relative paths are rooted to "/".
 function assetUrl(u) {
@@ -145,7 +171,7 @@ function buildEventPage(rec, offerings) {
   else dateStr = rec.startDate || rec.firstCall || rec.start || '';
 
   const trainers = (Array.isArray(rec.trainers) && rec.trainers.length) ? rec.trainers.join(', ') : '';
-  const registerUrl = rec.registrationUrl || rec.url || '';
+  const reg = registerLink(rec, offerings);
 
   const facts = [
     factRow('Academy', rec.academy),
@@ -166,8 +192,8 @@ function buildEventPage(rec, offerings) {
   const banner = rec.image
     ? '<div class="banner"><img src="' + esc(assetUrl(rec.image)) + '" alt="' + esc(title) + '" loading="eager" decoding="async"></div>\n'
     : '';
-  const registerBtn = registerUrl
-    ? '  <div class="cta-row"><a class="btn" href="' + esc(registerUrl) + '" target="_blank" rel="noopener">Register</a></div>\n'
+  const registerBtn = reg.href
+    ? '  <div class="cta-row"><a class="btn" href="' + esc(reg.href) + '"' + (reg.ext ? ' target="_blank" rel="noopener"' : '') + '>Register</a></div>\n'
     : '';
 
   const descMeta = description ? String(description).replace(/\s+/g, ' ').slice(0, 180) : ('Details for ' + title + '.');

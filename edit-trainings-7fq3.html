@@ -114,6 +114,7 @@
       {k:'trainers',l:'Trainers (one name per line)',t:'list',keep:true},
       {k:'url',l:'Details / registration URL',t:'url'},
       {k:'registrationUrl',l:'Thinkific registration link',t:'url'},
+      {k:'zoomUrl',l:'Zoom registration link (calls/events)',t:'url'},
       {k:'tuition',l:'Tuition',t:'text',keep:true},
       {k:'price',l:'Full tuition, USD (optional)',t:'number'},
       {k:'deposit',l:'Deposit to reserve, USD (optional)',t:'number'},
@@ -135,13 +136,14 @@
       {k:'trainers',l:'Trainers (one name per line)',t:'list',keep:true},
       {k:'url',l:'Registration URL',t:'url'},
       {k:'registrationUrl',l:'Thinkific registration link',t:'url'},
+      {k:'zoomUrl',l:'Zoom registration link (calls/events)',t:'url'},
       {k:'tuition',l:'Tuition',t:'text',keep:true},
       {k:'image',l:'Image (banner) URL',t:'url'}
     ]
   };
   var ORDER={
-    training:['id','start','kind','title','category','subcategory','cohort','status','enrollmentDeadline','firstCall','startDate','language','schedule','url','registrationUrl','image','price','deposit','depositUrl','academy','venue','country','description','trainers','lodging','tuition'],
-    event:['id','start','kind','title','category','date','time','url','registrationUrl','image','academy','venue','country','description','trainers','lodging','tuition']
+    training:['id','start','kind','title','category','subcategory','cohort','status','enrollmentDeadline','firstCall','startDate','language','schedule','url','registrationUrl','zoomUrl','image','price','deposit','depositUrl','academy','venue','country','description','trainers','lodging','tuition'],
+    event:['id','start','kind','title','category','date','time','url','registrationUrl','zoomUrl','image','academy','venue','country','description','trainers','lodging','tuition']
   };
   var state={meta:{},trainings:[],events:[],seq:1};
   var edit={type:null,key:null};
