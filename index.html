@@ -107,9 +107,16 @@
   .tcard-ph{width:100%;aspect-ratio:3/2;background:var(--fir);display:block}
   .tcard-body{display:flex;flex-direction:column;flex:1;padding:18px 20px 20px}
   .tcard-title{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:21px;font-weight:600;color:var(--navy);line-height:1.2}
-  .tcard-cohort{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-deep);font-weight:700;margin-top:9px}
+  .tcard-cat{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-deep);font-weight:700;margin-top:10px}
+  .tcard-sub{font-size:14.5px;font-weight:700;color:var(--navy);margin-top:5px;line-height:1.3}
+  .tcard-place{font-size:14px;color:var(--ink-soft);margin-top:8px;line-height:1.5}
   .tcard-dates{font-size:14px;color:var(--ink-soft);margin-top:8px;line-height:1.5}
-  .tcard-status{margin-top:auto;padding-top:16px}
+  .tcard-lang{font-size:14px;color:var(--ink-soft);margin-top:8px}
+  .tcard-status{margin-top:12px}
+  .tcard-link{margin-top:auto;padding-top:16px;font-size:14px;font-weight:600;color:var(--fir);text-decoration:underline;text-decoration-color:rgba(46,91,62,.35);text-underline-offset:3px}
+  .tcard-link .arr{display:inline-block;transition:transform .2s ease}
+  a.tcard:hover .tcard-link{text-decoration-color:var(--fir)}
+  a.tcard:hover .tcard-link .arr{transform:translateX(3px)}
   .tcard-badge{display:inline-block;font-size:12px;font-weight:600;border-radius:999px;padding:5px 13px}
   .badge-open{color:var(--fir);background:var(--fir-tint)}
   .badge-wait{color:var(--gold-deep);background:var(--gold-tint)}
@@ -959,41 +966,41 @@
 </script>
     <script>
     (function(){
-      var el=document.getElementById('trainingsData'), grid=document.getElementById('trCards');
-      if(!el||!grid) return;
-      var data; try{ data=JSON.parse(el.textContent); }catch(e){ return; }
-      var items=(data.trainings||[]).slice();
       function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
       var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
       function fmt(d){if(!d)return '';var p=String(d).split('-');if(p.length!==3)return d;return MON[parseInt(p[1],10)-1]+' '+parseInt(p[2],10)+', '+p[0];}
       function sortKey(x){return x.startDate||x.firstCall||x.enrollmentDeadline||'9999-12-31';}
-      function dateLine(x){
-        if(x.startDate)return 'Begins '+fmt(x.startDate);
-        if(x.firstCall)return 'First call '+fmt(x.firstCall);
-        if(x.enrollmentDeadline)return 'Enroll by '+fmt(x.enrollmentDeadline);
-        return '';
-      }
       function badgeClass(s){s=(s||'').toLowerCase();if(s.indexOf('waitlist')>-1)return 'wait';if(s.indexOf('closed')>-1||s.indexOf('full')>-1)return 'closed';if(s.indexOf('open')>-1)return 'open';return 'closed';}
-      function cohort(x){if(!x.cohort)return '';var c=String(x.cohort);return /cohort/i.test(c)?c:'Cohort '+c;}
-      items.sort(function(a,b){var ka=sortKey(a),kb=sortKey(b);return ka<kb?-1:(ka>kb?1:0);});
-      var html=items.map(function(x){
+      // Shared card builder (also used by the "Coming up" strip below).
+      function card(x){
         var media=x.image
           ? '<img class="tcard-media" src="'+esc(x.image)+'" alt="'+esc(x.title)+'" loading="lazy" decoding="async">'
           : '<span class="tcard-ph" aria-hidden="true"></span>';
-        var coh=cohort(x), dl=dateLine(x);
+        var place=[x.venue,x.country].filter(function(v){return v&&String(v).trim();}).join(', ');
+        var startLine=x.start?'Begins '+fmt(x.start):'';
+        var deadlineLine=x.enrollmentDeadline?'Enroll by '+fmt(x.enrollmentDeadline):'';
         var body='<div class="tcard-body">'
           +'<div class="tcard-title">'+esc(x.title)+'</div>'
-          +(coh?'<div class="tcard-cohort">'+esc(coh)+'</div>':'')
-          +(dl?'<div class="tcard-dates">'+esc(dl)+'</div>':'')
+          +(x.category?'<div class="tcard-cat">'+esc(x.category)+'</div>':'')
+          +(x.subcategory?'<div class="tcard-sub">'+esc(x.subcategory)+'</div>':'')
+          +(place?'<div class="tcard-place">'+esc(place)+'</div>':'')
           +(x.status?'<div class="tcard-status"><span class="tcard-badge badge-'+badgeClass(x.status)+'">'+esc(x.status)+'</span></div>':'')
+          +(startLine?'<div class="tcard-dates">'+esc(startLine)+'</div>':'')
+          +(deadlineLine?'<div class="tcard-dates">'+esc(deadlineLine)+'</div>':'')
+          +(x.language?'<div class="tcard-lang">'+esc(x.language)+'</div>':'')
+          +'<span class="tcard-link">View details <span class="arr">&rarr;</span></span>'
           +'</div>';
-        if(x.url){
-          var ext=/^https?:/i.test(x.url);
-          return '<a class="tcard" href="'+esc(x.url)+'"'+(ext?' target="_blank" rel="noopener"':'')+'>'+media+body+'</a>';
-        }
+        var href=x.id?('/events/'+esc(x.id)+'.html'):(x.url?esc(x.url):'');
+        if(href) return '<a class="tcard" href="'+href+'">'+media+body+'</a>';
         return '<div class="tcard">'+media+body+'</div>';
-      }).join('');
-      grid.innerHTML=html;
+      }
+      window.__trCard=card;
+      var el=document.getElementById('trainingsData'), grid=document.getElementById('trCards');
+      if(!el||!grid) return;
+      var data; try{ data=JSON.parse(el.textContent); }catch(e){ return; }
+      var items=(data.trainings||[]).slice();
+      items.sort(function(a,b){var ka=sortKey(a),kb=sortKey(b);return ka<kb?-1:(ka>kb?1:0);});
+      grid.innerHTML=items.map(card).join('');
     })();
     </script>
   </section>
@@ -1010,30 +1017,17 @@
      is upcoming; "past" is worked out live in the browser. */
   (function(){
     var sec=document.getElementById('coming-up'), grid=document.getElementById('cuCards'), src=document.getElementById('trainingsData');
-    if(!sec||!grid||!src) return;
+    if(!sec||!grid||!src||!window.__trCard) return;
     var data; try{ data=JSON.parse(src.textContent); }catch(e){ return; }
-    var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    var DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-    var KIND={'training-start':'Training start','cohort-start':'Cohort start','immersion':'Immersion','call':'Call','workshop':'Workshop'};
-    function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
     function pad(n){return (n<10?'0':'')+n;}
     var d0=new Date(), today=d0.getFullYear()+'-'+pad(d0.getMonth()+1)+'-'+pad(d0.getDate());
     var up=[].concat(data.trainings||[], data.events||[]).filter(function(ev){
-      var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(ev.start||'');
-      if(!m || ev.start<today) return false;
-      ev._m=m; return true;
+      return /^\d{4}-\d{2}-\d{2}$/.test(ev.start||'') && ev.start>=today;
     });
     up.sort(function(a,b){return a.start<b.start?-1:(a.start>b.start?1:0);});
     up=up.slice(0,4);
     if(!up.length) return;
-    grid.innerHTML=up.map(function(ev){
-      var dt=new Date(+ev._m[1],+ev._m[2]-1,+ev._m[3]);
-      var when=DOW[dt.getDay()]+', '+MON[+ev._m[2]-1]+' '+(+ev._m[3]);
-      var kind=(ev.kind && KIND[ev.kind]) ? ' &middot; '+KIND[ev.kind] : '';
-      var o=ev.url?'<a class="omenu-item omenu-item--stack" href="'+esc(ev.url)+'">':'<div class="omenu-item omenu-item--stack">';
-      var c=ev.url?'</a>':'</div>';
-      return o+'<span class="omenu-name">'+esc(ev.title||'(untitled)')+'</span><span class="omenu-meta">'+when+kind+'</span>'+c;
-    }).join('');
+    grid.innerHTML=up.map(window.__trCard).join('');
     sec.hidden=false;
   })();
   </script>
