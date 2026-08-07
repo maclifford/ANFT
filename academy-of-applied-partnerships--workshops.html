@@ -17,7 +17,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Libre+Franklin:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#F2F3EC; --card:#FBFCF8; --ink:#26301F; --ink-soft:#4E5A47;
@@ -27,9 +27,9 @@
     --line:#C9D0BE; --radius:14px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--paper);color:var(--ink);font-family:"Albert Sans",system-ui,sans-serif;
+  body{background:var(--paper);color:var(--ink);font-family:"Libre Franklin",system-ui,sans-serif;
     font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
-  .serif{font-family:"EB Garamond",Garamond,Georgia,serif}
+  .serif{font-family:"Libre Franklin",system-ui,sans-serif}
   .site-header{background:#fff;border-bottom:1px solid var(--line)}
   .hdr-in{max-width:1120px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;
     justify-content:space-between;gap:20px;flex-wrap:wrap}
@@ -43,15 +43,15 @@
   .section{max-width:880px;margin:0 auto;padding:48px 28px 72px}
   .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);
     font-weight:600;margin-bottom:10px}
-  h1{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:500;color:var(--navy);
+  h1{font-family:"Libre Franklin",system-ui,sans-serif;font-weight:500;color:var(--navy);
     font-size:clamp(28px,4vw,40px);line-height:1.15}
   .lede{margin-top:12px;color:var(--ink-soft);font-size:17.5px;max-width:64ch}
-  h2{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:500;color:var(--navy);
+  h2{font-family:"Libre Franklin",system-ui,sans-serif;font-weight:500;color:var(--navy);
     font-size:25px;margin:38px 0 10px}
   p{margin:0 0 14px;max-width:70ch}
   .quote{border-left:3px solid var(--gold);padding:4px 0 4px 22px;margin:26px 0;
-    font-family:"EB Garamond",Garamond,Georgia,serif;font-size:20px;color:var(--navy)}
-  .quote cite{display:block;font-family:"Albert Sans",sans-serif;font-style:normal;
+    font-family:"Libre Franklin",system-ui,sans-serif;font-size:20px;color:var(--navy)}
+  .quote cite{display:block;font-family:"Libre Franklin",system-ui,sans-serif;font-style:normal;
     font-size:13px;color:var(--ink-soft);margin-top:6px}
   .facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin:20px 0 6px;
     padding:0;list-style:none}
@@ -89,8 +89,8 @@
     grid-template-columns:1.6fr 1fr 1fr 1.3fr;gap:34px 44px}
   @media (max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
   @media (max-width:540px){.foot-grid{grid-template-columns:1fr}}
-  .foot-brand{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:21px;line-height:1.3;color:#FFFFFF}
-  .foot-tagline{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:14.5px;
+  .foot-brand{font-family:"Libre Franklin",system-ui,sans-serif;font-size:21px;line-height:1.3;color:#FFFFFF}
+  .foot-tagline{font-family:"Libre Franklin",system-ui,sans-serif;font-size:14.5px;
     color:#E7D9A8;letter-spacing:.06em;margin-top:8px}
   .foot-mission{font-size:14px;color:#C9D5E6;margin:16px 0 0;max-width:40ch;line-height:1.65}
   .foot-sys{display:inline-block;margin-top:16px;font-size:13.5px;font-weight:600;
@@ -113,7 +113,7 @@
   .foot-social a:hover{color:#FFFFFF;text-decoration:underline;text-underline-offset:3px}
   .foot-land{max-width:1120px;margin:40px auto 0;padding-top:24px;
     border-top:1px solid rgba(244,247,251,.22);
-    font-family:"EB Garamond",Garamond,Georgia,serif;font-style:italic;font-size:15.5px;
+    font-family:"Libre Franklin",system-ui,sans-serif;font-style:italic;font-size:15.5px;
     color:#D8E0EC;line-height:1.7;max-width:76ch}
   .foot-legal{max-width:1120px;margin:26px auto 0;padding-top:16px;
     border-top:1px solid rgba(244,247,251,.16);
@@ -121,6 +121,8 @@
     gap:10px 24px;flex-wrap:wrap;line-height:1.6}
   .foot-legal a{color:#C9D5E6;text-decoration:none}
   .foot-legal a:hover{color:#FFFFFF;text-decoration:underline}
+  /* serif body: prose keeps EB Garamond */
+  p,.lede,.quote,.foot-land,.foot-mission,.deck{font-family:"EB Garamond",Georgia,serif}
 </style>
 </head>
 <body id="top">
