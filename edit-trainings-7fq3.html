@@ -25,6 +25,14 @@
   .routine{color:var(--ink-soft);font-size:13.5px;margin-bottom:18px}
   .routine code{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:1px 6px}
   .notice{background:#FDF6F4;border:1px solid var(--warn);border-radius:10px;padding:12px 16px;margin-bottom:18px;font-size:14px}
+  .photo-guide{background:var(--fir-tint);border:1px solid var(--line);border-radius:10px;padding:6px 16px;margin-bottom:18px;font-size:13px;color:var(--ink-soft)}
+  .photo-guide>summary{font-weight:600;color:var(--navy);font-size:13.5px;cursor:pointer;padding:6px 0;list-style:none}
+  .photo-guide>summary::-webkit-details-marker{display:none}
+  .photo-guide>summary::before{content:"\25B8  ";color:var(--gold-deep)}
+  .photo-guide[open]>summary::before{content:"\25BE  "}
+  .photo-guide ul{margin:6px 0 10px;padding-left:20px}
+  .photo-guide li{margin:0 0 6px;line-height:1.5}
+  .photo-guide code{background:var(--paper);border:1px solid var(--line);border-radius:5px;padding:1px 5px}
   .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;align-items:center}
   button{font-family:inherit;font-size:14px;font-weight:600;border-radius:999px;padding:9px 18px;
     border:1.5px solid var(--line);background:#fff;color:var(--navy);cursor:pointer}
@@ -69,6 +77,19 @@
 <main>
   <h1 class="serif">Trainings Editor</h1>
   <p class="routine">Internal tool. Update routine: <b>replace <code>data/trainings.json</code></b> &rarr; <b>run <code>update-trainings</code></b> (or just deploy, if Netlify builds) &rarr; <b>verify</b>.</p>
+  <details class="photo-guide" open>
+    <summary>Photos for event cards</summary>
+    <ul>
+      <li><b>Size:</b> 1200 &times; 800 pixels. Ignore anything about DPI or PPI &mdash; on the web only the pixel size matters.</li>
+      <li><b>Shape:</b> landscape, 3 wide to 2 tall. The card crops to this shape, so keep anything important away from the edges.</li>
+      <li><b>Format:</b> WebP, saved at about 75% quality.</li>
+      <li><b>File size:</b> under 100KB if you can, never over 150KB. Two dozen large photos make the page slow to load.</li>
+      <li><b>Subject:</b> one clear thing &mdash; a stand of trees, a trail, water, a stone wall. Wide scenes with a distant subject turn to mush at card size.</li>
+      <li><b>Naming:</b> name it for the venue rather than the cohort &mdash; <code>dharma-centre.webp</code>, not <code>cohort-172.webp</code> &mdash; so it can be reused when that venue hosts again.</li>
+      <li><b>Where it goes:</b> <code>images/thumbnails/</code></li>
+      <li><b>No photo yet?</b> Leave the field empty. The card shows a plain green panel, which looks intentional. A wrong or stretched photo looks worse than none.</li>
+    </ul>
+  </details>
   <div id="loadErr" class="notice" hidden>Couldn&rsquo;t fetch <code>data/trainings.json</code> automatically (normal when opening this file directly rather than via a server). Load it manually: <input type="file" id="fileInput" accept="application/json,.json"></div>
   <div class="toolbar">
     <button id="addTraining">+ Add training</button>

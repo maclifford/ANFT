@@ -25,6 +25,14 @@
   .routine{color:var(--ink-soft);font-size:13.5px;margin-bottom:18px}
   .routine code{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:1px 6px}
   .notice{background:#FDF6F4;border:1px solid var(--warn);border-radius:10px;padding:12px 16px;margin-bottom:18px;font-size:14px}
+  .photo-guide{background:var(--fir-tint);border:1px solid var(--line);border-radius:10px;padding:6px 16px;margin-bottom:18px;font-size:13px;color:var(--ink-soft)}
+  .photo-guide>summary{font-weight:600;color:var(--navy);font-size:13.5px;cursor:pointer;padding:6px 0;list-style:none}
+  .photo-guide>summary::-webkit-details-marker{display:none}
+  .photo-guide>summary::before{content:"\25B8  ";color:var(--gold-deep)}
+  .photo-guide[open]>summary::before{content:"\25BE  "}
+  .photo-guide ul{margin:6px 0 10px;padding-left:20px}
+  .photo-guide li{margin:0 0 6px;line-height:1.5}
+  .photo-guide code{background:var(--paper);border:1px solid var(--line);border-radius:5px;padding:1px 5px}
   .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;align-items:center}
   button{font-family:inherit;font-size:14px;font-weight:600;border-radius:999px;padding:9px 18px;
     border:1.5px solid var(--line);background:#fff;color:var(--navy);cursor:pointer}
@@ -70,6 +78,20 @@
 <main>
   <h1 class="serif">People Editor</h1>
   <p class="routine">Internal tool for the trainers directory. Update routine: <b>download</b> &rarr; <b>replace the file in <code>/data</code></b> &rarr; <b>deploy</b>. Full bios and photos are preserved untouched; edit them where the data allows.</p>
+  <details class="photo-guide" open>
+    <summary>Photos for trainer portraits</summary>
+    <ul>
+      <li><b>Size:</b> 500 &times; 500 pixels (never smaller than 300 &times; 300). Same width and height.</li>
+      <li><b>Shape:</b> square, 1 to 1. It shows at 150 &times; 150 on the page, with lightly rounded corners.</li>
+      <li><b>Cropping:</b> the photo is centre-cropped to fill the square, so centre the face and leave a little room around it &mdash; the edges get trimmed.</li>
+      <li><b>Format:</b> WebP, saved at about 75% quality.</li>
+      <li><b>File size:</b> under 80KB. Portraits are small on screen and don&rsquo;t need to be large files.</li>
+      <li><b>Subject:</b> one person, head and shoulders, evenly lit, facing the camera. A busy background distracts at this small size.</li>
+      <li><b>Naming:</b> name it for the person &mdash; <code>nadine-mazzola.webp</code> &mdash; and keep the same name if you swap in a better photo later.</li>
+      <li><b>Where it goes:</b> <code>images/trainers/</code></li>
+      <li><b>No photo yet?</b> Leave the field empty. The card shows the person&rsquo;s initials on a green tile, which looks intentional. A blurry or stretched photo looks worse than none.</li>
+    </ul>
+  </details>
   <div id="loadErr" class="notice" hidden>Couldn&rsquo;t fetch <code>data/trainers.json</code> automatically (normal when opening this file directly rather than via a server). Load it manually: <input type="file" id="fileInput" accept="application/json,.json"></div>
   <div class="toolbar">
     <button id="addPerson">+ Add person</button>
