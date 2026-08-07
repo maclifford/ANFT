@@ -53,8 +53,8 @@
   .hero-cta{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap}
   .btn{display:inline-block;font-size:14.5px;font-weight:600;border-radius:999px;padding:12px 22px;
     text-decoration:none;cursor:pointer;border:1.5px solid transparent;font-family:inherit}
-  .btn-gold{background:var(--gold);color:#fff}
-  .btn-gold:hover{background:var(--gold-deep)}
+  .btn-gold{background:var(--fir);color:#fff;border-radius:8px;transition:background .18s ease,transform .18s ease}
+  .btn-gold:hover{background:#264b33;transform:translateY(-1px)}
   .btn-ghost{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.65)}
   .btn-ghost:hover{background:rgba(255,255,255,.24)}
   .btn:focus-visible{outline:2.5px solid #fff;outline-offset:2px}
@@ -87,8 +87,10 @@
     background:var(--gold-tint);border:1px solid var(--gold);border-radius:999px;padding:9px 16px;cursor:pointer;min-height:44px}
   .thr-verb:hover,.thr-verb:focus-visible{background:#EBE1C4}
   .thr-verb-desc{color:var(--ink-soft);margin-top:14px;line-height:1.6}
-  .p-link{font-size:14.5px;font-weight:600;color:var(--gold-deep);text-decoration:none}
-  .p-link:hover{text-decoration:underline;text-underline-offset:4px}
+  .p-link{font-size:14.5px;font-weight:600;color:var(--fir);text-decoration:underline;text-decoration-color:rgba(46,91,62,.35);text-underline-offset:3px;transition:text-decoration-color .2s ease}
+  .p-link:hover{text-decoration-color:var(--fir)}
+  .p-link.p-go::after{content:"\00a0\2192";display:inline-block;transition:transform .2s ease}
+  .p-link.p-go:hover::after{transform:translateX(3px)}
 
   /* upcoming trainings — card grid */
   .tcards{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:26px}
@@ -401,7 +403,7 @@
     <div class="tcards" id="trCards"></div>
     <noscript>
       <p style="color:var(--ink-soft);margin-top:22px">Our current categories: Forest Therapy Guide Training &middot; Nature as Medicine &middot; Opus Companies &middot; Professional Development &middot; Open Calls &amp; Events.</p>
-      <p><a class="p-link" href="apply.html">Apply to an academy &rarr;</a></p>
+      <p><a class="p-link p-go" href="apply.html">Apply to an academy</a></p>
     </noscript>
     <!-- trainings-data-hash:da15c58447e3ce5d --><!-- freshness marker; set by tools/build-trainings (js/ps1). Do not edit by hand. -->
     <script type="application/json" id="trainingsData">{
@@ -814,7 +816,7 @@
     <div class="eyebrow">On the calendar</div>
     <h2>Coming up</h2>
     <div class="tcards" id="cuCards"></div>
-    <p class="tr-all"><a class="p-link" href="calendar.html">See the full calendar &rarr;</a></p>
+    <p class="tr-all"><a class="p-link p-go" href="calendar.html">See the full calendar</a></p>
   </section>
   <script>
   /* Coming up: the next four upcoming events, read from the same inlined data
@@ -859,7 +861,7 @@
       <div class="cred-accred">
         <div class="eyebrow">Recognized Training</div>
         <p>The Nature as Medicine practitioner training is accredited by Mass General Brigham, the teaching affiliate of Harvard Medical School, and offers up to 86 continuing education credits for licensed health care professionals.</p>
-        <a class="p-link" href="nature-as-medicine.html">About Nature as Medicine →</a>
+        <a class="p-link p-go" href="nature-as-medicine.html">About Nature as Medicine</a>
       </div>
       <blockquote class="cred-quote">
         <p class="serif">“The training and practicum has changed my life.”</p>

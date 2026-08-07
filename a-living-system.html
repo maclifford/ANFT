@@ -83,12 +83,14 @@
   .cta-row{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
   .btn{display:inline-block;font-size:14.5px;font-weight:600;border-radius:999px;padding:12px 26px;
     text-decoration:none;cursor:pointer;border:1.5px solid transparent;font-family:inherit}
-  .btn-gold{background:var(--gold);color:#fff}
-  .btn-gold:hover{background:var(--gold-deep)}
+  .btn-gold{background:var(--fir);color:#fff;border-radius:8px;transition:background .18s ease,transform .18s ease}
+  .btn-gold:hover{background:#264b33;transform:translateY(-1px)}
   .btn-quiet{background:transparent;color:var(--fir);border-color:var(--fir)}
   .btn-quiet:hover{background:var(--fir-tint)}
-  .p-link{font-size:14.5px;font-weight:600;color:var(--gold-deep);text-decoration:none}
-  .p-link:hover{text-decoration:underline;text-underline-offset:4px}
+  .p-link{font-size:14.5px;font-weight:600;color:var(--fir);text-decoration:underline;text-decoration-color:rgba(46,91,62,.35);text-underline-offset:3px;transition:text-decoration-color .2s ease}
+  .p-link:hover{text-decoration-color:var(--fir)}
+  .p-link.p-go::after{content:"\00a0\2192";display:inline-block;transition:transform .2s ease}
+  .p-link.p-go:hover::after{transform:translateX(3px)}
   .subnav{margin-top:34px;padding-top:22px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-soft)}
   .subnav a{color:var(--fir);font-weight:600;text-decoration:none}
   .subnav a:hover{text-decoration:underline}
@@ -181,7 +183,7 @@
   <h2>Open doors</h2>
   <p>A living system has many entrances, and no single correct one. Some arrive wanting to guide; some arrive as physicians or therapists; some arrive holding responsibility for a piece of land; some arrive with a work of their own that wants making; some arrive with an offering to bring. The five academies are five doors into the same commons &mdash; and the Forest Threshold is the ground they all open onto. Whichever door you enter, you are not enrolling in a program. You are taking a place in something alive, which will be different because you are in it.</p>
 
-  <div class="cta-row"><a class="btn btn-gold" href="apply.html">Choose a door</a><a class="p-link" href="index.html#structure">See the whole system &rarr;</a></div>
+  <div class="cta-row"><a class="btn btn-gold" href="apply.html">Choose a door</a><a class="p-link p-go" href="index.html#structure">See the whole system</a></div>
 
   <div class="subnav">The five doors: <a href="relational-forest-therapy-academy.html">Relational Forest Therapy</a> &middot; <a href="nature-as-medicine.html">Nature as Medicine</a> &middot; <a href="academy-of-place.html">Place</a> &middot; <a href="opus-academy.html">Opus</a> &middot; <a href="academy-of-applied-partnerships.html">Applied Forest Therapy</a></div>
 

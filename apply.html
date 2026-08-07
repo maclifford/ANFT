@@ -48,8 +48,10 @@
   .lede{margin-top:12px;color:var(--ink-soft);max-width:62ch}
   /* headline row: title with a secondary calendar link beside it, wrapping below on narrow screens */
   .title-row{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 16px}
-  .p-link{font-size:14.5px;font-weight:600;color:var(--gold-deep);text-decoration:none}
-  .p-link:hover{text-decoration:underline;text-underline-offset:4px}
+  .p-link{font-size:14.5px;font-weight:600;color:var(--fir);text-decoration:underline;text-decoration-color:rgba(46,91,62,.35);text-underline-offset:3px;transition:text-decoration-color .2s ease}
+  .p-link:hover{text-decoration-color:var(--fir)}
+  .p-link.p-go::after{content:"\00a0\2192";display:inline-block;transition:transform .2s ease}
+  .p-link.p-go:hover::after{transform:translateX(3px)}
 
   /* step indicator */
   .steps{display:flex;gap:8px;margin:30px 0 26px;flex-wrap:wrap}
@@ -115,8 +117,8 @@
     border-top:1px solid var(--line);padding-top:22px}
   .btn{display:inline-block;font-size:14.5px;font-weight:600;border-radius:999px;padding:12px 26px;
     text-decoration:none;cursor:pointer;border:1.5px solid transparent;font-family:inherit}
-  .btn-gold{background:var(--gold);color:#fff}
-  .btn-gold:hover{background:var(--gold-deep)}
+  .btn-gold{background:var(--fir);color:#fff;border-radius:8px;transition:background .18s ease,transform .18s ease}
+  .btn-gold:hover{background:#264b33;transform:translateY(-1px)}
   .btn-quiet{background:transparent;color:var(--ink-soft);border-color:var(--line)}
   .btn-quiet:hover{color:var(--navy);border-color:var(--navy)}
   .btn:focus-visible{outline:2.5px solid var(--gold-deep);outline-offset:2px}
@@ -226,7 +228,7 @@
   <div class="eyebrow">Participation</div>
   <div class="title-row">
     <h1>Apply to the Academies</h1>
-    <a class="p-link" href="calendar.html">See the calendar &rarr;</a>
+    <a class="p-link p-go" href="calendar.html">See the calendar</a>
   </div>
   <p class="lede">Three short steps: choose your path and tell us about yourself, share a little background, then review and send. Applications go to our admissions circle, and you&rsquo;ll receive a confirmation by email.</p>
 

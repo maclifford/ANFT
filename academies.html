@@ -54,11 +54,13 @@
   .cta-row{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
   .btn{display:inline-block;font-size:14.5px;font-weight:600;border-radius:999px;padding:12px 26px;
     text-decoration:none;cursor:pointer;border:1.5px solid transparent;font-family:inherit}
-  .btn-gold{background:var(--gold);color:#fff}
-  .btn-gold:hover{background:var(--gold-deep)}
+  .btn-gold{background:var(--fir);color:#fff;border-radius:8px;transition:background .18s ease,transform .18s ease}
+  .btn-gold:hover{background:#264b33;transform:translateY(-1px)}
   .btn:focus-visible{outline:2.5px solid var(--gold-deep);outline-offset:2px}
-  .p-link{font-size:14.5px;font-weight:600;color:var(--gold-deep);text-decoration:none}
-  .p-link:hover{text-decoration:underline;text-underline-offset:4px}
+  .p-link{font-size:14.5px;font-weight:600;color:var(--fir);text-decoration:underline;text-decoration-color:rgba(46,91,62,.35);text-underline-offset:3px;transition:text-decoration-color .2s ease}
+  .p-link:hover{text-decoration-color:var(--fir)}
+  .p-link.p-go::after{content:"\00a0\2192";display:inline-block;transition:transform .2s ease}
+  .p-link.p-go:hover::after{transform:translateX(3px)}
 
   /* hero with the page title overlaid on the banner image */
   .hero{position:relative;max-width:1120px;margin:0 auto}
@@ -152,7 +154,7 @@
 
   <p>If it sounds like I'm bragging, you're right. We are proud of who we are and the ripples of healing that our trainees spread throughout the world. Here's what I can say confidently to you if you have read this far: you were born to be a source of wonderful ripples. ANFT was born to help you live in to that.</p>
 
-  <p><a class="p-link" href="relational-forest-therapy-academy.html">Learn more about the Relational Forest Therapy Academy &rarr;</a></p>
+  <p><a class="p-link p-go" href="relational-forest-therapy-academy.html">Learn more about the Relational Forest Therapy Academy</a></p>
 
   <h2>Academy of Place</h2>
 
@@ -166,7 +168,7 @@
 
   <p>Each trail a place of its own stories. One I hope to visit soon is at the Singapore Botanic Garden, a World Heritage Site. How wonderful is that? Forest Therapy woven into world heritage. Dang. We done good.</p>
 
-  <p><a class="p-link" href="academy-of-place.html">Learn more about the Academy of Place &rarr;</a></p>
+  <p><a class="p-link p-go" href="academy-of-place.html">Learn more about the Academy of Place</a></p>
 
   <h2>Academy of Applied Forest Therapy</h2>
 
@@ -174,7 +176,7 @@
 
   <p>From these interactions a new curriculum has developed. It's best suited for guides, those who have been initiated through training into an operational perspective and methodological vocabulary. The Academy of Applied Forest Therapy will bring the wisdom and support that will help you integrate your love of relational forest therapy into the patterns of your life, professionally and personally.</p>
 
-  <p><a class="p-link" href="academy-of-applied-partnerships.html">Learn more about the Academy of Applied Forest Therapy &rarr;</a></p>
+  <p><a class="p-link p-go" href="academy-of-applied-partnerships.html">Learn more about the Academy of Applied Forest Therapy</a></p>
 
   <h2>Opus Academy</h2>
 
@@ -190,9 +192,9 @@
 
   <p>I will tell you a secret (well, it was a secret until I told you just here): the opus work, the practice of alchimage seems to me to be the capstone of my life's work. And that's saying something, coming from the guy most responsible for bringing relational forest therapy into the world. Relational Forest Therapy has been the powerful launch pad for me, and for many. We each find our own next steps; ANFT does not train you to guide the way our trainers guide; we train you to guide the way you guide. That way exists in you now; it is part of your Self, part of your Opus.</p>
 
-  <p><a class="p-link" href="opus-academy.html">Learn more about the Opus Academy &rarr;</a></p>
+  <p><a class="p-link p-go" href="opus-academy.html">Learn more about the Opus Academy</a></p>
 
-  <div class="cta-row" style="margin-top:44px;padding-top:26px;border-top:1px solid var(--line)"><a class="btn btn-gold" href="apply.html">Apply to the Academies</a><a class="p-link" href="calendar.html">See the calendar &rarr;</a></div>
+  <div class="cta-row" style="margin-top:44px;padding-top:26px;border-top:1px solid var(--line)"><a class="btn btn-gold" href="apply.html">Apply to the Academies</a><a class="p-link p-go" href="calendar.html">See the calendar</a></div>
 </main>
 <footer>
   <div class="foot-grid">

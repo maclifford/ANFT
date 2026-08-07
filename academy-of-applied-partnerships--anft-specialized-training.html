@@ -67,12 +67,14 @@
   .cta-row{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
   .btn{display:inline-block;font-size:14.5px;font-weight:600;border-radius:999px;padding:12px 26px;
     text-decoration:none;cursor:pointer;border:1.5px solid transparent;font-family:inherit}
-  .btn-gold{background:var(--gold);color:#fff}
-  .btn-gold:hover{background:var(--gold-deep)}
+  .btn-gold{background:var(--fir);color:#fff;border-radius:8px;transition:background .18s ease,transform .18s ease}
+  .btn-gold:hover{background:#264b33;transform:translateY(-1px)}
   .btn-quiet{background:transparent;color:var(--fir);border-color:var(--fir)}
   .btn-quiet:hover{background:var(--fir-tint)}
-  .p-link{font-size:14.5px;font-weight:600;color:var(--gold-deep);text-decoration:none}
-  .p-link:hover{text-decoration:underline;text-underline-offset:4px}
+  .p-link{font-size:14.5px;font-weight:600;color:var(--fir);text-decoration:underline;text-decoration-color:rgba(46,91,62,.35);text-underline-offset:3px;transition:text-decoration-color .2s ease}
+  .p-link:hover{text-decoration-color:var(--fir)}
+  .p-link.p-go::after{content:"\00a0\2192";display:inline-block;transition:transform .2s ease}
+  .p-link.p-go:hover::after{transform:translateX(3px)}
   .subnav{margin-top:34px;padding-top:22px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-soft)}
   .subnav a{color:var(--fir);font-weight:600;text-decoration:none}
   .subnav a:hover{text-decoration:underline}
@@ -143,7 +145,7 @@
   <p class="lede">Specialized trainings developed and delivered by ANFT itself.</p>
 
 <div class="stub-note">This page is being prepared. In the meantime, the admissions circle can answer questions about this offering directly &mdash; or begin an application and mention it in your final clarifications.</div>
-<div class="cta-row"><a class="btn btn-gold" href="apply.html">Apply</a><a class="p-link" href="contact.html">Contact admissions &rarr;</a></div>
+<div class="cta-row"><a class="btn btn-gold" href="apply.html">Apply</a><a class="p-link p-go" href="contact.html">Contact admissions</a></div>
 
   <div class="subnav">Back to <a href="academy-of-applied-partnerships.html">Academy of Applied Forest Therapy</a></div>
 </main>
