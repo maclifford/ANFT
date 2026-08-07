@@ -96,16 +96,25 @@
     training:[
       {k:'title',l:'Title',t:'text',req:true},
       {k:'category',l:'Category',t:'select'},
+      {k:'academy',l:'Academy',t:'select',keep:true},
       {k:'subcategory',l:'Subcategory',t:'select'},
       {k:'cohort',l:'Cohort',t:'text'},
+      {k:'kind',l:'Kind of event',t:'select',keep:true},
       {k:'status',l:'Status',t:'select'},
+      {k:'start',l:'Start (YYYY-MM-DD)',t:'date',keep:true},
       {k:'enrollmentDeadline',l:'Enrollment deadline',t:'date'},
       {k:'firstCall',l:'First call',t:'date'},
       {k:'startDate',l:'Start date',t:'date'},
       {k:'language',l:'Language',t:'select'},
       {k:'schedule',l:'Schedule',t:'text'},
+      {k:'venue',l:'Venue',t:'text',keep:true},
+      {k:'country',l:'Country',t:'text',keep:true},
+      {k:'lodging',l:'Lodging',t:'text',keep:true},
+      {k:'description',l:'Description',t:'textarea',keep:true},
+      {k:'trainers',l:'Trainers (one name per line)',t:'list',keep:true},
       {k:'url',l:'Details / registration URL',t:'url'},
       {k:'registrationUrl',l:'Thinkific registration link',t:'url'},
+      {k:'tuition',l:'Tuition',t:'text',keep:true},
       {k:'price',l:'Full tuition, USD (optional)',t:'number'},
       {k:'deposit',l:'Deposit to reserve, USD (optional)',t:'number'},
       {k:'depositUrl',l:'Deposit payment link — Stripe URL (optional)',t:'url'},
@@ -114,14 +123,25 @@
     event:[
       {k:'title',l:'Title',t:'text',req:true},
       {k:'category',l:'Category',t:'select'},
+      {k:'academy',l:'Academy',t:'select',keep:true},
+      {k:'kind',l:'Kind of event',t:'select',keep:true},
+      {k:'start',l:'Start (YYYY-MM-DD)',t:'date',keep:true},
       {k:'date',l:'Date',t:'date'},
       {k:'time',l:'Time',t:'text'},
-      {k:'url',l:'Registration URL',t:'url'}
+      {k:'venue',l:'Venue',t:'text',keep:true},
+      {k:'country',l:'Country',t:'text',keep:true},
+      {k:'lodging',l:'Lodging',t:'text',keep:true},
+      {k:'description',l:'Description',t:'textarea',keep:true},
+      {k:'trainers',l:'Trainers (one name per line)',t:'list',keep:true},
+      {k:'url',l:'Registration URL',t:'url'},
+      {k:'registrationUrl',l:'Thinkific registration link',t:'url'},
+      {k:'tuition',l:'Tuition',t:'text',keep:true},
+      {k:'image',l:'Image (banner) URL',t:'url'}
     ]
   };
   var ORDER={
-    training:['id','title','category','subcategory','cohort','status','enrollmentDeadline','firstCall','startDate','language','schedule','url','registrationUrl','price','deposit','depositUrl','image'],
-    event:['id','title','category','date','time','url']
+    training:['id','start','kind','title','category','subcategory','cohort','status','enrollmentDeadline','firstCall','startDate','language','schedule','url','registrationUrl','image','price','deposit','depositUrl','academy','venue','country','description','trainers','lodging','tuition'],
+    event:['id','start','kind','title','category','date','time','url','registrationUrl','image','academy','venue','country','description','trainers','lodging','tuition']
   };
   var state={meta:{},trainings:[],events:[],seq:1};
   var edit={type:null,key:null};
@@ -174,6 +194,9 @@
         h+='<input type="text" class="other-input" id="f_'+fd.k+'_other" placeholder="Custom '+esc(fd.l.toLowerCase())+'" value="'+((cur&&!known)?esc(cur):'')+'"'+((cur&&!known)?'':' hidden')+'>';
       } else if(fd.t==='textarea'){
         h+='<textarea id="f_'+fd.k+'">'+(entry?esc(entry[fd.k]):'')+'</textarea>';
+      } else if(fd.t==='list'){
+        var lv=(entry&&Array.isArray(entry[fd.k]))?entry[fd.k].join('\n'):'';
+        h+='<textarea id="f_'+fd.k+'" placeholder="One name per line">'+esc(lv)+'</textarea>';
       } else {
         var extra=(fd.t==='number')?' step="0.01" min="0" inputmode="decimal"':'';
         h+='<input type="'+fd.t+'" id="f_'+fd.k+'"'+extra+' value="'+(entry&&entry[fd.k]!=null?esc(entry[fd.k]):'')+'">';
@@ -191,6 +214,7 @@
       var el=$('f_'+fd.k),v;
       if(fd.t==='select'){v=(el.value==='__other__')?($('f_'+fd.k+'_other').value||'').trim():el.value;}
       else if(fd.t==='number'){var raw=(el.value||'').trim();v=(raw==='')?'':(isNaN(parseFloat(raw))?raw:parseFloat(raw));}
+      else if(fd.t==='list'){v=(el.value||'').split(/\r?\n/).map(function(s){return s.trim();}).filter(function(s){return s;});}
       else{v=(el.value||'').trim();}
       vals[fd.k]=v;
     });
@@ -206,13 +230,17 @@
   function closeModal(){$('modal').hidden=true;}
   function saveEntry(){
     var type=edit.type,vals=readForm(type);
+    function isEmpty(fd,v){return (fd.t==='list')?(!v||v.length===0):(v===''||v==null);}
+    function emptyVal(fd){return (fd.t==='list')?[]:'';}
     if(edit.key){
       var o=arr(type).filter(function(x){return x._key===edit.key;})[0];
-      FIELDS[type].forEach(function(fd){ if(vals[fd.k]!=='')o[fd.k]=vals[fd.k]; else delete o[fd.k]; });
+      FIELDS[type].forEach(function(fd){ var v=vals[fd.k];
+        if(!isEmpty(fd,v))o[fd.k]=v; else if(fd.keep)o[fd.k]=emptyVal(fd); else delete o[fd.k]; });
     } else {
       var n={_key:state.seq++};
       n.id=uniqueId(slug(vals.title));
-      FIELDS[type].forEach(function(fd){ if(vals[fd.k]!=='')n[fd.k]=vals[fd.k]; });
+      FIELDS[type].forEach(function(fd){ var v=vals[fd.k];
+        if(!isEmpty(fd,v))n[fd.k]=v; else if(fd.keep)n[fd.k]=emptyVal(fd); });
       n.category=n.category||vals.category; // ensure category placed
       arr(type).push(n);
     }
