@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /*
- * Re-inline data/trainings.json into the <script id="trainingsData"> block on
- * index.html AND apply.html, and stamp each page with a freshness hash of the
- * JSON. Both pages read the inlined copy with NO runtime fetch, so they work
- * even when opened directly from disk.
+ * Build step for the trainings data. Two jobs:
+ *   1) Re-inline data/trainings.json into the <script id="trainingsData"> block
+ *      on index.html AND apply.html, and stamp each page with a freshness hash.
+ *   2) Write one detail page per record into events/<id>.html.
  *
  * This is the canonical cross-platform build. It runs on Netlify (which has
  * Node) and anywhere Node is installed. tools/build-trainings.ps1 calls this
@@ -19,6 +19,7 @@ const crypto = require('crypto');
 
 const root = path.join(__dirname, '..');
 const jsonFp = path.join(root, 'data', 'trainings.json');
+const offeringsFp = path.join(root, 'offerings.json');
 const pages = ['index.html', 'apply.html'];
 
 const BLOCK = /(<script type="application\/json" id="trainingsData">)[\s\S]*?(<\/script>)/;
@@ -30,9 +31,197 @@ function contentHash(text) {
   return crypto.createHash('sha256').update(Buffer.from(norm, 'utf8')).digest('hex').slice(0, 16);
 }
 
+function esc(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+// Map a record's category to an offering id, for the description fallback.
+// Guide-training records intentionally have no fallback offering (per owner):
+// their description stays blank until one is entered in the editor.
+const CATEGORY_TO_OFFERING = {
+  'Nature as Medicine': 'nature-as-medicine',
+  'Opus Training': 'opus-academy'
+};
+
+function propositionFor(rec, offerings) {
+  const oid = CATEGORY_TO_OFFERING[rec.category];
+  if (!oid) return '';
+  const off = (offerings || []).filter(function (o) { return o.id === oid; })[0];
+  return (off && off.proposition) ? off.proposition : '';
+}
+
+// images may be absolute (https://...) or repo-relative ("images/..."); the
+// detail pages live in /events/, so relative paths are rooted to "/".
+function assetUrl(u) {
+  if (!u) return '';
+  return /^https?:\/\//i.test(u) ? u : '/' + String(u).replace(/^\/+/, '');
+}
+
+function factRow(label, value) {
+  if (value == null || String(value).trim() === '') return '';
+  return '<li><b>' + esc(label) + '</b><br>' + esc(value) + '</li>';
+}
+
+const CSS = [
+  ':root{--paper:#F2F3EC;--card:#FBFCF8;--ink:#26301F;--ink-soft:#4E5A47;--navy:#1E3A5F;--fir:#2E5B3E;--fir-tint:#E1EBDD;--gold:#A9862C;--gold-deep:#7C6118;--gold-tint:#F3EDD9;--bark:#6B4F3A;--bark-deep:#4E3324;--line:#C9D0BE;--radius:14px}',
+  '*{box-sizing:border-box;margin:0;padding:0}',
+  'body{background:var(--paper);color:var(--ink);font-family:"Albert Sans",system-ui,sans-serif;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}',
+  '.site-header{background:#fff;border-bottom:1px solid var(--line)}',
+  '.hdr-in{max-width:1120px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}',
+  '.hdr-in img{height:66px;width:auto;display:block}',
+  'nav{display:flex;gap:26px;flex-wrap:wrap}',
+  'nav a{color:var(--navy);text-decoration:none;font-size:14.5px;font-weight:600;letter-spacing:.02em}',
+  'nav a:hover{color:var(--gold-deep);text-decoration:underline;text-underline-offset:4px}',
+  '.banner{max-width:1120px;margin:0 auto}',
+  '.banner img{display:block;width:100%;height:clamp(180px,26vw,320px);object-fit:cover;border-radius:0 0 var(--radius) var(--radius)}',
+  '.section{max-width:880px;margin:0 auto;padding:48px 28px 72px}',
+  '.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);font-weight:600;margin-bottom:10px}',
+  'h1{font-family:"EB Garamond",Garamond,Georgia,serif;font-weight:500;color:var(--navy);font-size:clamp(28px,4vw,40px);line-height:1.15}',
+  '.lede{margin-top:14px;color:var(--ink-soft);font-size:17.5px;max-width:64ch}',
+  'p{margin:0 0 14px;max-width:70ch}',
+  '.facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin:28px 0 6px;padding:0;list-style:none}',
+  '.facts li{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:14.5px}',
+  '.facts b{color:var(--navy)}',
+  '.cta-row{margin-top:30px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}',
+  '.btn{display:inline-block;font-size:14.5px;font-weight:600;border-radius:8px;padding:12px 26px;text-decoration:none;cursor:pointer;border:1.5px solid transparent;font-family:inherit;background:var(--fir);color:#fff;transition:background .18s ease,transform .18s ease}',
+  '.btn:hover{background:#264b33;transform:translateY(-1px)}',
+  '.p-link{font-size:14.5px;font-weight:600;color:var(--fir);text-decoration:underline;text-decoration-color:rgba(46,91,62,.35);text-underline-offset:3px;transition:text-decoration-color .2s ease}',
+  '.p-link:hover{text-decoration-color:var(--fir)}',
+  '.p-link.p-go::after{content:"\\00a0\\2192";display:inline-block;transition:transform .2s ease}',
+  '.p-link.p-go:hover::after{transform:translateX(3px)}',
+  'footer{margin-top:72px;background:var(--navy);color:#F4F7FB;border-top:3px solid var(--gold);padding:40px 28px 26px}',
+  '.foot-in{max-width:1120px;margin:0 auto}',
+  '.foot-brand{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:21px;line-height:1.3;color:#fff}',
+  '.foot-tagline{font-family:"EB Garamond",Garamond,Georgia,serif;font-size:14.5px;color:#E7D9A8;letter-spacing:.06em;margin-top:8px}',
+  '.foot-nav{margin-top:18px;display:flex;gap:8px 22px;flex-wrap:wrap}',
+  '.foot-nav a{color:#EDF2F8;text-decoration:none;font-size:14px}',
+  '.foot-nav a:hover{text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px}',
+  '.foot-legal{max-width:1120px;margin:28px auto 0;padding-top:16px;border-top:1px solid rgba(244,247,251,.16);font-size:12.5px;color:#B9C6D9}'
+].join('\n  ');
+
+const NAV = [
+  '<a href="/forest-threshold.html">The Forest Threshold</a>',
+  '<a href="/a-living-system.html">About &mdash; A Living System</a>',
+  '<a href="/academies.html">The Academies</a>',
+  '<a href="/the-book.html">The Book</a>',
+  '<a href="/science.html">Science</a>',
+  '<a href="/apply.html">Apply</a>',
+  '<a href="/contact.html">Contact</a>'
+].join('\n      ');
+
+const HEADER =
+  '<header class="site-header">\n' +
+  '  <div class="hdr-in">\n' +
+  '    <a href="/index.html" aria-label="Academies of Nature and Forest Therapies &mdash; home"><img src="/images/anft-logo-horizontal-tight.webp?v=3" width="1721" height="535" decoding="async" alt="Academies of Nature and Forest Therapies"></a>\n' +
+  '    <nav aria-label="Primary">\n      ' + NAV + '\n    </nav>\n' +
+  '  </div>\n</header>\n';
+
+const FOOTER =
+  '<footer>\n' +
+  '  <div class="foot-in">\n' +
+  '    <div class="foot-brand">Academies of Nature<br>and Forest Therapies</div>\n' +
+  '    <div class="foot-tagline">Knowledge &middot; Practice &middot; Transformation</div>\n' +
+  '    <div class="foot-nav">\n' +
+  '      <a href="/academies.html">The Academies</a>\n' +
+  '      <a href="/apply.html">Apply</a>\n' +
+  '      <a href="/calendar.html">Calendar</a>\n' +
+  '      <a href="/index.html#trainings">Upcoming trainings</a>\n' +
+  '      <a href="/faq.html">FAQ</a>\n' +
+  '      <a href="/contact.html">Contact</a>\n' +
+  '    </div>\n' +
+  '  </div>\n' +
+  '  <div class="foot-legal">&copy; 2026 ANFT.earth LLC, doing business as the Association of Nature and Forest Therapies. All rights reserved.</div>\n' +
+  '</footer>\n';
+
+function buildEventPage(rec, offerings) {
+  const title = rec.title || 'Event';
+  const description = (rec.description && String(rec.description).trim())
+    ? String(rec.description).trim()
+    : propositionFor(rec, offerings);
+
+  let dateStr = '';
+  if (rec.date) dateStr = rec.date + (rec.time ? (' · ' + rec.time) : '');
+  else dateStr = rec.startDate || rec.firstCall || rec.start || '';
+
+  const trainers = (Array.isArray(rec.trainers) && rec.trainers.length) ? rec.trainers.join(', ') : '';
+  const registerUrl = rec.registrationUrl || rec.url || '';
+
+  const facts = [
+    factRow('Academy', rec.academy),
+    factRow('Subcategory', rec.subcategory),
+    factRow('Venue', rec.venue),
+    factRow('Country', rec.country),
+    factRow('Dates', dateStr),
+    factRow('Enrollment deadline', rec.enrollmentDeadline),
+    factRow('Language', rec.language),
+    factRow('Trainers', trainers),
+    factRow('Tuition', rec.tuition),
+    factRow('Lodging', rec.lodging)
+  ].join('');
+
+  const eyebrow = rec.category ? '  <div class="eyebrow">' + esc(rec.category) + '</div>\n' : '';
+  const desc = description ? '  <p class="lede">' + esc(description) + '</p>\n' : '';
+  const factsBlock = facts ? '  <ul class="facts">' + facts + '</ul>\n' : '';
+  const banner = rec.image
+    ? '<div class="banner"><img src="' + esc(assetUrl(rec.image)) + '" alt="' + esc(title) + '" loading="eager" decoding="async"></div>\n'
+    : '';
+  const registerBtn = registerUrl
+    ? '  <div class="cta-row"><a class="btn" href="' + esc(registerUrl) + '" target="_blank" rel="noopener">Register</a></div>\n'
+    : '';
+
+  const descMeta = description ? String(description).replace(/\s+/g, ' ').slice(0, 180) : ('Details for ' + title + '.');
+
+  return '<!DOCTYPE html>\n<html lang="en">\n<head>\n' +
+    '<meta charset="UTF-8">\n' +
+    '<meta name="viewport" content="width=device-width, initial-scale=1">\n' +
+    '<meta name="robots" content="noindex, nofollow">\n' +
+    '<title>' + esc(title) + ' | ANFT</title>\n' +
+    '<meta name="description" content="' + esc(descMeta) + '">\n' +
+    '<link rel="icon" type="image/x-icon" href="/favicon-white.ico?v=2">\n' +
+    '<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">\n' +
+    '<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png?v=2">\n' +
+    '<link rel="preconnect" href="https://fonts.googleapis.com">\n' +
+    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n' +
+    '<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">\n' +
+    '<style>\n  ' + CSS + '\n</style>\n</head>\n<body>\n' +
+    HEADER +
+    banner +
+    '<main class="section">\n' +
+    eyebrow +
+    '  <h1>' + esc(title) + '</h1>\n' +
+    desc +
+    factsBlock +
+    registerBtn +
+    '  <div class="cta-row" style="margin-top:26px"><a class="p-link p-go" href="/calendar.html">See the full calendar</a></div>\n' +
+    '</main>\n' +
+    FOOTER +
+    '</body>\n</html>\n';
+}
+
+function writeEventPages(data, offerings) {
+  const records = (data.trainings || []).concat(data.events || []);
+  const dir = path.join(root, 'events');
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir);
+  let n = 0;
+  records.forEach(function (rec) {
+    if (!rec.id) return;
+    const fp = path.join(dir, rec.id + '.html');
+    fs.writeFileSync(fp, buildEventPage(rec, offerings)); // utf8, no BOM
+    n++;
+  });
+  console.log('Wrote ' + n + ' event detail page(s) into events/.');
+}
+
 function main() {
   const json = fs.readFileSync(jsonFp, 'utf8');
-  try { JSON.parse(json); } catch (e) { throw new Error('data/trainings.json is not valid JSON: ' + e.message); }
+  let data;
+  try { data = JSON.parse(json); } catch (e) { throw new Error('data/trainings.json is not valid JSON: ' + e.message); }
+
+  let offerings = [];
+  try { offerings = (JSON.parse(fs.readFileSync(offeringsFp, 'utf8')).offerings) || []; }
+  catch (e) { console.log('offerings.json unavailable (' + e.message + '); descriptions will fall back to blank.'); }
+
   const hash = contentHash(json);
   const marker = '<!-- trainings-data-hash:' + hash + ' -->';
 
@@ -51,6 +240,8 @@ function main() {
       console.log('Re-inlined data/trainings.json into ' + name + ' (hash ' + hash + ').');
     }
   });
+
+  writeEventPages(data, offerings);
 }
 
 main();
