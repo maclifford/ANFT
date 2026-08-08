@@ -424,9 +424,9 @@
     <!-- trainings-data-hash:8476cb2965c91b8b --><!-- freshness marker; set by tools/build-trainings (js/ps1). Do not edit by hand. -->
     <script type="application/json" id="venuesData">{
   "_meta": {
-    "source": "Seeded from venues named in data/trainings.json",
+    "source": "Seeded from venues named in data/trainings.json; details migrated from the anft.earth immersion pages (2026-08)",
     "generated_date": "2026-08-08",
-    "notes": "Each training/event references a venue by venue_id. internalContact.* (phone, email) is INTERNAL ONLY and must never render on a public page. Lodging *options* live on the venue; lodging *cost* lives on the event (lodgingCost). Latitude/longitude and most descriptive fields are intentionally empty to be filled in later.",
+    "notes": "Each training/event references a venue by venue_id. internalContact.* (phone, email) is INTERNAL ONLY and must never render on a public page. Lodging *options* live on the venue; lodging *cost* lives on the event (lodgingCost). Latitude/longitude and internal contacts are left empty pending real values; do not invent them.",
     "internal_fields": ["internalContact"]
   },
   "venues": [
@@ -438,14 +438,16 @@
       "latitude": null,
       "longitude": null,
       "images": ["images/thumbnails/dharma-centre.webp"],
-      "description": "",
-      "howToGetThere": "",
-      "lodgingOptions": [],
-      "seasonalWeather": "",
+      "description": "A meditation centre on 400 acres of boreal forest in the ancient Canadian Shield — wetlands, lakes, ponds, streams and mixed coniferous–deciduous forest, home to deer, moose, bald eagles and owls. The bedrock beneath dates back roughly 1.3 billion years.",
+      "howToGetThere": "1267 Galway Road, Kinmount K0M 2A0, Ontario. Car or carpool is recommended; the nearest bus station is Fenelon Falls. A private driver service is available from Peterborough (about $50 one-way per passenger).",
+      "lodgingOptions": [
+        { "name": "Forest rooms", "description": "Rustic single bedrooms set throughout the forested property, with shared bathrooms." }
+      ],
+      "seasonalWeather": "Late August and early September bring warm, ideal late-summer conditions.",
       "elevation": "",
-      "accessibility": { "terrain": "", "mobilityAccess": "", "facilities": "" },
-      "operatedBy": "",
-      "website": "",
+      "accessibility": { "terrain": "", "mobilityAccess": "", "facilities": "Hiking trails throughout the property and canoe/kayak access to Union Lake. Wi-Fi in the Tea House and Main House only — not in the accommodations." },
+      "operatedBy": "Dharma Centre of Canada",
+      "website": "https://dharmacentre.org",
       "internalContact": { "phone": "", "email": "" }
     },
     {
@@ -456,14 +458,17 @@
       "latitude": null,
       "longitude": null,
       "images": ["images/thumbnails/just-love-forest.webp"],
-      "description": "",
-      "howToGetThere": "",
-      "lodgingOptions": [],
+      "description": "A 716-acre forest sanctuary in the Appalachian foothills with a 30-foot gathering yurt, three forest-therapy trails (easy, moderate and intensive), two outdoor fire circles and an eight-circle stone labyrinth. It runs on off-grid solar power, with indoor and outdoor kitchens.",
+      "howToGetThere": "Lyerly, Georgia. About 90 minutes from Atlanta and its airport, and 60 minutes from Chattanooga airport.",
+      "lodgingOptions": [
+        { "name": "Deluxe bell tent", "description": "Canvas glamping tent with a queen bed." },
+        { "name": "Teepee-style tent", "description": "Smaller glamping tent with twin beds." }
+      ],
       "seasonalWeather": "",
       "elevation": "",
-      "accessibility": { "terrain": "", "mobilityAccess": "", "facilities": "" },
-      "operatedBy": "",
-      "website": "",
+      "accessibility": { "terrain": "", "mobilityAccess": "", "facilities": "Fresh linens provided; eco composting toilets and hot outdoor showers. Training participants stay on-site only." },
+      "operatedBy": "Just Love Forest",
+      "website": "https://justloveforest.com",
       "internalContact": { "phone": "", "email": "" }
     },
     {
@@ -474,14 +479,16 @@
       "latitude": null,
       "longitude": null,
       "images": ["images/thumbnails/baba-ecolodge.webp", "images/thumbnails/baba-ecolodge-2.webp"],
-      "description": "",
-      "howToGetThere": "",
-      "lodgingOptions": [],
-      "seasonalWeather": "",
+      "description": "An eco-resort on Ko Phra Thong island in south-western Thailand, beside a national park — a 12 km private beach, virgin jungle, mangrove streams, a protected bay of shallow clear water and Thailand's only savannah ecosystem, with macaques, hornbills, green turtles and white-bellied sea eagles.",
+      "howToGetThere": "Nearest airport is Phuket International. From Phuket it is a 2.5–3 hour car transfer to Kuraburi Pier, then a 90-minute longtail boat to the island — the only way in.",
+      "lodgingOptions": [
+        { "name": "Thai wooden villas", "description": "Traditional villas with private gardens and elevated decks, from one-bedroom beachfront units to family villas; king or queen beds. Camping is not permitted." }
+      ],
+      "seasonalWeather": "Tropical, on the Andaman Sea. Buildings rely on natural sea breezes and ceiling fans rather than air conditioning.",
       "elevation": "",
       "accessibility": { "terrain": "", "mobilityAccess": "", "facilities": "" },
-      "operatedBy": "",
-      "website": "",
+      "operatedBy": "Baba Ecolodge",
+      "website": "https://babaecolodge.com",
       "internalContact": { "phone": "", "email": "" }
     },
     {
@@ -492,14 +499,19 @@
       "latitude": null,
       "longitude": null,
       "images": ["images/thumbnails/casa-portal.webp"],
-      "description": "",
-      "howToGetThere": "",
-      "lodgingOptions": [],
+      "description": "A 100-acre retreat centre on a working sheep farm, dedicated to slow living and nature connection: an 1840s farmhouse, woodland trails, sheep meadows, a swimming pond, gardens, a fibre-arts shed and an apple orchard, in woods of pine, birch, hemlock, maple, fir, beech and spruce.",
+      "howToGetThere": "83 Sullivan Road, Jackson, Maine 04921. About 40 minutes from Bangor International Airport, 2 hours from Portland and 3 hours from Boston; 20 minutes from Belfast. Concord Trailways bus from Boston or Portland; paid car service from Bangor, Portland or Belfast.",
+      "lodgingOptions": [
+        { "name": "Guest House", "description": "Shared twin or triple rooms." },
+        { "name": "Private cabin", "description": "" },
+        { "name": "Barn bunk loft", "description": "" },
+        { "name": "Camping", "description": "" }
+      ],
       "seasonalWeather": "",
       "elevation": "",
-      "accessibility": { "terrain": "", "mobilityAccess": "", "facilities": "" },
-      "operatedBy": "",
-      "website": "",
+      "accessibility": { "terrain": "Trails offer both flat and hilly options.", "mobilityAccess": "", "facilities": "Shared single-stall bathrooms and outdoor showers; solar-powered accommodations. Cell service available; limited Wi-Fi in the main house only. Screened porch, library, sunroom and workshop barn." },
+      "operatedBy": "Casa Portal Retreats",
+      "website": "https://www.casaportalretreats.com/",
       "internalContact": { "phone": "", "email": "" }
     },
     {
@@ -510,32 +522,38 @@
       "latitude": null,
       "longitude": null,
       "images": ["images/thumbnails/well-being-retreat-center.webp"],
-      "description": "",
-      "howToGetThere": "",
-      "lodgingOptions": [],
+      "description": "160 acres bordered by two miles of the Powell River in eastern Tennessee's Cumberland Mountains. Low-impact buildings — cabins set into the hillsides, some earth-sheltered and built around existing trees — plus a conference centre, a covered riverside pavilion, a meditation hall, a labyrinth, a fire pit and a library.",
+      "howToGetThere": "Tazewell, Tennessee — about 50 miles (1.5 hours) north of Knoxville; roughly 2 hours from Lexington KY, 2.25 hours from Asheville NC, 3 hours from Chattanooga and 4 hours from Nashville.",
+      "lodgingOptions": [
+        { "name": "Cabins / tiny houses", "description": "Eleven cabins of varying sizes, single or double occupancy." },
+        { "name": "Cabinettes", "description": "Six cabinettes with shared bathrooms." },
+        { "name": "Riverbank camping", "description": "Camping on the river banks, with climate-controlled facilities nearby." }
+      ],
       "seasonalWeather": "",
       "elevation": "",
-      "accessibility": { "terrain": "", "mobilityAccess": "", "facilities": "" },
-      "operatedBy": "",
-      "website": "",
+      "accessibility": { "terrain": "Steep, heavily vegetated terrain with uneven, sometimes slippery ground; gravel roads with slopes take vehicles, and the property is walkable via roads and built trails.", "mobilityAccess": "", "facilities": "Wi-Fi at the conference centre and meditation hut; Verizon is the most reliable cell carrier." },
+      "operatedBy": "Well Being Foundation",
+      "website": "https://wellbeingretreatcenter.org",
       "internalContact": { "phone": "", "email": "" }
     },
     {
       "id": "santuario-la-verna",
-      "name": "Santuario La Verna",
+      "name": "Hotel Tosco Romagnolo",
       "region": "Bagno di Romagna",
       "country": "Italy",
       "latitude": null,
       "longitude": null,
       "images": ["images/thumbnails/santuario-la-verna.webp"],
-      "description": "",
-      "howToGetThere": "",
-      "lodgingOptions": [],
+      "description": "A hotel in the spa town of Bagno di Romagna, in the Apennine mountains of Emilia-Romagna.",
+      "howToGetThere": "Via del Popolo 2, 47021 Bagno di Romagna (FC). Bologna airport (BLQ) is about 1.5 hours by car via the A14/E45 and is recommended for travellers from the US; Florence (FLR) is about 1.75 hours on a scenic mountain road. Forlì (55 km), Rimini (74 km) and Florence (96 km) airports are nearer. By train, take high-speed rail to Cesena, then regional bus line 138 (about 1 h 10). Private transfers are available from Bologna or Florence.",
+      "lodgingOptions": [
+        { "name": "Hotel rooms (bed & breakfast)", "description": "Rooms at the hotel on a bed-and-breakfast basis for immersion participants." }
+      ],
       "seasonalWeather": "",
       "elevation": "",
       "accessibility": { "terrain": "", "mobilityAccess": "", "facilities": "" },
       "operatedBy": "",
-      "website": "",
+      "website": "https://www.hoteltoscoromagnolo.it/",
       "internalContact": { "phone": "", "email": "" }
     },
     {
@@ -546,14 +564,21 @@
       "latitude": null,
       "longitude": null,
       "images": ["images/thumbnails/rocky-mountain-ecodharma.webp"],
-      "description": "",
-      "howToGetThere": "",
-      "lodgingOptions": [],
-      "seasonalWeather": "",
-      "elevation": "",
-      "accessibility": { "terrain": "", "mobilityAccess": "", "facilities": "" },
+      "description": "A retreat centre on 180 acres of river, alpine meadow and spruce–aspen forest near the Indian Peaks Wilderness and adjacent to National Forest land, with deer, elk, moose, bear and beaver.",
+      "howToGetThere": "1841 Overland Road, Ward, Colorado. About 1.5 hours by car from Denver International Airport. A $10 bus runs airport-to-Boulder, then rideshare to the venue; carpooling is coordinated. Note: there is no cell service at the venue, so Uber is unreliable for the return trip.",
+      "lodgingOptions": [
+        { "name": "Single room", "description": "" },
+        { "name": "Double room", "description": "" },
+        { "name": "Mini single", "description": "Windowless single room." },
+        { "name": "Glamping tent", "description": "With bedding and heating." },
+        { "name": "RV / camper van", "description": "" },
+        { "name": "Camping", "description": "" }
+      ],
+      "seasonalWeather": "Cold at night in October.",
+      "elevation": "8,500 ft (2,590 m)",
+      "accessibility": { "terrain": "", "mobilityAccess": "", "facilities": "No public Wi-Fi; a landline is available." },
       "operatedBy": "",
-      "website": "",
+      "website": "https://rmerc.org",
       "internalContact": { "phone": "", "email": "" }
     },
     {
@@ -564,14 +589,19 @@
       "latitude": null,
       "longitude": null,
       "images": ["images/thumbnails/daintree-siesta.webp"],
-      "description": "",
-      "howToGetThere": "",
-      "lodgingOptions": [],
-      "seasonalWeather": "",
+      "description": "A rainforest property in the UNESCO World Heritage-listed Daintree Rainforest of Tropical North Queensland, with exclusive rainforest walking trails and an on-site restaurant. Hosted by Tamara, a certified ANFT guide, and Bruce Scenna.",
+      "howToGetThere": "1973 Cape Tribulation Rd, Diwan QLD 4873. About 2.5 hours' drive from Cairns on a sealed, scenic road that includes a car-ferry crossing. A shuttle van leaves Cairns CBD around 11:00 am on arrival day.",
+      "lodgingOptions": [
+        { "name": "Queen room", "description": "Single occupancy." },
+        { "name": "Twin room", "description": "Shared between two people." },
+        { "name": "Family room", "description": "Shared between three people." },
+        { "name": "Camping", "description": "Powered and unpowered sites for tents, caravans and motorhomes." }
+      ],
+      "seasonalWeather": "Warm, humid and possibly wet — this is the world's most ancient tropical rainforest.",
       "elevation": "",
-      "accessibility": { "terrain": "", "mobilityAccess": "", "facilities": "" },
-      "operatedBy": "",
-      "website": "",
+      "accessibility": { "terrain": "", "mobilityAccess": "", "facilities": "Bed linen and towels provided." },
+      "operatedBy": "Tamara and Bruce Scenna",
+      "website": "https://daintreesiesta.com.au/",
       "internalContact": { "phone": "", "email": "" }
     },
     {
@@ -582,14 +612,16 @@
       "latitude": null,
       "longitude": null,
       "images": ["images/thumbnails/lodge-kod-kod.webp"],
-      "description": "",
-      "howToGetThere": "",
-      "lodgingOptions": [],
+      "description": "A study centre in temperate forest that combines eco-tourism with biological research, in the Liucura River valley at the foot of the El Cañi sanctuary, near Huerquehue and Villarrica national parks and with views of the Villarrica volcano. It has run as a wildlife-conservation study site for over a decade.",
+      "howToGetThere": "In La Araucanía, southern Chile — 21 km from Pucón on the road to Huife. Nearest airport is Temuco (fly in, then shuttle or taxi), or take a long-distance bus from Santiago to Pucón with onward transport; shared shuttles are coordinated.",
+      "lodgingOptions": [
+        { "name": "Shared bedrooms", "description": "Five rooms with up to six single beds each, with fold-down cabin bunks and en-suite bathrooms with showers. On-site stays only." }
+      ],
       "seasonalWeather": "",
       "elevation": "",
       "accessibility": { "terrain": "", "mobilityAccess": "", "facilities": "" },
       "operatedBy": "",
-      "website": "",
+      "website": "https://lodgekodkod.cl",
       "internalContact": { "phone": "", "email": "" }
     }
   ]
