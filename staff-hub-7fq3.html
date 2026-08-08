@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Staff Data Hub (internal) &mdash; ANFT</title>
+<link rel="icon" type="image/x-icon" href="/favicon-white.ico?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#F2F3EC;--card:#FBFCF8;--ink:#26301F;--ink-soft:#4E5A47;--navy:#1E3A5F;
+    --fir:#2E5B3E;--fir-tint:#E1EBDD;--gold:#A9862C;--gold-deep:#7C6118;--gold-tint:#F3EDD9;
+    --bark-deep:#4E3324;--line:#C9D0BE;--radius:12px;--warn:#A33A2A}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:"Nunito Sans",system-ui,sans-serif;
+    font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .banner{background:var(--gold-tint);border-bottom:2px solid var(--gold);color:var(--bark-deep);
+    padding:10px 20px;font-size:13.5px;font-weight:600;text-align:center}
+  main{max-width:820px;margin:0 auto;padding:32px 22px 90px}
+  p{font-family:"EB Garamond",Georgia,serif;font-size:17px;line-height:1.6;margin:0 0 14px;max-width:66ch}
+  .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);font-weight:700;margin-bottom:8px}
+  h1{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:600;color:var(--navy);font-size:clamp(28px,4.5vw,36px);line-height:1.12;margin-bottom:10px}
+  .lede{font-family:"EB Garamond",Georgia,serif;font-size:19px;color:var(--ink-soft);max-width:64ch;margin-bottom:8px}
+  h2{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:600;color:var(--navy);font-size:23px;
+    margin:44px 0 12px;padding-top:20px;border-top:1px solid var(--line)}
+  h3{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:700;color:var(--gold-deep);font-size:13px;
+    letter-spacing:.08em;text-transform:uppercase;margin:26px 0 8px}
+  ul,ol{margin:0 0 14px;padding-left:22px}
+  li{margin:0 0 7px;line-height:1.5;max-width:64ch}
+  li strong{color:var(--navy)}
+  a{color:var(--fir);text-decoration-color:rgba(46,91,62,.4);text-underline-offset:3px}
+  a:hover{text-decoration-color:var(--fir)}
+  code{font-family:ui-monospace,"Cascadia Code",Consolas,monospace;font-size:13.5px;background:var(--card);
+    border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  /* editor link cards */
+  .editors{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin:8px 0 8px}
+  .ed-card{display:block;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 22px;text-decoration:none;color:var(--ink);transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease}
+  .ed-card:hover{border-color:var(--fir);transform:translateY(-2px);box-shadow:0 6px 16px rgba(38,48,31,.10)}
+  .ed-card .k{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-deep);font-weight:700}
+  .ed-card .t{font-family:"Nunito Sans",system-ui,sans-serif;font-size:21px;font-weight:600;color:var(--navy);margin:4px 0 8px}
+  .ed-card .t::after{content:" \2192";color:var(--fir)}
+  .ed-card p{font-size:15px;line-height:1.5;color:var(--ink-soft);margin:0;max-width:none}
+  /* callouts */
+  .callout{background:var(--fir-tint);border:1px solid #BBD3BE;border-radius:10px;padding:14px 18px;margin:0 0 16px}
+  .callout .big{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:700;color:var(--fir);font-size:17px}
+  .alert{background:#F7ECE8;border:1px solid #E0B9AD;border-left:4px solid var(--warn);border-radius:8px;padding:12px 16px;margin:0 0 16px}
+  .alert p{margin:0;max-width:none}
+  .alert strong{color:var(--warn)}
+  /* steps */
+  ol.steps{list-style:none;padding-left:0;counter-reset:step;margin-top:6px}
+  ol.steps>li{counter-increment:step;position:relative;padding:0 0 4px 44px;margin-bottom:16px}
+  ol.steps>li::before{content:counter(step);position:absolute;left:0;top:0;width:30px;height:30px;
+    display:flex;align-items:center;justify-content:center;background:var(--fir);color:#fff;border-radius:50%;
+    font-family:"Nunito Sans",system-ui,sans-serif;font-weight:700;font-size:14px}
+  ol.steps .st{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:700;color:var(--navy);display:block;margin-bottom:3px}
+  /* table */
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;margin:6px 0 12px}
+  table{border-collapse:collapse;width:100%;font-size:14px}
+  th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+  thead th{background:var(--fir-tint);color:var(--navy);font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+  tbody tr:last-child td{border-bottom:0}
+  td:first-child{font-weight:600;color:var(--navy)}
+  .ex{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:0 0 14px;font-size:14px;line-height:1.9}
+  .foot{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-soft)}
+</style>
+</head>
+<body>
+<div class="banner">Internal staff page &middot; not linked publicly &middot; keep this address private</div>
+<main>
+  <p class="eyebrow">Association of Nature and Forest Therapies &middot; internal</p>
+  <h1>Managing the website data</h1>
+  <p class="lede">This page is for staff who maintain the information behind the website. It is not linked from anywhere on the public site.</p>
+
+  <div class="alert"><p>Keep the address to yourself. There is <strong>no password</strong> on these pages &mdash; anyone who has the link can change the data. If that becomes a concern, ask for real access control to be added.</p></div>
+
+  <div class="editors">
+    <a class="ed-card" href="edit-trainings-7fq3.html">
+      <span class="k">Editor</span>
+      <span class="t">Trainings &amp; Events</span>
+      <p>Add and edit cohorts, immersions, open calls and walkthrough calls. Everything that appears on the calendar and in the card grid on the home page.</p>
+    </a>
+    <a class="ed-card" href="edit-people-7fq3.html">
+      <span class="k">Editor</span>
+      <span class="t">People</span>
+      <p>Add and edit trainers and staff &mdash; names, roles, regions, portraits and biographies. These feed the trainers page and appear on the detail page of every event that person teaches.</p>
+    </a>
+  </div>
+
+  <h2>The one rule that matters most</h2>
+  <div class="callout"><span class="big">Every fact lives in exactly one place. Nothing is ever typed twice.</span></div>
+  <p>This sounds obvious and is easy to break, because it often feels faster to retype something than to go and find it. Resist that. The moment the same fact exists in two places, the two begin to disagree, and nobody can tell which one is right.</p>
+  <p>In practice:</p>
+  <ul>
+    <li>A trainer's name, photo and biography live in the <strong>People</strong> editor and nowhere else. When you assign a trainer to a training, you are choosing a person from a list, not typing their details. Change someone's biography once and it updates on every event they teach.</li>
+    <li>Descriptions of what a program <strong>is</strong> live with the program, not with each cohort. Every event inherits its description automatically. Only write a description on an event when that particular one genuinely differs &mdash; a distinctive venue, a visiting trainer, an unusual schedule. If you find yourself typing the same paragraph onto three cohorts, it belongs with the program instead. Ask for it to be moved there.</li>
+    <li>Photographs are stored once and pointed at by name. Never upload the same image twice under two names.</li>
+    <li>Prices, durations and prerequisites for a program live with the program. A cohort record carries its dates, its venue, its trainers, and its enrollment deadline &mdash; not a restatement of what the program is.</li>
+  </ul>
+
+  <h2>How to make a change</h2>
+  <p>The editors cannot save directly to the website. Web pages are not allowed to write files to a server, so the process has one manual step in the middle. It takes about a minute.</p>
+  <ol class="steps">
+    <li><span class="st">Close the editor page and open it fresh.</span>Do this every time, before you start. The editor loads the data when the page opens and holds its own copy. If the page has been sitting open since yesterday, its copy is yesterday's &mdash; and saving from it would quietly undo anything changed since. <strong>This has already happened once and cost a whole data file.</strong></li>
+    <li><span class="st">Make your changes.</span>Work through as many records as you like in one sitting. Nothing is saved until you download.</li>
+    <li><span class="st">Click &ldquo;Download updated&hellip;&rdquo; and let it go to your Downloads folder.</span>Do not try to save it into the website folder yourself, and do not rename it.</li>
+    <li><span class="st">Hand it over to be published.</span>The downloaded file needs to be compared against what is currently on the site, put in place, and pushed. Ask for this rather than doing it by hand &mdash; the comparison step is what catches a stale copy before it overwrites good data.</li>
+    <li><span class="st">Wait about a minute.</span>The site rebuilds itself once the change is pushed. Refresh the page to see it.</li>
+  </ol>
+  <div class="callout"><p style="font-family:'Nunito Sans',system-ui,sans-serif;font-size:15px;color:var(--ink);margin:0;max-width:none"><strong style="color:var(--fir)">If something goes wrong, nothing is lost.</strong> Every previous version of every data file is kept. A bad change can be undone in seconds. Say so immediately rather than trying to repair it by hand.</p></div>
+
+  <h2>Before you add a new event</h2>
+  <p>Have these ready. An event with gaps will still publish, but it will look unfinished on the card and on its own page.</p>
+  <ul>
+    <li>The program it belongs to</li>
+    <li>Which academy it belongs to</li>
+    <li>Start date</li>
+    <li>Enrollment deadline</li>
+    <li>Venue and country</li>
+    <li>Language it is taught in</li>
+    <li>Which trainers are teaching it</li>
+    <li>Tuition, and lodging cost if there is one</li>
+    <li>A photograph, prepared to the specifications below</li>
+  </ul>
+  <p>If the photograph is not ready, leave the field empty. The card falls back to a plain green panel, which looks intentional. A stretched or wrongly shaped photo looks worse than none.</p>
+
+  <h2>A note on the two training models</h2>
+  <p>Guide training is in transition. Cohorts numbered below 190 follow the current model &mdash; six months with a four-day immersion. Cohorts 190 and above follow the four-component pathway: Re-collection, Immersion, Practicum and Practice.</p>
+  <p>Both will appear on the site for about a year. This is deliberate, not an error. Do not &ldquo;correct&rdquo; one to match the other.</p>
+
+  <h2>Photograph specifications</h2>
+
+  <h3>Two rules that prevent most problems</h3>
+  <p><strong>Ignore DPI and PPI entirely.</strong> For the web, only pixel dimensions matter. A photo saved at 300 dpi and the same photo at 72 dpi are identical to a browser. If someone sends you &ldquo;300 dpi&rdquo;, ask instead how many pixels wide it is.</p>
+  <p><strong>Use lowercase filenames with hyphens.</strong> No spaces, no capitals. Windows treats <code>Person_Amos.webp</code> and <code>person_amos.webp</code> as the same file. The web server does not. An image can look perfect on your computer and be broken on the live site for this reason alone, and the cause is very hard to spot.</p>
+  <div class="ex">
+    Write:&nbsp; <code>person_amos-clifford.webp</code><br>
+    Not:&nbsp;&nbsp;&nbsp; <code>Person_Amos.webp</code><br>
+    Not:&nbsp;&nbsp;&nbsp; <code>person amos clifford.webp</code>
+  </div>
+
+  <h3>Naming</h3>
+  <p>Every filename begins with its category, then a hyphenated description:</p>
+  <div class="ex">
+    <code>brand_logo-medium.webp</code><br>
+    <code>banner_nature-as-medicine.webp</code><br>
+    <code>thumb_dharma-centre.webp</code><br>
+    <code>panel_relational.webp</code><br>
+    <code>person_amos-clifford.webp</code><br>
+    <code>trail_shinrin-ridge.webp</code><br>
+    <code>content_faq_tea-ceremony.webp</code>
+  </div>
+  <p>Name for the subject, not the occasion. A venue photo named <code>thumb_dharma-centre.webp</code> can be reused every time that venue hosts a cohort. One named <code>thumb_cohort-172.webp</code> is dead the moment that cohort ends.</p>
+
+  <h3>Sizes</h3>
+  <p>All images are saved as WebP at about 75 percent quality.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Folder</th><th>Size (px)</th><th>Shape</th><th>Max size</th><th>Prefix</th></tr></thead>
+      <tbody>
+        <tr><td>brand</td><td>500 &times; 167</td><td>&mdash;</td><td>25 KB</td><td><code>brand_</code></td></tr>
+        <tr><td>banners</td><td>2000 &times; 800</td><td>5:2</td><td>250 KB</td><td><code>banner_</code></td></tr>
+        <tr><td>thumbnails</td><td>1200 &times; 800</td><td>3:2</td><td>150 KB</td><td><code>thumb_</code></td></tr>
+        <tr><td>panels</td><td>2100 &times; 1200</td><td>7:4</td><td>250 KB</td><td><code>panel_</code></td></tr>
+        <tr><td>people</td><td>800 &times; 800</td><td>1:1</td><td>80 KB</td><td><code>person_</code></td></tr>
+        <tr><td>trails</td><td>1200 &times; 800</td><td>3:2</td><td>100 KB</td><td><code>trail_</code></td></tr>
+        <tr><td>content</td><td>1600 wide</td><td>any</td><td>150 KB</td><td><code>content_</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Transparency is required for brand images only.</p>
+
+  <h3>Choosing a photograph</h3>
+  <p>Event thumbnails matter more than any other category, because two dozen of them load on the home page at once. Every extra 50 KB is multiplied by twenty-four.</p>
+  <p>At card size a photograph can hold one idea, not a scene. A stand of trees, a trail edge, water, a stone wall. Wide landscapes with a distant subject turn to mush.</p>
+  <p>Consistency across the set matters more than any single image. Twelve cards are read as a group, and one photo with a blue cast or a blown-out sky breaks the grid more than a plain but consistent photo would.</p>
+  <p>Portraits are square and unforgiving. Head and shoulders, face roughly centred. A crop taken from a wide group shot rarely works.</p>
+  <p>Panel backgrounds sit behind text under a heavy overlay, so they read as texture rather than as pictures. Choose quiet images &mdash; mist, bark, canopy, moving water.</p>
+
+  <h3>Permissions</h3>
+  <p>Two things must be recorded for every image, in the credits file kept alongside them:</p>
+  <p><strong>Who owns it, and whether permission has been confirmed.</strong> An image whose rights nobody has checked should not be published. This applies with particular force to anything found through a search engine.</p>
+  <p><strong>Whether the people in it agreed to appear.</strong> Photographs of identifiable people &mdash; participants on a walk, students at an immersion &mdash; should not be published without that person's consent. Training participants are in a personal and sometimes vulnerable setting, and a photograph of someone at a grief walk is not the same as a photograph of a trail. Where consent was given verbally, record who obtained it and when.</p>
+
+  <h3>Preparing a batch</h3>
+  <p>Prepare photographs in batches rather than one at a time. Collect the originals at full size, rename each one to its final name, and hand the whole folder over to be cropped, resized and converted in one pass. Then the images are all in place before you open the editor, and every one of them will appear in the picker.</p>
+
+  <p class="foot">Internal tool &middot; Association of Nature and Forest Therapies. This page is intentionally excluded from search engines and is not linked from the public site.</p>
+</main>
+</body>
+</html>
