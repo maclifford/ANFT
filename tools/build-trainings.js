@@ -19,7 +19,7 @@ const crypto = require('crypto');
 
 const root = path.join(__dirname, '..');
 const jsonFp = path.join(root, 'data', 'trainings.json');
-const offeringsFp = path.join(root, 'offerings.json');
+const offeringsFp = path.join(root, 'data', 'offerings.json');
 const venuesFp = path.join(root, 'data', 'venues.json');
 const pages = ['index.html', 'apply.html'];
 
@@ -390,7 +390,7 @@ function main() {
 
   let offerings = [];
   try { offerings = (JSON.parse(fs.readFileSync(offeringsFp, 'utf8')).offerings) || []; }
-  catch (e) { console.log('offerings.json unavailable (' + e.message + '); descriptions will fall back to blank.'); }
+  catch (e) { console.log('data/offerings.json unavailable (' + e.message + '); descriptions will fall back to blank.'); }
 
   const venuesById = {};
   let venuesArr = [];

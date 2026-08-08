@@ -91,7 +91,7 @@ try {
 # --- Event detail pages (mirror of writeEventPages/buildEventPage in build-trainings.js) ---
 $data = $json | ConvertFrom-Json
 $offerings = @()
-try { $offerings = (Get-Content (Join-Path $root 'offerings.json') -Raw | ConvertFrom-Json).offerings } catch { $offerings = @() }
+try { $offerings = (Get-Content (Join-Path $root 'data\offerings.json') -Raw | ConvertFrom-Json).offerings } catch { $offerings = @() }
 $venuesById = @{}
 $venuesArr = @()
 try { $venuesArr = @((Get-Content (Join-Path $root 'data\venues.json') -Raw | ConvertFrom-Json).venues); $venuesArr | ForEach-Object { $venuesById[[string]$_.id] = $_ } } catch {}
