@@ -4,9 +4,9 @@
     "generated_date": "2026-08-07",
     "notes": "Trainer directory rendered by our-trainers.html via the inlined trainersData block. Carried across: name, role, region, email, photo, and bio (multi-paragraph bio_full; short first-sentence bio_excerpt). team groups the roster on the page; teams_order sets the section order. Read/written by the People editor (edit-people-7fq3.html). — edited via editor page 2026-08-08",
     "teams_order": [
+      "Leadership",
       "Our Trainers",
       "Specialty Training Team",
-      "Leadership",
       "Administration and Operations"
     ],
     "harvest_date": "2026-08-08"
