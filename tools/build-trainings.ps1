@@ -93,7 +93,8 @@ $data = $json | ConvertFrom-Json
 $offerings = @()
 try { $offerings = (Get-Content (Join-Path $root 'offerings.json') -Raw | ConvertFrom-Json).offerings } catch { $offerings = @() }
 $venuesById = @{}
-try { (Get-Content (Join-Path $root 'data\venues.json') -Raw | ConvertFrom-Json).venues | ForEach-Object { $venuesById[[string]$_.id] = $_ } } catch {}
+$venuesArr = @()
+try { $venuesArr = @((Get-Content (Join-Path $root 'data\venues.json') -Raw | ConvertFrom-Json).venues); $venuesArr | ForEach-Object { $venuesById[[string]$_.id] = $_ } } catch {}
 $CAT = @{ 'Nature as Medicine' = 'nature-as-medicine'; 'Opus Training' = 'opus-academy' }
 $CAT_PATH = @{ 'Forest Therapy Guide Training' = 'relational-forest-therapy-academy'; 'Opus Training' = 'opus-academy'; 'Nature as Medicine' = 'nature-as-medicine' }
 
@@ -194,7 +195,8 @@ function EvPage($rec){
   $vname = if($vv){ [string]$vv.name + $(if($vv.region){', '+[string]$vv.region}else{''}) } else { '' }
   $vcountry = if($vv){ [string]$vv.country } else { '' }
   $lodgingCost = if($null -ne $rec.lodgingCost -and ([string]$rec.lodgingCost).Trim() -ne ''){ '$'+[string]$rec.lodgingCost } else { '' }
-  $facts = (EvFact 'Academy' $rec.academy)+(EvFact 'Subcategory' $rec.subcategory)+(EvFact 'Venue' $vname)+(EvFact 'Country' $vcountry)+(EvFact 'Dates' $dateStr)+(EvFact 'Enrollment deadline' $rec.enrollmentDeadline)+(EvFact 'Language' $rec.language)+(EvFact 'Trainers' $trainers)+(EvFact 'Tuition' $rec.tuition)+(EvFact 'Lodging cost' $lodgingCost)
+  $venueRow = if($vv){ '<li><b>Venue</b><br><a href="/venues/'+(EvEsc ([string]$rec.venue_id))+'.html">'+(EvEsc $vname)+'</a></li>' } else { '' }
+  $facts = (EvFact 'Academy' $rec.academy)+(EvFact 'Subcategory' $rec.subcategory)+$venueRow+(EvFact 'Country' $vcountry)+(EvFact 'Dates' $dateStr)+(EvFact 'Enrollment deadline' $rec.enrollmentDeadline)+(EvFact 'Language' $rec.language)+(EvFact 'Trainers' $trainers)+(EvFact 'Tuition' $rec.tuition)+(EvFact 'Lodging cost' $lodgingCost)
   $eyebrow = if([string]$rec.category){'  <div class="eyebrow">'+(EvEsc $rec.category)+"</div>`n"}else{''}
   $desc = if($description){'  <p class="lede">'+(EvEsc $description)+"</p>`n"}else{''}
   $factsBlock = if($facts){'  <ul class="facts">'+$facts+"</ul>`n"}else{''}
@@ -292,3 +294,57 @@ foreach ($p in @($tdata.trainers)) {
   $trN++
 }
 Write-Host "Wrote $trN trainer page(s) into trainers/."
+
+# --- Public venue pages (mirror of buildVenuePage/writeVenuePages in build-trainings.js). Never renders internalContact. ---
+$venCSS = 'h2{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:600;color:var(--navy);font-size:20px;margin:28px 0 8px}.ven-list{margin:6px 0 8px;padding-left:20px}.ven-list li{margin:0 0 6px;font-family:"EB Garamond",Georgia,serif;font-size:16.5px}.ven-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:10px 0 6px}.ven-gallery img{width:100%;height:150px;object-fit:cover;border-radius:10px;border:1px solid var(--line)}'
+function VnPage($v){
+  $name = if([string]$v.name){[string]$v.name}else{'Venue'}
+  $loc = (@($v.region,$v.country) | Where-Object { [string]$_ -and ([string]$_).Trim() -ne '' }) -join ', '
+  $imgs = @($v.images | Where-Object { [string]$_ -and ([string]$_).Trim() -ne '' })
+  $banner = if($imgs.Count){ '<div class="banner"><img src="'+(EvEsc (EvAsset $imgs[0]))+'" alt="'+(EvEsc $name)+'" loading="eager" decoding="async"></div>'+"`n" } else { '' }
+  $gallery = if($imgs.Count -gt 1){ '  <div class="ven-gallery">'+ (($imgs[1..($imgs.Count-1)] | ForEach-Object { '<img src="'+(EvEsc (EvAsset $_))+'" alt="'+(EvEsc $name)+'" loading="lazy" decoding="async">' }) -join '') +'</div>'+"`n" } else { '' }
+  $acc = $v.accessibility
+  $accParts = @()
+  if($acc -and [string]$acc.terrain -and ([string]$acc.terrain).Trim() -ne ''){ $accParts += '<b>Terrain.</b> '+(EvEsc $acc.terrain) }
+  if($acc -and [string]$acc.mobilityAccess -and ([string]$acc.mobilityAccess).Trim() -ne ''){ $accParts += '<b>Mobility access.</b> '+(EvEsc $acc.mobilityAccess) }
+  if($acc -and [string]$acc.facilities -and ([string]$acc.facilities).Trim() -ne ''){ $accParts += '<b>Facilities.</b> '+(EvEsc $acc.facilities) }
+  $accSec = if($accParts.Count){ '  <h2>Accessibility</h2>'+"`n"+'  <p>'+($accParts -join '<br>')+'</p>'+"`n" } else { '' }
+  $lodg = @($v.lodgingOptions | Where-Object { $_ -and ([string]$_.name -or [string]$_.description) })
+  $lodgSec = if($lodg.Count){ '  <h2>Lodging</h2>'+"`n"+'  <ul class="ven-list">'+ (($lodg | ForEach-Object { '<li><b>'+(EvEsc $_.name)+'</b>'+ $(if([string]$_.description){' &mdash; '+(EvEsc $_.description)}else{''}) +'</li>' }) -join '') +'</ul>'+"`n" } else { '' }
+  $siteRow = if([string]$v.website -and ([string]$v.website).Trim() -ne ''){ $disp=(([string]$v.website) -replace '^https?://','') -replace '/$',''; '<li><b>Website</b><br><a href="'+(EvEsc $v.website)+'" target="_blank" rel="noopener">'+(EvEsc $disp)+'</a></li>' } else { '' }
+  $facts = (EvFact 'Elevation' $v.elevation)+(EvFact 'Operated by' $v.operatedBy)+$siteRow
+  $factsBlock = if($facts){ '  <ul class="facts">'+$facts+'</ul>'+"`n" } else { '' }
+  $eyebrow = if($loc){ '  <div class="eyebrow">'+(EvEsc $loc)+'</div>'+"`n" } else { '' }
+  $desc = if([string]$v.description -and ([string]$v.description).Trim() -ne ''){ '  <p class="lede">'+(EvEsc $v.description)+'</p>'+"`n" } else { '' }
+  $gettingSec = if([string]$v.howToGetThere -and ([string]$v.howToGetThere).Trim() -ne ''){ '  <h2>Getting there</h2>'+"`n"+'  <p>'+(EvEsc $v.howToGetThere)+'</p>'+"`n" } else { '' }
+  $weatherSec = if([string]$v.seasonalWeather -and ([string]$v.seasonalWeather).Trim() -ne ''){ '  <h2>Seasonal weather</h2>'+"`n"+'  <p>'+(EvEsc $v.seasonalWeather)+'</p>'+"`n" } else { '' }
+  $descMeta = if([string]$v.description){ $d=([string]$v.description -replace '\s+',' '); if($d.Length -gt 180){$d.Substring(0,180)}else{$d} } else { 'Venue: '+$name+'.' }
+  $q=@()
+  $q += '<!DOCTYPE html>'; $q += '<html lang="en">'; $q += '<head>'
+  $q += '<meta charset="UTF-8">'
+  $q += '<meta name="viewport" content="width=device-width, initial-scale=1">'
+  $q += '<meta name="robots" content="noindex, nofollow">'
+  $q += '<title>'+(EvEsc $name)+' | ANFT Venue</title>'
+  $q += '<meta name="description" content="'+(EvEsc $descMeta)+'">'
+  $q += '<link rel="icon" type="image/x-icon" href="/favicon-white.ico?v=2">'
+  $q += '<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">'
+  $q += '<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png?v=2">'
+  $q += '<link rel="preconnect" href="https://fonts.googleapis.com">'
+  $q += '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+  $q += '<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">'
+  $q += '<style>'; $q += $evCSS; $q += ('  '+$venCSS); $q += '</style>'; $q += '</head>'; $q += '<body>'
+  $head = ($q -join "`n") + "`n"
+  $mainInner = $eyebrow + '  <h1>'+(EvEsc $name)+'</h1>'+"`n" + $desc + $factsBlock + $gallery + $gettingSec + $lodgSec + $accSec + $weatherSec + '  <div class="cta-row" style="margin-top:26px"><a class="p-link p-go" href="/index.html#trainings">See upcoming trainings</a></div>'+"`n"
+  return $head + $evHEADER + $banner + "<main class=`"section`">`n" + $mainInner + "</main>`n" + $evFOOTER + "</body>`n</html>`n"
+}
+
+$venDir = Join-Path $root 'venues'
+if (-not (Test-Path $venDir)) { New-Item -ItemType Directory -Path $venDir | Out-Null }
+$vnN = 0
+foreach ($v in $venuesArr) {
+  if (-not $v.id) { continue }
+  $pageHtml = (VnPage $v) -replace "`r`n","`n"
+  [System.IO.File]::WriteAllText((Join-Path $venDir ([string]$v.id + '.html')), $pageHtml, $utf8)
+  $vnN++
+}
+Write-Host "Wrote $vnN venue page(s) into venues/."

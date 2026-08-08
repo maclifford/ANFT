@@ -189,7 +189,7 @@ function buildEventPage(rec, offerings, venuesById) {
   const facts = [
     factRow('Academy', rec.academy),
     factRow('Subcategory', rec.subcategory),
-    factRow('Venue', venueName),
+    (v ? ('<li><b>Venue</b><br><a href="/venues/' + esc(rec.venue_id) + '.html">' + esc(venueName) + '</a></li>') : ''),
     factRow('Country', venueCountry),
     factRow('Dates', dateStr),
     factRow('Enrollment deadline', rec.enrollmentDeadline),
@@ -315,6 +315,74 @@ function writeTrainerPages(tdata) {
   console.log('Wrote ' + n + ' trainer page(s) into trainers/.');
 }
 
+// One public page per venue, from data/venues.json. Never renders internalContact.
+const VEN_CSS = 'h2{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:600;color:var(--navy);font-size:20px;margin:28px 0 8px}.ven-list{margin:6px 0 8px;padding-left:20px}.ven-list li{margin:0 0 6px;font-family:"EB Garamond",Georgia,serif;font-size:16.5px}.ven-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:10px 0 6px}.ven-gallery img{width:100%;height:150px;object-fit:cover;border-radius:10px;border:1px solid var(--line)}';
+
+function buildVenuePage(v) {
+  const name = v.name || 'Venue';
+  const loc = [v.region, v.country].filter(function (x) { return x && String(x).trim(); }).join(', ');
+  const imgs = (v.images || []).filter(function (x) { return x && String(x).trim(); });
+  const banner = imgs.length ? '<div class="banner"><img src="' + esc(assetUrl(imgs[0])) + '" alt="' + esc(name) + '" loading="eager" decoding="async"></div>\n' : '';
+  const gallery = imgs.length > 1 ? ('  <div class="ven-gallery">' + imgs.slice(1).map(function (im) { return '<img src="' + esc(assetUrl(im)) + '" alt="' + esc(name) + '" loading="lazy" decoding="async">'; }).join('') + '</div>\n') : '';
+  function sec(title, body) { return (body && String(body).trim()) ? ('  <h2>' + esc(title) + '</h2>\n  <p>' + esc(body) + '</p>\n') : ''; }
+  const acc = v.accessibility || {};
+  const accParts = [];
+  if (acc.terrain && String(acc.terrain).trim()) accParts.push('<b>Terrain.</b> ' + esc(acc.terrain));
+  if (acc.mobilityAccess && String(acc.mobilityAccess).trim()) accParts.push('<b>Mobility access.</b> ' + esc(acc.mobilityAccess));
+  if (acc.facilities && String(acc.facilities).trim()) accParts.push('<b>Facilities.</b> ' + esc(acc.facilities));
+  const accSec = accParts.length ? ('  <h2>Accessibility</h2>\n  <p>' + accParts.join('<br>') + '</p>\n') : '';
+  const lodg = (v.lodgingOptions || []).filter(function (o) { return o && (o.name || o.description); });
+  const lodgSec = lodg.length ? ('  <h2>Lodging</h2>\n  <ul class="ven-list">' + lodg.map(function (o) { return '<li><b>' + esc(o.name || '') + '</b>' + (o.description ? (' &mdash; ' + esc(o.description)) : '') + '</li>'; }).join('') + '</ul>\n') : '';
+  const siteRow = (v.website && String(v.website).trim()) ? ('<li><b>Website</b><br><a href="' + esc(v.website) + '" target="_blank" rel="noopener">' + esc(String(v.website).replace(/^https?:\/\//, '').replace(/\/$/, '')) + '</a></li>') : '';
+  const facts = factRow('Elevation', v.elevation) + factRow('Operated by', v.operatedBy) + siteRow;
+  const factsBlock = facts ? '  <ul class="facts">' + facts + '</ul>\n' : '';
+  const eyebrow = loc ? '  <div class="eyebrow">' + esc(loc) + '</div>\n' : '';
+  const desc = (v.description && String(v.description).trim()) ? '  <p class="lede">' + esc(v.description) + '</p>\n' : '';
+  const descMeta = v.description ? String(v.description).replace(/\s+/g, ' ').slice(0, 180) : ('Venue: ' + name + '.');
+  return '<!DOCTYPE html>\n<html lang="en">\n<head>\n' +
+    '<meta charset="UTF-8">\n' +
+    '<meta name="viewport" content="width=device-width, initial-scale=1">\n' +
+    '<meta name="robots" content="noindex, nofollow">\n' +
+    '<title>' + esc(name) + ' | ANFT Venue</title>\n' +
+    '<meta name="description" content="' + esc(descMeta) + '">\n' +
+    '<link rel="icon" type="image/x-icon" href="/favicon-white.ico?v=2">\n' +
+    '<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">\n' +
+    '<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png?v=2">\n' +
+    '<link rel="preconnect" href="https://fonts.googleapis.com">\n' +
+    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n' +
+    '<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">\n' +
+    '<style>\n  ' + CSS + '\n  ' + VEN_CSS + '\n</style>\n</head>\n<body>\n' +
+    HEADER +
+    banner +
+    '<main class="section">\n' +
+    eyebrow +
+    '  <h1>' + esc(name) + '</h1>\n' +
+    desc +
+    factsBlock +
+    gallery +
+    sec('Getting there', v.howToGetThere) +
+    lodgSec +
+    accSec +
+    sec('Seasonal weather', v.seasonalWeather) +
+    '  <div class="cta-row" style="margin-top:26px"><a class="p-link p-go" href="/index.html#trainings">See upcoming trainings</a></div>\n' +
+    '</main>\n' +
+    FOOTER +
+    '</body>\n</html>\n';
+}
+
+function writeVenuePages(venues) {
+  const list = venues || [];
+  const dir = path.join(root, 'venues');
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir);
+  let n = 0;
+  list.forEach(function (v) {
+    if (!v.id) return;
+    fs.writeFileSync(path.join(dir, v.id + '.html'), buildVenuePage(v)); // utf8, no BOM
+    n++;
+  });
+  console.log('Wrote ' + n + ' venue page(s) into venues/.');
+}
+
 function main() {
   const json = fs.readFileSync(jsonFp, 'utf8');
   let data;
@@ -325,7 +393,8 @@ function main() {
   catch (e) { console.log('offerings.json unavailable (' + e.message + '); descriptions will fall back to blank.'); }
 
   const venuesById = {};
-  try { (JSON.parse(fs.readFileSync(venuesFp, 'utf8')).venues || []).forEach(function (vv) { venuesById[vv.id] = vv; }); }
+  let venuesArr = [];
+  try { venuesArr = JSON.parse(fs.readFileSync(venuesFp, 'utf8')).venues || []; venuesArr.forEach(function (vv) { venuesById[vv.id] = vv; }); }
   catch (e) { console.log('venues.json unavailable (' + e.message + '); venue facts will be blank.'); }
 
   const hash = contentHash(json);
@@ -383,6 +452,8 @@ function main() {
   }
 
   writeTrainerPages(tdata);
+
+  writeVenuePages(venuesArr);
 }
 
 main();
