@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Venues Editor (internal tool) — ANFT</title>
+<link rel="icon" type="image/x-icon" href="/favicon-white.ico?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#F2F3EC;--card:#FBFCF8;--ink:#26301F;--ink-soft:#4E5A47;--navy:#1E3A5F;
+    --fir:#2E5B3E;--fir-tint:#E1EBDD;--gold:#A9862C;--gold-deep:#7C6118;--gold-tint:#F3EDD9;
+    --bark-deep:#4E3324;--line:#C9D0BE;--radius:12px;--warn:#A33A2A}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:"Nunito Sans",system-ui,sans-serif;font-size:15px;line-height:1.5}
+  .serif{font-family:"Nunito Sans",system-ui,sans-serif}
+  .banner{background:var(--gold-tint);border-bottom:2px solid var(--gold);color:var(--bark-deep);
+    padding:12px 20px;font-size:14px;font-weight:600;position:sticky;top:0;z-index:20}
+  main{max-width:960px;margin:0 auto;padding:24px 20px 80px}
+  h1{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:500;color:var(--navy);font-size:30px;margin-bottom:4px}
+  .routine{color:var(--ink-soft);font-size:13.5px;margin-bottom:18px}
+  .routine code{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .notice{background:#FDF6F4;border:1px solid var(--warn);border-radius:10px;padding:12px 16px;margin-bottom:18px;font-size:14px}
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;align-items:center}
+  button{font-family:inherit;font-size:14px;font-weight:600;border-radius:999px;padding:9px 18px;
+    border:1.5px solid var(--line);background:#fff;color:var(--navy);cursor:pointer}
+  button:hover{border-color:var(--navy)}
+  button.primary{background:var(--gold);border-color:var(--gold);color:#fff}
+  button.primary:hover{background:var(--gold-deep);border-color:var(--gold-deep)}
+  button.danger{color:var(--warn);border-color:#e3c4bd}
+  button.danger:hover{border-color:var(--warn)}
+  .validation{border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin-bottom:20px;background:var(--card);font-size:13.5px}
+  .validation h3{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:8px}
+  .validation ul{margin:0;padding-left:18px}
+  .validation li{color:var(--warn);margin:2px 0}
+  .validation .ok{color:var(--fir);font-weight:600}
+  .cards{display:grid;gap:12px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px;
+    display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .card-title{font-family:"Nunito Sans",system-ui,sans-serif;font-size:17px;color:var(--navy);font-weight:600}
+  .card-sub{font-size:13px;color:var(--ink-soft);margin-top:3px}
+  .card-actions{display:flex;gap:8px;flex:none}
+  .modal{position:fixed;inset:0;background:rgba(20,32,22,.5);display:flex;align-items:flex-start;
+    justify-content:center;padding:30px 16px;overflow:auto;z-index:40}
+  .modal[hidden]{display:none}
+  .modal-box{background:var(--paper);border-radius:var(--radius);max-width:640px;width:100%;padding:24px 26px}
+  .modal-box h2{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:500;color:var(--navy);font-size:23px;margin-bottom:14px}
+  .sub-h{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-deep);font-weight:700;
+    margin:18px 0 8px;padding-top:12px;border-top:1px solid var(--line)}
+  .fld{display:block;margin-bottom:14px}
+  .fld > span{display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:5px}
+  .fld input,.fld select,.fld textarea{width:100%;font-family:inherit;font-size:14px;color:var(--ink);
+    background:#fff;border:1px solid var(--line);border-radius:8px;padding:9px 11px}
+  .fld textarea{min-height:70px;resize:vertical}
+  .fld input:focus,.fld select:focus,.fld textarea:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
+  .fld-hint{display:block;font-size:12px;color:var(--ink-soft);margin-top:5px}
+  .fld-hint code{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:1px 5px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .internal-note{background:var(--fir-tint);border:1px solid #BBD3BE;border-radius:8px;padding:8px 12px;font-size:12.5px;color:var(--ink-soft);margin-bottom:10px}
+  .modal-actions{display:flex;gap:10px;margin-top:18px}
+  .copied{color:var(--fir);font-size:13px;font-weight:600;margin-left:6px}
+</style>
+</head>
+<body>
+<div class="banner">Editing tool — changes are not live until the downloaded file is placed in /data and deployed.</div>
+<main>
+  <a href="staff-hub-7fq3.html" style="display:inline-block;margin-bottom:12px;font-family:inherit;font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--gold-deep);text-decoration:none">&larr; Staff hub</a>
+  <h1 class="serif">Venues Editor</h1>
+  <p class="routine">Internal tool for the venues directory. Update routine: <b>close &amp; reopen</b> &rarr; edit &rarr; <b>download</b> &rarr; <b>replace <code>data/venues.json</code></b> &rarr; <b>deploy</b>. Each event points at a venue by id (chosen in the Trainings editor), so a venue's details update everywhere at once.</p>
+  <div id="loadErr" class="notice" hidden>Couldn&rsquo;t fetch <code>data/venues.json</code> automatically (normal when opening this file directly rather than via a server). Load it manually: <input type="file" id="fileInput" accept="application/json,.json"></div>
+  <div class="toolbar">
+    <button id="addVenue">+ Add venue</button>
+    <button id="download" class="primary">Download updated venues.json</button>
+    <button id="copy">Copy to clipboard</button>
+    <span id="copied" class="copied" hidden>Copied ✓</span>
+  </div>
+  <div id="validation" class="validation">Loading&hellip;</div>
+  <div id="cards" class="cards"></div>
+</main>
+
+<div id="modal" class="modal" hidden>
+  <div class="modal-box">
+    <h2 id="modalTitle">Edit venue</h2>
+    <form id="entryForm" onsubmit="return false"></form>
+    <div class="modal-actions">
+      <button type="button" id="save" class="primary">Save</button>
+      <button type="button" id="cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var state={meta:{},venues:[],seq:1};
+  var edit={key:null};
+  var $=function(id){return document.getElementById(id);};
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function today(){return new Date().toISOString().slice(0,10);}
+  function slug(s){return String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,60)||'venue';}
+  function uniqueId(base){var ids={};state.venues.forEach(function(o){if(o.id)ids[o.id]=1;});var id=base,n=2;while(ids[id])id=base+'-'+(n++);return id;}
+  function g(e,path){ if(!e)return ''; var p=path.split('.'),v=e; for(var i=0;i<p.length;i++){ if(v==null)return ''; v=v[p[i]]; } return v==null?'':v; }
+
+  function init(data){
+    state.meta=data._meta||{};
+    state.venues=(data.venues||[]).map(function(o){o._key=state.seq++;return o;});
+    renderAll();
+  }
+  function renderAll(){renderCards();validate();}
+
+  function cardLine(o){
+    var loc=[o.region,o.country].filter(function(x){return x&&String(x).trim();}).join(', ');
+    var n=(o.images&&o.images.length)||0;
+    return '<div class="card"><div><div class="card-title">'+esc(o.name||'(unnamed)')+'</div>'+
+      '<div class="card-sub">'+esc(loc||'—')+' &middot; id: '+esc(o.id||'?')+' &middot; '+n+' image'+(n===1?'':'s')+'</div></div>'+
+      '<div class="card-actions"><button data-a="edit" data-k="'+o._key+'">Edit</button>'+
+      '<button class="danger" data-a="rm" data-k="'+o._key+'">Remove</button></div></div>';
+  }
+  function renderCards(){
+    var h='<div style="font-size:13px;color:var(--ink-soft);margin-bottom:6px">'+state.venues.length+' venue'+(state.venues.length===1?'':'s')+'</div>';
+    h+=state.venues.map(cardLine).join('')||'<p class="routine">No venues.</p>';
+    $('cards').innerHTML=h;
+  }
+
+  function ta(id,label,val,hint){ return '<label class="fld"><span>'+label+'</span><textarea id="'+id+'">'+esc(val)+'</textarea>'+(hint?'<span class="fld-hint">'+hint+'</span>':'')+'</label>'; }
+  function tf(id,label,val,type,hint){ return '<label class="fld"><span>'+label+'</span><input type="'+(type||'text')+'" id="'+id+'" value="'+esc(val)+'"'+(type==='number'?' step="any"':'')+'>'+(hint?'<span class="fld-hint">'+hint+'</span>':'')+'</label>'; }
+
+  function buildForm(e){
+    var imgs=(e&&Array.isArray(e.images))?e.images.join('\n'):'';
+    var lodg=(e&&Array.isArray(e.lodgingOptions))?e.lodgingOptions.map(function(o){return (o.name||'')+((o.description!=null&&o.description!=='')?(' | '+o.description):'');}).join('\n'):'';
+    var h='';
+    h+=tf('f_name','Name *',g(e,'name'));
+    h+='<div class="sub-h">Location</div>';
+    h+='<div class="two">'+tf('f_region','City or region',g(e,'region'))+tf('f_country','Country',g(e,'country'))+'</div>';
+    h+='<div class="two">'+tf('f_latitude','Latitude',g(e,'latitude'),'number')+tf('f_longitude','Longitude',g(e,'longitude'),'number')+'</div>';
+    h+=tf('f_elevation','Elevation',g(e,'elevation'),'text','e.g. 1,650 m / 5,400 ft');
+    h+='<div class="sub-h">Media</div>';
+    h+=ta('f_images','Images (one path per line)',imgs,'Paths under <code>images/thumbnails/</code>, one per line, e.g. <code>images/thumbnails/dharma-centre.webp</code>');
+    h+='<div class="sub-h">Description &amp; travel</div>';
+    h+=ta('f_description','Description',g(e,'description'));
+    h+=ta('f_howToGetThere','How to get there',g(e,'howToGetThere'));
+    h+=ta('f_seasonalWeather','Seasonal weather notes',g(e,'seasonalWeather'));
+    h+='<div class="sub-h">Lodging options (costs live on each event)</div>';
+    h+=ta('f_lodgingOptions','Lodging options',lodg,'One per line as <code>Name | description</code> &mdash; e.g. <code>Shared cabin | bunk beds, shared bath</code>. No costs here.');
+    h+='<div class="sub-h">Accessibility</div>';
+    h+=ta('f_acc_terrain','Terrain',g(e,'accessibility.terrain'));
+    h+=ta('f_acc_mobility','Mobility access',g(e,'accessibility.mobilityAccess'));
+    h+=ta('f_acc_facilities','Facilities',g(e,'accessibility.facilities'));
+    h+='<div class="sub-h">Operator &amp; links</div>';
+    h+=tf('f_operatedBy','Operated by',g(e,'operatedBy'));
+    h+=tf('f_website','Website',g(e,'website'),'url');
+    h+='<div class="sub-h">Internal contact</div>';
+    h+='<div class="internal-note">Internal only &mdash; phone and email here are for staff use and must never be shown on a public page.</div>';
+    h+='<div class="two">'+tf('f_ic_phone','Phone (internal)',g(e,'internalContact.phone'))+tf('f_ic_email','Email (internal)',g(e,'internalContact.email'))+'</div>';
+    $('entryForm').innerHTML=h;
+  }
+
+  function txt(id){return ($(id).value||'').trim();}
+  function num(id){var r=txt(id);if(r==='')return null;var n=parseFloat(r);return isNaN(n)?null:n;}
+  function lines(id){return ($(id).value||'').split(/\r?\n/).map(function(s){return s.trim();}).filter(function(s){return s;});}
+  function readForm(){
+    var lodg=lines('f_lodgingOptions').map(function(l){var i=l.indexOf(' | ');return i<0?{name:l,description:''}:{name:l.slice(0,i).trim(),description:l.slice(i+3).trim()};});
+    return {
+      name:txt('f_name'), region:txt('f_region'), country:txt('f_country'),
+      latitude:num('f_latitude'), longitude:num('f_longitude'),
+      images:lines('f_images'), description:txt('f_description'), howToGetThere:txt('f_howToGetThere'),
+      lodgingOptions:lodg, seasonalWeather:txt('f_seasonalWeather'), elevation:txt('f_elevation'),
+      accessibility:{terrain:txt('f_acc_terrain'),mobilityAccess:txt('f_acc_mobility'),facilities:txt('f_acc_facilities')},
+      operatedBy:txt('f_operatedBy'), website:txt('f_website'),
+      internalContact:{phone:txt('f_ic_phone'),email:txt('f_ic_email')}
+    };
+  }
+  function assemble(id,v){
+    return {id:id,name:v.name,region:v.region,country:v.country,latitude:v.latitude,longitude:v.longitude,
+      images:v.images,description:v.description,howToGetThere:v.howToGetThere,lodgingOptions:v.lodgingOptions,
+      seasonalWeather:v.seasonalWeather,elevation:v.elevation,accessibility:v.accessibility,
+      operatedBy:v.operatedBy,website:v.website,internalContact:v.internalContact};
+  }
+
+  function openModal(key){
+    edit={key:key};
+    var entry=key?state.venues.filter(function(o){return o._key===key;})[0]:null;
+    $('modalTitle').textContent=key?'Edit venue':'Add venue';
+    buildForm(entry);
+    $('modal').hidden=false;
+  }
+  function closeModal(){$('modal').hidden=true;}
+  function saveEntry(){
+    var v=readForm();
+    if(!v.name){alert('Name is required.');return;}
+    if(edit.key){
+      var o=state.venues.filter(function(x){return x._key===edit.key;})[0];
+      var a=assemble(o.id,v); a._key=o._key;
+      var i=state.venues.map(function(x){return x._key;}).indexOf(o._key);
+      state.venues[i]=a;
+    } else {
+      var n=assemble(uniqueId(slug(v.name)),v); n._key=state.seq++;
+      state.venues.push(n);
+    }
+    closeModal();renderAll();
+  }
+  function removeEntry(key){
+    var o=state.venues.filter(function(x){return x._key===key;})[0];
+    if(!confirm('Remove "'+(o&&o.name||'this venue')+'"? Events pointing at it will lose their venue.'))return;
+    var a=state.venues,i=a.map(function(x){return x._key;}).indexOf(key);
+    if(i>-1)a.splice(i,1);
+    renderAll();
+  }
+
+  function validate(){
+    var w=[],seen={};
+    state.venues.forEach(function(o){
+      var label='Venue: '+(o.name||'(unnamed)');
+      if(!o.name)w.push(label+': missing name');
+      if(o.id){ if(seen[o.id])w.push('Duplicate id "'+o.id+'"'); seen[o.id]=true; }
+      if(o.website&&!/^https?:\/\//i.test(o.website))w.push(label+': website should start with http(s)://');
+      (o.images||[]).forEach(function(p){ if(p&&!/^images\//.test(p))w.push(label+': image path "'+p+'" should start with images/'); });
+    });
+    var v=$('validation');
+    if(w.length===0){v.innerHTML='<h3>Validation</h3><div class="ok">Looks good — '+state.venues.length+' venue(s), no problems found.</div>';}
+    else{v.innerHTML='<h3>Validation ('+w.length+' warning'+(w.length>1?'s':'')+' &mdash; download not blocked)</h3><ul>'+w.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>';}
+  }
+
+  function ordered(o){
+    var r=assemble(o.id,o); // enforces key order; drops _key
+    return r;
+  }
+  function buildOutput(){
+    var meta=JSON.parse(JSON.stringify(state.meta));
+    meta.generated_date=today();
+    meta.notes=(state.meta.notes||'')+' — edited via editor page '+today();
+    var out={_meta:meta,venues:state.venues.map(ordered)};
+    return JSON.stringify(out,null,2)+'\n';
+  }
+  function download(){
+    var blob=new Blob([buildOutput()],{type:'application/json'});
+    var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='venues.json';
+    document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(a.href);},1000);
+  }
+  function copy(){
+    var t=buildOutput();
+    function done(){var c=$('copied');c.hidden=false;setTimeout(function(){c.hidden=true;},1800);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){fallback(t,done);});}
+    else fallback(t,done);
+  }
+  function fallback(t,done){var x=document.createElement('textarea');x.value=t;document.body.appendChild(x);x.select();try{document.execCommand('copy');done();}catch(e){alert('Copy failed — use Download instead.');}document.body.removeChild(x);}
+
+  $('addVenue').addEventListener('click',function(){openModal(null);});
+  $('save').addEventListener('click',saveEntry);
+  $('cancel').addEventListener('click',closeModal);
+  $('download').addEventListener('click',download);
+  $('copy').addEventListener('click',copy);
+  $('cards').addEventListener('click',function(e){
+    var b=e.target.closest('button[data-a]');if(!b)return;
+    var a=b.getAttribute('data-a'),k=+b.getAttribute('data-k');
+    if(a==='edit')openModal(k);else if(a==='rm')removeEntry(k);
+  });
+  $('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+  fetch('data/venues.json').then(function(r){if(!r.ok)throw 0;return r.json();}).then(init).catch(function(){
+    $('loadErr').hidden=false;$('validation').innerHTML='<h3>Validation</h3><div class="routine">Load a JSON file to begin.</div>';
+    $('fileInput').addEventListener('change',function(e){
+      var f=e.target.files[0];if(!f)return;var rd=new FileReader();
+      rd.onload=function(){try{init(JSON.parse(rd.result));$('loadErr').hidden=true;}catch(err){alert('Invalid JSON: '+err);}};
+      rd.readAsText(f);
+    });
+  });
+})();
+</script>
+</body>
+</html>
