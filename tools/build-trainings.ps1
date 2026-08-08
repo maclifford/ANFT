@@ -61,18 +61,19 @@ $thash  = (-join ($sha.ComputeHash([System.Text.Encoding]::UTF8.GetBytes($tnorm)
 $tmarker = "<!-- trainers-data-hash:$thash -->"
 $rxTrBlock = [regex]'(?s)(<script type="application/json" id="trainersData">).*?(</script>)'
 $rxTrHash  = [regex]'<!--\s*trainers-data-hash:[^>]*?-->'
-$tname = 'our-trainers.html'
-$tfp   = Join-Path $root $tname
-$thtml = [System.IO.File]::ReadAllText($tfp)
-if (-not $rxTrBlock.IsMatch($thtml)) { throw "trainersData <script> block not found in $tname" }
-if (-not $rxTrHash.IsMatch($thtml))  { throw "trainers-data-hash marker not found in $tname" }
-$tout = $rxTrBlock.Replace($thtml, { param($m) $m.Groups[1].Value + $tjson + $m.Groups[2].Value }, 1)
-$tout = $rxTrHash.Replace($tout,  { param($m) $tmarker }, 1)
-if ($tout -eq $thtml) {
-  Write-Host "$tname already matches data/trainers.json (no change)."
-} else {
-  [System.IO.File]::WriteAllText($tfp, $tout, $utf8)
-  Write-Host "Re-inlined data/trainers.json into $tname (hash $thash)."
+foreach ($tname in @('our-trainers.html','a-living-system.html')) {
+  $tfp   = Join-Path $root $tname
+  $thtml = [System.IO.File]::ReadAllText($tfp)
+  if (-not $rxTrBlock.IsMatch($thtml)) { throw "trainersData <script> block not found in $tname" }
+  if (-not $rxTrHash.IsMatch($thtml))  { throw "trainers-data-hash marker not found in $tname" }
+  $tout = $rxTrBlock.Replace($thtml, { param($m) $m.Groups[1].Value + $tjson + $m.Groups[2].Value }, 1)
+  $tout = $rxTrHash.Replace($tout,  { param($m) $tmarker }, 1)
+  if ($tout -eq $thtml) {
+    Write-Host "$tname already matches data/trainers.json (no change)."
+  } else {
+    [System.IO.File]::WriteAllText($tfp, $tout, $utf8)
+    Write-Host "Re-inlined data/trainers.json into $tname (hash $thash)."
+  }
 }
 
 # --- Inline venues.json into index.html (home-page cards show venue/location) ---
@@ -255,13 +256,13 @@ function TrPage($p){
   } else { $paras = '  <p></p>' }
   $img = if([string]$p.photo){'<img src="'+(EvEsc (EvAsset $p.photo))+'" alt="'+(EvEsc $name)+'" loading="eager" decoding="async" onerror="this.remove()">'}else{''}
   $eyebrow = if($roleRegion){'    <div class="eyebrow">'+(EvEsc $roleRegion)+"</div>`n"}else{''}
-  $descMeta = if($bioText){ $d=([string]$bioText -replace '\s+',' '); if($d.Length -gt 180){$d.Substring(0,180)}else{$d} }else{ 'Trainer profile for '+$name+'.' }
+  $descMeta = if($bioText){ $d=([string]$bioText -replace '\s+',' '); if($d.Length -gt 180){$d.Substring(0,180)}else{$d} }else{ 'Profile for '+$name+'.' }
   $q = @()
   $q += '<!DOCTYPE html>'; $q += '<html lang="en">'; $q += '<head>'
   $q += '<meta charset="UTF-8">'
   $q += '<meta name="viewport" content="width=device-width, initial-scale=1">'
   $q += '<meta name="robots" content="noindex, nofollow">'
-  $q += '<title>'+(EvEsc $name)+' | ANFT Trainer</title>'
+  $q += '<title>'+(EvEsc $name)+' | ANFT</title>'
   $q += '<meta name="description" content="'+(EvEsc $descMeta)+'">'
   $q += '<link rel="icon" type="image/x-icon" href="/favicon-white.ico?v=2">'
   $q += '<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">'

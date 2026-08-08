@@ -39,13 +39,15 @@ $tjson    = [System.IO.File]::ReadAllText((Join-Path $root 'data\trainers.json')
 $tnorm    = ($tjson -replace "`r`n","`n") -replace "`r","`n"
 $tcurrent = (-join ($sha.ComputeHash([System.Text.Encoding]::UTF8.GetBytes($tnorm)) | ForEach-Object { $_.ToString('x2') })).Substring(0,16)
 $rxTrHash = [regex]'<!--\s*trainers-data-hash:([^\s>]*)\s*-->'
-$thtml    = [System.IO.File]::ReadAllText((Join-Path $root 'our-trainers.html'))
-$tm = $rxTrHash.Match($thtml)
-$tembedded = if ($tm.Success) { $tm.Groups[1].Value } else { '(none)' }
-if ($tembedded -ne $tcurrent) { $stale += "our-trainers.html (embedded $tembedded, expected $tcurrent)" }
+foreach ($tname in @('our-trainers.html','a-living-system.html')) {
+  $thtml    = [System.IO.File]::ReadAllText((Join-Path $root $tname))
+  $tm = $rxTrHash.Match($thtml)
+  $tembedded = if ($tm.Success) { $tm.Groups[1].Value } else { '(none)' }
+  if ($tembedded -ne $tcurrent) { $stale += "$tname (embedded $tembedded, expected $tcurrent)" }
+}
 
 if ($stale.Count -eq 0) {
-  Write-Host "FRESH - index.html/apply.html match trainings.json (hash $current); our-trainers.html matches trainers.json (hash $tcurrent)."
+  Write-Host "FRESH - index.html/apply.html match trainings.json (hash $current); our-trainers.html and a-living-system.html match trainers.json (hash $tcurrent)."
   exit 0
 } else {
   Write-Host "STALE - run the build (update-trainings, or: powershell -File tools/build-trainings.ps1)"

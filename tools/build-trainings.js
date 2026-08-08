@@ -29,7 +29,7 @@ const HASH = /<!--\s*trainings-data-hash:[^>]*?-->/;
 // The trainers directory (data/trainers.json) is inlined into our-trainers.html
 // the same way: a JSON <script> block plus a freshness-hash comment.
 const trainersFp = path.join(root, 'data', 'trainers.json');
-const trainersPage = 'our-trainers.html';
+const trainersPages = ['our-trainers.html', 'a-living-system.html'];
 const TR_BLOCK = /(<script type="application\/json" id="trainersData">)[\s\S]*?(<\/script>)/;
 const TR_HASH = /<!--\s*trainers-data-hash:[^>]*?-->/;
 
@@ -271,13 +271,13 @@ function buildTrainerPage(p) {
     : '  <p></p>';
   const img = p.photo ? '<img src="' + esc(assetUrl(p.photo)) + '" alt="' + esc(name) + '" loading="eager" decoding="async" onerror="this.remove()">' : '';
   const eyebrow = roleRegion ? '    <div class="eyebrow">' + esc(roleRegion) + '</div>\n' : '';
-  const descMeta = bioText ? String(bioText).replace(/\s+/g, ' ').slice(0, 180) : ('Trainer profile for ' + name + '.');
+  const descMeta = bioText ? String(bioText).replace(/\s+/g, ' ').slice(0, 180) : ('Profile for ' + name + '.');
 
   return '<!DOCTYPE html>\n<html lang="en">\n<head>\n' +
     '<meta charset="UTF-8">\n' +
     '<meta name="viewport" content="width=device-width, initial-scale=1">\n' +
     '<meta name="robots" content="noindex, nofollow">\n' +
-    '<title>' + esc(name) + ' | ANFT Trainer</title>\n' +
+    '<title>' + esc(name) + ' | ANFT</title>\n' +
     '<meta name="description" content="' + esc(descMeta) + '">\n' +
     '<link rel="icon" type="image/x-icon" href="/favicon-white.ico?v=2">\n' +
     '<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">\n' +
@@ -431,25 +431,27 @@ function main() {
 
   writeEventPages(data, offerings, venuesById);
 
-  // Inline the trainers directory into our-trainers.html (same mechanism).
+  // Inline the trainers directory into every page that embeds it (same mechanism).
   const tjson = fs.readFileSync(trainersFp, 'utf8');
   let tdata;
   try { tdata = JSON.parse(tjson); } catch (e) { throw new Error('data/trainers.json is not valid JSON: ' + e.message); }
   const thash = contentHash(tjson);
   const tmarker = '<!-- trainers-data-hash:' + thash + ' -->';
-  const tfp = path.join(root, trainersPage);
-  const thtml = fs.readFileSync(tfp, 'utf8');
-  if (!TR_BLOCK.test(thtml)) throw new Error('trainersData <script> block not found in ' + trainersPage);
-  if (!TR_HASH.test(thtml)) throw new Error('trainers-data-hash marker not found in ' + trainersPage);
-  const tout = thtml
-    .replace(TR_BLOCK, function (m, open, close) { return open + tjson + close; })
-    .replace(TR_HASH, function () { return tmarker; });
-  if (tout === thtml) {
-    console.log(trainersPage + ' already matches data/trainers.json (no change).');
-  } else {
-    fs.writeFileSync(tfp, tout); // utf8, no BOM
-    console.log('Re-inlined data/trainers.json into ' + trainersPage + ' (hash ' + thash + ').');
-  }
+  trainersPages.forEach(function (name) {
+    const tfp = path.join(root, name);
+    const thtml = fs.readFileSync(tfp, 'utf8');
+    if (!TR_BLOCK.test(thtml)) throw new Error('trainersData <script> block not found in ' + name);
+    if (!TR_HASH.test(thtml)) throw new Error('trainers-data-hash marker not found in ' + name);
+    const tout = thtml
+      .replace(TR_BLOCK, function (m, open, close) { return open + tjson + close; })
+      .replace(TR_HASH, function () { return tmarker; });
+    if (tout === thtml) {
+      console.log(name + ' already matches data/trainers.json (no change).');
+    } else {
+      fs.writeFileSync(tfp, tout); // utf8, no BOM
+      console.log('Re-inlined data/trainers.json into ' + name + ' (hash ' + thash + ').');
+    }
+  });
 
   writeTrainerPages(tdata);
 
