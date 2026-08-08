@@ -153,6 +153,8 @@
 .trainer-photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
 .trainer-photo span{font-family:"Nunito Sans",system-ui,sans-serif;font-size:40px;color:var(--fir);font-weight:600}
 .trainer-name{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:600;color:var(--navy);font-size:23px;line-height:1.2}
+.trainer-name a{color:inherit;text-decoration:none}
+.trainer-name a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:var(--gold)}
 .trainer-meta{font-size:14px;color:var(--gold-deep);font-weight:600;letter-spacing:.02em;margin:5px 0 2px}
 .trainer-loc{color:var(--ink-soft);font-weight:400}
 .trainer-mail{display:inline-block;font-size:13.5px;color:var(--gold-deep);text-decoration:none;margin-top:2px;overflow-wrap:anywhere}
@@ -515,7 +517,7 @@
     var bio='';
     if(bioText){ var paras=String(bioText).split(/\n\s*\n/); bio='<div class="trainer-bio">'+paras.map(function(t){return '<p>'+esc(t.trim())+'</p>';}).join('')+'</div>'; }
     var img=p.photo?'<img src="'+esc(p.photo)+'" alt="'+esc(p.name)+'" loading="lazy" decoding="async" onerror="this.remove()">':'';
-    return '<article class="trainer"><div class="trainer-photo">'+img+'<span>'+esc(initials(p.name))+'</span></div><div class="trainer-body"><div class="trainer-name">'+esc(p.name)+'</div>'+meta+mail+bio+'</div></article>';
+    return '<article class="trainer"><div class="trainer-photo">'+img+'<span>'+esc(initials(p.name))+'</span></div><div class="trainer-body"><div class="trainer-name">'+(p.id?'<a href="/trainers/'+encodeURIComponent(p.id)+'.html">'+esc(p.name)+'</a>':esc(p.name))+'</div>'+meta+mail+bio+'</div></article>';
   }
   var out='';
   groupOrder.forEach(function(g){ out+='<h2>'+esc(g)+'</h2><div class="roster">'+groups[g].map(card).join('')+'</div>'; });

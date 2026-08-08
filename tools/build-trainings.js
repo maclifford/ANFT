@@ -247,6 +247,69 @@ function writeEventPages(data, offerings) {
   console.log('Wrote ' + n + ' event detail page(s) into events/.');
 }
 
+// One profile page per trainer, built from data/trainers.json (mirrors the
+// event-page approach). Reuses the shared CSS/HEADER/FOOTER plus a little
+// trainer-specific layout CSS.
+const TR_CSS = '.tr-hero{display:flex;gap:26px;align-items:center;flex-wrap:wrap;margin:6px 0 20px}.tr-photo{width:170px;height:170px;border-radius:16px;overflow:hidden;background:var(--fir-tint);position:relative;flex:none;display:flex;align-items:center;justify-content:center}.tr-photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}.tr-photo span{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:700;font-size:46px;color:var(--fir)}.tr-hero h1{margin:0}.tr-bio{max-width:70ch}.tr-bio p{font-family:"EB Garamond",Georgia,serif;font-size:17px;color:var(--ink);margin:0 0 14px}.tr-back{display:inline-block;margin-bottom:4px}';
+
+function trainerInitials(name) {
+  const w = String(name || '').split(/\s+/).filter(function (x) { return x && !/^(dr|mr|mrs|ms|prof)\.?$/i.test(x); });
+  return (((w[0] || ' ').charAt(0)) + ((w[1] || '').charAt(0))).toUpperCase();
+}
+
+function buildTrainerPage(p) {
+  const name = p.name || 'Trainer';
+  const roleRegion = [p.role, p.region].filter(function (x) { return x && String(x).trim(); }).join(' · ');
+  const bioText = (p.bio_full && String(p.bio_full).trim()) ? p.bio_full : (p.bio_excerpt || '');
+  const paras = bioText
+    ? String(bioText).split(/\r?\n\s*\r?\n/).map(function (t) { return '  <p>' + esc(t.trim()) + '</p>'; }).join('\n')
+    : '  <p></p>';
+  const img = p.photo ? '<img src="' + esc(assetUrl(p.photo)) + '" alt="' + esc(name) + '" loading="eager" decoding="async" onerror="this.remove()">' : '';
+  const eyebrow = roleRegion ? '    <div class="eyebrow">' + esc(roleRegion) + '</div>\n' : '';
+  const descMeta = bioText ? String(bioText).replace(/\s+/g, ' ').slice(0, 180) : ('Trainer profile for ' + name + '.');
+
+  return '<!DOCTYPE html>\n<html lang="en">\n<head>\n' +
+    '<meta charset="UTF-8">\n' +
+    '<meta name="viewport" content="width=device-width, initial-scale=1">\n' +
+    '<meta name="robots" content="noindex, nofollow">\n' +
+    '<title>' + esc(name) + ' | ANFT Trainer</title>\n' +
+    '<meta name="description" content="' + esc(descMeta) + '">\n' +
+    '<link rel="icon" type="image/x-icon" href="/favicon-white.ico?v=2">\n' +
+    '<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">\n' +
+    '<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png?v=2">\n' +
+    '<link rel="preconnect" href="https://fonts.googleapis.com">\n' +
+    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n' +
+    '<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">\n' +
+    '<style>\n  ' + CSS + '\n  ' + TR_CSS + '\n</style>\n</head>\n<body>\n' +
+    HEADER +
+    '<main class="section">\n' +
+    '  <a class="p-link tr-back" href="/our-trainers.html">&larr; All trainers</a>\n' +
+    '  <div class="tr-hero">\n' +
+    '    <div class="tr-photo">' + img + '<span>' + esc(trainerInitials(name)) + '</span></div>\n' +
+    '    <div>\n' +
+    '      <h1>' + esc(name) + '</h1>\n' +
+    eyebrow +
+    '    </div>\n' +
+    '  </div>\n' +
+    '  <div class="tr-bio">\n' + paras + '\n  </div>\n' +
+    '</main>\n' +
+    FOOTER +
+    '</body>\n</html>\n';
+}
+
+function writeTrainerPages(tdata) {
+  const list = (tdata && tdata.trainers) || [];
+  const dir = path.join(root, 'trainers');
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir);
+  let n = 0;
+  list.forEach(function (p) {
+    if (!p.id) return;
+    fs.writeFileSync(path.join(dir, p.id + '.html'), buildTrainerPage(p)); // utf8, no BOM
+    n++;
+  });
+  console.log('Wrote ' + n + ' trainer page(s) into trainers/.');
+}
+
 function main() {
   const json = fs.readFileSync(jsonFp, 'utf8');
   let data;
@@ -279,7 +342,8 @@ function main() {
 
   // Inline the trainers directory into our-trainers.html (same mechanism).
   const tjson = fs.readFileSync(trainersFp, 'utf8');
-  try { JSON.parse(tjson); } catch (e) { throw new Error('data/trainers.json is not valid JSON: ' + e.message); }
+  let tdata;
+  try { tdata = JSON.parse(tjson); } catch (e) { throw new Error('data/trainers.json is not valid JSON: ' + e.message); }
   const thash = contentHash(tjson);
   const tmarker = '<!-- trainers-data-hash:' + thash + ' -->';
   const tfp = path.join(root, trainersPage);
@@ -295,6 +359,8 @@ function main() {
     fs.writeFileSync(tfp, tout); // utf8, no BOM
     console.log('Re-inlined data/trainers.json into ' + trainersPage + ' (hash ' + thash + ').');
   }
+
+  writeTrainerPages(tdata);
 }
 
 main();

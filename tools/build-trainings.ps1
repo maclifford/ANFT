@@ -214,3 +214,62 @@ foreach ($rec in $records) {
   $evN++
 }
 Write-Host "Wrote $evN event detail page(s) into events/."
+
+# --- Trainer profile pages (mirror of buildTrainerPage/writeTrainerPages in build-trainings.js) ---
+$trCSS = '.tr-hero{display:flex;gap:26px;align-items:center;flex-wrap:wrap;margin:6px 0 20px}.tr-photo{width:170px;height:170px;border-radius:16px;overflow:hidden;background:var(--fir-tint);position:relative;flex:none;display:flex;align-items:center;justify-content:center}.tr-photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}.tr-photo span{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:700;font-size:46px;color:var(--fir)}.tr-hero h1{margin:0}.tr-bio{max-width:70ch}.tr-bio p{font-family:"EB Garamond",Georgia,serif;font-size:17px;color:var(--ink);margin:0 0 14px}.tr-back{display:inline-block;margin-bottom:4px}'
+function TrInitials($name){
+  $w = @(($name -split '\s+') | Where-Object { $_ -and ($_ -notmatch '^(?i)(dr|mr|mrs|ms|prof)\.?$') })
+  $i1 = if($w.Count -ge 1 -and $w[0].Length -ge 1){$w[0].Substring(0,1)}else{' '}
+  $i2 = if($w.Count -ge 2 -and $w[1].Length -ge 1){$w[1].Substring(0,1)}else{''}
+  return ($i1 + $i2).ToUpper()
+}
+function TrPage($p){
+  $name = if([string]$p.name){[string]$p.name}else{'Trainer'}
+  $rr = @(); if([string]$p.role){$rr += [string]$p.role}; if([string]$p.region){$rr += [string]$p.region}
+  $roleRegion = ($rr -join (' ' + [char]0x00B7 + ' '))
+  $bioText = if([string]$p.bio_full -and ([string]$p.bio_full).Trim() -ne ''){[string]$p.bio_full}elseif([string]$p.bio_excerpt){[string]$p.bio_excerpt}else{''}
+  if($bioText -ne ''){
+    $parts = [regex]::Split($bioText, '\r?\n\s*\r?\n') | Where-Object { $_.Trim() -ne '' }
+    $paras = (($parts | ForEach-Object { '  <p>'+(EvEsc ($_.Trim()))+'</p>' }) -join "`n")
+  } else { $paras = '  <p></p>' }
+  $img = if([string]$p.photo){'<img src="'+(EvEsc (EvAsset $p.photo))+'" alt="'+(EvEsc $name)+'" loading="eager" decoding="async" onerror="this.remove()">'}else{''}
+  $eyebrow = if($roleRegion){'    <div class="eyebrow">'+(EvEsc $roleRegion)+"</div>`n"}else{''}
+  $descMeta = if($bioText){ $d=([string]$bioText -replace '\s+',' '); if($d.Length -gt 180){$d.Substring(0,180)}else{$d} }else{ 'Trainer profile for '+$name+'.' }
+  $q = @()
+  $q += '<!DOCTYPE html>'; $q += '<html lang="en">'; $q += '<head>'
+  $q += '<meta charset="UTF-8">'
+  $q += '<meta name="viewport" content="width=device-width, initial-scale=1">'
+  $q += '<meta name="robots" content="noindex, nofollow">'
+  $q += '<title>'+(EvEsc $name)+' | ANFT Trainer</title>'
+  $q += '<meta name="description" content="'+(EvEsc $descMeta)+'">'
+  $q += '<link rel="icon" type="image/x-icon" href="/favicon-white.ico?v=2">'
+  $q += '<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">'
+  $q += '<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png?v=2">'
+  $q += '<link rel="preconnect" href="https://fonts.googleapis.com">'
+  $q += '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+  $q += '<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">'
+  $q += '<style>'; $q += $evCSS; $q += ('  '+$trCSS); $q += '</style>'; $q += '</head>'; $q += '<body>'
+  $head = ($q -join "`n") + "`n"
+  $mainInner = '  <a class="p-link tr-back" href="/our-trainers.html">&larr; All trainers</a>'+"`n" +
+    '  <div class="tr-hero">'+"`n" +
+    '    <div class="tr-photo">'+$img+'<span>'+(EvEsc (TrInitials $name))+'</span></div>'+"`n" +
+    '    <div>'+"`n" +
+    '      <h1>'+(EvEsc $name)+'</h1>'+"`n" +
+    $eyebrow +
+    '    </div>'+"`n" +
+    '  </div>'+"`n" +
+    '  <div class="tr-bio">'+"`n"+$paras+"`n  </div>"+"`n"
+  return $head + $evHEADER + "<main class=`"section`">`n" + $mainInner + "</main>`n" + $evFOOTER + "</body>`n</html>`n"
+}
+
+$tdata = $tjson | ConvertFrom-Json
+$trDir = Join-Path $root 'trainers'
+if (-not (Test-Path $trDir)) { New-Item -ItemType Directory -Path $trDir | Out-Null }
+$trN = 0
+foreach ($p in @($tdata.trainers)) {
+  if (-not $p.id) { continue }
+  $pageHtml = (TrPage $p) -replace "`r`n","`n"
+  [System.IO.File]::WriteAllText((Join-Path $trDir ([string]$p.id + '.html')), $pageHtml, $utf8)
+  $trN++
+}
+Write-Host "Wrote $trN trainer page(s) into trainers/."
