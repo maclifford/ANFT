@@ -131,9 +131,8 @@
       {k:'startDate',l:'Start date',t:'date'},
       {k:'language',l:'Language',t:'select'},
       {k:'schedule',l:'Schedule',t:'text'},
-      {k:'venue',l:'Venue',t:'text',keep:true},
-      {k:'country',l:'Country',t:'text',keep:true},
-      {k:'lodging',l:'Lodging',t:'text',keep:true},
+      {k:'venue_id',l:'Venue',t:'venue',keep:true},
+      {k:'lodgingCost',l:'Lodging cost, USD (optional)',t:'number'},
       {k:'description',l:'Description',t:'textarea',keep:true},
       {k:'trainers',l:'Trainers (one name per line)',t:'list',keep:true},
       {k:'url',l:'Details / registration URL',t:'url'},
@@ -153,9 +152,8 @@
       {k:'start',l:'Start (YYYY-MM-DD)',t:'date',keep:true},
       {k:'date',l:'Date',t:'date'},
       {k:'time',l:'Time',t:'text'},
-      {k:'venue',l:'Venue',t:'text',keep:true},
-      {k:'country',l:'Country',t:'text',keep:true},
-      {k:'lodging',l:'Lodging',t:'text',keep:true},
+      {k:'venue_id',l:'Venue',t:'venue',keep:true},
+      {k:'lodgingCost',l:'Lodging cost, USD (optional)',t:'number'},
       {k:'description',l:'Description',t:'textarea',keep:true},
       {k:'trainers',l:'Trainers (one name per line)',t:'list',keep:true},
       {k:'url',l:'Registration URL',t:'url'},
@@ -166,10 +164,10 @@
     ]
   };
   var ORDER={
-    training:['id','start','kind','title','category','subcategory','cohort','status','enrollmentDeadline','firstCall','startDate','language','schedule','url','registrationUrl','zoomUrl','image','price','deposit','depositUrl','academy','venue','country','description','trainers','lodging','tuition'],
-    event:['id','start','kind','title','category','date','time','url','registrationUrl','zoomUrl','image','academy','venue','country','description','trainers','lodging','tuition']
+    training:['id','start','kind','title','category','subcategory','cohort','status','enrollmentDeadline','firstCall','startDate','language','schedule','url','registrationUrl','zoomUrl','image','price','deposit','depositUrl','academy','venue_id','description','trainers','lodgingCost','tuition'],
+    event:['id','start','kind','title','category','date','time','url','registrationUrl','zoomUrl','image','academy','venue_id','description','trainers','lodgingCost','tuition']
   };
-  var state={meta:{},trainings:[],events:[],seq:1};
+  var state={meta:{},trainings:[],events:[],venues:[],seq:1};
   var edit={type:null,key:null};
   var $=function(id){return document.getElementById(id);};
   function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
@@ -223,6 +221,12 @@
       } else if(fd.t==='list'){
         var lv=(entry&&Array.isArray(entry[fd.k]))?entry[fd.k].join('\n'):'';
         h+='<textarea id="f_'+fd.k+'" placeholder="One name per line">'+esc(lv)+'</textarea>';
+      } else if(fd.t==='venue'){
+        var vcur=entry?entry[fd.k]:'';
+        h+='<select id="f_'+fd.k+'"><option value="">&mdash; none (online / no venue) &mdash;</option>';
+        (state.venues||[]).forEach(function(v){h+='<option value="'+esc(v.id)+'"'+(v.id===vcur?' selected':'')+'>'+esc(v.name)+(v.region?' ('+esc(v.region)+', '+esc(v.country)+')':'')+'</option>';});
+        if(vcur&&!(state.venues||[]).some(function(v){return v.id===vcur;})){h+='<option value="'+esc(vcur)+'" selected>'+esc(vcur)+' (unknown &mdash; not in venues.json)</option>';}
+        h+='</select>';
       } else {
         var extra=(fd.t==='number')?' step="0.01" min="0" inputmode="decimal"':'';
         h+='<input type="'+fd.t+'" id="f_'+fd.k+'"'+extra+' value="'+(entry&&entry[fd.k]!=null?esc(entry[fd.k]):'')+'">';
@@ -341,15 +345,19 @@
   });
   $('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
 
-  // load
-  fetch('data/trainings.json').then(function(r){if(!r.ok)throw 0;return r.json();}).then(init).catch(function(){
-    $('loadErr').hidden=false;$('validation').innerHTML='<h3>Validation</h3><div class="routine">Load a JSON file to begin.</div>';
-    $('fileInput').addEventListener('change',function(e){
-      var f=e.target.files[0];if(!f)return;var rd=new FileReader();
-      rd.onload=function(){try{init(JSON.parse(rd.result));$('loadErr').hidden=true;}catch(err){alert('Invalid JSON: '+err);}};
-      rd.readAsText(f);
+  // load — venues first (populates the Venue picklist), then trainings
+  fetch('data/venues.json').then(function(r){return r.ok?r.json():{venues:[]};})
+    .then(function(v){state.venues=(v&&v.venues)||[];}).catch(function(){state.venues=[];})
+    .then(function(){
+      return fetch('data/trainings.json').then(function(r){if(!r.ok)throw 0;return r.json();}).then(init);
+    }).catch(function(){
+      $('loadErr').hidden=false;$('validation').innerHTML='<h3>Validation</h3><div class="routine">Load a JSON file to begin.</div>';
+      $('fileInput').addEventListener('change',function(e){
+        var f=e.target.files[0];if(!f)return;var rd=new FileReader();
+        rd.onload=function(){try{init(JSON.parse(rd.result));$('loadErr').hidden=true;}catch(err){alert('Invalid JSON: '+err);}};
+        rd.readAsText(f);
+      });
     });
-  });
 })();
 </script>
 </body>

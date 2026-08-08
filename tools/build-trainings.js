@@ -20,6 +20,7 @@ const crypto = require('crypto');
 const root = path.join(__dirname, '..');
 const jsonFp = path.join(root, 'data', 'trainings.json');
 const offeringsFp = path.join(root, 'offerings.json');
+const venuesFp = path.join(root, 'data', 'venues.json');
 const pages = ['index.html', 'apply.html'];
 
 const BLOCK = /(<script type="application\/json" id="trainingsData">)[\s\S]*?(<\/script>)/;
@@ -168,7 +169,7 @@ const FOOTER =
   '  <div class="foot-legal">&copy; 2026 ANFT.earth LLC, doing business as the Association of Nature and Forest Therapies. All rights reserved.</div>\n' +
   '</footer>\n';
 
-function buildEventPage(rec, offerings) {
+function buildEventPage(rec, offerings, venuesById) {
   const title = rec.title || 'Event';
   const description = (rec.description && String(rec.description).trim())
     ? String(rec.description).trim()
@@ -181,17 +182,21 @@ function buildEventPage(rec, offerings) {
   const trainers = (Array.isArray(rec.trainers) && rec.trainers.length) ? rec.trainers.join(', ') : '';
   const reg = registerLink(rec, offerings);
 
+  const v = (venuesById && rec.venue_id) ? venuesById[rec.venue_id] : null;
+  const venueName = v ? (v.name + (v.region ? ', ' + v.region : '')) : '';
+  const venueCountry = v ? (v.country || '') : '';
+  const lodgingCost = (rec.lodgingCost != null && String(rec.lodgingCost).trim() !== '') ? ('$' + rec.lodgingCost) : '';
   const facts = [
     factRow('Academy', rec.academy),
     factRow('Subcategory', rec.subcategory),
-    factRow('Venue', rec.venue),
-    factRow('Country', rec.country),
+    factRow('Venue', venueName),
+    factRow('Country', venueCountry),
     factRow('Dates', dateStr),
     factRow('Enrollment deadline', rec.enrollmentDeadline),
     factRow('Language', rec.language),
     factRow('Trainers', trainers),
     factRow('Tuition', rec.tuition),
-    factRow('Lodging', rec.lodging)
+    factRow('Lodging cost', lodgingCost)
   ].join('');
 
   const eyebrow = rec.category ? '  <div class="eyebrow">' + esc(rec.category) + '</div>\n' : '';
@@ -233,7 +238,7 @@ function buildEventPage(rec, offerings) {
     '</body>\n</html>\n';
 }
 
-function writeEventPages(data, offerings) {
+function writeEventPages(data, offerings, venuesById) {
   const records = (data.trainings || []).concat(data.events || []);
   const dir = path.join(root, 'events');
   if (!fs.existsSync(dir)) fs.mkdirSync(dir);
@@ -241,7 +246,7 @@ function writeEventPages(data, offerings) {
   records.forEach(function (rec) {
     if (!rec.id) return;
     const fp = path.join(dir, rec.id + '.html');
-    fs.writeFileSync(fp, buildEventPage(rec, offerings)); // utf8, no BOM
+    fs.writeFileSync(fp, buildEventPage(rec, offerings, venuesById)); // utf8, no BOM
     n++;
   });
   console.log('Wrote ' + n + ' event detail page(s) into events/.');
@@ -319,6 +324,10 @@ function main() {
   try { offerings = (JSON.parse(fs.readFileSync(offeringsFp, 'utf8')).offerings) || []; }
   catch (e) { console.log('offerings.json unavailable (' + e.message + '); descriptions will fall back to blank.'); }
 
+  const venuesById = {};
+  try { (JSON.parse(fs.readFileSync(venuesFp, 'utf8')).venues || []).forEach(function (vv) { venuesById[vv.id] = vv; }); }
+  catch (e) { console.log('venues.json unavailable (' + e.message + '); venue facts will be blank.'); }
+
   const hash = contentHash(json);
   const marker = '<!-- trainings-data-hash:' + hash + ' -->';
 
@@ -338,7 +347,20 @@ function main() {
     }
   });
 
-  writeEventPages(data, offerings);
+  // Inline venues.json into index.html so the home-page cards can show venue/location.
+  try {
+    const venuesRaw = fs.readFileSync(venuesFp, 'utf8');
+    const VEN_BLOCK = /(<script type="application\/json" id="venuesData">)[\s\S]*?(<\/script>)/;
+    const idxFp = path.join(root, 'index.html');
+    const idxHtml = fs.readFileSync(idxFp, 'utf8');
+    if (VEN_BLOCK.test(idxHtml)) {
+      const idxOut = idxHtml.replace(VEN_BLOCK, function (m, open, close) { return open + venuesRaw + close; });
+      if (idxOut !== idxHtml) { fs.writeFileSync(idxFp, idxOut); console.log('Re-inlined data/venues.json into index.html.'); }
+      else { console.log('index.html venues block already current.'); }
+    }
+  } catch (e) { console.log('venues inline skipped: ' + e.message); }
+
+  writeEventPages(data, offerings, venuesById);
 
   // Inline the trainers directory into our-trainers.html (same mechanism).
   const tjson = fs.readFileSync(trainersFp, 'utf8');

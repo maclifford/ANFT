@@ -28,11 +28,9 @@
       "registrationUrl": "",
       "image": "images/thumbnails/dharma-centre.webp",
       "academy": "Academy of Relational Forest Therapy",
-      "venue": "",
-      "country": "",
+      "venue_id": "dharma-centre-of-canada",
       "description": "",
       "trainers": [],
-      "lodging": "",
       "tuition": ""
     },
     {
@@ -51,11 +49,9 @@
       "registrationUrl": "",
       "image": "images/thumbnails/just-love-forest.webp",
       "academy": "Academy of Relational Forest Therapy",
-      "venue": "",
-      "country": "",
+      "venue_id": "just-love-forest",
       "description": "",
       "trainers": [],
-      "lodging": "",
       "tuition": ""
     },
     {
@@ -74,11 +70,9 @@
       "registrationUrl": "",
       "image": "images/thumbnails/baba-ecolodge.webp",
       "academy": "Academy of Relational Forest Therapy",
-      "venue": "",
-      "country": "",
+      "venue_id": "baba-ecolodge",
       "description": "",
       "trainers": [],
-      "lodging": "",
       "tuition": ""
     },
     {
@@ -98,11 +92,9 @@
       "registrationUrl": "",
       "image": "images/thumbnails/pudu.webp",
       "academy": "Academy of Relational Forest Therapy",
-      "venue": "",
-      "country": "",
+      "venue_id": "",
       "description": "",
       "trainers": [],
-      "lodging": "",
       "tuition": ""
     },
     {
@@ -121,11 +113,9 @@
       "url": "https://anft.earth/training-events/komorebi-%e6%9c%a8%e6%bc%8f%e3%82%8c%e6%97%a5/",
       "image": "images/thumbnails/komorebi.webp",
       "academy": "Academy of Relational Forest Therapy",
-      "venue": "",
-      "country": "",
+      "venue_id": "",
       "description": "",
       "trainers": [],
-      "lodging": "",
       "tuition": ""
     },
     {
@@ -144,11 +134,9 @@
       "url": "https://anft.earth/training-events/peacock/",
       "image": "images/thumbnails/peacock.webp",
       "academy": "Academy of Relational Forest Therapy",
-      "venue": "",
-      "country": "",
+      "venue_id": "",
       "description": "",
       "trainers": [],
-      "lodging": "",
       "tuition": ""
     },
     {
@@ -167,11 +155,9 @@
       "url": "https://anft.earth/training-events/sea-otter/",
       "image": "images/thumbnails/sea-otter.webp",
       "academy": "Academy of Relational Forest Therapy",
-      "venue": "",
-      "country": "",
+      "venue_id": "",
       "description": "",
       "trainers": [],
-      "lodging": "",
       "tuition": ""
     },
     {
@@ -190,11 +176,9 @@
       "url": "https://anft.earth/training-events/cedar/",
       "image": "images/thumbnails/cedar.webp",
       "academy": "Academy of Relational Forest Therapy",
-      "venue": "",
-      "country": "",
+      "venue_id": "",
       "description": "",
       "trainers": [],
-      "lodging": "",
       "tuition": ""
     },
     {
@@ -213,11 +197,9 @@
       "url": "https://anft.earth/training-events/winter-jasmine/",
       "image": "images/thumbnails/winter-jasmine.webp",
       "academy": "Academy of Relational Forest Therapy",
-      "venue": "",
-      "country": "",
+      "venue_id": "",
       "description": "",
       "trainers": [],
-      "lodging": "",
       "tuition": ""
     },
     {
@@ -234,11 +216,9 @@
       "registrationUrl": "",
       "image": "images/thumbnails/casa-portal.webp",
       "academy": "Academy of Relational Forest Therapy",
-      "venue": "Casa Portal",
-      "country": "USA",
+      "venue_id": "casa-portal",
       "description": "",
       "trainers": [],
-      "lodging": "",
       "tuition": ""
     },
     {
@@ -255,11 +235,9 @@
       "registrationUrl": "",
       "image": "images/thumbnails/dharma-centre.webp",
       "academy": "Academy of Relational Forest Therapy",
-      "venue": "Dharma Centre of Canada",
-      "country": "Canada",
+      "venue_id": "dharma-centre-of-canada",
       "description": "",
       "trainers": [],
-      "lodging": "",
       "tuition": ""
     },
     {
@@ -276,11 +254,9 @@
       "registrationUrl": "",
       "image": "images/thumbnails/well-being-retreat-center.webp",
       "academy": "Academy of Relational Forest Therapy",
-      "venue": "Well Being Retreat Center",
-      "country": "USA",
+      "venue_id": "well-being-retreat-center",
       "description": "",
       "trainers": [],
-      "lodging": "",
       "tuition": ""
     },
     {
@@ -297,11 +273,9 @@
       "registrationUrl": "",
       "image": "images/thumbnails/santuario-la-verna.webp",
       "academy": "Academy of Relational Forest Therapy",
-      "venue": "Emilia Romagna",
-      "country": "Italy",
+      "venue_id": "santuario-la-verna",
       "description": "",
       "trainers": [],
-      "lodging": "",
       "tuition": ""
     },
     {
@@ -318,11 +292,9 @@
       "registrationUrl": "",
       "image": "images/thumbnails/rocky-mountain-ecodharma.webp",
       "academy": "Academy of Relational Forest Therapy",
-      "venue": "Rocky Mountain Ecodharma Retreat Center",
-      "country": "USA",
+      "venue_id": "rocky-mountain-ecodharma-retreat-center",
       "description": "",
       "trainers": [],
-      "lodging": "",
       "tuition": ""
     },
     {
@@ -339,11 +311,9 @@
       "registrationUrl": "",
       "image": "images/thumbnails/daintree-siesta.webp",
       "academy": "Academy of Relational Forest Therapy",
-      "venue": "Daintree Siesta",
-      "country": "Australia",
+      "venue_id": "daintree-siesta",
       "description": "",
       "trainers": [],
-      "lodging": "",
       "tuition": ""
     },
     {
@@ -360,11 +330,9 @@
       "registrationUrl": "",
       "image": "images/thumbnails/lodge-kod-kod.webp",
       "academy": "Academy of Relational Forest Therapy",
-      "venue": "Lodge Kod Kod Study Center",
-      "country": "Chile",
+      "venue_id": "lodge-kod-kod-study-center",
       "description": "",
       "trainers": [],
-      "lodging": "",
       "tuition": ""
     },
     {
@@ -381,11 +349,9 @@
       "registrationUrl": "",
       "image": "images/thumbnails/baba-ecolodge-2.webp",
       "academy": "Academy of Relational Forest Therapy",
-      "venue": "Baba Ecolodge",
-      "country": "Thailand",
+      "venue_id": "baba-ecolodge",
       "description": "",
       "trainers": [],
-      "lodging": "",
       "tuition": ""
     },
     {
@@ -405,11 +371,9 @@
       "price": 565,
       "deposit": 50,
       "academy": "Opus Academy",
-      "venue": "",
-      "country": "",
+      "venue_id": "",
       "description": "",
       "trainers": [],
-      "lodging": "",
       "tuition": ""
     },
     {
@@ -429,11 +393,9 @@
       "price": 565,
       "deposit": 50,
       "academy": "Opus Academy",
-      "venue": "",
-      "country": "",
+      "venue_id": "",
       "description": "",
       "trainers": [],
-      "lodging": "",
       "tuition": ""
     }
   ],
@@ -450,11 +412,9 @@
       "zoomUrl": "https://us02web.zoom.us/meeting/register/IAYc4uVcT_Kd1AR8uTZx9g",
       "image": "images/thumbnails/circle-profile-banner.webp",
       "academy": "",
-      "venue": "",
-      "country": "",
+      "venue_id": "",
       "description": "",
       "trainers": [],
-      "lodging": "",
       "tuition": ""
     },
     {
@@ -470,11 +430,9 @@
       "zoomUrl": "https://us02web.zoom.us/meeting/register/bdR6e8-XQG6VqwwenTAuqA",
       "image": "",
       "academy": "",
-      "venue": "",
-      "country": "",
+      "venue_id": "",
       "description": "",
       "trainers": [],
-      "lodging": "",
       "tuition": ""
     },
     {
@@ -490,11 +448,9 @@
       "zoomUrl": "https://us02web.zoom.us/meeting/register/Jx_VOKxKTfWWThajOpLuBA",
       "image": "",
       "academy": "",
-      "venue": "",
-      "country": "",
+      "venue_id": "",
       "description": "",
       "trainers": [],
-      "lodging": "",
       "tuition": ""
     },
     {
@@ -510,11 +466,9 @@
       "zoomUrl": "https://us06web.zoom.us/meeting/register/a1B_jNGuTi2OWKpf9KzTQQ",
       "image": "",
       "academy": "Nature as Medicine",
-      "venue": "",
-      "country": "",
+      "venue_id": "",
       "description": "",
       "trainers": [],
-      "lodging": "",
       "tuition": ""
     },
     {
@@ -530,11 +484,9 @@
       "zoomUrl": "https://us06web.zoom.us/meeting/register/TpABfR_eTCm5LkwRvCToHQ",
       "image": "",
       "academy": "Nature as Medicine",
-      "venue": "",
-      "country": "",
+      "venue_id": "",
       "description": "",
       "trainers": [],
-      "lodging": "",
       "tuition": ""
     }
   ]

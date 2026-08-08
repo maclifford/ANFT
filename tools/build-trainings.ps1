@@ -75,10 +75,25 @@ if ($tout -eq $thtml) {
   Write-Host "Re-inlined data/trainers.json into $tname (hash $thash)."
 }
 
+# --- Inline venues.json into index.html (home-page cards show venue/location) ---
+try {
+  $venuesRaw = [System.IO.File]::ReadAllText((Join-Path $root 'data\venues.json'))
+  $rxVenBlock = [regex]'(?s)(<script type="application/json" id="venuesData">).*?(</script>)'
+  $idxFp = Join-Path $root 'index.html'
+  $idxHtml = [System.IO.File]::ReadAllText($idxFp)
+  if ($rxVenBlock.IsMatch($idxHtml)) {
+    $idxOut = $rxVenBlock.Replace($idxHtml, { param($m) $m.Groups[1].Value + $venuesRaw + $m.Groups[2].Value }, 1)
+    if ($idxOut -ne $idxHtml) { [System.IO.File]::WriteAllText($idxFp, $idxOut, $utf8); Write-Host "Re-inlined data/venues.json into index.html." }
+    else { Write-Host "index.html venues block already current." }
+  }
+} catch { Write-Host "venues inline skipped: $($_.Exception.Message)" }
+
 # --- Event detail pages (mirror of writeEventPages/buildEventPage in build-trainings.js) ---
 $data = $json | ConvertFrom-Json
 $offerings = @()
 try { $offerings = (Get-Content (Join-Path $root 'offerings.json') -Raw | ConvertFrom-Json).offerings } catch { $offerings = @() }
+$venuesById = @{}
+try { (Get-Content (Join-Path $root 'data\venues.json') -Raw | ConvertFrom-Json).venues | ForEach-Object { $venuesById[[string]$_.id] = $_ } } catch {}
 $CAT = @{ 'Nature as Medicine' = 'nature-as-medicine'; 'Opus Training' = 'opus-academy' }
 $CAT_PATH = @{ 'Forest Therapy Guide Training' = 'relational-forest-therapy-academy'; 'Opus Training' = 'opus-academy'; 'Nature as Medicine' = 'nature-as-medicine' }
 
@@ -175,7 +190,11 @@ function EvPage($rec){
   elseif($off -and $off.verb -eq 'book'){ $regHref = '/' + (([string]$off.slug -split '/')[-1]) + '.html' }
   elseif($CAT_PATH.ContainsKey([string]$rec.category) -and $rec.id){ $regHref = '/apply.html?path=' + $CAT_PATH[[string]$rec.category] + '&event=' + [uri]::EscapeDataString([string]$rec.id) }
   else { $regHref = if($rec.zoomUrl){[string]$rec.zoomUrl}elseif($rec.registrationUrl){[string]$rec.registrationUrl}elseif($rec.url){[string]$rec.url}else{''}; $regExt = $true }
-  $facts = (EvFact 'Academy' $rec.academy)+(EvFact 'Subcategory' $rec.subcategory)+(EvFact 'Venue' $rec.venue)+(EvFact 'Country' $rec.country)+(EvFact 'Dates' $dateStr)+(EvFact 'Enrollment deadline' $rec.enrollmentDeadline)+(EvFact 'Language' $rec.language)+(EvFact 'Trainers' $trainers)+(EvFact 'Tuition' $rec.tuition)+(EvFact 'Lodging' $rec.lodging)
+  $vv = if($rec.venue_id -and $venuesById.ContainsKey([string]$rec.venue_id)){ $venuesById[[string]$rec.venue_id] } else { $null }
+  $vname = if($vv){ [string]$vv.name + $(if($vv.region){', '+[string]$vv.region}else{''}) } else { '' }
+  $vcountry = if($vv){ [string]$vv.country } else { '' }
+  $lodgingCost = if($null -ne $rec.lodgingCost -and ([string]$rec.lodgingCost).Trim() -ne ''){ '$'+[string]$rec.lodgingCost } else { '' }
+  $facts = (EvFact 'Academy' $rec.academy)+(EvFact 'Subcategory' $rec.subcategory)+(EvFact 'Venue' $vname)+(EvFact 'Country' $vcountry)+(EvFact 'Dates' $dateStr)+(EvFact 'Enrollment deadline' $rec.enrollmentDeadline)+(EvFact 'Language' $rec.language)+(EvFact 'Trainers' $trainers)+(EvFact 'Tuition' $rec.tuition)+(EvFact 'Lodging cost' $lodgingCost)
   $eyebrow = if([string]$rec.category){'  <div class="eyebrow">'+(EvEsc $rec.category)+"</div>`n"}else{''}
   $desc = if($description){'  <p class="lede">'+(EvEsc $description)+"</p>`n"}else{''}
   $factsBlock = if($facts){'  <ul class="facts">'+$facts+"</ul>`n"}else{''}
