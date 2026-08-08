@@ -25,6 +25,13 @@ const pages = ['index.html', 'apply.html'];
 const BLOCK = /(<script type="application\/json" id="trainingsData">)[\s\S]*?(<\/script>)/;
 const HASH = /<!--\s*trainings-data-hash:[^>]*?-->/;
 
+// The trainers directory (data/trainers.json) is inlined into our-trainers.html
+// the same way: a JSON <script> block plus a freshness-hash comment.
+const trainersFp = path.join(root, 'data', 'trainers.json');
+const trainersPage = 'our-trainers.html';
+const TR_BLOCK = /(<script type="application\/json" id="trainersData">)[\s\S]*?(<\/script>)/;
+const TR_HASH = /<!--\s*trainers-data-hash:[^>]*?-->/;
+
 // Content hash, line-ending-normalized so Windows (CRLF) and Linux (LF) agree.
 function contentHash(text) {
   const norm = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
@@ -269,6 +276,25 @@ function main() {
   });
 
   writeEventPages(data, offerings);
+
+  // Inline the trainers directory into our-trainers.html (same mechanism).
+  const tjson = fs.readFileSync(trainersFp, 'utf8');
+  try { JSON.parse(tjson); } catch (e) { throw new Error('data/trainers.json is not valid JSON: ' + e.message); }
+  const thash = contentHash(tjson);
+  const tmarker = '<!-- trainers-data-hash:' + thash + ' -->';
+  const tfp = path.join(root, trainersPage);
+  const thtml = fs.readFileSync(tfp, 'utf8');
+  if (!TR_BLOCK.test(thtml)) throw new Error('trainersData <script> block not found in ' + trainersPage);
+  if (!TR_HASH.test(thtml)) throw new Error('trainers-data-hash marker not found in ' + trainersPage);
+  const tout = thtml
+    .replace(TR_BLOCK, function (m, open, close) { return open + tjson + close; })
+    .replace(TR_HASH, function () { return tmarker; });
+  if (tout === thtml) {
+    console.log(trainersPage + ' already matches data/trainers.json (no change).');
+  } else {
+    fs.writeFileSync(tfp, tout); // utf8, no BOM
+    console.log('Re-inlined data/trainers.json into ' + trainersPage + ' (hash ' + thash + ').');
+  }
 }
 
 main();

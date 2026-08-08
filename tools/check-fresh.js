@@ -21,6 +21,9 @@ const root = path.join(__dirname, '..');
 const jsonFp = path.join(root, 'data', 'trainings.json');
 const pages = ['index.html', 'apply.html'];
 const HASH = /<!--\s*trainings-data-hash:([^\s>]*)\s*-->/;
+const trainersFp = path.join(root, 'data', 'trainers.json');
+const trainersPage = 'our-trainers.html';
+const TR_HASH = /<!--\s*trainers-data-hash:([^\s>]*)\s*-->/;
 
 function contentHash(text) {
   const norm = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
@@ -36,8 +39,13 @@ function main() {
     const embedded = m ? m[1] : '(none)';
     if (embedded !== current) stale.push(name + ' (embedded ' + embedded + ', expected ' + current + ')');
   });
+  const trCurrent = contentHash(fs.readFileSync(trainersFp, 'utf8'));
+  const trHtml = fs.readFileSync(path.join(root, trainersPage), 'utf8');
+  const trm = trHtml.match(TR_HASH);
+  const trEmbedded = trm ? trm[1] : '(none)';
+  if (trEmbedded !== trCurrent) stale.push(trainersPage + ' (embedded ' + trEmbedded + ', expected ' + trCurrent + ')');
   if (stale.length === 0) {
-    console.log('FRESH — index.html and apply.html match data/trainings.json (hash ' + current + ').');
+    console.log('FRESH — index.html/apply.html match data/trainings.json (hash ' + current + '); ' + trainersPage + ' matches data/trainers.json (hash ' + trCurrent + ').');
     process.exit(0);
   }
   console.log('STALE — run the build (update-trainings, or: node tools/build-trainings.js)');

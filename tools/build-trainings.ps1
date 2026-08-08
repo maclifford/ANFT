@@ -53,6 +53,28 @@ foreach ($name in @('index.html','apply.html')) {
   }
 }
 
+# --- Trainers directory: inline data/trainers.json into our-trainers.html (same mechanism) ---
+$tjson = [System.IO.File]::ReadAllText((Join-Path $root 'data\trainers.json'))
+try { [void]($tjson | ConvertFrom-Json) } catch { throw "data/trainers.json is not valid JSON: $($_.Exception.Message)" }
+$tnorm  = ($tjson -replace "`r`n","`n") -replace "`r","`n"
+$thash  = (-join ($sha.ComputeHash([System.Text.Encoding]::UTF8.GetBytes($tnorm)) | ForEach-Object { $_.ToString('x2') })).Substring(0,16)
+$tmarker = "<!-- trainers-data-hash:$thash -->"
+$rxTrBlock = [regex]'(?s)(<script type="application/json" id="trainersData">).*?(</script>)'
+$rxTrHash  = [regex]'<!--\s*trainers-data-hash:[^>]*?-->'
+$tname = 'our-trainers.html'
+$tfp   = Join-Path $root $tname
+$thtml = [System.IO.File]::ReadAllText($tfp)
+if (-not $rxTrBlock.IsMatch($thtml)) { throw "trainersData <script> block not found in $tname" }
+if (-not $rxTrHash.IsMatch($thtml))  { throw "trainers-data-hash marker not found in $tname" }
+$tout = $rxTrBlock.Replace($thtml, { param($m) $m.Groups[1].Value + $tjson + $m.Groups[2].Value }, 1)
+$tout = $rxTrHash.Replace($tout,  { param($m) $tmarker }, 1)
+if ($tout -eq $thtml) {
+  Write-Host "$tname already matches data/trainers.json (no change)."
+} else {
+  [System.IO.File]::WriteAllText($tfp, $tout, $utf8)
+  Write-Host "Re-inlined data/trainers.json into $tname (hash $thash)."
+}
+
 # --- Event detail pages (mirror of writeEventPages/buildEventPage in build-trainings.js) ---
 $data = $json | ConvertFrom-Json
 $offerings = @()
