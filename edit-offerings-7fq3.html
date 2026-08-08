@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Offerings Editor (internal tool) — ANFT</title>
+<link rel="icon" type="image/x-icon" href="/favicon-white.ico?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#F2F3EC;--card:#FBFCF8;--ink:#26301F;--ink-soft:#4E5A47;--navy:#1E3A5F;
+    --fir:#2E5B3E;--fir-tint:#E1EBDD;--gold:#A9862C;--gold-deep:#7C6118;--gold-tint:#F3EDD9;
+    --bark-deep:#4E3324;--line:#C9D0BE;--radius:12px;--warn:#A33A2A}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:"Nunito Sans",system-ui,sans-serif;font-size:15px;line-height:1.5}
+  .serif{font-family:"Nunito Sans",system-ui,sans-serif}
+  .banner{background:var(--gold-tint);border-bottom:2px solid var(--gold);color:var(--bark-deep);
+    padding:12px 20px;font-size:14px;font-weight:600;position:sticky;top:0;z-index:20}
+  main{max-width:960px;margin:0 auto;padding:24px 20px 80px}
+  h1{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:500;color:var(--navy);font-size:30px;margin-bottom:4px}
+  .routine{color:var(--ink-soft);font-size:13.5px;margin-bottom:18px}
+  .routine code{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .notice{background:#FDF6F4;border:1px solid var(--warn);border-radius:10px;padding:12px 16px;margin-bottom:18px;font-size:14px}
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;align-items:center}
+  button{font-family:inherit;font-size:14px;font-weight:600;border-radius:999px;padding:9px 18px;
+    border:1.5px solid var(--line);background:#fff;color:var(--navy);cursor:pointer}
+  button:hover{border-color:var(--navy)}
+  button.primary{background:var(--gold);border-color:var(--gold);color:#fff}
+  button.primary:hover{background:var(--gold-deep);border-color:var(--gold-deep)}
+  .validation{border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin-bottom:20px;background:var(--card);font-size:13.5px}
+  .validation h3{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:8px}
+  .validation ul{margin:0;padding-left:18px}
+  .validation li{color:var(--warn);margin:2px 0}
+  .validation .ok{color:var(--fir);font-weight:600}
+  .cards{display:grid;gap:12px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px;
+    display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .card-title{font-family:"Nunito Sans",system-ui,sans-serif;font-size:17px;color:var(--navy);font-weight:600}
+  .card-sub{font-size:13px;color:var(--ink-soft);margin-top:3px}
+  .card-actions{display:flex;gap:8px;flex:none}
+  .modal{position:fixed;inset:0;background:rgba(20,32,22,.5);display:flex;align-items:flex-start;
+    justify-content:center;padding:30px 16px;overflow:auto;z-index:40}
+  .modal[hidden]{display:none}
+  .modal-box{background:var(--paper);border-radius:var(--radius);max-width:640px;width:100%;padding:24px 26px}
+  .modal-box h2{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:500;color:var(--navy);font-size:23px;margin-bottom:14px}
+  .sub-h{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-deep);font-weight:700;
+    margin:18px 0 8px;padding-top:12px;border-top:1px solid var(--line)}
+  .fld{display:block;margin-bottom:14px}
+  .fld > span{display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:5px}
+  .fld input,.fld select,.fld textarea{width:100%;font-family:inherit;font-size:14px;color:var(--ink);
+    background:#fff;border:1px solid var(--line);border-radius:8px;padding:9px 11px}
+  .fld textarea{min-height:70px;resize:vertical}
+  .fld input:focus,.fld select:focus,.fld textarea:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
+  .fld-hint{display:block;font-size:12px;color:var(--ink-soft);margin-top:5px}
+  .fld-hint code{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:1px 5px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .ro-block{background:var(--fir-tint);border:1px solid #BBD3BE;border-radius:8px;padding:12px 14px;margin-bottom:16px}
+  .ro-note{font-size:12.5px;color:var(--ink-soft);margin-bottom:8px;line-height:1.45}
+  .ro-row{display:flex;gap:10px;align-items:baseline;margin:3px 0}
+  .ro-k{min-width:64px;color:var(--gold-deep);font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:11px}
+  .ro-row code{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-size:12.5px;color:var(--ink)}
+  .modal-actions{display:flex;gap:10px;margin-top:18px}
+  .copied{color:var(--fir);font-size:13px;font-weight:600;margin-left:6px}
+</style>
+</head>
+<body>
+<div class="banner">Editing tool — changes are not live until the downloaded file is placed in /data and deployed.</div>
+<main>
+  <a href="staff-hub-7fq3.html" style="display:inline-block;margin-bottom:12px;font-family:inherit;font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--gold-deep);text-decoration:none">&larr; Staff hub</a>
+  <h1 class="serif">Offerings Editor</h1>
+  <p class="routine">Internal tool for the offerings catalogue. Update routine: <b>close &amp; reopen</b> &rarr; edit &rarr; <b>download</b> &rarr; <b>replace <code>data/offerings.json</code></b> &rarr; <b>deploy</b>. An offering describes what a program <i>is</i>; events inherit that description automatically, so change it here once rather than on each cohort. Offerings are a fixed set &mdash; you edit the existing ones, you don&rsquo;t add or remove them.</p>
+  <div id="loadErr" class="notice" hidden>Couldn&rsquo;t fetch <code>data/offerings.json</code> automatically (normal when opening this file directly rather than via a server). Load it manually: <input type="file" id="fileInput" accept="application/json,.json"></div>
+  <div class="toolbar">
+    <button id="download" class="primary">Download updated offerings.json</button>
+    <button id="copy">Copy to clipboard</button>
+    <span id="copied" class="copied" hidden>Copied ✓</span>
+  </div>
+  <div id="validation" class="validation">Loading&hellip;</div>
+  <div id="cards" class="cards"></div>
+</main>
+
+<div id="modal" class="modal" hidden>
+  <div class="modal-box">
+    <h2 id="modalTitle">Edit offering</h2>
+    <form id="entryForm" onsubmit="return false"></form>
+    <div class="modal-actions">
+      <button type="button" id="save" class="primary">Save</button>
+      <button type="button" id="cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var state={data:{},offerings:[],seq:1};
+  var edit={key:null};
+  var $=function(id){return document.getElementById(id);};
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function today(){return new Date().toISOString().slice(0,10);}
+  function orNull(s){s=(s==null?'':String(s)).trim();return s===''?null:s;}
+
+  function init(data){
+    state.data=data||{};
+    state.offerings=(data.offerings||[]).map(function(o){o._key=state.seq++;return o;});
+    renderAll();
+  }
+  function renderAll(){renderCards();validate();}
+
+  function priceLabel(o){
+    if(!o.price||o.price.amount==null)return 'no price';
+    return (o.price.currency?o.price.currency+' ':'$')+o.price.amount+((o.price.tiers&&o.price.tiers.length)?(' ('+o.price.tiers.length+' tiers)'):'');
+  }
+  function cardLine(o){
+    return '<div class="card"><div><div class="card-title">'+esc(o.name||o.id||'(untitled)')+'</div>'+
+      '<div class="card-sub">'+esc(o.academy||'—')+' &middot; '+esc(priceLabel(o))+'</div></div>'+
+      '<div class="card-actions"><button data-a="edit" data-k="'+o._key+'">Edit</button></div></div>';
+  }
+  function renderCards(){
+    var h='<div style="font-size:13px;color:var(--ink-soft);margin-bottom:6px">'+state.offerings.length+' offering'+(state.offerings.length===1?'':'s')+'</div>';
+    h+=state.offerings.map(cardLine).join('')||'<p class="routine">No offerings.</p>';
+    $('cards').innerHTML=h;
+  }
+
+  function ta(id,label,val,hint){ return '<label class="fld"><span>'+label+'</span><textarea id="'+id+'">'+esc(val)+'</textarea>'+(hint?'<span class="fld-hint">'+hint+'</span>':'')+'</label>'; }
+  function tf(id,label,val,type,hint){ return '<label class="fld"><span>'+label+'</span><input type="'+(type||'text')+'" id="'+id+'" value="'+esc(val)+'"'+(type==='number'?' step="any" min="0" inputmode="decimal"':'')+'>'+(hint?'<span class="fld-hint">'+hint+'</span>':'')+'</label>'; }
+  function ro(k,v){ return '<div class="ro-row"><span class="ro-k">'+k+'</span><code>'+esc(v==null||v===''?'—':v)+'</code></div>'; }
+
+  function buildForm(o){
+    var price=o.price||{};
+    var tiersStr=(price.tiers&&price.tiers.length)?price.tiers.map(function(t){return t.amount+' | '+(t.qualifier||'');}).join('\n'):'';
+    var h='';
+    h+='<div class="ro-block"><div class="ro-note">These are <b>structural</b> &mdash; events link to this offering by them. Changing any of them would break those links, so they are read-only here (edit them in the file only if you know what you are doing).</div>';
+    h+=ro('id',o.id)+ro('slug',o.slug)+ro('academy',o.academy)+ro('door',o.door)+ro('verb',o.verb);
+    h+='</div>';
+    h+=ta('f_proposition','Proposition',o.proposition);
+    h+='<div class="sub-h">Price</div>';
+    h+='<div class="two">'+tf('f_price_amount','Amount',price.amount,'number')+tf('f_price_currency','Currency',price.currency)+'</div>';
+    h+=ta('f_tiers','Price tiers (optional)',tiersStr,'One per line as <code>amount | qualifier</code> &mdash; e.g. <code>5290 | shared double, queen bed</code>. Leave empty for a single price.');
+    h+='<div class="sub-h">Details</div>';
+    h+=tf('f_length','Duration',o.length);
+    h+=tf('f_format','Format',o.format);
+    h+=tf('f_prerequisite','Prerequisite',o.prerequisite);
+    h+=tf('f_bookIncluded','Book included',o.bookIncluded);
+    h+=ta('f_isNot','What it is not',o.isNot);
+    h+=ta('f_context','Context',o.context);
+    $('entryForm').innerHTML=h;
+  }
+
+  function txt(id){return ($(id).value||'').trim();}
+  function num(id){var r=txt(id);if(r==='')return null;var n=parseFloat(r);return isNaN(n)?null:n;}
+  function lines(id){return ($(id).value||'').split(/\r?\n/).map(function(s){return s.trim();}).filter(function(s){return s;});}
+
+  function openModal(key){
+    edit={key:key};
+    var o=state.offerings.filter(function(x){return x._key===key;})[0];
+    $('modalTitle').textContent=(o&&o.name)?o.name:'Edit offering';
+    buildForm(o);
+    $('modal').hidden=false;
+  }
+  function closeModal(){$('modal').hidden=true;}
+  function saveEntry(){
+    var o=state.offerings.filter(function(x){return x._key===edit.key;})[0];
+    if(!o)return;
+    var tiers=lines('f_tiers').map(function(l){var i=l.indexOf(' | ');var a=(i<0?l:l.slice(0,i)).trim();var q=(i<0?'':l.slice(i+3)).trim();var n=parseFloat(String(a).replace(/[^0-9.]/g,''));return {amount:isNaN(n)?a:n,qualifier:q};});
+    o.proposition=orNull(txt('f_proposition'));
+    if(!o.price)o.price={};
+    o.price.amount=num('f_price_amount');
+    o.price.currency=orNull(txt('f_price_currency'));
+    o.price.tiers=tiers.length?tiers:null;
+    // o.price.note (internal) is left untouched, never shown.
+    o.length=orNull(txt('f_length'));
+    o.format=orNull(txt('f_format'));
+    o.prerequisite=orNull(txt('f_prerequisite'));
+    o.bookIncluded=orNull(txt('f_bookIncluded'));
+    o.isNot=orNull(txt('f_isNot'));
+    o.context=orNull(txt('f_context'));
+    closeModal();renderAll();
+  }
+
+  function validate(){
+    var w=[],seen={};
+    state.offerings.forEach(function(o){
+      var label='Offering: '+(o.name||o.id||'?');
+      if(o.id){ if(seen[o.id])w.push('Duplicate id "'+o.id+'"'); seen[o.id]=true; }
+      if(o.price&&o.price.amount!=null&&(typeof o.price.amount!=='number'||o.price.amount<0))w.push(label+': price amount must be a non-negative number');
+      if(o.price&&o.price.tiers)o.price.tiers.forEach(function(t){if(typeof t.amount!=='number')w.push(label+': tier amount "'+t.amount+'" is not a number');});
+    });
+    var v=$('validation');
+    if(w.length===0){v.innerHTML='<h3>Validation</h3><div class="ok">Looks good — '+state.offerings.length+' offering(s), no problems found.</div>';}
+    else{v.innerHTML='<h3>Validation ('+w.length+' warning'+(w.length>1?'s':'')+' &mdash; download not blocked)</h3><ul>'+w.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>';}
+  }
+
+  function strip(o){var c={};for(var k in o){if(k!=='_key')c[k]=o[k];}return c;}
+  function buildOutput(){
+    var out={};
+    for(var k in state.data){ out[k]=(k==='offerings')?state.offerings.map(strip):state.data[k]; }
+    if(!('offerings' in out))out.offerings=state.offerings.map(strip);
+    return JSON.stringify(out,null,2)+'\n';
+  }
+  function download(){
+    var blob=new Blob([buildOutput()],{type:'application/json'});
+    var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='offerings.json';
+    document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(a.href);},1000);
+  }
+  function copy(){
+    var t=buildOutput();
+    function done(){var c=$('copied');c.hidden=false;setTimeout(function(){c.hidden=true;},1800);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){fallback(t,done);});}
+    else fallback(t,done);
+  }
+  function fallback(t,done){var x=document.createElement('textarea');x.value=t;document.body.appendChild(x);x.select();try{document.execCommand('copy');done();}catch(e){alert('Copy failed — use Download instead.');}document.body.removeChild(x);}
+
+  $('save').addEventListener('click',saveEntry);
+  $('cancel').addEventListener('click',closeModal);
+  $('download').addEventListener('click',download);
+  $('copy').addEventListener('click',copy);
+  $('cards').addEventListener('click',function(e){
+    var b=e.target.closest('button[data-a]');if(!b)return;
+    if(b.getAttribute('data-a')==='edit')openModal(+b.getAttribute('data-k'));
+  });
+  $('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+  fetch('data/offerings.json').then(function(r){if(!r.ok)throw 0;return r.json();}).then(init).catch(function(){
+    $('loadErr').hidden=false;$('validation').innerHTML='<h3>Validation</h3><div class="routine">Load a JSON file to begin.</div>';
+    $('fileInput').addEventListener('change',function(e){
+      var f=e.target.files[0];if(!f)return;var rd=new FileReader();
+      rd.onload=function(){try{init(JSON.parse(rd.result));$('loadErr').hidden=true;}catch(err){alert('Invalid JSON: '+err);}};
+      rd.readAsText(f);
+    });
+  });
+})();
+</script>
+</body>
+</html>
