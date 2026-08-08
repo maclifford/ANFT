@@ -67,6 +67,11 @@
   .fld textarea{min-height:80px;resize:vertical}
   .fld input:focus,.fld select:focus,.fld textarea:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
   .other-input{margin-top:6px}
+  .photo-pick{display:flex;gap:10px;align-items:center;margin-top:2px}
+  .photo-pick select{flex:1;min-width:0}
+  .photo-prev{width:56px;height:56px;object-fit:cover;border-radius:8px;border:1px solid var(--line);background:var(--fir-tint);flex:none}
+  .fld-hint{display:block;font-size:12px;color:var(--ink-soft);margin-top:5px}
+  .fld-hint code{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:1px 5px}
   .modal-actions{display:flex;gap:10px;margin-top:8px}
   .copied{color:var(--fir);font-size:13px;font-weight:600;margin-left:6px}
   /* serif body: prose keeps EB Garamond */
@@ -122,9 +127,47 @@
     {k:'team',l:'Team',t:'select'},
     {k:'region',l:'Region',t:'text'},
     {k:'email',l:'Email (shown only in this form, never on cards)',t:'text'},
-    {k:'bio_excerpt',l:'Bio excerpt',t:'textarea'}
+    {k:'bio_excerpt',l:'Bio excerpt (short — shown on cards)',t:'textarea'},
+    {k:'bio_full',l:'Full bio',t:'textarea'},
+    {k:'photo',l:'Portrait photo',t:'photo'}
   ];
   var ORDER=['id','name','role','team','region','email','bio_excerpt','bio_full','photo'];
+  // Portraits available in images/people/ (embedded snapshot; regenerate this list if files are added or removed).
+  var PEOPLE_IMAGES=[
+    "images/people/Darlene-scaled-rqi5nz5ug3hhb78v6p81esugqhuwaq23fstwbcp22g.webp",
+    "images/people/Gio-1.webp",
+    "images/people/Katarina-Cuk-1-1.webp",
+    "images/people/Ken_Ouendag_1739386205.webp",
+    "images/people/Makiko.webp",
+    "images/people/MarioReyes.webp",
+    "images/people/Nadine-Mazzola-IMG_8113-crop9-1-1.webp",
+    "images/people/SAE01401-YOUMIN-scaled-1-e1781005120457-768x758-1.webp",
+    "images/people/Trainers_Amanda-rqg6x89zer6itsjdecsi7ypb0cg61gneakojj2s6ns.webp",
+    "images/people/Vix_1723424213.webp",
+    "images/people/aaliyah-stilson.webp",
+    "images/people/amos-clifford-portrait.jpg",
+    "images/people/amos-clifford-square.jpg",
+    "images/people/caitlin-williams.webp",
+    "images/people/geeta-stillwell.webp",
+    "images/people/guide-Bansi-Shah.webp",
+    "images/people/guide-Christine-Hoyer.webp",
+    "images/people/holly-jo-walters.webp",
+    "images/people/jackie-kuang-500.webp",
+    "images/people/jackie-kuang.webp",
+    "images/people/mish-moore.webp",
+    "images/people/nadine-mazzola.webp",
+    "images/people/sci-adv-Susan-Abookire.webp",
+    "images/people/specialty-team-summer-crider-500px.webp",
+    "images/people/staff-Geeta-Stilwell.webp",
+    "images/people/stephanie-clark.webp",
+    "images/people/team-Caitlin-C-Williams.webp",
+    "images/people/team-Carla-Zorzanelli.webp",
+    "images/people/team-Marcela-Morales.webp",
+    "images/people/team-Ronna-Schneberger.webp",
+    "images/people/team-Stana-Luxford-Oddie.webp",
+    "images/people/team-tam-willey.webp",
+    "images/people/trainer-amos.webp"
+  ];
   var state={meta:{},trainers:[],seq:1};
   var edit={key:null};
   var $=function(id){return document.getElementById(id);};
@@ -170,6 +213,13 @@
         h+='<input type="text" class="other-input" id="f_'+fd.k+'_other" placeholder="Custom team" value="'+((cur&&!known)?esc(cur):'')+'"'+((cur&&!known)?'':' hidden')+'>';
       } else if(fd.t==='textarea'){
         h+='<textarea id="f_'+fd.k+'">'+(entry?esc(entry[fd.k]):'')+'</textarea>';
+      } else if(fd.t==='photo'){
+        var pcur=entry&&entry[fd.k]!=null?entry[fd.k]:'',pin=pcur&&PEOPLE_IMAGES.indexOf(pcur)>-1;
+        h+='<span class="photo-pick"><select id="f_'+fd.k+'"><option value="">&mdash; no photo &mdash;</option>';
+        if(pcur&&!pin){h+='<option value="'+esc(pcur)+'" selected>'+esc(pcur)+' (current — file missing)</option>';}
+        PEOPLE_IMAGES.forEach(function(p){h+='<option value="'+esc(p)+'"'+(p===pcur?' selected':'')+'>'+esc(p.split('/').pop())+'</option>';});
+        h+='</select><img class="photo-prev" id="f_'+fd.k+'_prev" alt=""'+(pcur?' src="'+esc(pcur)+'"':' hidden')+'></span>';
+        h+='<span class="fld-hint">Only portraits already in <code>images/people/</code> can be chosen.</span>';
       } else {
         h+='<input type="'+fd.t+'" id="f_'+fd.k+'" value="'+(entry&&entry[fd.k]!=null?esc(entry[fd.k]):'')+'">';
       }
@@ -177,6 +227,7 @@
     });
     f.innerHTML=h;
     FIELDS.forEach(function(fd){if(fd.t==='select'){var s=$('f_'+fd.k),oi=$('f_'+fd.k+'_other');s.addEventListener('change',function(){oi.hidden=(s.value!=='__other__');});}});
+    FIELDS.forEach(function(fd){if(fd.t==='photo'){var ps=$('f_'+fd.k),pv=$('f_'+fd.k+'_prev');ps.addEventListener('change',function(){if(ps.value){pv.src=ps.value;pv.hidden=false;}else{pv.hidden=true;pv.removeAttribute('src');}});pv.addEventListener('error',function(){pv.hidden=true;});}});
   }
   function readForm(){
     var vals={};
@@ -204,7 +255,6 @@
     } else {
       var n={_key:state.seq++,id:uniqueId(slug(vals.name))};
       FIELDS.forEach(function(fd){ n[fd.k]=(vals[fd.k]!=='')?vals[fd.k]:null; });
-      n.bio_full=null; n.photo=null;  // preserved-field defaults, match schema
       state.trainers.push(n);
     }
     closeModal();renderAll();
