@@ -149,7 +149,10 @@
 .trainer{display:grid;grid-template-columns:150px 1fr;gap:24px;align-items:start;
   background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px 26px}
 .trainer-photo{width:150px;height:150px;border-radius:12px;overflow:hidden;background:var(--fir-tint);
-  display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0}
+  display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0;transition:transform .2s ease,box-shadow .2s ease}
+a.trainer-photo{cursor:pointer;text-decoration:none}
+a.trainer-photo:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(38,48,31,.14)}
+a.trainer-photo:focus-visible{outline:2.5px solid var(--gold);outline-offset:2px}
 .trainer-photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
 .trainer-photo span{font-family:"Nunito Sans",system-ui,sans-serif;font-size:40px;color:var(--fir);font-weight:600}
 .trainer-name{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:600;color:var(--navy);font-size:23px;line-height:1.2}
@@ -517,7 +520,8 @@
     var bio='';
     if(bioText){ var paras=String(bioText).split(/\n\s*\n/); bio='<div class="trainer-bio">'+paras.map(function(t){return '<p>'+esc(t.trim())+'</p>';}).join('')+'</div>'; }
     var img=p.photo?'<img src="'+esc(p.photo)+'" alt="'+esc(p.name)+'" loading="lazy" decoding="async" onerror="this.remove()">':'';
-    return '<article class="trainer"><div class="trainer-photo">'+img+'<span>'+esc(initials(p.name))+'</span></div><div class="trainer-body"><div class="trainer-name">'+(p.id?'<a href="/trainers/'+encodeURIComponent(p.id)+'.html">'+esc(p.name)+'</a>':esc(p.name))+'</div>'+meta+mail+bio+'</div></article>';
+    var photoHref=p.id?('/trainers/'+encodeURIComponent(p.id)+'.html'):'';
+    return '<article class="trainer">'+(photoHref?'<a class="trainer-photo" href="'+photoHref+'" aria-label="'+esc(p.name)+' &mdash; profile">':'<div class="trainer-photo">')+img+'<span>'+esc(initials(p.name))+'</span>'+(photoHref?'</a>':'</div>')+'<div class="trainer-body"><div class="trainer-name">'+(photoHref?'<a href="'+photoHref+'">'+esc(p.name)+'</a>':esc(p.name))+'</div>'+meta+mail+bio+'</div></article>';
   }
   var out='';
   groupOrder.forEach(function(g){ out+='<h2>'+esc(g)+'</h2><div class="roster">'+groups[g].map(card).join('')+'</div>'; });
