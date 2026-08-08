@@ -107,7 +107,7 @@ $evCSS = $evCSS.TrimEnd("`n")
 $evHEADER = @'
 <header class="site-header">
   <div class="hdr-in">
-    <a href="/index.html" aria-label="Association of Nature and Forest Therapies &mdash; home"><img src="/images/logo.webp" width="500" height="167" decoding="async" alt="Association of Nature and Forest Therapies"></a>
+    <a href="/index.html" aria-label="Association of Nature and Forest Therapies &mdash; home"><img src="/images/brand/logo.webp" width="500" height="167" decoding="async" alt="Association of Nature and Forest Therapies"></a>
     <nav aria-label="Primary">
       <a href="/forest-threshold.html">The Forest Threshold</a>
       <a href="/a-living-system.html">About &mdash; A Living System</a>

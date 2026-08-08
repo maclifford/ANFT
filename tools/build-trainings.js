@@ -140,7 +140,7 @@ const NAV = [
 const HEADER =
   '<header class="site-header">\n' +
   '  <div class="hdr-in">\n' +
-  '    <a href="/index.html" aria-label="Association of Nature and Forest Therapies &mdash; home"><img src="/images/logo.webp" width="500" height="167" decoding="async" alt="Association of Nature and Forest Therapies"></a>\n' +
+  '    <a href="/index.html" aria-label="Association of Nature and Forest Therapies &mdash; home"><img src="/images/brand/logo.webp" width="500" height="167" decoding="async" alt="Association of Nature and Forest Therapies"></a>\n' +
   '    <nav aria-label="Primary">\n      ' + NAV + '\n    </nav>\n' +
   '  </div>\n</header>\n';
 
