@@ -174,13 +174,6 @@
     </button>
     <p class="hv-cap">Amos Clifford on the history and lineage of ANFT</p>
   </div>
-  <div class="history-video">
-    <button type="button" class="hv-facade" aria-label="Play video: the history and lineage of ANFT" data-embed="https://www.youtube-nocookie.com/embed/1mXNp_qyVzM?autoplay=1&amp;rel=0&amp;start=47">
-      <img src="images/people/trainer-amos.webp" alt="Amos Clifford" loading="lazy">
-      <span class="hv-play" aria-hidden="true"></span>
-    </button>
-    <p class="hv-cap">Amos Clifford on the history and lineage of ANFT</p>
-  </div>
 <style>
 .team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px;margin:22px 0 8px}
 .tm{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;text-align:center}
@@ -192,18 +185,6 @@
 .tm-role{font-size:13px;color:var(--ink-soft);margin:3px 0 8px;line-height:1.4}
 .tm-mail{font-size:12.5px;color:var(--gold-deep);text-decoration:none;overflow-wrap:anywhere}
 .tm-mail:hover{text-decoration:underline}
-.history-video{max-width:480px;margin:26px auto 8px}
-.hv-facade{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;padding:0;cursor:pointer;
-  border-radius:12px;overflow:hidden;background:#000}
-.hv-facade img{width:100%;height:100%;object-fit:cover;display:block;opacity:.92;transition:opacity .2s ease}
-.hv-facade:hover img{opacity:1}
-.hv-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:68px;height:48px;
-  border-radius:12px;background:rgba(30,58,95,.85);transition:background .18s ease}
-.hv-play::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-40%,-50%);
-  border-style:solid;border-width:11px 0 11px 19px;border-color:transparent transparent transparent #fff}
-.hv-facade:hover .hv-play{background:var(--gold-deep)}
-.history-video iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:12px;display:block}
-.hv-cap{text-align:center;font-size:13px;color:var(--ink-soft);margin-top:8px}
 .history-video{max-width:480px;margin:26px auto 8px}
 .hv-facade{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;padding:0;cursor:pointer;
   border-radius:12px;overflow:hidden;background:#000}
@@ -286,20 +267,6 @@
     <span><a href="privacy.html">Privacy</a> &nbsp;&middot;&nbsp; <a href="#top" aria-label="Back to top">Back to top &uarr;</a></span>
   </div>
 </footer>
-<script>
-(function(){
-  var f=document.querySelector('.hv-facade');
-  if(!f)return;
-  f.addEventListener('click',function(){
-    var i=document.createElement('iframe');
-    i.setAttribute('src',f.getAttribute('data-embed'));
-    i.setAttribute('title','The history and lineage of ANFT');
-    i.setAttribute('allow','autoplay; encrypted-media; picture-in-picture; fullscreen');
-    i.setAttribute('allowfullscreen','');
-    f.parentNode.replaceChild(i,f);
-  });
-})();
-</script>
 <script>
 (function(){
   var f=document.querySelector('.hv-facade');
