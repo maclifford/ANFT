@@ -235,6 +235,29 @@
   .omenu-item--stack{flex-direction:column;align-items:flex-start}
   .omenu-benefit{font-size:14.5px;color:var(--ink-soft);line-height:1.5;font-weight:400;margin-top:4px}
   .omenu-soon{color:var(--ink-soft);font-size:14.5px}
+  /* compact academy containers + tiles (homepage offerings) */
+  .ac-container{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px 26px;margin:0 0 18px}
+  @media (max-width:560px){.ac-container{padding:18px 16px}}
+  .ac-h{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:500;color:var(--navy);font-size:22px;margin:0}
+  .ac-desc{color:var(--ink-soft);font-size:15px;margin:6px 0 16px;max-width:72ch}
+  .ac-desc.ph{font-style:italic;opacity:.7}
+  .ac-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px 28px}
+  @media (max-width:640px){.ac-cols{grid-template-columns:1fr;gap:22px}}
+  .ac-colh{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:600;color:var(--navy);font-size:17px;margin:0 0 2px}
+  .ac-colnote{font-size:13.5px;color:var(--ink-soft);margin:0 0 12px}
+  .tile-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  .tile-grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+  .tile{display:flex;flex-direction:column;gap:3px;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 14px;text-decoration:none;transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease}
+  .tile:hover{border-color:var(--fir);transform:translateY(-2px);box-shadow:0 6px 16px rgba(38,48,31,.10)}
+  .tile:focus-visible{outline:2.5px solid var(--gold);outline-offset:2px}
+  .tile-name{font-family:"Nunito Sans",system-ui,sans-serif;font-size:16px;font-weight:600;color:var(--navy);line-height:1.2}
+  .tile-meta{font-size:13px;color:var(--ink-soft);font-weight:600}
+  .tile-meta b{color:var(--gold-deep);font-weight:700}
+  .tile-meta.ph{font-style:italic;opacity:.7}
+  .ac-band{background:var(--fir-tint);border:1px solid var(--line);border-radius:var(--radius);padding:18px 26px;margin-top:2px;display:flex;justify-content:space-between;align-items:center;gap:6px 20px;flex-wrap:wrap;text-decoration:none;transition:border-color .18s ease,box-shadow .18s ease}
+  .ac-band:hover{border-color:var(--fir);box-shadow:0 6px 16px rgba(38,48,31,.10)}
+  .ac-band:focus-visible{outline:2.5px solid var(--gold);outline-offset:2px}
+  .ac-band .tile-name{font-size:18px}
 
   /* Threshold menu: one column under 768px, centre panel above the buttons */
   @media (max-width:767px){
@@ -374,39 +397,74 @@
       <p class="lede">The Forest Threshold is where the call reaches you. <b>ANFT has stood at this threshold with thousands of people just like you.</b> In over 70 nations spread across the globe. In the wild places; those within and those without. From this threshold, many paths open. We will show you how.</p>
     </div>
     <div class="omenu">
-      <div class="gt-panel">
-        <div class="eyebrow">Academy of Relational Forest Therapy</div>
-        <h3 class="gt-heading">Relational Forest Therapy Guide Training Pathway</h3>
-        <ul class="omenu-list">
-          <li><a class="omenu-item omenu-item--stack" href="re-collection.html"><span class="omenu-name">Re-collection</span><span class="omenu-benefit">Recover the practice you are already in. Decide about guiding later.</span><span class="omenu-meta">8 sessions &middot; <b>$950</b></span></a></li>
-          <li><a class="omenu-item omenu-item--stack" href="immersion.html"><span class="omenu-name">Immersion</span><span class="omenu-benefit">Where understanding becomes embodiment; most guides change here.</span><span class="omenu-meta">4 days &middot; <b>$595</b></span></a></li>
-          <li><a class="omenu-item omenu-item--stack" href="practicum.html"><span class="omenu-name">Practicum</span><span class="omenu-benefit">Supervised practice held to a standard worth certifying.</span><span class="omenu-meta">4 months, 16 sessions &middot; <b>$1,200</b></span></a></li>
-          <li><a class="omenu-item omenu-item--stack" href="practice.html"><span class="omenu-name">Practice</span><span class="omenu-benefit">Integrate the practice into your relationships, your work, your life.</span><span class="omenu-meta">8 sessions &middot; <b>$800</b></span></a></li>
+
+      <div class="ac-container">
+        <h3 class="ac-h">Academy of Relational Forest Therapy</h3>
+        <p class="ac-desc">The knowledge and skills of the Way of the Guide.</p>
+        <div class="ac-cols">
+          <div class="ac-col">
+            <h4 class="ac-colh">Enrol in the whole training</h4>
+            <p class="ac-colnote">One purchase, one cohort, a fixed sequence</p>
+            <ul class="tile-list">
+              <li><a class="tile" href="relational-forest-therapy-academy--guide-training.html"><span class="tile-name">Start online first</span><span class="tile-meta ph">Duration &amp; price to confirm</span></a></li>
+              <li><a class="tile" href="relational-forest-therapy-academy--guide-training.html"><span class="tile-name">Start in person first</span><span class="tile-meta">7 days in person + 4 months online &middot; <b>$3,600</b></span></a></li>
+            </ul>
+          </div>
+          <div class="ac-col">
+            <h4 class="ac-colh">Take one stage at a time</h4>
+            <p class="ac-colnote">Four stages, purchased separately, spaced to suit you &mdash; from cohort 190</p>
+            <ul class="tile-list">
+              <li><a class="tile" href="re-collection.html"><span class="tile-name">Re-collection</span><span class="tile-meta">8 sessions &middot; <b>$950</b></span></a></li>
+              <li><a class="tile" href="immersion.html"><span class="tile-name">Immersion</span><span class="tile-meta">4 days &middot; <b>$595</b></span></a></li>
+              <li><a class="tile" href="practicum.html"><span class="tile-name">Practicum</span><span class="tile-meta">4 months, 16 sessions &middot; <b>$1,200</b></span></a></li>
+              <li><a class="tile" href="practice.html"><span class="tile-name">Practice</span><span class="tile-meta">8 sessions &middot; <b>$800</b></span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="ac-container">
+        <h3 class="ac-h">Applied Forest Therapy</h3>
+        <p class="ac-desc">Integrate guide methods into your profession, art, family, and social life.</p>
+        <ul class="tile-list tile-grid">
+          <li><a class="tile" href="forest-threshold.html"><span class="tile-name">The Forest Threshold</span><span class="tile-meta">4 to 8 days &middot; <b>$1,295</b></span></a></li>
+          <li><a class="tile" href="council-of-waters-and-trees.html"><span class="tile-name">Council of Waters and Trees</span><span class="tile-meta">5 days &middot; <b>$1,250</b></span></a></li>
         </ul>
       </div>
-      <div class="bark-panel">
-        <h3 class="gt-heading">Academy of Applied Forest Therapy</h3>
-        <ul class="omenu-list">
-          <li><a class="omenu-item omenu-item--stack" href="forest-threshold.html"><span class="omenu-name">The Forest Threshold</span><span class="omenu-benefit">Forest as the archetypal place of new beginnings. The intelligences of your body, of your heart, and of the land interact to create new inner maps for the next phase of life.</span><span class="omenu-meta">4 to 8 days &middot; <b>$1,295</b></span></a></li>
-          <li><a class="omenu-item omenu-item--stack" href="council-of-waters-and-trees.html"><span class="omenu-name">Council of Waters and Trees</span><span class="omenu-benefit">A deep inquiry bringing forth the voices of other-than-human beings. Who will ask you to speak for their people in the Council of Waters and Trees?</span><span class="omenu-meta">5 days &middot; <b>$1,250</b></span></a></li>
+
+      <div class="ac-container">
+        <h3 class="ac-h">Academy of Place</h3>
+        <p class="ac-desc">Trails and places optimized for deep connection.</p>
+        <ul class="tile-list tile-grid">
+          <li><a class="tile" href="academy-of-place--consultant-training.html"><span class="tile-name">Healing Trails</span><span class="tile-meta">5 days &middot; <b>$750</b></span></a></li>
         </ul>
       </div>
-      <div class="omenu-group">
-        <h3 class="omenu-h">After certification</h3>
-        <ul class="omenu-list">
-          <li><a class="omenu-item omenu-item--stack" href="membership.html"><span class="omenu-name">Member Symposia and Events</span><span class="omenu-benefit">Symposia are group inquiries into the issues that are shaping Nature and Forest Therapies. Bring your voice. From each symposium a new proceedings document is added to the library. This is how your voice endures.</span><span class="omenu-meta">Ongoing &middot; <b>$1,200 per year</b></span></a></li>
+
+      <div class="ac-container">
+        <h3 class="ac-h">Opus Academy</h3>
+        <p class="ac-desc">Co-emergence of Self and Opus.</p>
+        <ul class="tile-list tile-grid">
+          <li><a class="tile" href="opus-academy.html"><span class="tile-name">Alchemy of Pilgrimage</span><span class="tile-meta">10 weeks &middot; <b>$1,200</b></span></a></li>
+          <li><a class="tile" href="opus-academy.html"><span class="tile-name">The Three Imaginations</span><span class="tile-meta">4 weeks &middot; <b>$390</b></span></a></li>
+          <li><a class="tile" href="opus-academy.html"><span class="tile-name">Walking Pilgrimage</span><span class="tile-meta">Duration and guide fees vary</span></a></li>
         </ul>
       </div>
-      <div class="omenu-group">
-        <h3 class="omenu-h">Open to anyone</h3>
-        <ul class="omenu-list">
-          <li><a class="omenu-item omenu-item--stack" href="academy-of-place--consultant-training.html"><span class="omenu-name">Healing Trails</span><span class="omenu-benefit">Carry the practice into landscapes, and to the institutions holding them.</span><span class="omenu-meta">5 days &middot; <b>$750</b></span></a></li>
-          <li><a class="omenu-item omenu-item--stack" href="opus-academy.html"><span class="omenu-name">Opus Academy</span><span class="omenu-benefit">The alchemy of pilgrimage: a transformational exploration of the way of the guided.</span><span class="omenu-meta">10 weeks &middot; <b>$1,200</b></span></a></li>
-          <li><a class="omenu-item omenu-item--stack" href="nature-as-medicine.html"><span class="omenu-name">Nature as Medicine</span><span class="omenu-benefit">The practice in clinical vocabulary, if you already hold a license.</span><span class="omenu-meta">9 days &middot; <b>from $5,155</b></span></a></li>
-          <li><a class="omenu-item omenu-item--stack" href="guiding-in-sign-language.html"><span class="omenu-name">Guiding in sign language</span><span class="omenu-benefit">The practice in a language the deaf community shapes for itself.</span><span class="omenu-meta">In development</span></a></li>
-          <li><a class="omenu-item omenu-item--stack" href="custom-training.html"><span class="omenu-name">Custom training</span><span class="omenu-benefit">Brought to your own people, and onto your own land.</span><span class="omenu-meta">Scoped per client &middot; <b>By inquiry</b></span></a></li>
+
+      <div class="ac-container">
+        <h3 class="ac-h">Specializations</h3>
+        <p class="ac-desc">Focused, curated, and adapted for specific groups and circumstances.</p>
+        <ul class="tile-list tile-grid">
+          <li><a class="tile" href="nature-as-medicine.html"><span class="tile-name">Nature as Medicine</span><span class="tile-meta">9 days &middot; <b>from $5,155</b></span></a></li>
+          <li><a class="tile" href="guiding-in-sign-language.html"><span class="tile-name">Guiding in sign language</span><span class="tile-meta ph">In development</span></a></li>
+          <li><a class="tile" href="custom-training.html"><span class="tile-name">Custom training</span><span class="tile-meta">Scoped per client &middot; <b>By inquiry</b></span></a></li>
         </ul>
       </div>
+
+      <a class="ac-band" href="membership.html">
+        <span class="tile-name">Member Symposia and Events</span>
+        <span class="tile-meta">Ongoing &middot; <b>$1,200 per year</b></span>
+      </a>
+
     </div>
   </section>
   <!-- ======================================================================
