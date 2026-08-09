@@ -20,9 +20,11 @@
   .site-header{background:#fff;border-bottom:1px solid var(--line)}
   .hdr-in{max-width:1120px;margin:0 auto;padding:4px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
   .hdr-in img{width:200px;height:auto;display:block}
-  nav{display:flex;gap:26px;flex-wrap:wrap}
+  nav{display:flex;gap:26px;flex-wrap:wrap;align-items:center}
   nav a{color:var(--navy);text-decoration:none;font-size:14.5px;font-weight:600;letter-spacing:.02em}
   nav a:hover{color:var(--gold-deep);text-decoration:underline;text-underline-offset:4px}
+  nav a.nav-cta{background:var(--fir);color:#fff;border-radius:8px;padding:9px 18px;text-decoration:none;transition:background .18s ease}
+  nav a.nav-cta:hover{background:#264b33;color:#fff;text-decoration:none}
   .banner{max-width:1120px;margin:0 auto}
   .banner img{display:block;width:100%;height:clamp(180px,26vw,320px);object-fit:cover;border-radius:0 0 var(--radius) var(--radius)}
   .section{max-width:880px;margin:0 auto;padding:48px 28px 72px}
@@ -55,14 +57,12 @@
   <div class="hdr-in">
     <a href="/index.html" aria-label="Association of Nature and Forest Therapies &mdash; home"><img src="/images/brand/logo.webp" width="500" height="167" decoding="async" alt="Association of Nature and Forest Therapies"></a>
     <nav aria-label="Primary">
-      <a href="/forest-threshold.html">The Forest Threshold</a>
-      <a href="/about.html">About</a>
-      <a href="/a-living-system.html">A Living System</a>
+      <a href="/index.html#trainings">Trainings</a>
       <a href="/academies.html">The Academies</a>
-      <a href="/the-book.html">The Book</a>
-      <a href="/science.html">Science</a>
-      <a href="/apply.html">Apply</a>
-      <a href="/contact.html">Contact</a>
+      <a href="/relational-forest-therapy-academy--global-guide-map.html">Find a Guide</a>
+      <a href="/academy-of-place--global-trail-map.html">Find a Trail</a>
+      <a href="/about.html">About</a>
+      <a class="nav-cta" href="/apply.html">Apply</a>
     </nav>
   </div>
 </header><div class="banner"><img src="/images/thumbnails/komorebi.webp" alt="Komorebi Cohort 木漏れ日" loading="eager" decoding="async"></div>
