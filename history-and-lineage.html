@@ -39,6 +39,17 @@
   nav a:hover{color:var(--gold-deep);text-decoration:underline;text-underline-offset:4px}
   nav a.nav-cta{background:var(--fir);color:#fff;border-radius:8px;padding:9px 18px;text-decoration:none;transition:background .18s ease}
   nav a.nav-cta:hover{background:#264b33;color:#fff;text-decoration:none}
+  /* About dropdown */
+  .has-drop{position:relative;display:inline-flex;align-items:center}
+  .has-drop>.drop-top{display:inline-flex;align-items:center;gap:5px}
+  .drop-caret{font-size:10px;line-height:1;transition:transform .18s ease}
+  .has-drop:hover .drop-caret,.has-drop:focus-within .drop-caret{transform:rotate(180deg)}
+  .drop-menu{position:absolute;top:100%;left:0;min-width:210px;background:#fff;
+    border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 26px rgba(38,48,31,.16);
+    padding:8px 0;display:none;z-index:60}
+  .drop-menu a{display:block;padding:8px 16px;font-size:14px;font-weight:600;color:var(--navy);white-space:nowrap;letter-spacing:.01em}
+  .drop-menu a:hover{background:var(--fir-tint);color:var(--gold-deep);text-decoration:none}
+  .has-drop:hover .drop-menu,.has-drop:focus-within .drop-menu{display:block}
   .banner{max-width:1120px;margin:0 auto}
   .banner img{display:block;width:100%;height:clamp(180px,26vw,320px);object-fit:cover;
     border-radius:0 0 var(--radius) var(--radius)}
@@ -137,7 +148,17 @@
       <a href="calendar.html">Find a Training</a>
       <a href="the-book.html">The Book</a>
       <a href="science.html">Science</a>
-      <a href="about.html">About</a>
+      <span class="has-drop">
+        <a href="about.html" class="drop-top" aria-haspopup="true">About <span class="drop-caret" aria-hidden="true">&#9660;</span></a>
+        <span class="drop-menu">
+          <a href="a-living-system.html#who-we-are">Who We Are</a>
+          <a href="history-and-lineage.html">History &amp; Lineage</a>
+          <a href="our-trainers.html">Our Trainers</a>
+          <a href="our-partners.html">Partners</a>
+          <a href="student-testimonials.html">Testimonials</a>
+          <a href="media-and-blog.html">Media &amp; Blog</a>
+        </span>
+      </span>
       <a class="nav-cta" href="apply.html">Apply</a>
     </nav>
   </div>
@@ -146,6 +167,13 @@
   <div class="eyebrow">About Us</div>
   <h1>Our History and Lineage</h1>
   <p class="lede">Rooted in the wisdom of shinrin-yoku, ANFT has helped shape a global movement restoring meaningful relationships between people and the living world.</p>
+  <div class="history-video">
+    <button type="button" class="hv-facade" aria-label="Play video: the history and lineage of ANFT" data-embed="https://www.youtube-nocookie.com/embed/1mXNp_qyVzM?autoplay=1&amp;rel=0&amp;start=47">
+      <img src="images/people/trainer-amos.webp" alt="Amos Clifford" loading="lazy">
+      <span class="hv-play" aria-hidden="true"></span>
+    </button>
+    <p class="hv-cap">Amos Clifford on the history and lineage of ANFT</p>
+  </div>
   <div class="history-video">
     <button type="button" class="hv-facade" aria-label="Play video: the history and lineage of ANFT" data-embed="https://www.youtube-nocookie.com/embed/1mXNp_qyVzM?autoplay=1&amp;rel=0&amp;start=47">
       <img src="images/people/trainer-amos.webp" alt="Amos Clifford" loading="lazy">
@@ -164,6 +192,18 @@
 .tm-role{font-size:13px;color:var(--ink-soft);margin:3px 0 8px;line-height:1.4}
 .tm-mail{font-size:12.5px;color:var(--gold-deep);text-decoration:none;overflow-wrap:anywhere}
 .tm-mail:hover{text-decoration:underline}
+.history-video{max-width:480px;margin:26px auto 8px}
+.hv-facade{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;padding:0;cursor:pointer;
+  border-radius:12px;overflow:hidden;background:#000}
+.hv-facade img{width:100%;height:100%;object-fit:cover;display:block;opacity:.92;transition:opacity .2s ease}
+.hv-facade:hover img{opacity:1}
+.hv-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:68px;height:48px;
+  border-radius:12px;background:rgba(30,58,95,.85);transition:background .18s ease}
+.hv-play::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-40%,-50%);
+  border-style:solid;border-width:11px 0 11px 19px;border-color:transparent transparent transparent #fff}
+.hv-facade:hover .hv-play{background:var(--gold-deep)}
+.history-video iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:12px;display:block}
+.hv-cap{text-align:center;font-size:13px;color:var(--ink-soft);margin-top:8px}
 .history-video{max-width:480px;margin:26px auto 8px}
 .hv-facade{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;padding:0;cursor:pointer;
   border-radius:12px;overflow:hidden;background:#000}
@@ -246,6 +286,20 @@
     <span><a href="privacy.html">Privacy</a> &nbsp;&middot;&nbsp; <a href="#top" aria-label="Back to top">Back to top &uarr;</a></span>
   </div>
 </footer>
+<script>
+(function(){
+  var f=document.querySelector('.hv-facade');
+  if(!f)return;
+  f.addEventListener('click',function(){
+    var i=document.createElement('iframe');
+    i.setAttribute('src',f.getAttribute('data-embed'));
+    i.setAttribute('title','The history and lineage of ANFT');
+    i.setAttribute('allow','autoplay; encrypted-media; picture-in-picture; fullscreen');
+    i.setAttribute('allowfullscreen','');
+    f.parentNode.replaceChild(i,f);
+  });
+})();
+</script>
 <script>
 (function(){
   var f=document.querySelector('.hv-facade');

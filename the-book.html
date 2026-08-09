@@ -39,6 +39,17 @@
   nav a:hover{color:var(--gold-deep);text-decoration:underline;text-underline-offset:4px}
   nav a.nav-cta{background:var(--fir);color:#fff;border-radius:8px;padding:9px 18px;text-decoration:none;transition:background .18s ease}
   nav a.nav-cta:hover{background:#264b33;color:#fff;text-decoration:none}
+  /* About dropdown */
+  .has-drop{position:relative;display:inline-flex;align-items:center}
+  .has-drop>.drop-top{display:inline-flex;align-items:center;gap:5px}
+  .drop-caret{font-size:10px;line-height:1;transition:transform .18s ease}
+  .has-drop:hover .drop-caret,.has-drop:focus-within .drop-caret{transform:rotate(180deg)}
+  .drop-menu{position:absolute;top:100%;left:0;min-width:210px;background:#fff;
+    border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 26px rgba(38,48,31,.16);
+    padding:8px 0;display:none;z-index:60}
+  .drop-menu a{display:block;padding:8px 16px;font-size:14px;font-weight:600;color:var(--navy);white-space:nowrap;letter-spacing:.01em}
+  .drop-menu a:hover{background:var(--fir-tint);color:var(--gold-deep);text-decoration:none}
+  .has-drop:hover .drop-menu,.has-drop:focus-within .drop-menu{display:block}
   .banner{max-width:1120px;margin:0 auto}
   .banner img{display:block;width:100%;height:clamp(180px,26vw,320px);object-fit:cover;
     border-radius:0 0 var(--radius) var(--radius)}
@@ -167,7 +178,17 @@
       <a href="calendar.html">Find a Training</a>
       <a href="the-book.html">The Book</a>
       <a href="science.html">Science</a>
-      <a href="about.html">About</a>
+      <span class="has-drop">
+        <a href="about.html" class="drop-top" aria-haspopup="true">About <span class="drop-caret" aria-hidden="true">&#9660;</span></a>
+        <span class="drop-menu">
+          <a href="a-living-system.html#who-we-are">Who We Are</a>
+          <a href="history-and-lineage.html">History &amp; Lineage</a>
+          <a href="our-trainers.html">Our Trainers</a>
+          <a href="our-partners.html">Partners</a>
+          <a href="student-testimonials.html">Testimonials</a>
+          <a href="media-and-blog.html">Media &amp; Blog</a>
+        </span>
+      </span>
       <a class="nav-cta" href="apply.html">Apply</a>
     </nav>
   </div>
@@ -186,7 +207,7 @@
     <h2>The Story Behind the Book</h2>
     <p>Forest bathing was new outside of Japan. In the United States I had started the first organization to bring it to the west, as &ldquo;Relational Forest Therapy.&rdquo; By 2015 the company I founded, ANFT, had already been invited to train groups of guides internationally.</p>
     <p>I started getting calls from publishers and literary agents. They had the same invitation: will you write a book on Forest Bathing. One of them stood out. Christine, an editor at RedWheel/Weiser, told me that in the small world of book publishing she was aware that there were already several titles on the topic in the works. &ldquo;If you contract with us, I promise yours will be the first one published in English.&rdquo;</p>
-    <p>The first one. There is value in that. I agreed. Paperwork was signed. And I was given a six-week window before deadline for submitting my manuscript.</p>
+    <p>The first one. There is value in that. I agreed. Paperwork was signed. And I was given a six-week deadline for submitting my manuscript.</p>
     <p>For three of those weeks I was in Japan. It was October of 2017. This was my first of what would be many visits to Japan. I visited the Forest Therapy roads at Okutama, Shinano Town, Akasawa. I met guides and at Chiba University the researcher Miyazaki Yoshifumi and his team. In his lab he wired me and my three companions to machines, and we became experimental subjects. Three weeks passed quickly. I wrote not a word. I simply experienced, absorbed, learned.</p>
     <p>Meanwhile, the Tubbs Fire was raging in Sonoma County, California, where I lived. It burned on Sonoma Mountain where my home was. It was impossible to get information about what homes had burned and what had survived. My wife and I arrived home and were met by National Guard at the turn on the road up the mountain. Showed our ID and were permitted through. Houses on our street were burned, but ours was intact.</p>
     <p>Over the next three weeks, the book poured out of me easily. Sitting in a caf&eacute;, fueled by coffee, I simply documented the system that I had developed before going to Japan. What is in this book is not a copy of what is practiced as forest bathing in Japan. But it honors that tradition, recognizing it as an essential strand of the lineages of relational forest therapy.</p>

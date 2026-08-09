@@ -39,6 +39,17 @@
   nav a:hover{color:var(--gold-deep);text-decoration:underline;text-underline-offset:4px}
   nav a.nav-cta{background:var(--fir);color:#fff;border-radius:8px;padding:9px 18px;text-decoration:none;transition:background .18s ease}
   nav a.nav-cta:hover{background:#264b33;color:#fff;text-decoration:none}
+  /* About dropdown */
+  .has-drop{position:relative;display:inline-flex;align-items:center}
+  .has-drop>.drop-top{display:inline-flex;align-items:center;gap:5px}
+  .drop-caret{font-size:10px;line-height:1;transition:transform .18s ease}
+  .has-drop:hover .drop-caret,.has-drop:focus-within .drop-caret{transform:rotate(180deg)}
+  .drop-menu{position:absolute;top:100%;left:0;min-width:210px;background:#fff;
+    border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 26px rgba(38,48,31,.16);
+    padding:8px 0;display:none;z-index:60}
+  .drop-menu a{display:block;padding:8px 16px;font-size:14px;font-weight:600;color:var(--navy);white-space:nowrap;letter-spacing:.01em}
+  .drop-menu a:hover{background:var(--fir-tint);color:var(--gold-deep);text-decoration:none}
+  .has-drop:hover .drop-menu,.has-drop:focus-within .drop-menu{display:block}
   .banner{max-width:1120px;margin:0 auto}
   .banner img{display:block;width:100%;height:clamp(180px,26vw,320px);object-fit:cover;
     border-radius:0 0 var(--radius) var(--radius)}
@@ -92,6 +103,12 @@
   .journey dd{margin:0;font-size:14.5px;color:var(--ink);line-height:1.55}
   @media (max-width:560px){.journey{padding:18px 20px}.journey dl{grid-template-columns:1fr;gap:2px 0}
     .journey dt{margin-top:8px}.journey dd{margin:0 0 4px}}
+  /* Certify Your Trail — transferred copy */
+  .benefit{margin:0 0 14px}
+  .benefit b{color:var(--navy)}
+  .reclist{margin:6px 0 16px 22px}
+  .reclist li{margin:0 0 6px;font-size:15px}
+  .soft-rule{border:0;border-top:1px solid var(--line);margin:30px 0}
 
 
   /* comprehensive footer */
@@ -147,7 +164,17 @@
       <a href="calendar.html">Find a Training</a>
       <a href="the-book.html">The Book</a>
       <a href="science.html">Science</a>
-      <a href="about.html">About</a>
+      <span class="has-drop">
+        <a href="about.html" class="drop-top" aria-haspopup="true">About <span class="drop-caret" aria-hidden="true">&#9660;</span></a>
+        <span class="drop-menu">
+          <a href="a-living-system.html#who-we-are">Who We Are</a>
+          <a href="history-and-lineage.html">History &amp; Lineage</a>
+          <a href="our-trainers.html">Our Trainers</a>
+          <a href="our-partners.html">Partners</a>
+          <a href="student-testimonials.html">Testimonials</a>
+          <a href="media-and-blog.html">Media &amp; Blog</a>
+        </span>
+      </span>
       <a class="nav-cta" href="apply.html">Apply</a>
     </nav>
   </div>
@@ -166,6 +193,36 @@
 <li><b>For guides</b> &mdash; Healing Trails, which expands your professional practice into place-making</li>
 <li><b>A global map</b> of certified trails, spaces, and places, growing across continents</li>
 </ul>
+
+<h2>Certify Your Trail</h2>
+<p>Imagine your land as a destination where visitors find peace, connection, and renewal. By partnering with the Association of Nature &amp; Forest Therapy (ANFT), you can transform your trails, spaces, or places into certified forest therapy sites that offer profound well-being benefits for your patrons while enhancing the ecological integrity of your land.</p>
+
+<h2>Why Partner with ANFT?</h2>
+<p>ANFT is the global leader in forest therapy, setting the standard for high-quality, immersive nature experiences. Our certified consultants and guides bring expertise in designing and curating spaces that foster deep connections between people and nature. When you collaborate with us, you align your land with a trusted organization that enhances its value, visibility, and impact.</p>
+
+<h2>Benefits of Certifying Your Site with ANFT</h2>
+<p class="benefit"><b>Foster Reciprocity</b><br>A certified forest therapy site nurtures a mutually beneficial relationship between visitors and the land. Through carefully curated experiences, participants develop a deeper appreciation for nature, fostering long-term stewardship and respect for the environment.</p>
+<p class="benefit"><b>Strengthen Community Bonds</b><br>Your land can become a hub for nature lovers, wellness seekers, and those looking to deepen their relationship with the outdoors. Certified sites encourage community engagement, providing a gathering place for guided walks, workshops, and nature-based healing experiences.</p>
+<p class="benefit"><b>Enhance Visitor Engagement</b><br>Transformative experiences await those who visit an ANFT-certified space. Our approach integrates sensory immersion, slow-paced exploration, and mindfulness practices, creating a profound impact on guests seeking stress relief, mental clarity, and rejuvenation.</p>
+<p class="benefit"><b>Ensure Quality and Consistency</b><br>By working with an ANFT consultant, you guarantee that your forest therapy site meets the highest standards. This ensures a consistent, high-quality experience that visitors will return for and recommend to others.</p>
+<p class="benefit"><b>Gain Global Recognition and Visibility</b><br>Becoming a certified ANFT site means increased exposure through our extensive network, including:</p>
+<ul class="reclist">
+<li>Feature placement in our monthly newsletter (25,000+ recipients)</li>
+<li>Promotion through our active social media platforms</li>
+<li>A dedicated <a class="p-link" href="our-partners.html">partner listing</a> on our website</li>
+<li>Recognition on our <a class="p-link" href="academy-of-place--global-trail-map.html">Global Network Map</a> of certified sites</li>
+<li>A complimentary 6-month venue listing on the Forest Bathing Finder</li>
+</ul>
+
+<h2>Join the Movement &ndash; Create a Lasting Impact</h2>
+<p>By partnering with ANFT, you contribute to a global movement that prioritizes well-being, ecological integrity, and meaningful nature experiences. Whether you manage a park, preserve, resort, or private retreat, our consultants and guides can help you design a space that welcomes visitors into the healing power of nature.</p>
+<p><b>Let&rsquo;s work together to transform your site into a sanctuary of renewal.</b> <a class="p-link" href="contact.html">Contact us today</a> to begin your journey toward certification.</p>
+
+<hr class="soft-rule">
+<p>Ask yourself, &ldquo;Is this a place where people can connect deeply with nature?&rdquo; If the answer is yes, then the site is probably a good candidate for certification.</p>
+<p>The process of exploring for and discovering a suitable trail, space or place need not be confined to wild areas. It may also include places such as urban parks, landscaped grounds of hospitals, community gardens, arboretums and botanical gardens.</p>
+<p><b>We consider any trail or site that allows for and supports interaction between people and the more-than-human world of Nature.</b> Certification is not based on how many of the criteria elements are met, rather we assess to what degree the criteria elements are present and how we may be able to nurture and enhance those elements. Any organization seeking to have a trail or site designated as a certified Forest Therapy site will receive a thorough assessment that includes recommendations to improve or enhance the Forest Therapy experience for participants and practitioners alike.</p>
+
 <div class="journey">
   <h3>The Shape of the Journey</h3>
   <dl>

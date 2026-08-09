@@ -39,6 +39,17 @@
   nav a:hover{color:var(--gold-deep);text-decoration:underline;text-underline-offset:4px}
   nav a.nav-cta{background:var(--fir);color:#fff;border-radius:8px;padding:9px 18px;text-decoration:none;transition:background .18s ease}
   nav a.nav-cta:hover{background:#264b33;color:#fff;text-decoration:none}
+  /* About dropdown */
+  .has-drop{position:relative;display:inline-flex;align-items:center}
+  .has-drop>.drop-top{display:inline-flex;align-items:center;gap:5px}
+  .drop-caret{font-size:10px;line-height:1;transition:transform .18s ease}
+  .has-drop:hover .drop-caret,.has-drop:focus-within .drop-caret{transform:rotate(180deg)}
+  .drop-menu{position:absolute;top:100%;left:0;min-width:210px;background:#fff;
+    border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 26px rgba(38,48,31,.16);
+    padding:8px 0;display:none;z-index:60}
+  .drop-menu a{display:block;padding:8px 16px;font-size:14px;font-weight:600;color:var(--navy);white-space:nowrap;letter-spacing:.01em}
+  .drop-menu a:hover{background:var(--fir-tint);color:var(--gold-deep);text-decoration:none}
+  .has-drop:hover .drop-menu,.has-drop:focus-within .drop-menu{display:block}
   .banner{max-width:1120px;margin:0 auto}
   .banner img{display:block;width:100%;height:clamp(180px,26vw,320px);object-fit:cover;
     border-radius:0 0 var(--radius) var(--radius)}
@@ -131,7 +142,17 @@
       <a href="calendar.html">Find a Training</a>
       <a href="the-book.html">The Book</a>
       <a href="science.html">Science</a>
-      <a href="about.html">About</a>
+      <span class="has-drop">
+        <a href="about.html" class="drop-top" aria-haspopup="true">About <span class="drop-caret" aria-hidden="true">&#9660;</span></a>
+        <span class="drop-menu">
+          <a href="a-living-system.html#who-we-are">Who We Are</a>
+          <a href="history-and-lineage.html">History &amp; Lineage</a>
+          <a href="our-trainers.html">Our Trainers</a>
+          <a href="our-partners.html">Partners</a>
+          <a href="student-testimonials.html">Testimonials</a>
+          <a href="media-and-blog.html">Media &amp; Blog</a>
+        </span>
+      </span>
       <a class="nav-cta" href="apply.html">Apply</a>
     </nav>
   </div>
