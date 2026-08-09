@@ -138,7 +138,7 @@ const CSS = [
 ].join('\n  ');
 
 const NAV = [
-  '<a href="/index.html#trainings">Trainings</a>',
+  '<a href="/calendar.html">Trainings</a>',
   '<a href="/academies.html">The Academies</a>',
   '<a href="/relational-forest-therapy-academy--global-guide-map.html">Find a Guide</a>',
   '<a href="/academy-of-place--global-trail-map.html">Find a Trail</a>',
