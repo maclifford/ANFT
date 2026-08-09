@@ -253,7 +253,11 @@
     return '<span class="cal-kind k-'+esc(k)+'">'+esc(KINDLABEL[k])+'</span>';
   }
   function body(ev){
-    var name = ev.url ? '<a href="'+esc(ev.url)+'">'+esc(ev.title||'(untitled)')+'</a>' : esc(ev.title||'(untitled)');
+    /* Link the event name to its detail page on this site (/events/<id>.html),
+       matching the homepage cards. Falls back to the record's own url only if a
+       record somehow has no id, so the calendar never sends visitors offsite. */
+    var href = ev.id ? ('/events/'+esc(ev.id)+'.html') : (ev.url ? esc(ev.url) : '');
+    var name = href ? '<a href="'+href+'">'+esc(ev.title||'(untitled)')+'</a>' : esc(ev.title||'(untitled)');
     var detail = detailOf(ev);
     return '<div class="cal-body">'+kindPill(ev)+'<div class="cal-name">'+name+'</div>'+(detail?'<div class="cal-meta">'+detail+'</div>':'')+'</div>';
   }
