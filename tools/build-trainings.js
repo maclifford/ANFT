@@ -137,7 +137,8 @@ const CSS = [
 
 const NAV = [
   '<a href="/forest-threshold.html">The Forest Threshold</a>',
-  '<a href="/a-living-system.html">About &mdash; A Living System</a>',
+  '<a href="/about.html">About</a>',
+  '<a href="/a-living-system.html">A Living System</a>',
   '<a href="/academies.html">The Academies</a>',
   '<a href="/the-book.html">The Book</a>',
   '<a href="/science.html">Science</a>',
