@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ANFT Specialized Training | Academy of Applied Forest Therapy</title>
+<title>Specializations | ANFT</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/x-icon" href="/favicon-white.ico?v=2">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png?v=2">
-<meta name="description" content="ANFT Specialized Training — Academy of Applied Forest Therapy, part of the Academies of Nature and Forest Therapies.">
-<link rel="canonical" href="https://anft.earth/academy-of-applied-partnerships--anft-specialized-training.html">
-<meta property="og:url" content="https://anft.earth/academy-of-applied-partnerships--anft-specialized-training.html">
-<meta property="og:title" content="ANFT Specialized Training | Academy of Applied Forest Therapy">
-<meta property="og:description" content="ANFT Specialized Training — Academy of Applied Forest Therapy, part of the Academies of Nature and Forest Therapies.">
+<meta name="description" content="Specializations of the Academies of Nature and Forest Therapies.">
+<link rel="canonical" href="https://anft.earth/specializations.html">
+<meta property="og:url" content="https://anft.earth/specializations.html">
+<meta property="og:title" content="Specializations | ANFT">
+<meta property="og:description" content="Specializations of the Academies of Nature and Forest Therapies.">
 <meta property="og:type" content="website">
-
+<meta property="og:image" content="https://anft.earth/images/banners/BridgeConversationBanner.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -51,38 +51,33 @@
   h2{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:500;color:var(--navy);
     font-size:25px;margin:38px 0 10px}
   p{margin:0 0 14px;max-width:70ch}
-  .quote{border-left:3px solid var(--gold);padding:4px 0 4px 22px;margin:26px 0;
-    font-family:"Nunito Sans",system-ui,sans-serif;font-size:20px;color:var(--navy)}
-  .quote cite{display:block;font-family:"Nunito Sans",system-ui,sans-serif;font-style:normal;
-    font-size:13px;color:var(--ink-soft);margin-top:6px}
-  .facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin:20px 0 6px;
-    padding:0;list-style:none}
-  .facts li{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;
-    font-size:14.5px}
-  .facts b{color:var(--navy)}
-  .stepline{counter-reset:st;list-style:none;margin:18px 0 8px;padding:0}
-  .stepline li{position:relative;padding:0 0 18px 52px}
-  .stepline li::before{counter-increment:st;content:counter(st);position:absolute;left:0;top:0;
-    width:34px;height:34px;border-radius:50%;background:var(--fir);color:#fff;font-weight:700;
-    display:flex;align-items:center;justify-content:center;font-size:15px}
-  .stepline b{color:var(--navy)}
+
+  /* buttons + secondary links (shared site convention) */
   .cta-row{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
   .btn{display:inline-block;font-size:14.5px;font-weight:600;border-radius:999px;padding:12px 26px;
     text-decoration:none;cursor:pointer;border:1.5px solid transparent;font-family:inherit}
   .btn-gold{background:var(--fir);color:#fff;border-radius:8px;transition:background .18s ease,transform .18s ease}
   .btn-gold:hover{background:#264b33;transform:translateY(-1px)}
-  .btn-quiet{background:transparent;color:var(--fir);border-color:var(--fir)}
-  .btn-quiet:hover{background:var(--fir-tint)}
+  .btn:focus-visible{outline:2.5px solid var(--gold-deep);outline-offset:2px}
   .p-link{font-size:14.5px;font-weight:600;color:var(--fir);text-decoration:underline;text-decoration-color:rgba(46,91,62,.35);text-underline-offset:3px;transition:text-decoration-color .2s ease}
   .p-link:hover{text-decoration-color:var(--fir)}
   .p-link.p-go::after{content:"\00a0\2192";display:inline-block;transition:transform .2s ease}
   .p-link.p-go:hover::after{transform:translateX(3px)}
-  .subnav{margin-top:34px;padding-top:22px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-soft)}
-  .subnav a{color:var(--fir);font-weight:600;text-decoration:none}
-  .subnav a:hover{text-decoration:underline}
-  .stub-note{background:var(--gold-tint);border:1px solid var(--gold);border-radius:10px;
-    padding:14px 18px;font-size:14px;color:var(--bark-deep);margin-top:26px}
 
+  /* hero with the page title overlaid on the banner image */
+  .hero{position:relative;max-width:1120px;margin:0 auto}
+  .hero-img{display:block;width:100%;height:clamp(260px,42vw,480px);object-fit:cover;
+    object-position:center;border-radius:0 0 var(--radius) var(--radius)}
+  .hero-cap{position:absolute;left:0;right:0;bottom:0;padding:26px 28px 22px;
+    border-radius:0 0 var(--radius) var(--radius);color:#fff;
+    background:linear-gradient(to top,rgba(12,20,12,.74),rgba(12,20,12,.30) 55%,rgba(12,20,12,0))}
+  .hero-cap h1{color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.55)}
+  .hero-link{display:inline-block;margin-top:8px;color:#fff;font-weight:600;font-size:14.5px;
+    text-decoration:none;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+  .hero-link:hover{text-decoration:underline;text-underline-offset:4px}
+
+  /* image placed inline within the text column */
+  .inline-img{display:block;width:100%;height:auto;border-radius:var(--radius);margin:6px 0 20px}
 
   /* comprehensive footer */
   footer{margin-top:72px;background:var(--navy);color:#F4F7FB;
@@ -125,6 +120,13 @@
   .foot-legal a:hover{color:#FFFFFF;text-decoration:underline}
   /* serif body: prose keeps EB Garamond */
   p,.lede,.quote,.foot-land,.foot-mission,.deck{font-family:"EB Garamond",Georgia,serif}
+
+  /* quiet in-page section links below the hero */
+  .section-links{margin:0 0 30px;font-size:11px;letter-spacing:.02em;
+    font-weight:600;line-height:1.7;color:var(--ink-soft)}
+  .section-links a{color:var(--gold-deep);text-decoration:none;white-space:nowrap}
+  .section-links a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+  .section-links a + a::before{content:"|";margin:0 .5em;color:var(--line);display:inline-block}
 </style>
 </head>
 <body id="top">
@@ -142,16 +144,39 @@
     </nav>
   </div>
 </header>
-
+<div class="hero">
+  <img class="hero-img" src="images/banners/BridgeConversationBanner.webp" alt="Two people in conversation on a bridge in a wooded landscape" loading="eager" decoding="async">
+  <div class="hero-cap">
+    <h1>Specializations</h1>
+    <a class="hero-link" href="calendar.html">See the calendar &rarr;</a>
+  </div>
+</div>
 <main class="section">
-  <div class="eyebrow">Academy of Applied Forest Therapy</div>
-  <h1>ANFT Specialized Training</h1>
-  <p class="lede">Specialized trainings developed and delivered by ANFT itself.</p>
+  <nav class="section-links" aria-label="Sections on this page">
+    <a href="#nature-as-medicine">Nature as Medicine</a>
+    <a href="#guiding-deaf-and-hearing-impaired">Guiding Deaf and Hearing Impaired</a>
+    <a href="#nature-in-business-and-education">Nature in Business and Education Bespoke Retreats</a>
+  </nav>
 
-<div class="stub-note">This page is being prepared. In the meantime, the admissions circle can answer questions about this offering directly &mdash; or begin an application and mention it in your final clarifications.</div>
-<div class="cta-row"><a class="btn btn-gold" href="apply.html">Apply</a><a class="p-link p-go" href="contact.html">Contact admissions</a></div>
+  <h2 id="nature-as-medicine">Nature as Medicine</h2>
 
-  <div class="subnav">Back to <a href="academy-of-applied-partnerships.html">Academy of Applied Forest Therapy</a></div>
+  <!-- Section copy to be pasted here -->
+
+  <p><a class="p-link p-go" href="nature-as-medicine.html">Learn more about Nature as Medicine</a></p>
+
+  <h2 id="guiding-deaf-and-hearing-impaired">Guiding Deaf and Hearing Impaired</h2>
+
+  <!-- Section copy to be pasted here -->
+
+  <p><a class="p-link p-go" href="guiding-in-sign-language.html">Learn more about Guiding Deaf and Hearing Impaired</a></p>
+
+  <h2 id="nature-in-business-and-education">Nature in Business and Education Bespoke Retreats</h2>
+
+  <!-- Section copy to be pasted here -->
+
+  <p><a class="p-link p-go" href="custom-training.html">Learn more about Bespoke</a></p>
+
+  <div class="cta-row" style="margin-top:44px;padding-top:26px;border-top:1px solid var(--line)"><a class="btn btn-gold" href="apply.html">Apply</a><a class="p-link p-go" href="calendar.html">See the calendar</a></div>
 </main>
 <footer>
   <div class="foot-grid">

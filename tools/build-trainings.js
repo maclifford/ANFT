@@ -139,6 +139,7 @@ const CSS = [
 
 const NAV = [
   '<a href="/academies.html">The Academies</a>',
+  '<a href="/specializations.html">Specializations</a>',
   '<a href="/calendar.html">Find a Training</a>',
   '<a href="/the-book.html">The Book</a>',
   '<a href="/science.html">Science</a>',

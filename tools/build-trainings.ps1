@@ -153,6 +153,7 @@ $evHEADER = @'
     <a href="/index.html" aria-label="Association of Nature and Forest Therapies &mdash; home"><img src="/images/brand/logo.webp" width="500" height="167" decoding="async" alt="Association of Nature and Forest Therapies"></a>
     <nav aria-label="Primary">
       <a href="/academies.html">The Academies</a>
+      <a href="/specializations.html">Specializations</a>
       <a href="/calendar.html">Find a Training</a>
       <a href="/the-book.html">The Book</a>
       <a href="/science.html">Science</a>
