@@ -96,6 +96,8 @@ try { $offerings = (Get-Content (Join-Path $root 'data\offerings.json') -Raw | C
 $venuesById = @{}
 $venuesArr = @()
 try { $venuesArr = @((Get-Content (Join-Path $root 'data\venues.json') -Raw | ConvertFrom-Json).venues); $venuesArr | ForEach-Object { $venuesById[[string]$_.id] = $_ } } catch {}
+$trainersById = @{}
+try { @(([System.IO.File]::ReadAllText((Join-Path $root 'data\trainers.json'), [System.Text.Encoding]::UTF8) | ConvertFrom-Json).trainers) | ForEach-Object { $trainersById[[string]$_.id] = $_ } } catch {}
 $CAT = @{ 'Nature as Medicine' = 'nature-as-medicine'; 'Opus Training' = 'opus-academy' }
 $CAT_PATH = @{ 'Forest Therapy Guide Training' = 'relational-forest-therapy-academy'; 'Opus Training' = 'opus-academy'; 'Nature as Medicine' = 'nature-as-medicine' }
 
@@ -183,8 +185,16 @@ function EvPage($rec){
   $description = if($rec.description -and ([string]$rec.description).Trim() -ne ''){([string]$rec.description).Trim()}else{EvProp $rec}
   if($rec.date){ $dateStr = [string]$rec.date + $(if($rec.time){' '+[char]0x00B7+' '+[string]$rec.time}else{''}) }
   elseif($rec.startDate){ $dateStr=[string]$rec.startDate } elseif($rec.firstCall){ $dateStr=[string]$rec.firstCall } elseif($rec.start){ $dateStr=[string]$rec.start } else { $dateStr='' }
-  $trainers = ''
-  if($rec.trainers -and @($rec.trainers).Count -gt 0){ $trainers = (@($rec.trainers) -join ', ') }
+  $trainerLinks = ''
+  if($rec.trainers -and @($rec.trainers).Count -gt 0){
+    $parts = @()
+    foreach($tid in @($rec.trainers)){
+      $nm = if($trainersById.ContainsKey([string]$tid)){ [string]$trainersById[[string]$tid].name } else { [string]$tid }
+      $parts += ('<a href="/trainers/'+(EvEsc ([string]$tid))+'.html">'+(EvEsc $nm)+'</a>')
+    }
+    $trainerLinks = ($parts -join ', ')
+  }
+  $trainerRow = if($trainerLinks){ '<li><b>Trainers</b><br>'+$trainerLinks+'</li>' } else { '' }
   $oid = if($CAT.ContainsKey([string]$rec.category)){$CAT[[string]$rec.category]}else{''}
   $off = if($oid){ $offerings | Where-Object { $_.id -eq $oid } | Select-Object -First 1 } else { $null }
   $regExt = $false
@@ -197,7 +207,7 @@ function EvPage($rec){
   $vcountry = if($vv){ [string]$vv.country } else { '' }
   $lodgingCost = if($null -ne $rec.lodgingCost -and ([string]$rec.lodgingCost).Trim() -ne ''){ '$'+[string]$rec.lodgingCost } else { '' }
   $venueRow = if($vv){ '<li><b>Venue</b><br><a href="/venues/'+(EvEsc ([string]$rec.venue_id))+'.html">'+(EvEsc $vname)+'</a></li>' } else { '' }
-  $facts = (EvFact 'Academy' $rec.academy)+(EvFact 'Subcategory' $rec.subcategory)+$venueRow+(EvFact 'Country' $vcountry)+(EvFact 'Dates' $dateStr)+(EvFact 'Enrollment deadline' $rec.enrollmentDeadline)+(EvFact 'Language' $rec.language)+(EvFact 'Trainers' $trainers)+(EvFact 'Tuition' $rec.tuition)+(EvFact 'Lodging cost' $lodgingCost)
+  $facts = (EvFact 'Academy' $rec.academy)+(EvFact 'Subcategory' $rec.subcategory)+$venueRow+(EvFact 'Country' $vcountry)+(EvFact 'Dates' $dateStr)+(EvFact 'Enrollment deadline' $rec.enrollmentDeadline)+(EvFact 'Language' $rec.language)+$trainerRow+(EvFact 'Tuition' $rec.tuition)+(EvFact 'Lodging cost' $lodgingCost)
   $eyebrow = if([string]$rec.category){'  <div class="eyebrow">'+(EvEsc $rec.category)+"</div>`n"}else{''}
   $desc = if($description){'  <p class="lede">'+(EvEsc $description)+"</p>`n"}else{''}
   $factsBlock = if($facts){'  <ul class="facts">'+$facts+"</ul>`n"}else{''}

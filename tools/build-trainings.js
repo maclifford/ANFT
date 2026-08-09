@@ -169,7 +169,7 @@ const FOOTER =
   '  <div class="foot-legal">&copy; 2026 ANFT.earth LLC, doing business as the Association of Nature and Forest Therapies. All rights reserved.</div>\n' +
   '</footer>\n';
 
-function buildEventPage(rec, offerings, venuesById) {
+function buildEventPage(rec, offerings, venuesById, trainersById) {
   const title = rec.title || 'Event';
   const description = (rec.description && String(rec.description).trim())
     ? String(rec.description).trim()
@@ -179,7 +179,11 @@ function buildEventPage(rec, offerings, venuesById) {
   if (rec.date) dateStr = rec.date + (rec.time ? (' · ' + rec.time) : '');
   else dateStr = rec.startDate || rec.firstCall || rec.start || '';
 
-  const trainers = (Array.isArray(rec.trainers) && rec.trainers.length) ? rec.trainers.join(', ') : '';
+  const trainerLinks = (Array.isArray(rec.trainers) ? rec.trainers : []).map(function (tid) {
+    const t = (trainersById && trainersById[tid]) ? trainersById[tid] : null;
+    const nm = t ? t.name : tid;
+    return '<a href="/trainers/' + esc(tid) + '.html">' + esc(nm) + '</a>';
+  }).join(', ');
   const reg = registerLink(rec, offerings);
 
   const v = (venuesById && rec.venue_id) ? venuesById[rec.venue_id] : null;
@@ -194,7 +198,7 @@ function buildEventPage(rec, offerings, venuesById) {
     factRow('Dates', dateStr),
     factRow('Enrollment deadline', rec.enrollmentDeadline),
     factRow('Language', rec.language),
-    factRow('Trainers', trainers),
+    (trainerLinks ? ('<li><b>Trainers</b><br>' + trainerLinks + '</li>') : ''),
     factRow('Tuition', rec.tuition),
     factRow('Lodging cost', lodgingCost)
   ].join('');
@@ -238,7 +242,7 @@ function buildEventPage(rec, offerings, venuesById) {
     '</body>\n</html>\n';
 }
 
-function writeEventPages(data, offerings, venuesById) {
+function writeEventPages(data, offerings, venuesById, trainersById) {
   const records = (data.trainings || []).concat(data.events || []);
   const dir = path.join(root, 'events');
   if (!fs.existsSync(dir)) fs.mkdirSync(dir);
@@ -246,7 +250,7 @@ function writeEventPages(data, offerings, venuesById) {
   records.forEach(function (rec) {
     if (!rec.id) return;
     const fp = path.join(dir, rec.id + '.html');
-    fs.writeFileSync(fp, buildEventPage(rec, offerings, venuesById)); // utf8, no BOM
+    fs.writeFileSync(fp, buildEventPage(rec, offerings, venuesById, trainersById)); // utf8, no BOM
     n++;
   });
   console.log('Wrote ' + n + ' event detail page(s) into events/.');
@@ -429,7 +433,11 @@ function main() {
     }
   } catch (e) { console.log('venues inline skipped: ' + e.message); }
 
-  writeEventPages(data, offerings, venuesById);
+  const trainersById = {};
+  try { (JSON.parse(fs.readFileSync(trainersFp, 'utf8')).trainers || []).forEach(function (t) { trainersById[t.id] = t; }); }
+  catch (e) { console.log('trainers.json unavailable (' + e.message + '); trainer names will fall back to ids.'); }
+
+  writeEventPages(data, offerings, venuesById, trainersById);
 
   // Inline the trainers directory into every page that embeds it (same mechanism).
   const tjson = fs.readFileSync(trainersFp, 'utf8');

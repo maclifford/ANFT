@@ -308,6 +308,17 @@
       "bio_excerpt": null,
       "bio_full": null,
       "photo": "images/people/mish-moore.webp"
+    },
+    {
+      "id": "monique-ross",
+      "name": "Monique Ross",
+      "role": "Trainer",
+      "team": "Our Trainers",
+      "region": "Australia",
+      "email": null,
+      "bio_excerpt": null,
+      "bio_full": null,
+      "photo": ""
     }
   ]
 }
