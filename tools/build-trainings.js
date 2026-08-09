@@ -160,6 +160,7 @@ const FOOTER =
   '    <div class="foot-tagline">Knowledge &middot; Practice &middot; Transformation</div>\n' +
   '    <div class="foot-nav">\n' +
   '      <a href="/academies.html">The Academies</a>\n' +
+  '      <a href="/about.html">About</a>\n' +
   '      <a href="/apply.html">Apply</a>\n' +
   '      <a href="/calendar.html">Calendar</a>\n' +
   '      <a href="/index.html#trainings">Upcoming trainings</a>\n' +
