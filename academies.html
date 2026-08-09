@@ -120,6 +120,13 @@
   .foot-legal a:hover{color:#FFFFFF;text-decoration:underline}
   /* serif body: prose keeps EB Garamond */
   p,.lede,.quote,.foot-land,.foot-mission,.deck{font-family:"EB Garamond",Georgia,serif}
+
+  /* quiet in-page section links below the hero */
+  .section-links{margin:0 0 30px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    font-weight:600;line-height:2.1;color:var(--ink-soft)}
+  .section-links a{color:var(--gold-deep);text-decoration:none;white-space:nowrap}
+  .section-links a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+  .section-links a + a::before{content:"\00B7";margin:0 .75em;color:var(--line);display:inline-block}
 </style>
 </head>
 <body id="top">
@@ -144,10 +151,17 @@
   </div>
 </div>
 <main class="section">
+  <nav class="section-links" aria-label="Sections on this page">
+    <a href="#relational-forest-therapy">Relational Forest Therapy</a>
+    <a href="#places-and-trails">Places and Trails</a>
+    <a href="#applied-forest-therapy">Applied Forest Therapy</a>
+    <a href="#opus-academy">Opus Academy</a>
+  </nav>
+
   <p class="lede">"I can't wait to tell you…."<br>
   <em>— M. Amos Clifford</em></p>
 
-  <h2>Relational Forest Therapy Academy</h2>
+  <h2 id="relational-forest-therapy">Relational Forest Therapy Academy</h2>
 
   <p>There is a way of guiding, of being in the world, that explores the landscape as a web of relationships. We find ourselves. We find each other. A few hours away from the constant onslaught of screens, we have a break from the tamed world. We reset.</p>
 
@@ -159,7 +173,7 @@
 
   <p><a class="p-link p-go" href="relational-forest-therapy-academy.html">Learn more about the Relational Forest Therapy Academy</a></p>
 
-  <h2>Academy of Place</h2>
+  <h2 id="places-and-trails">Academy of Place</h2>
 
   <img class="inline-img" src="images/banners/redwood-trunks.webp" width="2400" height="1350" alt="Three redwood trunks growing close together in Cooper's Grove on Sonoma Mountain" loading="lazy" decoding="async">
 
@@ -173,7 +187,7 @@
 
   <p><a class="p-link p-go" href="academy-of-place.html">Learn more about the Academy of Place</a></p>
 
-  <h2>Academy of Applied Forest Therapy</h2>
+  <h2 id="applied-forest-therapy">Academy of Applied Forest Therapy</h2>
 
   <p>Years of worldwide collaborations; we've watched how those we have trained find ways to bring the heart of the practice into their work. Doctors, psychotherapists, parents, teachers, social workers, yoga teachers, life coaches, and many more… they have shown us how our core teachings enhance their work. The dimensional quality of integrating The Way of the Guide. The Language of Invitation. The Standard Sequence; and the other things that Guides learn how to embody in the forest.</p>
 
@@ -181,7 +195,7 @@
 
   <p><a class="p-link p-go" href="academy-of-applied-partnerships.html">Learn more about the Academy of Applied Forest Therapy</a></p>
 
-  <h2>Opus Academy</h2>
+  <h2 id="opus-academy">Opus Academy</h2>
 
   <p>From the very beginning, my earliest experiences and experiments with guiding forest therapy walks, I have held a question. Who are these people who come on these walks, and why do they come? They weren't patients. They weren't students. They weren't clients. So, what then were they?</p>
 
