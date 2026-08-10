@@ -159,6 +159,11 @@
     font-size:12.5px;color:#B9C6D9;display:flex;justify-content:space-between;gap:10px 24px;flex-wrap:wrap}
   .foot-legal a{color:#C9D5E6;text-decoration:none}
   /* arced hero headline + intro lead */
+  .hero-tag{position:absolute;top:56%;left:50%;transform:translateX(-50%);z-index:2;pointer-events:none;
+    width:min(1000px,90vw);text-align:center;color:#fff;font-family:"Nunito Sans",system-ui,sans-serif;
+    font-weight:800;font-size:clamp(24px,3.6vw,46px);letter-spacing:.01em;line-height:1.1;
+    text-shadow:0 2px 20px rgba(20,32,22,.65),0 1px 4px rgba(20,32,22,.55)}
+  @media (max-width:640px){.hero-tag{top:58%;font-size:clamp(22px,7vw,34px)}}
   .hero-arc{position:absolute;top:17%;left:50%;transform:translateX(-50%);width:min(1060px,88vw);height:auto;z-index:2;pointer-events:none;filter:drop-shadow(0 2px 14px rgba(20,32,22,.55))}
   .hero-arc text{fill:#fff;font-family:"Nunito Sans",system-ui,sans-serif;font-weight:600;font-size:60px;letter-spacing:.3px}
   @media (max-width:640px){.hero-arc text{font-size:78px}}
@@ -197,10 +202,11 @@
 <section class="home-hero" aria-label="Welcome">
   <img class="hero-img" src="images/index/hero-home.webp" alt="Light through the forest at the threshold" fetchpriority="high" decoding="async">
   <div class="scrim-top"></div>
-  <svg class="hero-arc" viewBox="0 0 1320 240" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Something in you remembers.">
+  <svg class="hero-arc" viewBox="0 0 1320 240" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Something In You Remembers">
     <defs><path id="heroArc" d="M 40,185 Q 660,55 1280,185" fill="none"></path></defs>
-    <text text-anchor="middle"><textPath href="#heroArc" startOffset="50%">Something in you remembers.</textPath></text>
+    <text text-anchor="middle"><textPath href="#heroArc" startOffset="50%">Something In You Remembers</textPath></text>
   </svg>
+  <div class="hero-tag">We Train Forest Therapy Guides</div>
 </section>
 
 <!-- intro lead: the copy that used to sit on the photo -->
