@@ -148,6 +148,13 @@
   .foot-legal a:hover{color:#FFFFFF;text-decoration:underline}
   /* serif body: prose keeps EB Garamond */
   p,.lede,.quote,.foot-land,.foot-mission,.deck{font-family:"EB Garamond",Georgia,serif}
+  /* full-width page hero */
+  .page-hero{position:relative;width:100%;min-height:clamp(320px,42vw,480px);display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+  .page-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .page-hero .ph-scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(20,32,22,.34),rgba(20,32,22,.56))}
+  .page-hero .ph-in{position:relative;z-index:2;padding:44px 28px;max-width:840px}
+  .page-hero .eyebrow{color:#E7D9A8;margin-bottom:10px}
+  .page-hero h1{color:#fff}
 </style>
 </head>
 <body id="top">
@@ -175,10 +182,8 @@
     </nav>
   </div>
 </header>
-<div class="banner"><img src="images/banners/TreeHuggerBanner.webp" alt="A person standing among towering redwoods, one hand resting on the bark, gazing up into the trees" loading="eager" decoding="async"></div>
+<section class="page-hero" aria-label="Re-collection"><img src="images/banners/TreeHuggerBanner.webp" alt="A person standing among towering redwoods, one hand resting on the bark, gazing up into the trees" loading="eager" decoding="async"><div class="ph-scrim"></div><div class="ph-in"><div class="eyebrow">The Guide Training Pathway</div><h1>Re-collection</h1></div></section>
 <main class="section">
-  <div class="eyebrow">The Guide Training Pathway</div>
-  <h1>Re-collection</h1>
 
   <p class="lede">Nearly everyone arrives already practising without having named it &mdash; the stone on the windowsill, the feather kept for twenty years. This stage makes it visible: you recover the stories of what you already hold, and contribute them to a body of work the group builds together. What you build in these eight sessions is yours to keep and to practise, whether or not you ever guide anyone.</p>
 
