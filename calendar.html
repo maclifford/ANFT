@@ -141,6 +141,12 @@
   .foot-legal a:hover{color:#FFFFFF;text-decoration:underline}
   /* serif body: prose keeps EB Garamond */
   p,.lede,.quote,.foot-land,.foot-mission,.deck{font-family:"EB Garamond",Georgia,serif}
+  .page-hero{position:relative;width:100%;min-height:clamp(320px,42vw,480px);display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+  .page-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .page-hero .ph-scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(20,32,22,.34),rgba(20,32,22,.56))}
+  .page-hero .ph-in{position:relative;z-index:2;padding:44px 28px;max-width:840px}
+  .page-hero .eyebrow{color:#E7D9A8;margin-bottom:10px}
+  .page-hero h1{color:#fff}
 </style>
 </head>
 <body id="top">
@@ -168,10 +174,16 @@
     </nav>
   </div>
 </header>
+<section class="page-hero" aria-label="Calendar">
+  <img src="images/banners/AranIslandSnail.webp" alt="A snail on the Aran Islands" fetchpriority="high" decoding="async">
+  <div class="ph-scrim"></div>
+  <div class="ph-in">
+    <div class="eyebrow">What&rsquo;s coming up</div>
+    <h1>Calendar</h1>
+  </div>
+</section>
 <main>
   <section class="section">
-    <div class="eyebrow">What&rsquo;s coming up</div>
-    <h2>Calendar</h2>
     <p class="lede">Upcoming trainings, immersions, gatherings, and calls, in date order. Dates that have already passed drop off on their own.</p>
     <div id="calFilter" class="cal-filter" role="group" aria-label="Filter events by kind" hidden></div>
     <p id="calCount" class="cal-count" hidden></p>
