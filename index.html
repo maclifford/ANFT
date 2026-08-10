@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Academies of Nature and Forest Therapies | Something in you remembers</title>
+<title>Association of Nature and Forest Therapies | Something in you remembers</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/x-icon" href="/favicon-white.ico?v=2">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
@@ -61,7 +61,7 @@
   /* ---------- hero ---------- */
   .home-hero{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
   .home-hero .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
-  .home-hero .scrim-top{position:absolute;top:0;left:0;right:0;height:190px;z-index:1;pointer-events:none;
+  .home-hero .scrim-top{position:absolute;top:0;left:0;right:0;height:104px;z-index:1;pointer-events:none;
     background:linear-gradient(to bottom, rgba(242,243,236,.72), rgba(242,243,236,0))}
   .home-hero .scrim{position:absolute;inset:0;z-index:1;pointer-events:none;
     background:linear-gradient(180deg, rgba(242,243,236,.20) 0%, rgba(242,243,236,.10) 38%, rgba(242,243,236,.55) 100%)}
@@ -158,12 +158,19 @@
   .foot-legal{max-width:1120px;margin:26px auto 0;padding-top:16px;border-top:1px solid rgba(244,247,251,.16);
     font-size:12.5px;color:#B9C6D9;display:flex;justify-content:space-between;gap:10px 24px;flex-wrap:wrap}
   .foot-legal a{color:#C9D5E6;text-decoration:none}
+  /* arced hero headline + intro lead */
+  .hero-arc{position:absolute;top:17%;left:50%;transform:translateX(-50%);width:min(1060px,88vw);height:auto;z-index:2;pointer-events:none;filter:drop-shadow(0 2px 14px rgba(20,32,22,.55))}
+  .hero-arc text{fill:#fff;font-family:"Nunito Sans",system-ui,sans-serif;font-weight:600;font-size:60px;letter-spacing:.3px}
+  @media (max-width:640px){.hero-arc text{font-size:78px}}
+  .intro-lead{padding-top:clamp(40px,6vw,72px);padding-bottom:0}
+  .lede-hero{font-family:"EB Garamond",Georgia,serif;font-size:clamp(18px,2.3vw,23px);color:var(--ink);line-height:1.65;max-width:62ch;margin:0 auto}
+  .lead-cta{margin-top:26px;display:flex;gap:20px;flex-wrap:wrap;align-items:center;justify-content:center}
 </style>
 </head>
 <body id="top">
 <header class="site-header" id="siteHeader">
   <div class="hdr-in">
-    <a href="index.html" aria-label="Academies of Nature and Forest Therapies — home"><img src="images/brand/logo.webp" width="500" height="167" decoding="async" alt="Academies of Nature and Forest Therapies"></a>
+    <a href="index.html" aria-label="Association of Nature and Forest Therapies — home"><img src="images/brand/logo.webp" width="500" height="167" decoding="async" alt="Association of Nature and Forest Therapies"></a>
     <nav aria-label="Primary">
       <a href="academies.html">The Academies</a>
       <a href="specializations.html">Specializations</a>
@@ -190,14 +197,19 @@
 <section class="home-hero" aria-label="Welcome">
   <img class="hero-img" src="images/index/hero-home.webp" alt="Light through the forest at the threshold" fetchpriority="high" decoding="async">
   <div class="scrim-top"></div>
-  <div class="scrim"></div>
-  <div class="hero-inner">
-    <div class="hero-id">Academies of Nature and Forest Therapies</div>
-    <h1>Something in you remembers.</h1>
-    <p class="sub">Time in nature quiets the tamed world &mdash; and an older, essential self begins to stir. Jack London called it the call of the wild. We call it the Forest Threshold: an awakening we witness, and from which many paths open.</p>
-    <div class="hero-cta">
+  <svg class="hero-arc" viewBox="0 0 1320 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Something in you remembers.">
+    <defs><path id="heroArc" d="M 30,150 Q 660,92 1290,150" fill="none"></path></defs>
+    <text text-anchor="middle"><textPath href="#heroArc" startOffset="50%">Something in you remembers.</textPath></text>
+  </svg>
+</section>
+
+<!-- intro lead: the copy that used to sit on the photo -->
+<section class="section intro-lead" aria-label="Introduction">
+  <div class="wrap center">
+    <p class="lede-hero">Time in nature quiets the tamed world &mdash; and an older, essential self begins to stir. Jack London called it the call of the wild. We call it the Forest Threshold: an awakening we witness, and from which many paths open.</p>
+    <div class="lead-cta">
       <a class="btn btn-gold" href="apply.html">Begin your application</a>
-      <a class="p-link on-photo" href="#paths">Explore the paths</a>
+      <a class="p-link" href="#paths">Explore the paths</a>
     </div>
   </div>
 </section>
