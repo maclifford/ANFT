@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Academies of Nature and Forest Therapies | The Call of the Wild, Welcomed</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Academies of Nature and Forest Therapies | Something in you remembers</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/x-icon" href="/favicon-white.ico?v=2">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png?v=2">
-<meta name="description" content="The Academies of Nature and Forest Therapies: five training paths leading from The Forest Threshold — guide certification, Nature as Medicine for health care professionals, the Academy of Place, Opus Academy, and Applied Forest Therapy.">
-<link rel="canonical" href="https://anft.earth/">
-<meta property="og:title" content="Academies of Nature and Forest Therapies">
-<meta property="og:description" content="Five training paths leading from The Forest Threshold — from certified guide training to programs for health care professionals.">
+<meta name="description" content="Time in nature quiets the tamed world and an older, essential self begins to stir. We call it the Forest Threshold — and from it, many paths open. Training and certification in relational forest therapy, worldwide.">
+<link rel="canonical" href="https://anft.earth/index.html">
+<meta property="og:url" content="https://anft.earth/index.html">
+<meta property="og:title" content="Something in you remembers">
+<meta property="og:description" content="An older, essential self begins to stir. We call it the Forest Threshold — and from it, many paths open.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://anft.earth/">
-<meta property="og:image" content="https://anft.earth/images/banners/hero.webp">
+<meta property="og:image" content="https://anft.earth/images/index/hero-home.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -29,337 +29,141 @@
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{background:var(--paper);color:var(--ink);font-family:"Nunito Sans",system-ui,sans-serif;
-    font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
-  .serif{font-family:"Nunito Sans",system-ui,sans-serif}
+    font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  img{display:block;max-width:100%}
+  a{color:inherit}
+  h1,h2,h3{font-family:"Nunito Sans",system-ui,sans-serif;color:var(--navy);font-weight:500;line-height:1.15}
+  .eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep);font-weight:600;margin-bottom:12px}
+  p{font-family:"EB Garamond",Georgia,serif}
 
-  /* header */
-  .site-header{background:#fff;border-bottom:1px solid var(--line)}
-  .hdr-in{max-width:1120px;margin:0 auto;padding:4px 28px;display:flex;align-items:center;
-    justify-content:space-between;gap:20px;flex-wrap:wrap}
-  .hdr-in img{width:200px;height:auto;display:block}
-  nav{display:flex;gap:26px;flex-wrap:wrap;align-items:center}
+  /* ---------- transparent header that bleeds into the hero sky ---------- */
+  .site-header{position:fixed;top:0;left:0;right:0;z-index:80;background:transparent;
+    border-bottom:1px solid transparent;transition:background .35s ease,border-color .35s ease,box-shadow .35s ease}
+  .site-header.scrolled{background:rgba(255,255,255,.96);border-bottom-color:var(--line);box-shadow:0 2px 16px rgba(38,48,31,.07)}
+  .hdr-in{max-width:1200px;margin:0 auto;padding:12px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .hdr-in img{width:190px;height:auto}
+  nav{display:flex;gap:24px;flex-wrap:wrap;align-items:center}
   nav a{color:var(--navy);text-decoration:none;font-size:14.5px;font-weight:600;letter-spacing:.02em}
-  nav a:hover{color:var(--gold-deep);text-decoration:underline;text-underline-offset:4px}
-  nav a.nav-cta{background:var(--fir);color:#fff;border-radius:8px;padding:9px 18px;text-decoration:none;transition:background .18s ease}
-  nav a.nav-cta:hover{background:#264b33;color:#fff;text-decoration:none}
+  nav a:hover{color:var(--gold-deep)}
+  nav a.nav-cta{background:var(--fir);color:#fff;border-radius:8px;padding:9px 18px}
+  nav a.nav-cta:hover{background:#264b33;color:#fff}
   /* About dropdown */
   .has-drop{position:relative;display:inline-flex;align-items:center}
   .has-drop>.drop-top{display:inline-flex;align-items:center;gap:5px}
   .drop-caret{font-size:10px;line-height:1;transition:transform .18s ease}
   .has-drop:hover .drop-caret,.has-drop:focus-within .drop-caret{transform:rotate(180deg)}
-  .drop-menu{position:absolute;top:100%;left:0;min-width:210px;background:#fff;
-    border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 26px rgba(38,48,31,.16);
-    padding:8px 0;display:none;z-index:60}
-  .drop-menu a{display:block;padding:8px 16px;font-size:14px;font-weight:600;color:var(--navy);white-space:nowrap;letter-spacing:.01em}
-  .drop-menu a:hover{background:var(--fir-tint);color:var(--gold-deep);text-decoration:none}
+  .drop-menu{position:absolute;top:100%;left:0;min-width:210px;background:#fff;border:1px solid var(--line);
+    border-radius:10px;box-shadow:0 10px 26px rgba(38,48,31,.16);padding:8px 0;display:none;z-index:90}
+  .drop-menu a{display:block;padding:8px 16px;font-size:14px;font-weight:600;color:var(--navy);white-space:nowrap}
+  .drop-menu a:hover{background:var(--fir-tint);color:var(--gold-deep)}
   .has-drop:hover .drop-menu,.has-drop:focus-within .drop-menu{display:block}
 
-  /* hero */
-  .hero{position:relative;overflow:hidden}
-  .hero img,.hero video{display:block;width:100%;height:min(62vh,520px);object-fit:cover;background:#1a2a1e}
-  .hero-veil{position:absolute;inset:0;background:linear-gradient(to right,rgba(20,32,22,.62) 0%,rgba(20,32,22,.30) 55%,rgba(20,32,22,.05) 100%)}
-  .hero-copy{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
-    max-width:1120px;margin:0 auto;padding:0 28px;color:#fff}
-  .hero-copy h1{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:500;
-    font-size:clamp(32px,5vw,54px);line-height:1.1;max-width:15ch;text-shadow:0 1px 8px rgba(0,0,0,.35)}
-  .hero-copy p{margin-top:14px;max-width:44ch;font-size:clamp(15px,2vw,18px);text-shadow:0 1px 6px rgba(0,0,0,.4)}
-  .hero-cta{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap}
-  .btn{display:inline-block;font-size:14.5px;font-weight:600;border-radius:999px;padding:12px 22px;
-    text-decoration:none;cursor:pointer;border:1.5px solid transparent;font-family:inherit}
-  .btn-gold{background:var(--fir);color:#fff;border-radius:8px;transition:background .18s ease,transform .18s ease}
+  /* ---------- hero ---------- */
+  .home-hero{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+  .home-hero .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .home-hero .scrim-top{position:absolute;top:0;left:0;right:0;height:190px;z-index:1;pointer-events:none;
+    background:linear-gradient(to bottom, rgba(242,243,236,.72), rgba(242,243,236,0))}
+  .home-hero .scrim{position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:linear-gradient(180deg, rgba(242,243,236,.20) 0%, rgba(242,243,236,.10) 38%, rgba(242,243,236,.55) 100%)}
+  .hero-inner{position:relative;z-index:2;max-width:840px;padding:120px 28px 90px}
+  .hero-id{font-family:"Nunito Sans",system-ui,sans-serif;font-size:13px;letter-spacing:.26em;text-transform:uppercase;
+    color:var(--navy);font-weight:700;margin-bottom:22px;text-shadow:0 1px 16px rgba(242,243,236,.7)}
+  .hero-inner h1{font-size:clamp(34px,6vw,64px);font-weight:500;color:var(--ink);
+    text-shadow:0 1px 26px rgba(242,243,236,.75)}
+  .hero-inner .sub{margin:20px auto 0;max-width:60ch;font-size:clamp(17px,2.1vw,21px);color:var(--ink);
+    line-height:1.6;text-shadow:0 1px 18px rgba(242,243,236,.7)}
+  .hero-cta{margin-top:34px;display:flex;gap:20px;flex-wrap:wrap;align-items:center;justify-content:center}
+
+  /* ---------- buttons ---------- */
+  .btn{display:inline-block;font-size:15px;font-weight:600;border-radius:8px;padding:13px 28px;text-decoration:none;
+    border:1.5px solid transparent;cursor:pointer;font-family:inherit;transition:background .18s ease,transform .18s ease}
+  .btn-gold{background:var(--fir);color:#fff}
   .btn-gold:hover{background:#264b33;transform:translateY(-1px)}
-  .btn-ghost{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.65)}
-  .btn-ghost:hover{background:rgba(255,255,255,.24)}
-  .btn:focus-visible{outline:2.5px solid #fff;outline-offset:2px}
+  .p-link{font-size:15px;font-weight:600;color:var(--fir);text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+  .p-link::after{content:"\2192";transition:transform .2s ease}
+  .p-link:hover::after{transform:translateX(4px)}
+  .p-link.on-photo{color:var(--navy)}
 
-  /* sections */
-  .section{max-width:1120px;margin:0 auto;padding:64px 28px 8px}
-  .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);
-    font-weight:600;margin-bottom:10px}
-  .section h2{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:500;color:var(--navy);
-    font-size:clamp(26px,3.6vw,38px);line-height:1.15}
-  .section .lede{color:var(--ink-soft);max-width:62ch;margin-top:10px;margin-bottom:30px}
-  .intro{max-width:62ch}
-  .intro h2{font-weight:600;font-size:clamp(21px,2.6vw,26px);line-height:1.32;margin:0}
-  .intro b{color:var(--ink);font-weight:700}
+  /* ---------- layout helpers ---------- */
+  .wrap{max-width:760px;margin:0 auto;padding:0 28px}
+  .section{padding:clamp(64px,9vw,120px) 0}
+  .section.tight{padding:clamp(48px,6vw,84px) 0}
+  .center{text-align:center}
+  .statement{font-size:clamp(22px,3.2vw,32px);font-weight:500;color:var(--navy);line-height:1.3;
+    font-family:"Nunito Sans",system-ui,sans-serif}
+  .lede{margin-top:14px;color:var(--ink-soft);font-size:18px;max-width:60ch}
+  .center .lede{margin-left:auto;margin-right:auto}
+  .prose{margin-top:20px;font-size:18px;color:var(--ink);line-height:1.7}
 
-  /* ===== Threshold: two-column menu ===== */
-  .wheel-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 20px 20px}
-  .thr{display:grid;grid-template-columns:1fr;gap:30px;align-items:start}
-  .thr-menu{display:flex;flex-direction:column;gap:14px}
-  .thr-btn{display:block;text-decoration:none;background:var(--card);border:1px solid var(--line);
-    border-left:6px solid var(--accent,var(--gold));border-radius:12px;padding:16px 20px;
-    transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease}
-  .thr-btn b{font-family:"Nunito Sans",system-ui,sans-serif;font-size:20px;font-weight:600;
-    color:var(--navy);display:block;line-height:1.2}
-  .thr-btn span{display:block;font-size:14.5px;color:var(--ink-soft);margin-top:4px;line-height:1.5}
-  .thr-btn:hover{border-color:var(--fir);transform:translateY(-2px);box-shadow:0 6px 16px rgba(38,48,31,.10)}
-  .thr-btn:focus-visible{outline:2.5px solid var(--gold);outline-offset:2px}
-  .thr-center{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px 28px}
-  .thr-center h3{font-weight:500;color:var(--navy);font-size:clamp(24px,3vw,30px);line-height:1.15}
-  .thr-center > p{color:var(--ink-soft);margin-top:12px}
-  .thr-verbs{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
-  .thr-verb{font:inherit;font-size:15px;font-weight:700;letter-spacing:1.4px;color:var(--gold-deep);
-    background:var(--gold-tint);border:1px solid var(--gold);border-radius:999px;padding:9px 16px;cursor:pointer;min-height:44px}
-  .thr-verb:hover,.thr-verb:focus-visible{background:#EBE1C4}
-  .thr-verb-desc{color:var(--ink-soft);margin-top:14px;line-height:1.6}
-  .p-link{font-size:14.5px;font-weight:600;color:var(--fir);text-decoration:underline;text-decoration-color:rgba(46,91,62,.35);text-underline-offset:3px;transition:text-decoration-color .2s ease}
-  .p-link:hover{text-decoration-color:var(--fir)}
-  .p-link.p-go::after{content:"\00a0\2192";display:inline-block;transition:transform .2s ease}
-  .p-link.p-go:hover::after{transform:translateX(3px)}
+  /* ---------- full-width image bands ---------- */
+  .band{position:relative;display:flex;align-items:center;justify-content:center;text-align:center;
+    min-height:clamp(360px,48vw,560px);overflow:hidden;color:#fff}
+  .band .band-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .band .band-scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg, rgba(20,32,22,.30), rgba(20,32,22,.55))}
+  .band-inner{position:relative;z-index:2;max-width:760px;padding:64px 28px}
+  .band-inner .eyebrow{color:#E7D9A8}
+  .band-inner h2{color:#fff}
+  .band-inner p{color:#F4F7F0;font-size:clamp(18px,2.4vw,23px);line-height:1.6;margin-top:14px;text-shadow:0 1px 18px rgba(0,0,0,.25)}
+  .band-inner .btn-light{background:#fff;color:var(--fir);border-radius:8px}
+  .band-inner .btn-light:hover{background:var(--paper)}
 
-  /* upcoming trainings — card grid */
-  .tcards{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:26px}
-  @media(max-width:640px){.tcards{grid-template-columns:1fr}}
-  .tcard{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);
-    border-radius:var(--radius);overflow:hidden;text-decoration:none;color:var(--ink);
-    transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease}
-  a.tcard:hover{border-color:var(--fir);transform:translateY(-2px);box-shadow:0 6px 16px rgba(38,48,31,.10)}
-  .tcard-media{width:100%;aspect-ratio:3/2;object-fit:cover;object-position:center;display:block;background:var(--fir)}
-  .tcard-ph{width:100%;aspect-ratio:3/2;background:var(--fir);display:block}
-  .tcard-body{display:flex;flex-direction:column;flex:1;padding:18px 20px 20px}
-  .tcard-title{font-family:"Nunito Sans",system-ui,sans-serif;font-size:21px;font-weight:600;color:var(--navy);line-height:1.2}
-  .tcard-cat{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-deep);font-weight:700;margin-top:10px}
-  .tcard-sub{font-size:14.5px;font-weight:700;color:var(--navy);margin-top:5px;line-height:1.3}
-  .tcard-place{font-size:14px;color:var(--ink-soft);margin-top:8px;line-height:1.5}
-  .tcard-dates{font-size:14px;color:var(--ink-soft);margin-top:8px;line-height:1.5}
-  .tcard-lang{font-size:14px;color:var(--ink-soft);margin-top:8px}
-  .tcard-status{margin-top:12px}
-  .tcard-link{margin-top:auto;padding-top:16px;font-size:14px;font-weight:600;color:var(--fir);text-decoration:underline;text-decoration-color:rgba(46,91,62,.35);text-underline-offset:3px}
-  .tcard-link .arr{display:inline-block;transition:transform .2s ease}
-  a.tcard:hover .tcard-link{text-decoration-color:var(--fir)}
-  a.tcard:hover .tcard-link .arr{transform:translateX(3px)}
-  .tcard-badge{display:inline-block;font-size:12px;font-weight:600;border-radius:999px;padding:5px 13px}
-  .badge-open{color:var(--fir);background:var(--fir-tint)}
-  .badge-wait{color:var(--gold-deep);background:var(--gold-tint)}
-  .badge-closed{color:#7a2e2e;background:#efdada}
-  /* upcoming trainings */
-  .tr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-top:26px}
-  .tr-card{display:block;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
-    padding:0;overflow:hidden;text-decoration:none;color:var(--ink);
-    transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease}
-  .tr-card img{display:block;width:100%;aspect-ratio:8/5;object-fit:cover}
-  .tr-card-body{padding:18px 22px 22px}
-  .tr-card:hover{border-color:var(--fir);transform:translateY(-2px);box-shadow:0 6px 16px rgba(38,48,31,.10)}
-  .tr-format{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--gold-deep)}
-  .tr-place{font-family:"Nunito Sans",system-ui,sans-serif;font-size:21px;color:var(--navy);margin-top:8px}
-  .tr-venue{font-size:14px;color:var(--ink-soft);margin-top:2px}
-  .tr-date{font-size:13.5px;color:var(--ink-soft);margin-top:10px}
-  .tr-status{display:inline-block;margin-top:12px;font-size:12px;font-weight:600;color:var(--fir);
-    background:var(--fir-tint);border-radius:999px;padding:4px 12px}
-  .tr-all{margin-top:22px}
-  /* trainings accordion */
-  .tr-acc{margin-top:26px}
-  .tr-cat{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:12px}
-  .tr-cat > summary{cursor:pointer;list-style:none;padding:16px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px}
-  .tr-cat > summary::-webkit-details-marker{display:none}
-  .tr-cat-name{font-family:"Nunito Sans",system-ui,sans-serif;font-size:20px;font-weight:600;color:var(--navy)}
-  .tr-cat > summary::after{content:"+";font-size:22px;font-weight:400;color:var(--gold-deep);flex:none;line-height:1}
-  .tr-cat[open] > summary::after{content:"\2212"}
-  .tr-cat > summary:hover .tr-cat-name{color:var(--gold-deep)}
-  .tr-cat > summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:12px}
-  .tr-count{font-size:12px;font-weight:600;letter-spacing:.03em;color:var(--ink-soft);white-space:nowrap}
-  .tr-cat-body{padding:2px 22px 18px}
-  .tr-cat-body > .tr-item:first-child{border-top:0}
-  .tr-subhead{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--gold-deep);margin:18px 0 4px}
-  .tr-subhead + .tr-item{border-top:0}
-  .tr-item{padding:14px 0;border-top:1px solid var(--line)}
-  .tr-item-title{font-family:"Nunito Sans",system-ui,sans-serif;font-size:17px;color:var(--navy);font-weight:600;margin-top:3px}
-  .tr-item-cohort{font-family:"Nunito Sans",system-ui,sans-serif;font-size:13px;color:var(--ink-soft);font-weight:400}
-  .tr-meta{font-size:13.5px;color:var(--ink-soft);margin-top:5px;line-height:1.6}
-  .tr-meta b{color:var(--ink);font-weight:600}
-  .tr-badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;border-radius:999px;padding:3px 11px}
-  .tr-badge.open{background:var(--fir-tint);color:var(--fir)}
-  .tr-badge.wait{background:var(--gold-tint);color:var(--gold-deep)}
-  .tr-badge.closed{background:#E7EAE1;color:var(--ink-soft)}
-  .tr-link{display:inline-block;margin-top:8px;font-size:13.5px;font-weight:600;color:var(--gold-deep);text-decoration:none}
-  .tr-link:hover{text-decoration:underline;text-underline-offset:3px}
-  .tr-links{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin-top:10px}
-  .tr-links .tr-link{margin-top:0}
-  .tr-choose{display:inline-block;font-size:13.5px;font-weight:700;background:var(--gold);color:#fff;
-    border-radius:999px;padding:8px 18px;text-decoration:none;border:1.5px solid var(--gold)}
-  .tr-choose:hover{background:var(--gold-deep);border-color:var(--gold-deep)}
-  .tr-empty{color:var(--ink-soft);font-size:14.5px;margin:2px 0 4px}
+  /* ---------- paths grid ---------- */
+  .paths{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px;margin-top:40px}
+  @media (min-width:900px){.paths{grid-template-columns:repeat(5,1fr)}}
+  .path-card{display:flex;flex-direction:column;text-decoration:none;color:inherit;group:card}
+  .path-card .ph{aspect-ratio:4/5;width:100%;border-radius:12px;overflow:hidden;background:var(--fir-tint);border:1px solid var(--line)}
+  .path-card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+  .path-card:hover .ph img{transform:scale(1.04)}
+  .path-card h3{font-size:18px;margin:14px 0 4px;font-weight:600}
+  .path-card p{font-family:"EB Garamond",Georgia,serif;font-size:15px;color:var(--ink-soft);line-height:1.5}
+  .path-card .go{margin-top:8px;font-size:14px;font-weight:600;color:var(--fir)}
 
-  /* accreditation + testimonial */
-  .cred .cred-in{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;
-    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:36px 40px}
-  .cred-accred p{color:var(--ink-soft);font-size:15.5px;max-width:52ch;margin-bottom:14px}
-  .cred-quote{border-left:3px solid var(--gold);padding-left:24px}
-  .cred-quote p{font-size:22px;color:var(--navy);line-height:1.35}
-  .cred-quote footer{margin-top:10px;font-size:13.5px;color:var(--ink-soft);
-    background:none;padding:0;border:0}
-  @media (max-width:760px){.cred .cred-in{grid-template-columns:1fr;gap:26px;padding:26px 24px}}
+  /* ---------- movements row ---------- */
+  .moves{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px;margin-top:40px}
+  @media (min-width:900px){.moves{grid-template-columns:repeat(5,1fr)}}
+  .move .ph{aspect-ratio:1/1;width:100%;border-radius:12px;overflow:hidden;background:var(--fir-tint);border:1px solid var(--line)}
+  .move .ph img{width:100%;height:100%;object-fit:cover}
+  .move h3{font-size:16px;margin:12px 0 4px;font-weight:600}
+  .move p{font-family:"EB Garamond",Georgia,serif;font-size:14px;color:var(--ink-soft);line-height:1.5}
 
-  /* plain-language streams list */
-  .streams-list{margin-top:40px}
-  .streams-list h3{font-weight:500;color:var(--navy);font-size:22px;margin-bottom:16px}
-  .streams-list ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
-  .stream{background:var(--card);border:1px solid var(--line);border-left-width:4px;border-radius:10px;padding:18px 20px}
-  .s-fir{border-left-color:var(--fir)} .s-gold{border-left-color:var(--gold)} .s-bark{border-left-color:var(--bark)}
-  .stream-cta{background:var(--gold-tint);border-color:var(--gold);border-left-width:1px;
-    display:flex;flex-direction:column;justify-content:center}
-  .stream-cta .stream-title{cursor:default}
-  .stream-cta .stream-title:hover{color:var(--navy);text-decoration:none}
-  .stream-title{font-family:"Nunito Sans",system-ui,sans-serif;font-size:19px;color:var(--navy);text-decoration:none;font-weight:600}
-  .stream-title:hover{color:var(--gold-deep);text-decoration:underline;text-underline-offset:3px}
-  .stream p{font-size:14.5px;color:var(--ink-soft);margin-top:8px}
-  .stream-links{margin-top:10px}
-  .stream-links a{color:var(--fir);font-weight:600;font-size:13.5px;text-decoration:none}
-  .stream-links a:hover{text-decoration:underline}
+  /* ---------- recognized-training panel ---------- */
+  .cred{background:var(--gold-tint);border:1px solid var(--gold);border-radius:var(--radius);padding:28px 30px;text-align:center}
+  .cred .eyebrow{color:var(--gold-deep)}
+  .cred p{font-size:17px;color:var(--bark-deep);max-width:62ch;margin:0 auto 14px}
 
-  /* ===== Offering menu: tabbed, tap-friendly, readable without JS ===== */
-  .omenu{margin-top:10px}
-  .omenu-tabs{display:none;gap:10px;flex-wrap:wrap;margin-bottom:22px}
-  .js .omenu-tabs{display:flex}
-  .omenu-tab{font:inherit;font-weight:700;font-size:15px;color:var(--ink-soft);background:var(--card);
-    border:1.5px solid var(--line);border-radius:999px;padding:10px 20px;min-height:44px;cursor:pointer;
-    transition:background .2s ease,border-color .2s ease,color .2s ease}
-  .omenu-tab:hover{border-color:var(--fir);color:var(--gold-deep)}
-  .omenu-tab[aria-selected="true"]{background:var(--gold);border-color:var(--gold);color:#fff}
-  .omenu-tab:focus-visible{outline:2.5px solid var(--gold);outline-offset:2px}
-  .js .omenu-panel{display:none}
-  .js .omenu-panel.is-active{display:block}
-  .omenu-ph{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:500;color:var(--navy);font-size:22px;margin-bottom:16px}
-  .js .omenu-ph{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-  .omenu-group{margin-top:24px}
-  .omenu-group:first-of-type{margin-top:0}
-  .gt-panel{background:linear-gradient(rgba(242,243,236,.75),rgba(242,243,236,.75)),url("images/panels/relational.webp");background-size:cover;background-position:center;border-radius:var(--radius);padding:44px 40px;margin:0 0 24px}
-  .gt-panel .omenu-list{margin:0}
-  .gt-panel .eyebrow{color:var(--gold-deep);margin-bottom:6px}
-  .gt-heading{font-family:"Nunito Sans",system-ui,sans-serif;color:var(--ink);
-    font-weight:700;font-size:clamp(28px,4.6vw,44px);line-height:1.15;margin-bottom:22px}
-  @media (max-width:560px){.gt-panel{padding:22px 18px;margin-bottom:20px}.gt-heading{margin-bottom:16px}}
-  .bark-panel{background:linear-gradient(rgba(242,243,236,.75),rgba(242,243,236,.75)),url("images/panels/applied.webp");background-size:cover;background-position:center;border-radius:var(--radius);padding:44px 40px;margin:0 0 24px}
-  @media (max-width:560px){.bark-panel{padding:22px 18px;margin-bottom:20px}}
-  .omenu-h{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--gold-deep);margin-bottom:10px}
-  .omenu-list{list-style:none;display:grid;gap:12px;margin:0;padding:0}
-  .omenu-item{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 20px;
-    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;
-    text-decoration:none;color:var(--ink);
-    transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease}
-  .omenu-item:hover{border-color:var(--fir);transform:translateY(-2px);box-shadow:0 6px 16px rgba(38,48,31,.10)}
-  .omenu-item:focus-visible{outline:2.5px solid var(--gold);outline-offset:2px}
-  .omenu-name{font-family:"Nunito Sans",system-ui,sans-serif;font-size:18px;font-weight:600;color:var(--navy);line-height:1.25}
-  .omenu-meta{font-size:13.5px;color:var(--ink-soft);font-weight:600;margin-top:9px}
-  .omenu-meta b{color:var(--gold-deep);font-weight:700}
-  .omenu-item--stack{flex-direction:column;align-items:flex-start}
-  .omenu-benefit{font-size:14.5px;color:var(--ink-soft);line-height:1.5;font-weight:400;margin-top:4px}
-  .omenu-soon{color:var(--ink-soft);font-size:14.5px}
-  /* compact academy containers + tiles (homepage offerings) */
-  .ac-container{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px 26px;margin:0 0 18px}
-  @media (max-width:560px){.ac-container{padding:18px 16px}}
-  .ac-h{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:500;color:var(--navy);font-size:22px;margin:0}
-  .ac-desc{color:var(--ink-soft);font-size:15px;margin:6px 0 16px;max-width:72ch}
-  .ac-desc.ph{font-style:italic;opacity:.7}
-  .ac-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px 28px}
-  @media (max-width:640px){.ac-cols{grid-template-columns:1fr;gap:22px}}
-  .ac-colh{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:600;color:var(--navy);font-size:17px;margin:0 0 2px}
-  .ac-colnote{font-size:13.5px;color:var(--ink-soft);margin:0 0 12px}
-  .tile-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
-  .tile-grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
-  .tile{display:flex;flex-direction:column;gap:3px;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 14px;text-decoration:none;transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease}
-  .tile:hover{border-color:var(--fir);transform:translateY(-2px);box-shadow:0 6px 16px rgba(38,48,31,.10)}
-  .tile:focus-visible{outline:2.5px solid var(--gold);outline-offset:2px}
-  .tile-name{font-family:"Nunito Sans",system-ui,sans-serif;font-size:16px;font-weight:600;color:var(--navy);line-height:1.2}
-  .tile-meta{font-size:13px;color:var(--ink-soft);font-weight:600}
-  .tile-meta b{color:var(--gold-deep);font-weight:700}
-  .tile-meta.ph{font-style:italic;opacity:.7}
-  .ac-band{background:var(--fir-tint);border:1px solid var(--line);border-radius:var(--radius);padding:18px 26px;margin-top:2px;display:flex;justify-content:space-between;align-items:center;gap:6px 20px;flex-wrap:wrap;text-decoration:none;transition:border-color .18s ease,box-shadow .18s ease}
-  .ac-band:hover{border-color:var(--fir);box-shadow:0 6px 16px rgba(38,48,31,.10)}
-  .ac-band:focus-visible{outline:2.5px solid var(--gold);outline-offset:2px}
-  .ac-band .tile-name{font-size:18px}
+  /* ---------- trainings CTA ---------- */
+  .cta-row{display:flex;gap:20px;flex-wrap:wrap;align-items:center;justify-content:center;margin-top:24px}
 
-  /* Threshold menu: one column under 768px, centre panel above the buttons */
-  @media (max-width:767px){
-    .thr{grid-template-columns:1fr}
-    .thr-center{order:-1}
-  }
-  @media (prefers-reduced-motion:reduce){
-    .thr-btn{transition:none}
-    html{scroll-behavior:auto}
-  }
-
-
-  /* comprehensive footer */
-  footer{margin-top:72px;background:var(--navy);color:#F4F7FB;
-    border-top:3px solid var(--gold);padding:48px 28px 26px}
-  .foot-grid{max-width:1120px;margin:0 auto;display:grid;
-    grid-template-columns:1.6fr 1fr 1fr 1.3fr;gap:34px 44px}
+  /* ---------- footer ---------- */
+  footer{margin-top:0;background:var(--navy);color:#F4F7FB;border-top:3px solid var(--gold);padding:56px 28px 26px}
+  .foot-grid{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr 1.3fr;gap:34px 44px}
   @media (max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
   @media (max-width:540px){.foot-grid{grid-template-columns:1fr}}
-  .foot-brand{font-family:"Nunito Sans",system-ui,sans-serif;font-size:21px;line-height:1.3;color:#FFFFFF}
-  .foot-tagline{font-family:"Nunito Sans",system-ui,sans-serif;font-size:14.5px;
-    color:#E7D9A8;letter-spacing:.06em;margin-top:8px}
-  .foot-mission{font-size:14px;color:#C9D5E6;margin:16px 0 0;max-width:40ch;line-height:1.65}
-  .foot-sys{display:inline-block;margin-top:16px;font-size:13.5px;font-weight:600;
-    color:#E7D9A8;text-decoration:none;border:1px solid rgba(231,217,168,.45);
-    border-radius:999px;padding:7px 16px}
-  .foot-sys:hover{background:rgba(231,217,168,.12);border-color:#E7D9A8}
-  .foot-col h3{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:#E7D9A8;
-    font-weight:700;margin:0 0 14px}
-  .foot-col a{display:block;color:#EDF2F8;text-decoration:none;font-size:14px;
-    padding:4px 0;line-height:1.5}
-  .foot-col a:hover{color:#FFFFFF;text-decoration:underline;text-underline-offset:3px;
-    text-decoration-color:var(--gold)}
-  .foot-contact p{font-size:14px;color:#C9D5E6;margin:0 0 12px;line-height:1.7;max-width:none}
-  .foot-contact a{display:inline;color:#EDF2F8;text-decoration:none;font-size:14px;
-    overflow-wrap:anywhere}
-  .foot-contact a:hover{text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px}
+  .foot-brand{font-family:"Nunito Sans",system-ui,sans-serif;font-size:21px;line-height:1.3;color:#fff}
+  .foot-tagline{font-family:"Nunito Sans",system-ui,sans-serif;font-size:14.5px;color:#E7D9A8;letter-spacing:.06em;margin-top:8px}
+  .foot-mission{font-size:14px;color:#C9D5E6;margin:16px 0 0;max-width:40ch;line-height:1.65;font-family:"EB Garamond",Georgia,serif}
+  .foot-sys{display:inline-block;margin-top:16px;font-size:13.5px;font-weight:600;color:#E7D9A8;text-decoration:none;border:1px solid rgba(231,217,168,.45);border-radius:999px;padding:7px 16px}
+  .foot-sys:hover{background:rgba(231,217,168,.12)}
+  .foot-col h3{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:#E7D9A8;font-weight:700;margin:0 0 14px}
+  .foot-col a{display:block;color:#EDF2F8;text-decoration:none;font-size:14px;padding:4px 0;line-height:1.5}
+  .foot-col a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--gold)}
+  .foot-contact p{font-size:14px;color:#C9D5E6;margin:0 0 12px;line-height:1.7;font-family:"EB Garamond",Georgia,serif}
+  .foot-contact a{color:#EDF2F8;text-decoration:none;overflow-wrap:anywhere}
+  .foot-contact a:hover{text-decoration:underline;text-decoration-color:var(--gold)}
   .foot-social{display:flex;gap:8px 18px;flex-wrap:wrap;margin-top:14px}
-  .foot-social a{display:inline;font-size:13.5px;color:#C9D5E6;text-decoration:none;
-    font-weight:600;padding:0}
-  .foot-social a:hover{color:#FFFFFF;text-decoration:underline;text-underline-offset:3px}
-  .foot-land{max-width:1120px;margin:40px auto 0;padding-top:24px;
-    border-top:1px solid rgba(244,247,251,.22);
-    font-family:"Nunito Sans",system-ui,sans-serif;font-style:italic;font-size:15.5px;
-    color:#D8E0EC;line-height:1.7;max-width:76ch}
-  .foot-legal{max-width:1120px;margin:26px auto 0;padding-top:16px;
-    border-top:1px solid rgba(244,247,251,.16);
-    font-size:12.5px;color:#B9C6D9;display:flex;justify-content:space-between;
-    gap:10px 24px;flex-wrap:wrap;line-height:1.6}
+  .foot-social a{font-size:13.5px;color:#C9D5E6;text-decoration:none;font-weight:600}
+  .foot-social a:hover{color:#fff;text-decoration:underline}
+  .foot-land{max-width:1120px;margin:40px auto 0;padding-top:24px;border-top:1px solid rgba(244,247,251,.22);
+    font-family:"EB Garamond",Georgia,serif;font-style:italic;font-size:15.5px;color:#D8E0EC;line-height:1.7}
+  .foot-legal{max-width:1120px;margin:26px auto 0;padding-top:16px;border-top:1px solid rgba(244,247,251,.16);
+    font-size:12.5px;color:#B9C6D9;display:flex;justify-content:space-between;gap:10px 24px;flex-wrap:wrap}
   .foot-legal a{color:#C9D5E6;text-decoration:none}
-  .foot-legal a:hover{color:#FFFFFF;text-decoration:underline}
-
-  .ab-toggle{position:fixed;bottom:18px;right:18px;z-index:60;
-    background:rgba(30,58,95,.88);color:#fff;font-size:12px;font-weight:700;
-    letter-spacing:.06em;border-radius:999px;padding:9px 16px;text-decoration:none;
-    box-shadow:0 2px 10px rgba(0,0,0,.28)}
-  .ab-toggle:hover{background:var(--gold)}
-  /* serif body: prose keeps EB Garamond */
-  p,.lede,.quote,.foot-land,.foot-mission,.deck{font-family:"EB Garamond",Georgia,serif}
 </style>
-<script>document.documentElement.classList.add('js');</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Academies of Nature and Forest Therapies",
-  "legalName": "ANFT.earth LLC",
-  "alternateName": ["Association of Nature and Forest Therapy", "ANFT",
-                    "Association of Nature and Forest Therapy Guides and Programs",
-                    "ANFT.earth LLC"],
-  "url": "https://anft.earth/",
-  "logo": "/images/brand/logo.webp",
-  "email": "info@anft.earth",
-  "telephone": "+1-707-385-1563",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "1745 Rustic Timbers Lane, Suite B",
-    "addressLocality": "Prescott",
-    "addressRegion": "AZ",
-    "postalCode": "86303",
-    "addressCountry": "US"
-  }
-}
-</script>
 </head>
 <body id="top">
-
-<header class="site-header">
+<header class="site-header" id="siteHeader">
   <div class="hdr-in">
-    <a href="index.html" aria-label="Association of Nature and Forest Therapies — home"><img src="images/brand/logo.webp" width="500" height="167" decoding="async" alt="Association of Nature and Forest Therapies"></a>
+    <a href="index.html" aria-label="Academies of Nature and Forest Therapies — home"><img src="images/brand/logo.webp" width="500" height="167" decoding="async" alt="Academies of Nature and Forest Therapies"></a>
     <nav aria-label="Primary">
       <a href="academies.html">The Academies</a>
       <a href="specializations.html">Specializations</a>
@@ -382,1371 +186,146 @@
   </div>
 </header>
 
-<section class="hero" aria-label="Welcome">
-  <video id="heroVid" class="hero-media" muted loop playsinline
-    poster="images/banners/hero.webp" width="1600" height="520"
-    aria-label="Two people walking a forest trail among tall trees"></video>
-  <script>
-  /* Video hero: drop the video file at images/hero-video.mp4 and it comes alive.
-     Until then (and on phones, and for reduced-motion users) the poster photo shows. */
-  (function(){
-    var v=document.getElementById('heroVid');
-    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.innerWidth<760) return;
-    var src=document.createElement('source'); src.src='images/hero-video.mp4'; src.type='video/mp4';
-    v.appendChild(src); v.autoplay=true; v.load();
-    var p=v.play(); if(p&&p.catch)p.catch(function(){});
-  })();
-  </script>
-  <div class="hero-veil" aria-hidden="true"></div>
-  <div class="hero-copy">
-    <h1 class="serif">Something in you remembers.</h1>
-    <p>Time in nature quiets the tamed world &mdash; and an older, essential self begins to stir. Jack London called it the call of the wild. We call it The Forest Threshold: an awakening we witness, and from which many paths open.</p>
+<!-- ================= HERO ================= -->
+<section class="home-hero" aria-label="Welcome">
+  <img class="hero-img" src="images/index/hero-home.webp" alt="Light through the forest at the threshold" fetchpriority="high" decoding="async">
+  <div class="scrim-top"></div>
+  <div class="scrim"></div>
+  <div class="hero-inner">
+    <div class="hero-id">Academies of Nature and Forest Therapies</div>
+    <h1>Something in you remembers.</h1>
+    <p class="sub">Time in nature quiets the tamed world &mdash; and an older, essential self begins to stir. Jack London called it the call of the wild. We call it the Forest Threshold: an awakening we witness, and from which many paths open.</p>
     <div class="hero-cta">
-      <a class="btn btn-gold" href="apply.html">I&rsquo;m ready to apply</a>
+      <a class="btn btn-gold" href="apply.html">Begin your application</a>
+      <a class="p-link on-photo" href="#paths">Explore the paths</a>
     </div>
   </div>
 </section>
 
-<main>
-  
+<!-- ================= IDENTITY ================= -->
+<section class="section">
+  <div class="wrap center">
+    <div class="eyebrow">Begin at the Source</div>
+    <p class="statement">We train people to guide others into deeper relationships with the living world. We help optimize the places where that happens.</p>
+    <p class="prose">This is the practice of entering relationship with a world that has its own voice. We hold the lineage: Relational Forest Therapy. The Way of the Guide. The Language of Invitation. Roots and branches grown over many seasons.</p>
+  </div>
+</section>
 
-  <section class="section" id="structure">
-    <div class="intro">
-      <div class="eyebrow">Begin at the Source</div>
-      <h2>We train people to guide others into deeper relationships with the living world. We help optimize the places where that happens.</h2>
-      <p class="lede">This is the practice of entering relationship with a world that has its own voice. We hold the lineage: Relational Forest Therapy. The Way of the Guide. The Language of Invitation. Roots and branches grown over many seasons.</p>
-      <div class="eyebrow">The Forest Threshold</div>
-      <p class="lede">The Forest Threshold is where the call reaches you. <b>ANFT has stood at this threshold with thousands of people just like you.</b> In over 70 nations spread across the globe. In the wild places; those within and those without. From this threshold, many paths open. We will show you how.</p>
-    </div>
-    <div class="omenu">
+<!-- ================= FOREST THRESHOLD BAND ================= -->
+<section class="band" aria-label="The Forest Threshold">
+  <img class="band-img" src="images/index/band-threshold.webp" alt="A wide, quiet forest vista" loading="lazy" decoding="async">
+  <div class="band-scrim"></div>
+  <div class="band-inner">
+    <div class="eyebrow">The Forest Threshold</div>
+    <p>The Forest Threshold is where the call reaches you. ANFT has stood at this threshold with thousands of people just like you &mdash; in over 70 nations across the globe, in the wild places, those within and those without. From this threshold, many paths open. We will show you how.</p>
+  </div>
+</section>
 
-      <div class="ac-container">
-        <h3 class="ac-h">Academy of Relational Forest Therapy</h3>
-        <p class="ac-desc">The knowledge and skills of the Way of the Guide.</p>
-        <div class="ac-cols">
-          <div class="ac-col">
-            <h4 class="ac-colh">Enrol in the whole training</h4>
-            <p class="ac-colnote">One purchase, one cohort, a fixed sequence</p>
-            <ul class="tile-list">
-              <li><a class="tile" href="relational-forest-therapy-academy--guide-training.html"><span class="tile-name">Start online first</span><span class="tile-meta">6 months online + immersion &middot; <b>$3,845</b></span></a></li>
-              <li><a class="tile" href="relational-forest-therapy-academy--guide-training.html"><span class="tile-name">Start in person first</span><span class="tile-meta">7 days in person + 4 months online &middot; <b>$3,600</b></span></a></li>
-            </ul>
-          </div>
-          <div class="ac-col">
-            <h4 class="ac-colh">Take one stage at a time</h4>
-            <p class="ac-colnote">Four stages, purchased separately, spaced to suit you &mdash; from cohort 190</p>
-            <ul class="tile-list">
-              <li><a class="tile" href="re-collection.html"><span class="tile-name">Re-collection</span><span class="tile-meta">8 sessions &middot; <b>$950</b></span></a></li>
-              <li><a class="tile" href="immersion.html"><span class="tile-name">Immersion</span><span class="tile-meta">4 days &middot; <b>$595</b></span></a></li>
-              <li><a class="tile" href="practicum.html"><span class="tile-name">Practicum</span><span class="tile-meta">4 months, 16 sessions &middot; <b>$1,200</b></span></a></li>
-              <li><a class="tile" href="practice.html"><span class="tile-name">Practice</span><span class="tile-meta">8 sessions &middot; <b>$800</b></span></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="ac-container">
-        <h3 class="ac-h">Applied Forest Therapy</h3>
-        <p class="ac-desc">Integrate guide methods into your profession, art, family, and social life.</p>
-        <ul class="tile-list tile-grid">
-          <li><a class="tile" href="forest-threshold.html"><span class="tile-name">The Forest Threshold</span><span class="tile-meta">4 to 8 days &middot; <b>$1,295</b></span></a></li>
-          <li><a class="tile" href="council-of-waters-and-trees.html"><span class="tile-name">Council of Waters and Trees</span><span class="tile-meta">5 days &middot; <b>$1,250</b></span></a></li>
-        </ul>
-      </div>
-
-      <div class="ac-container">
-        <h3 class="ac-h">Academy of Place</h3>
-        <p class="ac-desc">Trails and places optimized for deep connection.</p>
-        <ul class="tile-list tile-grid">
-          <li><a class="tile" href="academy-of-place--consultant-training.html"><span class="tile-name">Healing Trails</span><span class="tile-meta">5 days &middot; <b>$750</b></span></a></li>
-        </ul>
-      </div>
-
-      <div class="ac-container">
-        <h3 class="ac-h">Opus Academy</h3>
-        <p class="ac-desc">Co-emergence of Self and Opus.</p>
-        <ul class="tile-list tile-grid">
-          <li><a class="tile" href="opus-academy.html"><span class="tile-name">Alchemy of Pilgrimage</span><span class="tile-meta">10 weeks &middot; <b>$1,200</b></span></a></li>
-          <li><a class="tile" href="opus-academy.html"><span class="tile-name">The Three Imaginations</span><span class="tile-meta">4 weeks &middot; <b>$390</b></span></a></li>
-          <li><a class="tile" href="opus-academy.html"><span class="tile-name">Walking Pilgrimage</span><span class="tile-meta">Duration and guide fees vary</span></a></li>
-        </ul>
-      </div>
-
-      <div class="ac-container">
-        <h3 class="ac-h">Specializations</h3>
-        <p class="ac-desc">Focused, curated, and adapted for specific groups and circumstances.</p>
-        <ul class="tile-list tile-grid">
-          <li><a class="tile" href="nature-as-medicine.html"><span class="tile-name">Nature as Medicine</span><span class="tile-meta">9 days &middot; <b>from $5,155</b></span></a></li>
-          <li><a class="tile" href="guiding-in-sign-language.html"><span class="tile-name">Guiding in sign language</span><span class="tile-meta ph">In development</span></a></li>
-          <li><a class="tile" href="custom-training.html"><span class="tile-name">Bespoke</span><span class="tile-meta">Scoped per client &middot; <b>By inquiry</b></span></a></li>
-        </ul>
-      </div>
-
-      <a class="ac-band" href="membership.html">
-        <span class="tile-name">Member Symposia and Events</span>
-        <span class="tile-meta">Ongoing &middot; <b>$1,200 per year</b></span>
+<!-- ================= FIVE PATHS ================= -->
+<section class="section" id="paths">
+  <div class="wrap center" style="max-width:820px">
+    <div class="eyebrow">Where the paths open</div>
+    <h2 class="statement">Five paths from the threshold</h2>
+    <p class="lede">Four academies, and Nature as Medicine &mdash; five doors into one living practice.</p>
+  </div>
+  <div class="wrap" style="max-width:1160px">
+    <div class="paths">
+      <a class="path-card" href="relational-forest-therapy-academy.html">
+        <span class="ph"><img src="images/index/academy-relational.webp" alt="Guides in a forest circle" loading="lazy" decoding="async"></span>
+        <h3>Relational Forest Therapy</h3>
+        <p>The knowledge and skills of the Way of the Guide.</p>
+        <span class="go">Explore &rarr;</span>
       </a>
-
+      <a class="path-card" href="academy-of-place.html">
+        <span class="ph"><img src="images/index/academy-place.webp" alt="A certified forest therapy trail" loading="lazy" decoding="async"></span>
+        <h3>Academy of Place</h3>
+        <p>Trails and places optimized for deep connection.</p>
+        <span class="go">Explore &rarr;</span>
+      </a>
+      <a class="path-card" href="opus-academy.html">
+        <span class="ph"><img src="images/index/academy-opus.webp" alt="A path of pilgrimage" loading="lazy" decoding="async"></span>
+        <h3>Opus Academy</h3>
+        <p>The co-emergence of Self and Opus.</p>
+        <span class="go">Explore &rarr;</span>
+      </a>
+      <a class="path-card" href="academy-of-applied-partnerships.html">
+        <span class="ph"><img src="images/index/academy-applied.webp" alt="An applied forest therapy gathering" loading="lazy" decoding="async"></span>
+        <h3>Applied Forest Therapy</h3>
+        <p>Guide methods woven into profession, art, and life.</p>
+        <span class="go">Explore &rarr;</span>
+      </a>
+      <a class="path-card" href="nature-as-medicine.html">
+        <span class="ph"><img src="images/index/academy-nature-as-medicine.webp" alt="Nature as medicine for clinicians" loading="lazy" decoding="async"></span>
+        <h3>Nature as Medicine</h3>
+        <p>Forest therapy in clinical practice, for licensed professionals.</p>
+        <span class="go">Explore &rarr;</span>
+      </a>
     </div>
-  </section>
-  <!-- ======================================================================
-       UPCOMING TRAININGS - placeholder data drawn from anft.earth, July 2026.
-       Update each card: location, venue, dates, format, status, and href.
-       ====================================================================== -->
-  <section class="section" id="trainings" aria-label="Upcoming trainings">
-    <div class="eyebrow">Take the First Step</div>
-    <h2>Upcoming Trainings</h2>
-    <p class="lede">Cohorts begin throughout the year, online and on the land, in multiple languages.</p>
-    <div class="tcards" id="trCards"></div>
-    <noscript>
-      <p style="color:var(--ink-soft);margin-top:22px">Our current categories: Forest Therapy Guide Training &middot; Nature as Medicine &middot; Opus Companies &middot; Professional Development &middot; Open Calls &amp; Events.</p>
-      <p><a class="p-link p-go" href="apply.html">Apply to an academy</a></p>
-    </noscript>
-    <!-- trainings-data-hash:b688f17b3edf18de --><!-- freshness marker; set by tools/build-trainings (js/ps1). Do not edit by hand. -->
-    <script type="application/json" id="venuesData">{
-  "_meta": {
-    "source": "Seeded from venues named in data/trainings.json; details migrated from the anft.earth immersion pages (2026-08)",
-    "generated_date": "2026-08-08",
-    "notes": "Each training/event references a venue by venue_id. internalContact.* (phone, email) is INTERNAL ONLY and must never render on a public page. Lodging *options* live on the venue; lodging *cost* lives on the event (lodgingCost). Latitude/longitude and internal contacts are left empty pending real values; do not invent them.",
-    "internal_fields": ["internalContact"]
-  },
-  "venues": [
-    {
-      "id": "dharma-centre-of-canada",
-      "name": "Dharma Centre of Canada",
-      "region": "Ontario",
-      "country": "Canada",
-      "latitude": null,
-      "longitude": null,
-      "images": ["images/thumbnails/dharma-centre.webp"],
-      "description": "A meditation centre on 400 acres of boreal forest in the ancient Canadian Shield — wetlands, lakes, ponds, streams and mixed coniferous–deciduous forest, home to deer, moose, bald eagles and owls. The bedrock beneath dates back roughly 1.3 billion years.",
-      "howToGetThere": "1267 Galway Road, Kinmount K0M 2A0, Ontario. Car or carpool is recommended; the nearest bus station is Fenelon Falls. A private driver service is available from Peterborough (about $50 one-way per passenger).",
-      "lodgingOptions": [
-        { "name": "Forest rooms", "description": "Rustic single bedrooms set throughout the forested property, with shared bathrooms. Three vegetarian meals daily, often from the centre's own gardens, served buffet style; dietary needs accommodated with notice. Lodging and meals must be booked through the venue — no off-site accommodation is permitted; a booking link is sent after tuition is paid." }
-      ],
-      "seasonalWeather": "Late August and early September bring warm, ideal late-summer conditions.",
-      "elevation": "",
-      "accessibility": { "terrain": "", "mobilityAccess": "", "facilities": "Hiking trails throughout the property and canoe/kayak access to Union Lake. Wi-Fi in the Tea House and Main House only — not in the accommodations. No intoxicants permitted on the property." },
-      "operatedBy": "Dharma Centre of Canada",
-      "website": "https://dharmacentre.org",
-      "internalContact": { "phone": "", "email": "" }
-    },
-    {
-      "id": "just-love-forest",
-      "name": "Just Love Forest",
-      "region": "Georgia",
-      "country": "USA",
-      "latitude": null,
-      "longitude": null,
-      "images": ["images/thumbnails/just-love-forest.webp"],
-      "description": "A 716-acre forest sanctuary in the Appalachian foothills with a 30-foot gathering yurt, three forest-therapy trails (easy, moderate and intensive), two outdoor fire circles and an eight-circle stone labyrinth. It runs on off-grid solar power, with indoor and outdoor kitchens.",
-      "howToGetThere": "Lyerly, Georgia. About 90 minutes from Atlanta and its airport, and 60 minutes from Chattanooga airport.",
-      "lodgingOptions": [
-        { "name": "Deluxe bell tent", "description": "Canvas glamping tent with a queen bed." },
-        { "name": "Teepee-style tent", "description": "Smaller glamping tent with twin beds." }
-      ],
-      "seasonalWeather": "",
-      "elevation": "",
-      "accessibility": { "terrain": "", "mobilityAccess": "", "facilities": "Fresh linens provided; eco composting toilets and hot outdoor showers. Training participants stay on-site only." },
-      "operatedBy": "Just Love Forest",
-      "website": "https://justloveforest.com",
-      "internalContact": { "phone": "", "email": "" }
-    },
-    {
-      "id": "baba-ecolodge",
-      "name": "Baba Ecolodge",
-      "region": "Koh Phra Thong",
-      "country": "Thailand",
-      "latitude": null,
-      "longitude": null,
-      "images": ["images/thumbnails/baba-ecolodge.webp", "images/thumbnails/baba-ecolodge-2.webp"],
-      "description": "An eco-resort on Ko Phra Thong island in south-western Thailand, beside a national park — a 12 km private beach, virgin jungle, mangrove streams, a protected bay of shallow clear water and Thailand's only savannah ecosystem, with macaques, hornbills, green turtles and white-bellied sea eagles.",
-      "howToGetThere": "Nearest airport is Phuket International. From Phuket it is a 2.5–3 hour car transfer to Kuraburi Pier, then a 90-minute longtail boat to the island — the only way in.",
-      "lodgingOptions": [
-        { "name": "Thai wooden villas", "description": "Traditional villas with private gardens and elevated decks, from one-bedroom beachfront units to family villas; king or queen beds. Camping is not permitted." }
-      ],
-      "seasonalWeather": "Tropical, on the Andaman Sea. Buildings rely on natural sea breezes and ceiling fans rather than air conditioning.",
-      "elevation": "",
-      "accessibility": { "terrain": "", "mobilityAccess": "", "facilities": "" },
-      "operatedBy": "Baba Ecolodge",
-      "website": "https://babaecolodge.com",
-      "internalContact": { "phone": "", "email": "" }
-    },
-    {
-      "id": "casa-portal",
-      "name": "Casa Portal",
-      "region": "Maine",
-      "country": "USA",
-      "latitude": null,
-      "longitude": null,
-      "images": ["images/thumbnails/casa-portal.webp"],
-      "description": "A 100-acre retreat centre on a working sheep farm, dedicated to slow living and nature connection: an 1840s farmhouse, woodland trails, sheep meadows, a swimming pond, gardens, a fibre-arts shed and an apple orchard, in woods of pine, birch, hemlock, maple, fir, beech and spruce.",
-      "howToGetThere": "83 Sullivan Road, Jackson, Maine 04921. About 40 minutes from Bangor International Airport, 2 hours from Portland and 3 hours from Boston; 20 minutes from Belfast. Concord Trailways bus from Boston or Portland; paid car service from Bangor, Portland or Belfast.",
-      "lodgingOptions": [
-        { "name": "Guest House", "description": "Shared twin or triple rooms." },
-        { "name": "Private cabin", "description": "" },
-        { "name": "Barn bunk loft", "description": "" },
-        { "name": "Camping", "description": "" }
-      ],
-      "seasonalWeather": "",
-      "elevation": "",
-      "accessibility": { "terrain": "Trails offer both flat and hilly options.", "mobilityAccess": "", "facilities": "Shared single-stall bathrooms and outdoor showers; solar-powered accommodations. Cell service available; limited Wi-Fi in the main house only. Screened porch, library, sunroom and workshop barn." },
-      "operatedBy": "Casa Portal Retreats",
-      "website": "https://www.casaportalretreats.com/",
-      "internalContact": { "phone": "", "email": "" }
-    },
-    {
-      "id": "well-being-retreat-center",
-      "name": "Well Being Retreat Center",
-      "region": "Tennessee",
-      "country": "USA",
-      "latitude": null,
-      "longitude": null,
-      "images": ["images/thumbnails/well-being-retreat-center.webp"],
-      "description": "160 acres bordered by two miles of the Powell River in eastern Tennessee's Cumberland Mountains. Low-impact buildings — cabins set into the hillsides, some earth-sheltered and built around existing trees — plus a conference centre, a covered riverside pavilion, a meditation hall, a labyrinth, a fire pit and a library.",
-      "howToGetThere": "Tazewell, Tennessee — about 50 miles (1.5 hours) north of Knoxville; roughly 2 hours from Lexington KY, 2.25 hours from Asheville NC, 3 hours from Chattanooga and 4 hours from Nashville.",
-      "lodgingOptions": [
-        { "name": "Cabins / tiny houses", "description": "Eleven cabins of varying sizes, single or double occupancy." },
-        { "name": "Cabinettes", "description": "Six cabinettes with shared bathrooms." },
-        { "name": "Riverbank camping", "description": "Camping on the river banks, with climate-controlled facilities nearby." }
-      ],
-      "seasonalWeather": "",
-      "elevation": "",
-      "accessibility": { "terrain": "Steep, heavily vegetated terrain with uneven, sometimes slippery ground; gravel roads with slopes take vehicles, and the property is walkable via roads and built trails.", "mobilityAccess": "", "facilities": "Wi-Fi at the conference centre and meditation hut; Verizon is the most reliable cell carrier." },
-      "operatedBy": "Well Being Foundation",
-      "website": "https://wellbeingretreatcenter.org",
-      "internalContact": { "phone": "", "email": "" }
-    },
-    {
-      "id": "santuario-la-verna",
-      "name": "Hotel Tosco Romagnolo",
-      "region": "Bagno di Romagna",
-      "country": "Italy",
-      "latitude": null,
-      "longitude": null,
-      "images": ["images/thumbnails/santuario-la-verna.webp"],
-      "description": "A hotel in the spa town of Bagno di Romagna, in the Apennine mountains of Emilia-Romagna.",
-      "howToGetThere": "Via del Popolo 2, 47021 Bagno di Romagna (FC). Bologna airport (BLQ) is about 1.5 hours by car via the A14/E45 and is recommended for travellers from the US; Florence (FLR) is about 1.75 hours on a scenic mountain road. Forlì (55 km), Rimini (74 km) and Florence (96 km) airports are nearer. By train, take high-speed rail to Cesena, then regional bus line 138 (about 1 h 10). Private transfers are available from Bologna or Florence.",
-      "lodgingOptions": [
-        { "name": "Hotel rooms (bed & breakfast)", "description": "Rooms at the hotel on a bed-and-breakfast basis for immersion participants." }
-      ],
-      "seasonalWeather": "",
-      "elevation": "",
-      "accessibility": { "terrain": "", "mobilityAccess": "", "facilities": "" },
-      "operatedBy": "",
-      "website": "https://www.hoteltoscoromagnolo.it/",
-      "internalContact": { "phone": "", "email": "" }
-    },
-    {
-      "id": "rocky-mountain-ecodharma-retreat-center",
-      "name": "Rocky Mountain Ecodharma Retreat Center",
-      "region": "Colorado",
-      "country": "USA",
-      "latitude": null,
-      "longitude": null,
-      "images": ["images/thumbnails/rocky-mountain-ecodharma.webp"],
-      "description": "A retreat centre on 180 acres of river, alpine meadow and spruce–aspen forest near the Indian Peaks Wilderness and adjacent to National Forest land, with deer, elk, moose, bear and beaver.",
-      "howToGetThere": "1841 Overland Road, Ward, Colorado. About 1.5 hours by car from Denver International Airport. A $10 bus runs airport-to-Boulder, then rideshare to the venue; carpooling is coordinated. Note: there is no cell service at the venue, so Uber is unreliable for the return trip.",
-      "lodgingOptions": [
-        { "name": "Single room", "description": "" },
-        { "name": "Double room", "description": "" },
-        { "name": "Mini single", "description": "Windowless single room." },
-        { "name": "Glamping tent", "description": "With bedding and heating." },
-        { "name": "RV / camper van", "description": "" },
-        { "name": "Camping", "description": "" }
-      ],
-      "seasonalWeather": "Cold at night in October.",
-      "elevation": "8,500 ft (2,590 m)",
-      "accessibility": { "terrain": "", "mobilityAccess": "", "facilities": "No public Wi-Fi; a landline is available." },
-      "operatedBy": "",
-      "website": "https://rmerc.org",
-      "internalContact": { "phone": "", "email": "" }
-    },
-    {
-      "id": "daintree-siesta",
-      "name": "Daintree Siesta",
-      "region": "Queensland",
-      "country": "Australia",
-      "latitude": null,
-      "longitude": null,
-      "images": ["images/thumbnails/daintree-siesta.webp"],
-      "description": "A rainforest property in the UNESCO World Heritage-listed Daintree Rainforest of Tropical North Queensland, with exclusive rainforest walking trails and an on-site restaurant. Hosted by Tamara, a certified ANFT guide, and Bruce Scenna.",
-      "howToGetThere": "1973 Cape Tribulation Rd, Diwan QLD 4873. About 2.5 hours' drive from Cairns on a sealed, scenic road that includes a car-ferry crossing. A shuttle van leaves Cairns CBD around 11:00 am on arrival day.",
-      "lodgingOptions": [
-        { "name": "Queen room", "description": "Single occupancy." },
-        { "name": "Twin room", "description": "Shared between two people." },
-        { "name": "Family room", "description": "Shared between three people." },
-        { "name": "Camping", "description": "Powered and unpowered sites for tents, caravans and motorhomes." }
-      ],
-      "seasonalWeather": "Warm, humid and possibly wet — this is the world's most ancient tropical rainforest.",
-      "elevation": "",
-      "accessibility": { "terrain": "", "mobilityAccess": "", "facilities": "Bed linen and towels provided." },
-      "operatedBy": "Tamara and Bruce Scenna",
-      "website": "https://daintreesiesta.com.au/",
-      "internalContact": { "phone": "", "email": "" }
-    },
-    {
-      "id": "lodge-kod-kod-study-center",
-      "name": "Lodge Kod Kod Study Center",
-      "region": "Pucón",
-      "country": "Chile",
-      "latitude": null,
-      "longitude": null,
-      "images": ["images/thumbnails/lodge-kod-kod.webp"],
-      "description": "A study centre in temperate forest that combines eco-tourism with biological research, in the Liucura River valley at the foot of the El Cañi sanctuary, near Huerquehue and Villarrica national parks and with views of the Villarrica volcano. It has run as a wildlife-conservation study site for over a decade.",
-      "howToGetThere": "In La Araucanía, southern Chile — 21 km from Pucón on the road to Huife. Nearest airport is Temuco (fly in, then shuttle or taxi), or take a long-distance bus from Santiago to Pucón with onward transport; shared shuttles are coordinated.",
-      "lodgingOptions": [
-        { "name": "Shared bedrooms", "description": "Five rooms with up to six single beds each, with fold-down cabin bunks and en-suite bathrooms with showers. On-site stays only." }
-      ],
-      "seasonalWeather": "",
-      "elevation": "",
-      "accessibility": { "terrain": "", "mobilityAccess": "", "facilities": "" },
-      "operatedBy": "",
-      "website": "https://lodgekodkod.cl",
-      "internalContact": { "phone": "", "email": "" }
-    }
-  ]
-}
-</script>
-    <script type="application/json" id="trainingsData">{
-  "_meta": {
-    "harvested_from": "https://anft.earth/ (homepage curated listings)",
-    "harvest_date": "2026-08-07",
-    "notes": "Statuses and deadlines are as of harvest date and change frequently — re-verify before leadership presentation and before launch. Detail/registration URLs point to the live anft.earth site by design during transition. Images are localized into images/thumbnails/ (no longer hotlinked). Categories with no entries yet (Opus Companies, Professional Development) are intentional placeholders so the accordion structure shows the full catalog shape. Optional per-training fields are supported and read by the homepage accordion and the apply page: 'price' (number, full tuition in USD), 'deposit' (number, USD), and 'depositUrl' (a Stripe Payment Link). They are intentionally left absent until real values exist — do not invent them. — edited via editor page 2026-07-21 — edited via editor page 2026-08-07",
-    "categories_order": [
-      "Forest Therapy Guide Training",
-      "Nature as Medicine",
-      "Opus Companies",
-      "Professional Development",
-      "Open Calls & Events"
-    ]
-  },
-  "trainings": [
-    {
-      "id": "cb-ontario-2026-08",
-      "start": "",
-      "kind": "",
-      "title": "Canada, Ontario — Dharma Centre of Canada",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "Start In-Person First (7-day training + 4 months online)",
-      "cohort": "Cohort 171",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2026-08-28",
-      "language": "English",
-      "schedule": "Live calls Tuesdays 3:30–5:30 pm PST",
-      "url": "https://anft.earth/combos/cb-ontario-august-2026/",
-      "registrationUrl": "",
-      "image": "images/thumbnails/dharma-centre.webp",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "dharma-centre-of-canada",
-      "description": "",
-      "trainers": [
-        "stana-luxford-oddie",
-        "darlene-rooney-keller"
-      ],
-      "price": 3600,
-      "tuition": "$3,600 USD — 7-day in-person training plus 4-month online program (excludes lodging, meals and transport)."
-    },
-    {
-      "id": "cb-georgia-2026-11",
-      "start": "",
-      "kind": "",
-      "title": "USA, Georgia — Just Love Forest",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "Start In-Person First (7-day training + 4 months online)",
-      "cohort": "Cohort 176",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2026-10-01",
-      "language": "English",
-      "schedule": "Live calls Wednesdays 4:00–6:00 pm PST",
-      "url": "https://anft.earth/combos/usa-georgia-just-love-forest-november-2026/",
-      "registrationUrl": "",
-      "image": "images/thumbnails/just-love-forest.webp",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "just-love-forest",
-      "description": "",
-      "trainers": [
-        "tam-willey",
-        "christine-hoyer"
-      ],
-      "price": 3600,
-      "tuition": "$3,600 USD — 7-day in-person training plus 4-month online program (excludes lodging, meals and transport)."
-    },
-    {
-      "id": "cb-thailand-2026-11",
-      "start": "",
-      "kind": "",
-      "title": "Thailand, Koh Phra Thong — Baba Ecolodge",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "Start In-Person First (7-day training + 4 months online)",
-      "cohort": "Cohort 177",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2026-11-15",
-      "language": "English",
-      "schedule": "Live calls Thursdays 3:30–5:30 am PST",
-      "url": "https://anft.earth/combos/thailand-koh-phra-thong-baba-ecolodge-november-2026/",
-      "registrationUrl": "",
-      "image": "images/thumbnails/baba-ecolodge.webp",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "baba-ecolodge",
-      "description": "",
-      "trainers": [
-        "youmin-yap",
-        "amanda-yik"
-      ],
-      "price": 3600,
-      "tuition": "$3,600 USD — 7-day in-person training plus 4-month online program (excludes lodging, meals and transport)."
-    },
-    {
-      "id": "on-pudu-2026-07",
-      "start": "2026-07-22",
-      "kind": "",
-      "title": "Pudú — in Spanish",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "Start Online First (6 months online)",
-      "cohort": "Cohort 168",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2026-07-22",
-      "firstCall": "2026-07-22",
-      "language": "Spanish",
-      "schedule": "Live calls Wednesdays 4:00–6:00 pm PST",
-      "url": "https://anft.earth/training-events/pudu-in-spanish/",
-      "registrationUrl": "",
-      "image": "images/thumbnails/pudu.webp",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "",
-      "description": "",
-      "trainers": [],
-      "tuition": ""
-    },
-    {
-      "id": "on-komorebi-2026-07",
-      "start": "2026-07-29",
-      "kind": "",
-      "title": "Komorebi Cohort 木漏れ日",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "Start Online First (6 months online)",
-      "cohort": "Cohort 169",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2026-07-29",
-      "firstCall": "2026-07-29",
-      "language": "English",
-      "schedule": "Live calls Wednesdays 5:30–7:30 pm PST",
-      "url": "https://anft.earth/training-events/komorebi-%e6%9c%a8%e6%bc%8f%e3%82%8c%e6%97%a5/",
-      "image": "images/thumbnails/komorebi.webp",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "",
-      "description": "",
-      "trainers": [],
-      "tuition": ""
-    },
-    {
-      "id": "on-peacock-2026-08",
-      "start": "2026-08-26",
-      "kind": "",
-      "title": "Peacock Cohort",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "Start Online First (6 months online)",
-      "cohort": "Cohort 170",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2026-08-26",
-      "firstCall": "2026-08-26",
-      "language": "English",
-      "schedule": "Live calls Wednesdays 3:30–5:30 pm PST",
-      "url": "https://anft.earth/training-events/peacock/",
-      "image": "images/thumbnails/peacock.webp",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "",
-      "description": "",
-      "trainers": [
-        "marcela-morales",
-        "carla-zorzanelli"
-      ],
-      "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
-    },
-    {
-      "id": "on-sea-otter-2026-09",
-      "start": "2026-09-08",
-      "kind": "",
-      "title": "Sea Otter Cohort",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "Start Online First (6 months online)",
-      "cohort": "Cohort 179",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2026-09-08",
-      "firstCall": "2026-09-08",
-      "language": "English",
-      "schedule": "Live calls Tuesdays 5:30–7:30 pm PST",
-      "url": "https://anft.earth/training-events/sea-otter/",
-      "image": "images/thumbnails/sea-otter.webp",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "",
-      "description": "",
-      "trainers": [
-        "tam-willey",
-        "ken-ouendag"
-      ],
-      "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
-    },
-    {
-      "id": "on-cedar-2026-10",
-      "start": "2026-10-06",
-      "kind": "",
-      "title": "Cedar Cohort",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "Start Online First (6 months online)",
-      "cohort": "Cohort 173",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2026-10-06",
-      "firstCall": "2026-10-06",
-      "language": "English",
-      "schedule": "Live calls Tuesdays 3:30–5:30 pm PST",
-      "url": "https://anft.earth/training-events/cedar/",
-      "image": "images/thumbnails/cedar.webp",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "",
-      "description": "",
-      "trainers": [
-        "amanda-yik",
-        "makiko-sugishita"
-      ],
-      "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
-    },
-    {
-      "id": "on-winter-jasmine-2026-10",
-      "start": "2026-10-26",
-      "kind": "",
-      "title": "Winter Jasmine Cohort",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "Start Online First (6 months online)",
-      "cohort": "Cohort 174",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2026-10-26",
-      "firstCall": "2026-10-26",
-      "language": "English",
-      "schedule": "Live calls Mondays 9:00–11:00 am PST",
-      "url": "https://anft.earth/training-events/winter-jasmine/",
-      "image": "images/thumbnails/winter-jasmine.webp",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "",
-      "description": "",
-      "trainers": [
-        "nadine-mazzola",
-        "geeta-stilwell"
-      ],
-      "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
-    },
-    {
-      "id": "im-maine-2026-08",
-      "start": "2026-08-16",
-      "kind": "immersion",
-      "title": "USA, Maine — Casa Portal",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "4-Day In-Person Immersion",
-      "status": "Event Full — Registration Closed",
-      "startDate": "2026-08-16",
-      "language": "English",
-      "url": "https://anft.earth/training-immersions/usa-maine-casa-portal-august-2026/",
-      "registrationUrl": "",
-      "image": "images/thumbnails/casa-portal.webp",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "casa-portal",
-      "description": "",
-      "trainers": [
-        "tam-willey",
-        "nadine-mazzola"
-      ],
-      "price": 495,
-      "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue)."
-    },
-    {
-      "id": "im-ontario-2026-09",
-      "start": "2026-09-04",
-      "kind": "immersion",
-      "title": "Canada, Ontario — Dharma Centre of Canada",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "4-Day In-Person Immersion",
-      "status": "Enrollment Open",
-      "startDate": "2026-09-04",
-      "language": "English",
-      "url": "https://anft.earth/training-immersions/canada-ontario-dharma-centre-of-canada-september-2026/",
-      "registrationUrl": "",
-      "image": "images/thumbnails/dharma-centre.webp",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "dharma-centre-of-canada",
-      "description": "",
-      "trainers": [
-        "stana-luxford-oddie",
-        "darlene-rooney-keller"
-      ],
-      "price": 495,
-      "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue)."
-    },
-    {
-      "id": "im-tennessee-2026-09",
-      "start": "2026-09-16",
-      "kind": "immersion",
-      "title": "USA, Tennessee — Well Being Retreat Center",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "4-Day In-Person Immersion",
-      "status": "Fully Registered — Accepting Waitlist",
-      "startDate": "2026-09-16",
-      "language": "English",
-      "url": "https://anft.earth/training-immersions/usa-tennessee-well-being-retreat-center-september-2026-2/",
-      "registrationUrl": "",
-      "image": "images/thumbnails/well-being-retreat-center.webp",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "well-being-retreat-center",
-      "description": "",
-      "trainers": [
-        "christine-hoyer",
-        "tam-willey"
-      ],
-      "price": 495,
-      "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue)."
-    },
-    {
-      "id": "im-italy-2026-09",
-      "start": "2026-09-24",
-      "kind": "immersion",
-      "title": "Italy, Bagno di Romagna — Emilia Romagna",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "4-Day In-Person Immersion",
-      "status": "Enrollment Open",
-      "startDate": "2026-09-24",
-      "language": "English",
-      "url": "https://anft.earth/training-immersions/italy-bagno-di-romagna-emilia-romagna-september-2026/",
-      "registrationUrl": "",
-      "image": "images/thumbnails/santuario-la-verna.webp",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "santuario-la-verna",
-      "description": "",
-      "trainers": [
-        "geeta-stilwell"
-      ],
-      "price": 495,
-      "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue)."
-    },
-    {
-      "id": "im-colorado-2026-10",
-      "start": "2026-10-06",
-      "kind": "immersion",
-      "title": "USA, Colorado — Rocky Mountain Ecodharma Retreat Center",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "4-Day In-Person Immersion",
-      "status": "Fully Registered - Accepting Waitlist",
-      "startDate": "2026-10-06",
-      "language": "English",
-      "url": "https://anft.earth/training-immersions/usa-colorado-rocky-mountain-ecodharma-retreat-center-october-2026/",
-      "registrationUrl": "",
-      "image": "images/thumbnails/rocky-mountain-ecodharma.webp",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "rocky-mountain-ecodharma-retreat-center",
-      "description": "",
-      "trainers": [
-        "darlene-rooney-keller",
-        "carla-zorzanelli"
-      ],
-      "price": 495,
-      "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue)."
-    },
-    {
-      "id": "im-australia-2026-10",
-      "start": "2026-10-11",
-      "kind": "immersion",
-      "title": "Australia, QLD — Daintree Siesta",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "4-Day In-Person Immersion",
-      "status": "Enrollment Open",
-      "startDate": "2026-10-11",
-      "language": "English",
-      "url": "https://anft.earth/training-immersions/australia-qld-daintree-siesta-october-2026/",
-      "registrationUrl": "",
-      "image": "images/thumbnails/daintree-siesta.webp",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "daintree-siesta",
-      "description": "",
-      "trainers": [
-        "vicky-kyan",
-        "monique-ross"
-      ],
-      "price": 495,
-      "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue)."
-    },
-    {
-      "id": "im-chile-2026-10",
-      "start": "2026-10-19",
-      "kind": "immersion",
-      "title": "Chile, Pucón — Lodge Kod Kod Study Center (in Spanish)",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "4-Day In-Person Immersion",
-      "status": "Enrollment Open",
-      "startDate": "2026-10-19",
-      "language": "Spanish",
-      "url": "https://anft.earth/training-immersions/in-spanish-chile-pucon-lodge-kod-kod-study-center-october-2026/",
-      "registrationUrl": "",
-      "image": "images/thumbnails/lodge-kod-kod.webp",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "lodge-kod-kod-study-center",
-      "description": "",
-      "trainers": [
-        "giovanna-raineri",
-        "mario-reyes"
-      ],
-      "price": 495,
-      "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue)."
-    },
-    {
-      "id": "im-thailand-2026-11",
-      "start": "2026-11-25",
-      "kind": "immersion",
-      "title": "Thailand, Ko Phra Thong — Baba Ecolodge",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "4-Day In-Person Immersion",
-      "status": "Enrollment Open",
-      "startDate": "2026-11-25",
-      "language": "English",
-      "url": "https://anft.earth/training-immersions/thailand-ko-phra-thong-baba-ecolodge-november-2026/",
-      "registrationUrl": "",
-      "image": "images/thumbnails/baba-ecolodge-2.webp",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "baba-ecolodge",
-      "description": "",
-      "trainers": [
-        "youmin-yap",
-        "amanda-yik"
-      ],
-      "price": 495,
-      "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue)."
-    },
-    {
-      "id": "alchemy-of-pilgrimage",
-      "start": "2026-08-25",
-      "kind": "",
-      "title": "Alchemy of Pilgrimage",
-      "category": "Opus Training",
-      "cohort": "2",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2026-08-20",
-      "firstCall": "2026-08-25",
-      "language": "English",
-      "schedule": "Tuesdays, 11 am - 12:30 pm Pacific Time",
-      "registrationUrl": "",
-      "image": "images/thumbnails/OPUS_WELL.webp",
-      "price": 565,
-      "deposit": 50,
-      "academy": "Opus Academy",
-      "venue_id": "",
-      "description": "",
-      "trainers": [],
-      "tuition": ""
-    },
-    {
-      "id": "alchemy-of-pilgrimage-2",
-      "start": "2026-07-30",
-      "kind": "",
-      "title": "Alchemy of Pilgrimage",
-      "category": "Opus Training",
-      "cohort": "3",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2026-08-20",
-      "startDate": "2026-07-30",
-      "language": "English",
-      "schedule": "6:00 pm - 7:30 pm Pacific Time",
-      "registrationUrl": "",
-      "image": "images/thumbnails/AlchimageFlower.webp",
-      "price": 565,
-      "deposit": 50,
-      "academy": "Opus Academy",
-      "venue_id": "",
-      "description": "",
-      "trainers": [],
-      "tuition": ""
-    },
-    {
-      "id": "on-honey-bee-2027-01",
-      "start": "2027-01-19",
-      "kind": "",
-      "title": "Honey Bee Cohort",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "Start Online First (6 months online)",
-      "cohort": "Cohort 180",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2027-01-19",
-      "firstCall": "2027-01-19",
-      "language": "English",
-      "schedule": "Live calls Tuesdays 3:00–5:00 pm PST",
-      "url": "https://anft.earth/training-events/honey-bee/",
-      "image": "",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "",
-      "description": "",
-      "trainers": [
-        "jackie-kuang",
-        "marcela-morales"
-      ],
-      "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
-    },
-    {
-      "id": "on-mule-deer-2027-01",
-      "start": "2027-01-09",
-      "kind": "",
-      "title": "Mule Deer Cohort",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "Start Online First (6 months online)",
-      "cohort": "Cohort 179b",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2027-01-09",
-      "firstCall": "2027-01-09",
-      "language": "English",
-      "schedule": "Live calls Saturdays 8:00–10:00 am PST",
-      "url": "https://anft.earth/training-events/mule-deer/",
-      "image": "",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "",
-      "description": "",
-      "trainers": [
-        "ken-ouendag",
-        "katarina-cuk"
-      ],
-      "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
-    },
-    {
-      "id": "on-ancient-rock-2027-02",
-      "start": "2027-02-11",
-      "kind": "",
-      "title": "Ancient Rock Cohort",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "Start Online First (6 months online)",
-      "cohort": "Cohort 182",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2027-02-11",
-      "firstCall": "2027-02-11",
-      "language": "English",
-      "schedule": "Live calls Thursdays 3:30–5:30 pm PST",
-      "url": "https://anft.earth/training-events/ancient-rock/",
-      "image": "",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "",
-      "description": "",
-      "trainers": [
-        "makiko-sugishita",
-        "stana-luxford-oddie"
-      ],
-      "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
-    },
-    {
-      "id": "on-mountain-gorilla-2027-03",
-      "start": "2027-03-08",
-      "kind": "",
-      "title": "Mountain Gorilla Cohort",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "Start Online First (6 months online)",
-      "cohort": "Cohort 182b",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2027-03-08",
-      "firstCall": "2027-03-08",
-      "language": "English",
-      "schedule": "Live calls Mondays 9:00–11:00 am PST",
-      "url": "https://anft.earth/training-events/mountain-gorilla/",
-      "image": "",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "",
-      "description": "",
-      "trainers": [
-        "caitlin-williams",
-        "geeta-stilwell"
-      ],
-      "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
-    },
-    {
-      "id": "on-frogfish-2027-03",
-      "start": "2027-03-18",
-      "kind": "",
-      "title": "Frogfish Cohort",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "Start Online First (6 months online)",
-      "cohort": "Cohort 184",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2027-03-18",
-      "firstCall": "2027-03-18",
-      "language": "English",
-      "schedule": "Live calls Thursdays 4:00–6:00 am PST",
-      "url": "https://anft.earth/training-events/frogfish/",
-      "image": "",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "",
-      "description": "",
-      "trainers": [
-        "tam-willey",
-        "bansi-shah"
-      ],
-      "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
-    },
-    {
-      "id": "on-burrowing-owl-2027-04",
-      "start": "2027-04-21",
-      "kind": "",
-      "title": "Burrowing Owl Cohort",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "Start Online First (6 months online)",
-      "cohort": "Cohort 185",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2027-04-21",
-      "firstCall": "2027-04-21",
-      "language": "English",
-      "schedule": "Live calls Wednesdays 4:00–6:00 pm PST",
-      "url": "https://anft.earth/training-events/burrowing-owl/",
-      "image": "",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "",
-      "description": "",
-      "trainers": [
-        "ken-ouendag",
-        "darlene-rooney-keller"
-      ],
-      "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
-    },
-    {
-      "id": "on-chrysalis-2027-05",
-      "start": "2027-05-18",
-      "kind": "",
-      "title": "Chrysalis Cohort",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "Start Online First (6 months online)",
-      "cohort": "Cohort 188",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2027-05-18",
-      "firstCall": "2027-05-18",
-      "language": "English",
-      "schedule": "Live calls Tuesdays 6:00–8:00 am PST",
-      "url": "https://anft.earth/training-events/chrysalis/",
-      "image": "",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "",
-      "description": "",
-      "trainers": [
-        "youmin-yap",
-        "katarina-cuk"
-      ],
-      "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
-    },
-    {
-      "id": "on-waterfall-2027-06",
-      "start": "2027-06-15",
-      "kind": "",
-      "title": "Waterfall Cohort",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "Start Online First (6 months online)",
-      "cohort": "Cohort 190",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2027-06-15",
-      "firstCall": "2027-06-15",
-      "language": "English",
-      "schedule": "Live calls Tuesdays 3:30–5:30 pm PST",
-      "url": "https://anft.earth/training-events/waterfall/",
-      "image": "",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "",
-      "description": "",
-      "trainers": [
-        "stana-luxford-oddie",
-        "giovanna-raineri"
-      ],
-      "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
-    },
-    {
-      "id": "on-giraffe-2027-07",
-      "start": "2027-07-22",
-      "kind": "",
-      "title": "Giraffe Cohort",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "Start Online First (6 months online)",
-      "cohort": "Cohort 192",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2027-07-22",
-      "firstCall": "2027-07-22",
-      "language": "English",
-      "schedule": "Live calls Thursdays 8:00–10:00 am PST",
-      "url": "https://anft.earth/training-events/giraffe/",
-      "image": "",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "",
-      "description": "",
-      "trainers": [
-        "darlene-rooney-keller",
-        "carla-zorzanelli"
-      ],
-      "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
-    },
-    {
-      "id": "on-angelfish-2027-08",
-      "start": "2027-08-25",
-      "kind": "",
-      "title": "Angelfish Cohort",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "Start Online First (6 months online)",
-      "cohort": "Cohort 193",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2027-08-25",
-      "firstCall": "2027-08-25",
-      "language": "English",
-      "schedule": "Live calls Wednesdays 5:00–7:00 pm PST",
-      "url": "https://anft.earth/training-events/angelfish/",
-      "image": "",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "",
-      "description": "",
-      "trainers": [
-        "amanda-yik",
-        "marcela-morales"
-      ],
-      "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
-    },
-    {
-      "id": "on-unfurling-ferns-2027-09",
-      "start": "2027-09-15",
-      "kind": "",
-      "title": "Unfurling Ferns Cohort",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "Start Online First (6 months online)",
-      "cohort": "Cohort 194",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2027-09-15",
-      "firstCall": "2027-09-15",
-      "language": "English",
-      "schedule": "Live calls Wednesdays 5:00–7:00 am PST",
-      "url": "https://anft.earth/training-events/unfurling-ferns/",
-      "image": "",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "",
-      "description": "",
-      "trainers": [
-        "nadine-mazzola",
-        "youmin-yap"
-      ],
-      "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
-    },
-    {
-      "id": "on-japanese-maple-2027-10",
-      "start": "2027-10-09",
-      "kind": "",
-      "title": "Japanese Maple Cohort",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "Start Online First (6 months online)",
-      "cohort": "Cohort 195",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2027-10-09",
-      "firstCall": "2027-10-09",
-      "language": "English",
-      "schedule": "Live calls Saturdays 9:00–11:00 am PST",
-      "url": "https://anft.earth/training-events/japanese-maple/",
-      "image": "",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "",
-      "description": "",
-      "trainers": [
-        "geeta-stilwell",
-        "jackie-kuang"
-      ],
-      "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
-    },
-    {
-      "id": "on-polar-bear-2027-10",
-      "start": "2027-10-14",
-      "kind": "",
-      "title": "Polar Bear Cohort",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "Start Online First (6 months online)",
-      "cohort": "Cohort 196",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2027-10-14",
-      "firstCall": "2027-10-14",
-      "language": "English",
-      "schedule": "Live calls Thursdays 4:00–6:00 pm PST",
-      "url": "https://anft.earth/training-events/polar-bear/",
-      "image": "",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "",
-      "description": "",
-      "trainers": [
-        "ronna-schneberger",
-        "carla-zorzanelli"
-      ],
-      "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
-    },
-    {
-      "id": "on-paw-paw-2027-11",
-      "start": "2027-11-03",
-      "kind": "",
-      "title": "Paw Paw Cohort",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "Start Online First (6 months online)",
-      "cohort": "Cohort 198",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2027-11-03",
-      "firstCall": "2027-11-03",
-      "language": "English",
-      "schedule": "Live calls Wednesdays 4:00–6:00 pm PST",
-      "url": "https://anft.earth/training-events/paw-paw/",
-      "image": "",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "",
-      "description": "",
-      "trainers": [
-        "caitlin-williams"
-      ],
-      "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
-    },
-    {
-      "id": "on-sika-deer-2027-11",
-      "start": "2027-11-04",
-      "kind": "",
-      "title": "Sika Deer Cohort",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "Start Online First (6 months online)",
-      "cohort": "Cohort 199",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2027-11-04",
-      "firstCall": "2027-11-04",
-      "language": "English",
-      "schedule": "Live calls Thursdays 5:00–7:00 am PST",
-      "url": "https://anft.earth/training-events/sika-deer/",
-      "image": "",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "",
-      "description": "",
-      "trainers": [
-        "nadine-mazzola",
-        "amanda-yik"
-      ],
-      "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
-    },
-    {
-      "id": "on-shell-ginger-2027-12",
-      "start": "2027-12-01",
-      "kind": "",
-      "title": "Shell Ginger Cohort",
-      "category": "Forest Therapy Guide Training",
-      "subcategory": "Start Online First (6 months online)",
-      "cohort": "Cohort 202",
-      "status": "Enrollment Open",
-      "enrollmentDeadline": "2027-12-01",
-      "firstCall": "2027-12-01",
-      "language": "English",
-      "schedule": "Live calls Wednesdays 4:00–6:00 pm PST",
-      "url": "https://anft.earth/training-events/shell-ginger/",
-      "image": "",
-      "academy": "Academy of Relational Forest Therapy",
-      "venue_id": "",
-      "description": "",
-      "trainers": [
-        "tam-willey",
-        "makiko-sugishita"
-      ],
-      "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
-    }
-  ],
-  "events": [
-    {
-      "id": "qa-2026-07-27",
-      "start": "2026-07-27",
-      "kind": "call",
-      "title": "Live Q&A with ANFT Trainers",
-      "category": "Open Calls & Events",
-      "date": "2026-07-27",
-      "time": "4:00 am PST",
-      "url": "https://us02web.zoom.us/meeting/register/IAYc4uVcT_Kd1AR8uTZx9g",
-      "zoomUrl": "https://us02web.zoom.us/meeting/register/IAYc4uVcT_Kd1AR8uTZx9g",
-      "image": "images/thumbnails/circle-profile-banner.webp",
-      "academy": "",
-      "venue_id": "",
-      "description": "",
-      "trainers": [],
-      "tuition": ""
-    },
-    {
-      "id": "qa-2026-08-05",
-      "start": "2026-08-05",
-      "kind": "call",
-      "title": "Live Q&A with ANFT Trainers",
-      "category": "Open Calls & Events",
-      "date": "2026-08-05",
-      "time": "10:30 am PST",
-      "url": "https://us02web.zoom.us/meeting/register/bdR6e8-XQG6VqwwenTAuqA",
-      "registrationUrl": "",
-      "zoomUrl": "https://us02web.zoom.us/meeting/register/bdR6e8-XQG6VqwwenTAuqA",
-      "image": "",
-      "academy": "",
-      "venue_id": "",
-      "description": "",
-      "trainers": [],
-      "tuition": ""
-    },
-    {
-      "id": "qa-2026-08-13",
-      "start": "2026-08-13",
-      "kind": "call",
-      "title": "Live Q&A with ANFT Trainers",
-      "category": "Open Calls & Events",
-      "date": "2026-08-13",
-      "time": "5:00 pm PST",
-      "url": "https://us02web.zoom.us/meeting/register/Jx_VOKxKTfWWThajOpLuBA",
-      "registrationUrl": "",
-      "zoomUrl": "https://us02web.zoom.us/meeting/register/Jx_VOKxKTfWWThajOpLuBA",
-      "image": "",
-      "academy": "",
-      "venue_id": "",
-      "description": "",
-      "trainers": [],
-      "tuition": ""
-    },
-    {
-      "id": "nam-call-2026-08-04",
-      "start": "2026-08-04",
-      "kind": "call",
-      "title": "Nature as Medicine — Training Walkthrough Call",
-      "category": "Nature as Medicine",
-      "date": "2026-08-04",
-      "time": "5:00 pm PST",
-      "url": "https://us06web.zoom.us/meeting/register/a1B_jNGuTi2OWKpf9KzTQQ",
-      "registrationUrl": "",
-      "zoomUrl": "https://us06web.zoom.us/meeting/register/a1B_jNGuTi2OWKpf9KzTQQ",
-      "image": "",
-      "academy": "Nature as Medicine",
-      "venue_id": "",
-      "description": "",
-      "trainers": [],
-      "tuition": ""
-    },
-    {
-      "id": "nam-call-2026-11-12",
-      "start": "2026-11-12",
-      "kind": "call",
-      "title": "Nature as Medicine — Training Walkthrough Call",
-      "category": "Nature as Medicine",
-      "date": "2026-11-12",
-      "time": "5:00 pm PST",
-      "url": "https://us06web.zoom.us/meeting/register/TpABfR_eTCm5LkwRvCToHQ",
-      "registrationUrl": "",
-      "zoomUrl": "https://us06web.zoom.us/meeting/register/TpABfR_eTCm5LkwRvCToHQ",
-      "image": "",
-      "academy": "Nature as Medicine",
-      "venue_id": "",
-      "description": "",
-      "trainers": [],
-      "tuition": ""
-    }
-  ]
-}
-</script>
-    <script>
-    (function(){
-      function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-      var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-      function fmt(d){if(!d)return '';var p=String(d).split('-');if(p.length!==3)return d;return MON[parseInt(p[1],10)-1]+' '+parseInt(p[2],10)+', '+p[0];}
-      function sortKey(x){return x.startDate||x.firstCall||x.enrollmentDeadline||'9999-12-31';}
-      function badgeClass(s){s=(s||'').toLowerCase();if(s.indexOf('waitlist')>-1)return 'wait';if(s.indexOf('closed')>-1||s.indexOf('full')>-1)return 'closed';if(s.indexOf('open')>-1)return 'open';return 'closed';}
-      // Shared card builder (also used by the "Coming up" strip below).
-      window.__venues=window.__venues||(function(){try{var ve=document.getElementById('venuesData');var o=ve?JSON.parse(ve.textContent):null;var m={};((o&&o.venues)||[]).forEach(function(v){m[v.id]=v;});return m;}catch(e){return {};}})();
-      function card(x){
-        var media=x.image
-          ? '<img class="tcard-media" src="'+esc(x.image)+'" alt="'+esc(x.title)+'" loading="lazy" decoding="async">'
-          : '<span class="tcard-ph" aria-hidden="true"></span>';
-        var _vv=(window.__venues||{})[x.venue_id];var place=_vv?[_vv.name,_vv.country].filter(function(v){return v&&String(v).trim();}).join(', '):'';
-        var startLine=x.start?'Begins '+fmt(x.start):'';
-        var deadlineLine=x.enrollmentDeadline?'Enroll by '+fmt(x.enrollmentDeadline):'';
-        var body='<div class="tcard-body">'
-          +'<div class="tcard-title">'+esc(x.title)+'</div>'
-          +(x.category?'<div class="tcard-cat">'+esc(x.category)+'</div>':'')
-          +(x.subcategory?'<div class="tcard-sub">'+esc(x.subcategory)+'</div>':'')
-          +(place?'<div class="tcard-place">'+esc(place)+'</div>':'')
-          +(x.status?'<div class="tcard-status"><span class="tcard-badge badge-'+badgeClass(x.status)+'">'+esc(x.status)+'</span></div>':'')
-          +(startLine?'<div class="tcard-dates">'+esc(startLine)+'</div>':'')
-          +(deadlineLine?'<div class="tcard-dates">'+esc(deadlineLine)+'</div>':'')
-          +(x.language?'<div class="tcard-lang">'+esc(x.language)+'</div>':'')
-          +'<span class="tcard-link">View details <span class="arr">&rarr;</span></span>'
-          +'</div>';
-        var href=x.id?('/events/'+esc(x.id)+'.html'):(x.url?esc(x.url):'');
-        if(href) return '<a class="tcard" href="'+href+'">'+media+body+'</a>';
-        return '<div class="tcard">'+media+body+'</div>';
-      }
-      window.__trCard=card;
-      var el=document.getElementById('trainingsData'), grid=document.getElementById('trCards');
-      if(!el||!grid) return;
-      var data; try{ data=JSON.parse(el.textContent); }catch(e){ return; }
-      var items=(data.trainings||[]).slice();
-      items.sort(function(a,b){var ka=sortKey(a),kb=sortKey(b);return ka<kb?-1:(ka>kb?1:0);});
-      grid.innerHTML=items.map(card).join('');
-    })();
-    </script>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="coming-up" aria-label="Coming up" hidden>
-    <div class="eyebrow">On the calendar</div>
-    <h2>Coming up</h2>
-    <div class="tcards" id="cuCards"></div>
-    <p class="tr-all"><a class="p-link p-go" href="calendar.html">See the full calendar</a></p>
-  </section>
-  <script>
-  /* Coming up: the next four upcoming events, read from the same inlined data
-     the trainings section already uses. Hides its whole section when nothing
-     is upcoming; "past" is worked out live in the browser. */
-  (function(){
-    var sec=document.getElementById('coming-up'), grid=document.getElementById('cuCards'), src=document.getElementById('trainingsData');
-    if(!sec||!grid||!src||!window.__trCard) return;
-    var data; try{ data=JSON.parse(src.textContent); }catch(e){ return; }
-    function pad(n){return (n<10?'0':'')+n;}
-    var d0=new Date(), today=d0.getFullYear()+'-'+pad(d0.getMonth()+1)+'-'+pad(d0.getDate());
-    var up=[].concat(data.trainings||[], data.events||[]).filter(function(ev){
-      return /^\d{4}-\d{2}-\d{2}$/.test(ev.start||'') && ev.start>=today;
-    });
-    up.sort(function(a,b){return a.start<b.start?-1:(a.start>b.start?1:0);});
-    up=up.slice(0,4);
-    if(!up.length) return;
-    grid.innerHTML=up.map(window.__trCard).join('');
-    sec.hidden=false;
-  })();
-  </script>
-
-  <!-- ======================================================================
-       CREDIBILITY - accreditation is factual per anft.earth; swap the
-       testimonial for your preferred quote and attribution.
-       ====================================================================== -->
-  <section class="section cred" aria-label="Accreditation and community voices">
-    <div class="cred-in">
-      <div class="cred-accred">
-        <div class="eyebrow">Recognized Training</div>
-        <p>The Nature as Medicine practitioner training is accredited by Mass General Brigham, the teaching affiliate of Harvard Medical School, and offers up to 86 continuing education credits for licensed health care professionals.</p>
-        <a class="p-link p-go" href="nature-as-medicine.html">About Nature as Medicine</a>
+<!-- ================= FIVE MOVEMENTS ================= -->
+<section class="section tight" style="background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap center" style="max-width:820px">
+    <div class="eyebrow">The Way of the Guide</div>
+    <h2 class="statement">Five movements</h2>
+    <p class="lede">Every crossing of the threshold moves through five movements.</p>
+  </div>
+  <div class="wrap" style="max-width:1160px">
+    <div class="moves">
+      <div class="move">
+        <span class="ph"><img src="images/index/movement-connect.webp" alt="Connect" loading="lazy" decoding="async"></span>
+        <h3>Connect</h3><p>Arrival, and the senses settling into place.</p>
       </div>
-      <blockquote class="cred-quote">
-        <p class="serif">“The training and practicum has changed my life.”</p>
-        <footer>&mdash; Maja Pilsar, certified guide</footer>
-      </blockquote>
+      <div class="move">
+        <span class="ph"><img src="images/index/movement-discover.webp" alt="Discover" loading="lazy" decoding="async"></span>
+        <h3>Discover</h3><p>The ideas and lineages beneath the practice.</p>
+      </div>
+      <div class="move">
+        <span class="ph"><img src="images/index/movement-embody.webp" alt="Embody" loading="lazy" decoding="async"></span>
+        <h3>Embody</h3><p>Skills lived on the land, not only studied.</p>
+      </div>
+      <div class="move">
+        <span class="ph"><img src="images/index/movement-remember.webp" alt="Remember" loading="lazy" decoding="async"></span>
+        <h3>Remember</h3><p>Integration, and the path that calls onward.</p>
+      </div>
+      <div class="move">
+        <span class="ph"><img src="images/index/movement-shine.webp" alt="Shine" loading="lazy" decoding="async"></span>
+        <h3>Shine</h3><p>What has been kindled, offered to the world.</p>
+      </div>
     </div>
-  </section>
-</main>
+  </div>
+</section>
+
+<!-- ================= RECOGNIZED TRAINING + TRAININGS CTA ================= -->
+<section class="section">
+  <div class="wrap" style="max-width:820px">
+    <div class="cred">
+      <div class="eyebrow">Recognized training</div>
+      <p>The Nature as Medicine practitioner training is accredited by Mass General Brigham, the teaching affiliate of Harvard Medical School, and offers up to 86 continuing education credits for licensed health care professionals.</p>
+      <a class="p-link" href="nature-as-medicine.html">About Nature as Medicine</a>
+    </div>
+    <div class="center" style="margin-top:56px">
+      <div class="eyebrow">Take the first step</div>
+      <p class="statement" style="font-size:clamp(20px,2.6vw,26px)">Cohorts begin throughout the year &mdash; online and on the land, in many languages.</p>
+      <div class="cta-row">
+        <a class="btn btn-gold" href="upcoming-trainings.html">See upcoming trainings</a>
+        <a class="p-link" href="calendar.html">View the calendar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CLOSING BAND ================= -->
+<section class="band" aria-label="Begin">
+  <img class="band-img" src="images/index/band-closing.webp" alt="An open path into the forest" loading="lazy" decoding="async">
+  <div class="band-scrim"></div>
+  <div class="band-inner">
+    <p style="font-size:clamp(20px,2.8vw,28px);font-style:italic">&ldquo;The training and practicum has changed my life.&rdquo;</p>
+    <p style="font-size:15px;color:#E7D9A8;margin-top:6px">&mdash; Maja Pilsar, certified guide</p>
+    <div style="margin-top:26px"><a class="btn btn-light" href="apply.html">Begin your application</a></div>
+  </div>
+</section>
 
 <footer>
   <div class="foot-grid">
@@ -1760,10 +339,6 @@
       <h3>The Academies</h3>
       <a href="forest-threshold.html">The Forest Threshold</a>
       <a href="relational-forest-therapy-academy.html">Relational Forest Therapy</a>
-      <a href="re-collection.html" style="padding-left:14px;font-size:13px">Re-collection</a>
-      <a href="immersion.html" style="padding-left:14px;font-size:13px">Immersion</a>
-      <a href="practicum.html" style="padding-left:14px;font-size:13px">Practicum</a>
-      <a href="practice.html" style="padding-left:14px;font-size:13px">Practice</a>
       <a href="nature-as-medicine.html">Nature as Medicine</a>
       <a href="academy-of-place.html">Academy of Place</a>
       <a href="opus-academy.html">Opus Academy</a>
@@ -1773,11 +348,9 @@
       <h3>Participate</h3>
       <a href="about.html">About</a>
       <a href="apply.html">Apply</a>
-      <a href="index.html#trainings">Upcoming trainings</a>
+      <a href="upcoming-trainings.html">Upcoming trainings</a>
       <a href="calendar.html">Calendar</a>
       <a href="membership.html">Membership</a>
-      <a href="relational-forest-therapy-academy--global-guide-map.html">Find a guide</a>
-      <a href="academy-of-place--global-trail-map.html">Find a trail</a>
       <a href="faq.html">FAQ</a>
       <a href="field-glossary.html">Field Glossary</a>
       <a href="science.html">Science</a>
@@ -1804,45 +377,17 @@
   </div>
 </footer>
 
-<script>
-/* Threshold verbs: clicking a verb reveals its meaning below the row. */
-(function(){
-  var box=document.querySelector('.thr-verb-desc');
-  if(!box) return;
-  document.querySelectorAll('.thr-verb').forEach(function(b){
-    b.addEventListener('click',function(){box.textContent=b.getAttribute('data-desc');box.hidden=false;});
-  });
-})();
-</script>
+<!-- Hidden data island: kept ONLY so tools/build-trainings.js can inline data/trainings.json on deploy.
+     The homepage does not display trainings; the live listing lives on upcoming-trainings.html. Do not remove. -->
+<!-- trainings-data-hash:pending -->
+<script type="application/json" id="trainingsData">{}</script>
 
 <script>
-/* Offering menu tabs: progressive enhancement — without JS both lists stay visible. */
-(function(){
-  var tabs=[].slice.call(document.querySelectorAll('.omenu-tab'));
-  if(!tabs.length) return;
-  var panels=tabs.map(function(t){return document.getElementById(t.getAttribute('aria-controls'));});
-  function select(i){
-    tabs.forEach(function(t,j){
-      var on=(j===i);
-      t.setAttribute('aria-selected',on?'true':'false');
-      t.tabIndex=on?0:-1;
-      if(panels[j]) panels[j].classList.toggle('is-active',on);
-    });
-  }
-  tabs.forEach(function(t,i){
-    t.addEventListener('click',function(){select(i);});
-    t.addEventListener('keydown',function(e){
-      var n=null;
-      if(e.key==='ArrowRight'||e.key==='ArrowDown') n=(i+1)%tabs.length;
-      else if(e.key==='ArrowLeft'||e.key==='ArrowUp') n=(i-1+tabs.length)%tabs.length;
-      else if(e.key==='Home') n=0;
-      else if(e.key==='End') n=tabs.length-1;
-      if(n!==null){e.preventDefault();tabs[n].focus();select(n);}
-    });
-  });
-  select(0);
-})();
+  (function(){
+    var h=document.getElementById('siteHeader');
+    function onScroll(){ if(window.scrollY>40){h.classList.add('scrolled');}else{h.classList.remove('scrolled');} }
+    onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+  })();
 </script>
-
 </body>
 </html>
