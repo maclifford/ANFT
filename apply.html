@@ -220,6 +220,13 @@
   .foot-legal a:hover{color:#FFFFFF;text-decoration:underline}
   /* serif body: prose keeps EB Garamond */
   p,.lede,.quote,.foot-land,.foot-mission,.deck{font-family:"EB Garamond",Georgia,serif}
+  /* full-width page hero */
+  .page-hero{position:relative;width:100%;min-height:clamp(320px,42vw,480px);display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+  .page-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .page-hero .ph-scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(20,32,22,.34),rgba(20,32,22,.56))}
+  .page-hero .ph-in{position:relative;z-index:2;padding:44px 28px;max-width:840px}
+  .page-hero .eyebrow{color:#E7D9A8;margin-bottom:10px}
+  .page-hero h1{color:#fff}
 </style>
 </head>
 <body id="top">
@@ -249,12 +256,17 @@
   </div>
 </header>
 
-<main class="section">
-  <div class="eyebrow">Participation</div>
-  <div class="title-row">
+<section class="page-hero" aria-label="Apply">
+  <img src="images/index/band-threshold.webp" alt="Autumn forest at the threshold" fetchpriority="high" decoding="async">
+  <div class="ph-scrim"></div>
+  <div class="ph-in">
+    <div class="eyebrow">Participation</div>
     <h1>Apply to the Academies</h1>
-    <a class="p-link p-go" href="calendar.html">See the calendar</a>
   </div>
+</section>
+
+<main class="section">
+  <p style="margin:0 0 12px"><a class="p-link p-go" href="calendar.html">See the calendar</a></p>
   <p class="lede">Three short steps: choose your path and tell us about yourself, share a little background, then review and send. Applications go to our admissions circle, and you&rsquo;ll receive a confirmation by email.</p>
 
   <div class="steps" aria-hidden="true">
