@@ -144,7 +144,7 @@ const NAV = [
   '<a href="/the-book.html">The Book</a>',
   '<a href="/science.html">Science</a>',
   '<a href="/about.html">About</a>',
-  '<a class="nav-cta" href="/apply.html">Apply</a>'
+  '<a class="nav-cta" href="/apply.html">Introduce Yourself</a>'
 ].join('\n      ');
 
 const HEADER =
@@ -162,7 +162,7 @@ const FOOTER =
   '    <div class="foot-nav">\n' +
   '      <a href="/academies.html">The Academies</a>\n' +
   '      <a href="/about.html">About</a>\n' +
-  '      <a href="/apply.html">Apply</a>\n' +
+  '      <a href="/apply.html">Introduce Yourself</a>\n' +
   '      <a href="/calendar.html">Calendar</a>\n' +
   '      <a href="/index.html#trainings">Upcoming trainings</a>\n' +
   '      <a href="/faq.html">FAQ</a>\n' +
