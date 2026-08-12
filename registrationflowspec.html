@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ANFT Registration Flow — Spec</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#F2F3EC;--card:#FBFCF8;--ink:#26301F;--ink-soft:#4E5A47;--navy:#1E3A5F;--fir:#2E5B3E;--fir-tint:#E1EBDD;--gold:#A9862C;--gold-deep:#7C6118;--gold-tint:#F3EDD9;--line:#C9D0BE}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Nunito Sans",system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.55}
+  .wrap{max-width:900px;margin:0 auto;padding:44px 24px 80px}
+  header.doc{border-bottom:2px solid var(--gold);padding-bottom:18px;margin-bottom:8px}
+  .eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep);font-weight:700}
+  h1{font-family:"Nunito Sans",sans-serif;font-weight:600;color:var(--navy);font-size:32px;margin:8px 0 4px}
+  .doc-sub{font-family:"EB Garamond",Georgia,serif;font-size:17px;color:var(--ink-soft);margin:0}
+  h2{font-family:"Nunito Sans",sans-serif;font-weight:700;color:var(--navy);font-size:14px;letter-spacing:.09em;text-transform:uppercase;margin:40px 0 16px;padding-bottom:7px;border-bottom:1px solid var(--line)}
+  p.prose{font-family:"EB Garamond",Georgia,serif;font-size:17px;line-height:1.7;color:var(--ink)}
+
+  /* ---- flow diagram ---- */
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:0;margin:6px 0 8px}
+  .node{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;position:relative}
+  .node.step{border-left:5px solid var(--fir)}
+  .node.ext{border-left:5px solid var(--gold);background:var(--gold-tint)}
+  .node.done{border-left:5px solid var(--navy);background:#EEF2F7}
+  .node .n-k{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--gold-deep);margin-bottom:3px}
+  .node .n-t{font-weight:700;color:var(--navy);font-size:16.5px}
+  .node .n-d{font-family:"EB Garamond",Georgia,serif;font-size:15px;color:var(--ink-soft);margin-top:4px;line-height:1.55}
+  .node .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--gold-deep);background:#fff;border:1px solid var(--line);border-radius:6px;padding:1px 7px;margin-left:6px}
+  .arrow{align-self:center;width:2px;height:24px;background:var(--line);position:relative}
+  .arrow::after{content:"";position:absolute;left:-4px;bottom:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid var(--line)}
+
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:640px){.two-col{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .card h3{margin:0 0 8px;font-size:15px;color:var(--navy)}
+  .card p{margin:0;font-family:"EB Garamond",Georgia,serif;font-size:15px;color:var(--ink-soft);line-height:1.6}
+  .invite{font-family:"EB Garamond",Georgia,serif;font-style:italic;color:var(--navy);font-size:17px;margin:0 0 12px;padding-left:14px;border-left:3px solid var(--fir-tint)}
+  .chk{display:flex;gap:10px;align-items:flex-start;margin:0 0 12px}
+  .chk .box{flex:0 0 auto;width:18px;height:18px;border:2px solid var(--fir);border-radius:4px;margin-top:2px;position:relative}
+  .chk .box::after{content:"\2713";position:absolute;inset:-3px 0 0 1px;color:var(--fir);font-size:14px;font-weight:700}
+  .chk div{font-size:15px}
+  .pill{display:inline-block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--gold-deep);background:var(--gold-tint);border-radius:6px;padding:2px 8px}
+  ul.tight{margin:6px 0 0;padding-left:20px;font-family:"EB Garamond",Georgia,serif;font-size:16px;line-height:1.7}
+  ul.tight li{margin:0 0 5px}
+  .rev{font-size:13px;color:var(--ink-soft);margin-top:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="doc">
+    <div class="eyebrow">Working specification</div>
+    <h1>Registration &amp; Introduction Flow</h1>
+    <p class="doc-sub">How a visitor reserves a place and introduces themselves — decisions to date, and what remains open.</p>
+    <p class="rev">Draft · for review · placeholders marked in gold</p>
+  </header>
+
+  <h2>The flow, end to end</h2>
+  <div class="flow">
+    <div class="node step"><div class="n-k">Entry</div><div class="n-t">Find a Training</div><div class="n-d">The primary call-to-action across the site now leads to the trainings list, not a standalone “Introduce Yourself.” Choosing a training is the true front door.</div></div>
+    <div class="arrow"></div>
+    <div class="node step"><div class="n-k">Event page</div><div class="n-t">“Reserve your place”</div><div class="n-d">On an event page, the visitor opens the reservation modal. No banner, no navigation away — a quiet overlay.</div></div>
+    <div class="arrow"></div>
+    <div class="node step"><div class="n-k">Modal 1</div><div class="n-t">Payment modal <span class="tag">two checkboxes: 1 of 2</span></div><div class="n-d">Basic details — full name, email, country — the event shown and pre-filled, and a required box confirming the payment &amp; refund policy has been read. Then two paths to pay.</div></div>
+    <div class="arrow"></div>
+    <div class="node ext"><div class="n-k">External</div><div class="n-t">Stripe — secure payment <span class="tag">placeholder links</span></div><div class="n-d">“Make a deposit to reserve your place” or “Pay in full now.” Deposit-first applies to open-enrollment events. Stripe handles the money; its success page returns the visitor to the next step.</div></div>
+    <div class="arrow"></div>
+    <div class="node step"><div class="n-k">Modal 2</div><div class="n-t">Introduce yourself <span class="tag">two checkboxes: 2 of 2</span></div><div class="n-d">Three standardized invitations (below) and a required consent box. The same set for every event type — no per-category branching.</div></div>
+    <div class="arrow"></div>
+    <div class="node step"><div class="n-k">On submit</div><div class="n-t">Store · notify · confirm <span class="tag">storage placeholder</span></div><div class="n-d">The introduction is saved to secure, compliant storage and emailed to admissions and the event’s guides. The visitor sees a warm confirmation.</div></div>
+    <div class="arrow"></div>
+    <div class="node done"><div class="n-k">Done</div><div class="n-t">“Your introduction is on its way”</div><div class="n-d">Guides read introductions before the event begins — closing the loop so the person feels seen.</div></div>
+  </div>
+
+  <h2>The three invitations</h2>
+  <p class="prose">Standardized for every event, worded as invitations rather than form fields. The middle one is phrased to pair with a post-event survey, so hopes stated beforehand can be revisited afterward.</p>
+  <p class="invite">What is calling you to this training?</p>
+  <p class="invite">What are you hoping for — your intention for this time?</p>
+  <p class="invite">Is there anything about how you learn best, or anything you’d like us to know to support you?</p>
+  <p class="prose" style="font-size:15px;color:var(--ink-soft)">The third is optional and kept open rather than a checklist, so it doesn’t actively solicit health or disability details — the lightest posture under data-protection rules.</p>
+
+  <h2>The two checkboxes</h2>
+  <div class="two-col">
+    <div class="card">
+      <div class="chk"><span class="box"></span><div><b>Payment &amp; refund policy</b><br>“I have read and understand the payment &amp; refund policy,” linked to that page. In the payment modal, required before paying.</div></div>
+    </div>
+    <div class="card">
+      <div class="chk"><span class="box"></span><div><b>Storage &amp; privacy consent</b><br>Explicit consent to store and share responses with guides, linked to the privacy policy. In the introduction modal, required before submitting. <span class="pill">policy to be updated first</span></div></div>
+    </div>
+  </div>
+
+  <h2>Why an introduction at all</h2>
+  <p class="prose">Four purposes, in priority order: to help people feel seen and met; to give guides a read on what motivates each participant; to capture a pre-event snapshot of hopes that a later survey can be measured against; and to surface learning styles, needs, or requests. The first purpose lives less in the questions than in the reply — the confirmation and the guides’ actual reading of what was written are what make it land.</p>
+
+  <h2>Data, storage &amp; consent — sequencing</h2>
+  <p class="prose">Because responses are stored durably and can touch sensitive ground, three things happen in order before the submit step goes live:</p>
+  <ul class="tight">
+    <li>The <b>privacy policy is written/updated</b> first — the consent checkbox has to point at something real.</li>
+    <li>A <b>storage provider</b> is chosen with advice, on two criteria: willingness to sign a data-processing agreement, and where the data physically lives.</li>
+    <li>Only then is the <b>submit endpoint wired</b> to that storage.</li>
+  </ul>
+  <p class="prose" style="font-size:15px;color:var(--ink-soft)">Likely-relevant regimes given the international audience: GDPR / UK&nbsp;GDPR, Canada’s PIPEDA, California’s CPRA. HIPAA most likely does not apply (ANFT isn’t a healthcare provider billing insurance), so HIPAA-grade storage is probably not the bar. This is a note, not legal advice — worth confirming with counsel.</p>
+
+  <h2>Open items &amp; placeholders</h2>
+  <ul class="tight">
+    <li><span class="pill">Stripe links</span> deposit &amp; pay-in-full payment links per open-enrollment event — from the admissions coordinator.</li>
+    <li><span class="pill">Deposit amounts</span> the deposit and full-tuition figures shown on the buttons.</li>
+    <li><span class="pill">Storage endpoint</span> the compliant destination the introduction posts to.</li>
+    <li><span class="pill">Privacy policy</span> updated policy for the consent link.</li>
+    <li><span class="pill">Nav button</span> decision on the header’s “Introduce Yourself” button (site-wide) — leave, or change to “Find a Training” everywhere.</li>
+  </ul>
+
+  <h2>What changed on the homepage already</h2>
+  <p class="prose">The hero and mid-page “Introduce Yourself” buttons now read <b>Find a Training</b> and lead to the calendar. The redundant “Introduce Yourself” link was removed from the footer (Upcoming trainings and Calendar already sit there). The header’s green button is unchanged pending the decision above.</p>
+</div>
+</body>
+</html>

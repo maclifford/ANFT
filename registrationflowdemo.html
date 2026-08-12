@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Registration flow — prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#F2F3EC;--card:#FBFCF8;--ink:#26301F;--ink-soft:#4E5A47;--navy:#1E3A5F;--fir:#2E5B3E;--fir-tint:#E1EBDD;--gold:#A9862C;--gold-deep:#7C6118;--line:#C9D0BE}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Nunito Sans",system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+  .demo-note{background:#fffdf4;border-bottom:1px solid var(--line);padding:12px 20px;font-size:13.5px;color:var(--ink-soft)}
+  .demo-note b{color:var(--ink)}
+
+  /* ---------- the (stand-in) event page behind the modal ---------- */
+  .page{max-width:760px;margin:0 auto;padding:60px 24px 120px;text-align:center}
+  .eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-deep);font-weight:700}
+  .page h1{font-family:"Nunito Sans",sans-serif;font-weight:600;color:var(--navy);font-size:clamp(28px,4vw,40px);margin:12px 0 6px}
+  .page .place{font-family:"EB Garamond",Georgia,serif;font-size:19px;color:var(--ink-soft)}
+  .page .lede{font-family:"EB Garamond",Georgia,serif;font-size:18px;line-height:1.7;max-width:56ch;margin:22px auto 30px}
+
+  .btn{display:inline-block;border:0;cursor:pointer;font-family:"Nunito Sans",sans-serif;font-weight:700;
+    font-size:16px;border-radius:10px;padding:15px 30px;text-decoration:none;transition:background .18s ease,transform .05s ease}
+  .btn-gold{background:var(--gold);color:#fff}
+  .btn-gold:hover{background:var(--gold-deep)}
+  .btn-fir{background:var(--fir);color:#fff}
+  .btn-fir:hover{background:#264b33}
+  .btn-ghost{background:transparent;color:var(--fir);border:1.5px solid var(--fir)}
+  .btn-ghost:hover{background:var(--fir-tint)}
+  .btn:disabled{opacity:.45;cursor:not-allowed}
+  .btn:active:not(:disabled){transform:translateY(1px)}
+
+  /* ---------- modal shell ---------- */
+  .backdrop{position:fixed;inset:0;z-index:50;background:rgba(20,26,20,.62);backdrop-filter:blur(3px);
+    display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:40px 18px}
+  .backdrop.open{display:flex}
+  .modal{background:var(--card);width:100%;max-width:560px;border-radius:18px;border:1px solid var(--line);
+    box-shadow:0 24px 70px rgba(20,32,22,.36);padding:34px 34px 30px;position:relative;margin:auto}
+  .modal h2{font-family:"Nunito Sans",sans-serif;font-weight:600;color:var(--navy);font-size:26px;margin:0 0 4px}
+  .modal .sub{font-family:"EB Garamond",Georgia,serif;font-size:16.5px;color:var(--ink-soft);margin:0 0 22px;line-height:1.6}
+  .m-close{position:absolute;top:14px;right:16px;border:0;background:transparent;font-size:26px;line-height:1;color:var(--ink-soft);cursor:pointer;padding:4px 8px;border-radius:8px}
+  .m-close:hover{background:var(--fir-tint);color:var(--ink)}
+
+  .ev-chip{background:var(--fir-tint);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:0 0 22px}
+  .ev-chip .ev-t{font-weight:700;color:var(--navy);font-size:15.5px}
+  .ev-chip .ev-m{font-size:13.5px;color:var(--ink-soft);margin-top:3px}
+
+  .fld{margin:0 0 16px;text-align:left}
+  .fld label{display:block;font-size:14px;font-weight:600;color:var(--ink);margin:0 0 6px}
+  .fld .req{color:var(--gold-deep)}
+  .fld input[type=text],.fld input[type=email],.fld textarea,.fld select{width:100%;font-family:inherit;font-size:15.5px;color:var(--ink);
+    background:#fff;border:1.5px solid var(--line);border-radius:9px;padding:11px 13px}
+  .fld select{cursor:pointer;appearance:none;-webkit-appearance:none;padding-right:38px;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%234E5A47' stroke-width='2'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+  .fld textarea{min-height:84px;resize:vertical;line-height:1.55;font-family:"EB Garamond",Georgia,serif;font-size:16px}
+  .fld input:focus,.fld textarea:focus,.fld select:focus{outline:none;border-color:var(--fir);box-shadow:0 0 0 3px rgba(46,91,62,.14)}
+  .fld .hint{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;font-family:"EB Garamond",Georgia,serif}
+
+  .check{display:flex;gap:11px;align-items:flex-start;margin:0 0 18px;text-align:left}
+  .check input{margin-top:3px;width:17px;height:17px;flex:0 0 auto;accent-color:var(--fir)}
+  .check label{font-size:13.8px;color:var(--ink-soft);line-height:1.5}
+  .check a{color:var(--fir);font-weight:600}
+
+  .pay-row{display:flex;flex-direction:column;gap:11px;margin-top:6px}
+  .pay-row .btn{width:100%;text-align:center}
+  .pay-amt{font-weight:400;font-size:13.5px;opacity:.9}
+  .secure{font-size:12.5px;color:var(--ink-soft);text-align:center;margin:14px 0 0;font-family:"EB Garamond",Georgia,serif}
+  .secure svg{vertical-align:-2px;margin-right:4px}
+
+  .m-invite{font-family:"EB Garamond",Georgia,serif;font-size:16px;color:var(--navy);font-style:italic;margin:0 0 4px}
+  .placeholder-tag{display:inline-block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;
+    color:var(--gold-deep);background:#F3EDD9;border-radius:6px;padding:2px 8px;margin-left:6px}
+
+  .done{text-align:center;padding:14px 6px 6px}
+  .done .tick{width:58px;height:58px;border-radius:50%;background:var(--fir-tint);color:var(--fir);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:30px}
+  .done h2{border:0}
+  .step-note{font-size:12.5px;color:var(--ink-soft);text-align:center;margin-top:18px;font-family:"EB Garamond",Georgia,serif}
+</style>
+</head>
+<body>
+
+<div class="demo-note">
+  <b>Prototype.</b> This shows the full two-step flow with real copy. The Stripe buttons, the storage destination, and the privacy-policy link are <b>placeholders</b> — no payment or data is sent. On the real site, the payment modal opens on an event page; after paying, Stripe returns the visitor to the “Introduce yourself” step.
+</div>
+
+<!-- ============ stand-in event page ============ -->
+<main class="page">
+  <div class="eyebrow">Forest Therapy Guide Training</div>
+  <h1>Canada, Ontario — Dharma Centre of Canada</h1>
+  <div class="place">Cohort 171 · In-person immersion begins September 4, 2026</div>
+  <p class="lede">Seven days in the boreal forest of the Canadian Shield, followed by four months of online practice. This page stands in for the real event page — click below to see the reservation flow.</p>
+  <button class="btn btn-gold" id="openPay">Reserve your place</button>
+</main>
+
+<!-- ============ MODAL 1 — payment ============ -->
+<div class="backdrop" id="payBackdrop" role="dialog" aria-modal="true" aria-labelledby="payTitle">
+  <div class="modal">
+    <button class="m-close" data-close aria-label="Close">&times;</button>
+    <h2 id="payTitle">Reserve your place</h2>
+    <p class="sub">A place is held with a deposit, or you may pay in full. Just a couple of details first.</p>
+
+    <div class="ev-chip">
+      <div class="ev-t" id="payEvTitle">Canada, Ontario — Dharma Centre of Canada</div>
+      <div class="ev-m" id="payEvMeta">Cohort 171 · Begins September 4, 2026</div>
+    </div>
+
+    <div class="fld">
+      <label for="payName">Full name <span class="req">*</span></label>
+      <input type="text" id="payName" autocomplete="name">
+    </div>
+    <div class="fld">
+      <label for="payEmail">Email <span class="req">*</span></label>
+      <input type="email" id="payEmail" autocomplete="email">
+      <p class="hint">We'll use this for your confirmation and to prefill your payment.</p>
+    </div>
+    <div class="fld">
+      <label for="payCountry">Country <span class="req">*</span></label>
+      <select id="payCountry" autocomplete="country-name">
+        <option value="">Select your country&hellip;</option>
+            <option value="Afghanistan">Afghanistan</option>
+            <option value="Albania">Albania</option>
+            <option value="Algeria">Algeria</option>
+            <option value="Andorra">Andorra</option>
+            <option value="Angola">Angola</option>
+            <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+            <option value="Argentina">Argentina</option>
+            <option value="Armenia">Armenia</option>
+            <option value="Australia">Australia</option>
+            <option value="Austria">Austria</option>
+            <option value="Azerbaijan">Azerbaijan</option>
+            <option value="Bahamas">Bahamas</option>
+            <option value="Bahrain">Bahrain</option>
+            <option value="Bangladesh">Bangladesh</option>
+            <option value="Barbados">Barbados</option>
+            <option value="Belarus">Belarus</option>
+            <option value="Belgium">Belgium</option>
+            <option value="Belize">Belize</option>
+            <option value="Benin">Benin</option>
+            <option value="Bhutan">Bhutan</option>
+            <option value="Bolivia">Bolivia</option>
+            <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+            <option value="Botswana">Botswana</option>
+            <option value="Brazil">Brazil</option>
+            <option value="Brunei">Brunei</option>
+            <option value="Bulgaria">Bulgaria</option>
+            <option value="Burkina Faso">Burkina Faso</option>
+            <option value="Burundi">Burundi</option>
+            <option value="Cabo Verde">Cabo Verde</option>
+            <option value="Cambodia">Cambodia</option>
+            <option value="Cameroon">Cameroon</option>
+            <option value="Canada">Canada</option>
+            <option value="Central African Republic">Central African Republic</option>
+            <option value="Chad">Chad</option>
+            <option value="Chile">Chile</option>
+            <option value="China">China</option>
+            <option value="Colombia">Colombia</option>
+            <option value="Comoros">Comoros</option>
+            <option value="Congo (Brazzaville)">Congo (Brazzaville)</option>
+            <option value="Congo (Kinshasa)">Congo (Kinshasa)</option>
+            <option value="Costa Rica">Costa Rica</option>
+            <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+            <option value="Croatia">Croatia</option>
+            <option value="Cuba">Cuba</option>
+            <option value="Cyprus">Cyprus</option>
+            <option value="Czechia">Czechia</option>
+            <option value="Denmark">Denmark</option>
+            <option value="Djibouti">Djibouti</option>
+            <option value="Dominica">Dominica</option>
+            <option value="Dominican Republic">Dominican Republic</option>
+            <option value="Ecuador">Ecuador</option>
+            <option value="Egypt">Egypt</option>
+            <option value="El Salvador">El Salvador</option>
+            <option value="Equatorial Guinea">Equatorial Guinea</option>
+            <option value="Eritrea">Eritrea</option>
+            <option value="Estonia">Estonia</option>
+            <option value="Eswatini">Eswatini</option>
+            <option value="Ethiopia">Ethiopia</option>
+            <option value="Fiji">Fiji</option>
+            <option value="Finland">Finland</option>
+            <option value="France">France</option>
+            <option value="Gabon">Gabon</option>
+            <option value="Gambia">Gambia</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Germany">Germany</option>
+            <option value="Ghana">Ghana</option>
+            <option value="Greece">Greece</option>
+            <option value="Grenada">Grenada</option>
+            <option value="Guatemala">Guatemala</option>
+            <option value="Guinea">Guinea</option>
+            <option value="Guinea-Bissau">Guinea-Bissau</option>
+            <option value="Guyana">Guyana</option>
+            <option value="Haiti">Haiti</option>
+            <option value="Honduras">Honduras</option>
+            <option value="Hong Kong">Hong Kong</option>
+            <option value="Hungary">Hungary</option>
+            <option value="Iceland">Iceland</option>
+            <option value="India">India</option>
+            <option value="Indonesia">Indonesia</option>
+            <option value="Iran">Iran</option>
+            <option value="Iraq">Iraq</option>
+            <option value="Ireland">Ireland</option>
+            <option value="Israel">Israel</option>
+            <option value="Italy">Italy</option>
+            <option value="Jamaica">Jamaica</option>
+            <option value="Japan">Japan</option>
+            <option value="Jordan">Jordan</option>
+            <option value="Kazakhstan">Kazakhstan</option>
+            <option value="Kenya">Kenya</option>
+            <option value="Kiribati">Kiribati</option>
+            <option value="Kosovo">Kosovo</option>
+            <option value="Kuwait">Kuwait</option>
+            <option value="Kyrgyzstan">Kyrgyzstan</option>
+            <option value="Laos">Laos</option>
+            <option value="Latvia">Latvia</option>
+            <option value="Lebanon">Lebanon</option>
+            <option value="Lesotho">Lesotho</option>
+            <option value="Liberia">Liberia</option>
+            <option value="Libya">Libya</option>
+            <option value="Liechtenstein">Liechtenstein</option>
+            <option value="Lithuania">Lithuania</option>
+            <option value="Luxembourg">Luxembourg</option>
+            <option value="Macau">Macau</option>
+            <option value="Madagascar">Madagascar</option>
+            <option value="Malawi">Malawi</option>
+            <option value="Malaysia">Malaysia</option>
+            <option value="Maldives">Maldives</option>
+            <option value="Mali">Mali</option>
+            <option value="Malta">Malta</option>
+            <option value="Marshall Islands">Marshall Islands</option>
+            <option value="Mauritania">Mauritania</option>
+            <option value="Mauritius">Mauritius</option>
+            <option value="Mexico">Mexico</option>
+            <option value="Micronesia">Micronesia</option>
+            <option value="Moldova">Moldova</option>
+            <option value="Monaco">Monaco</option>
+            <option value="Mongolia">Mongolia</option>
+            <option value="Montenegro">Montenegro</option>
+            <option value="Morocco">Morocco</option>
+            <option value="Mozambique">Mozambique</option>
+            <option value="Myanmar">Myanmar</option>
+            <option value="Namibia">Namibia</option>
+            <option value="Nauru">Nauru</option>
+            <option value="Nepal">Nepal</option>
+            <option value="Netherlands">Netherlands</option>
+            <option value="New Zealand">New Zealand</option>
+            <option value="Nicaragua">Nicaragua</option>
+            <option value="Niger">Niger</option>
+            <option value="Nigeria">Nigeria</option>
+            <option value="North Korea">North Korea</option>
+            <option value="North Macedonia">North Macedonia</option>
+            <option value="Norway">Norway</option>
+            <option value="Oman">Oman</option>
+            <option value="Pakistan">Pakistan</option>
+            <option value="Palau">Palau</option>
+            <option value="Palestine">Palestine</option>
+            <option value="Panama">Panama</option>
+            <option value="Papua New Guinea">Papua New Guinea</option>
+            <option value="Paraguay">Paraguay</option>
+            <option value="Peru">Peru</option>
+            <option value="Philippines">Philippines</option>
+            <option value="Poland">Poland</option>
+            <option value="Portugal">Portugal</option>
+            <option value="Qatar">Qatar</option>
+            <option value="Romania">Romania</option>
+            <option value="Russia">Russia</option>
+            <option value="Rwanda">Rwanda</option>
+            <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+            <option value="Saint Lucia">Saint Lucia</option>
+            <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+            <option value="Samoa">Samoa</option>
+            <option value="San Marino">San Marino</option>
+            <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+            <option value="Saudi Arabia">Saudi Arabia</option>
+            <option value="Senegal">Senegal</option>
+            <option value="Serbia">Serbia</option>
+            <option value="Seychelles">Seychelles</option>
+            <option value="Sierra Leone">Sierra Leone</option>
+            <option value="Singapore">Singapore</option>
+            <option value="Slovakia">Slovakia</option>
+            <option value="Slovenia">Slovenia</option>
+            <option value="Solomon Islands">Solomon Islands</option>
+            <option value="Somalia">Somalia</option>
+            <option value="South Africa">South Africa</option>
+            <option value="South Korea">South Korea</option>
+            <option value="South Sudan">South Sudan</option>
+            <option value="Spain">Spain</option>
+            <option value="Sri Lanka">Sri Lanka</option>
+            <option value="Sudan">Sudan</option>
+            <option value="Suriname">Suriname</option>
+            <option value="Sweden">Sweden</option>
+            <option value="Switzerland">Switzerland</option>
+            <option value="Syria">Syria</option>
+            <option value="Taiwan">Taiwan</option>
+            <option value="Tajikistan">Tajikistan</option>
+            <option value="Tanzania">Tanzania</option>
+            <option value="Thailand">Thailand</option>
+            <option value="Timor-Leste">Timor-Leste</option>
+            <option value="Togo">Togo</option>
+            <option value="Tonga">Tonga</option>
+            <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+            <option value="Tunisia">Tunisia</option>
+            <option value="Turkey">Turkey</option>
+            <option value="Turkmenistan">Turkmenistan</option>
+            <option value="Tuvalu">Tuvalu</option>
+            <option value="Uganda">Uganda</option>
+            <option value="Ukraine">Ukraine</option>
+            <option value="United Arab Emirates">United Arab Emirates</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="United States">United States</option>
+            <option value="Uruguay">Uruguay</option>
+            <option value="Uzbekistan">Uzbekistan</option>
+            <option value="Vanuatu">Vanuatu</option>
+            <option value="Vatican City">Vatican City</option>
+            <option value="Venezuela">Venezuela</option>
+            <option value="Vietnam">Vietnam</option>
+            <option value="Yemen">Yemen</option>
+            <option value="Zambia">Zambia</option>
+            <option value="Zimbabwe">Zimbabwe</option>
+      </select>
+    </div>
+
+    <div class="check">
+      <input type="checkbox" id="payPolicy">
+      <label for="payPolicy">I have read and understand the
+        <a href="payment-refund-policy.html" target="_blank" rel="noopener">payment &amp; refund policy</a>.</label>
+    </div>
+
+    <div class="pay-row">
+      <button class="btn btn-fir" id="btnDeposit" disabled>
+        Make a deposit to reserve your place<br><span class="pay-amt">Deposit — amount TBA <span class="placeholder-tag">Stripe link</span></span>
+      </button>
+      <button class="btn btn-ghost" id="btnFull" disabled>
+        Pay in full now<br><span class="pay-amt">Full tuition — amount TBA <span class="placeholder-tag">Stripe link</span></span>
+      </button>
+    </div>
+    <p class="secure">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+      Secure payment via Stripe. After paying, you'll be invited to introduce yourself.
+    </p>
+  </div>
+</div>
+
+<!-- ============ MODAL 2 — introduce yourself ============ -->
+<div class="backdrop" id="introBackdrop" role="dialog" aria-modal="true" aria-labelledby="introTitle">
+  <div class="modal">
+    <button class="m-close" data-close aria-label="Close">&times;</button>
+
+    <div id="introForm">
+      <h2 id="introTitle">Introduce yourself</h2>
+      <p class="sub">Your place is reserved — thank you. Before we meet, we'd love to hear a little from you. Three invitations; answer as fully or as simply as you like.</p>
+
+      <div class="fld">
+        <label for="q1"><span class="m-invite">What is calling you to this training?</span></label>
+        <textarea id="q1"></textarea>
+      </div>
+      <div class="fld">
+        <label for="q2"><span class="m-invite">What are you hoping for — your intention for this time?</span></label>
+        <textarea id="q2"></textarea>
+      </div>
+      <div class="fld">
+        <label for="q3"><span class="m-invite">Is there anything about how you learn best, or anything you'd like us to know to support you?</span></label>
+        <textarea id="q3"></textarea>
+        <p class="hint">Optional, and shared only with the guides for your event.</p>
+      </div>
+
+      <div class="check">
+        <input type="checkbox" id="introConsent">
+        <label for="introConsent">I understand my responses will be stored securely and shared with the guides for this event, as described in the
+          <a href="privacy.html" target="_blank" rel="noopener">privacy policy</a>. <span class="placeholder-tag">policy to be updated</span></label>
+      </div>
+
+      <button class="btn btn-fir" id="btnSend" style="width:100%" disabled>Send my introduction</button>
+      <p class="step-note">Your introduction goes to admissions and your event's guides, and is saved to secure storage. <span class="placeholder-tag">storage endpoint placeholder</span></p>
+    </div>
+
+    <div class="done" id="introDone" hidden>
+      <div class="tick">&#10003;</div>
+      <h2>Your introduction is on its way</h2>
+      <p class="sub" style="margin-top:8px">Thank you for sharing. Your guides will read it before you meet. We look forward to walking with you.</p>
+      <button class="btn btn-ghost" data-close style="margin-top:6px">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  function $(id){return document.getElementById(id);}
+  var payBd=$('payBackdrop'), introBd=$('introBackdrop');
+
+  function open(bd){bd.classList.add('open');document.body.style.overflow='hidden';var f=bd.querySelector('input,textarea,button');if(f)setTimeout(function(){f.focus();},40);}
+  function close(bd){bd.classList.remove('open');document.body.style.overflow='';}
+
+  $('openPay').addEventListener('click',function(){open(payBd);});
+
+  // close handlers (X buttons, backdrop click, ESC)
+  document.querySelectorAll('[data-close]').forEach(function(b){b.addEventListener('click',function(){close(payBd);close(introBd);});});
+  [payBd,introBd].forEach(function(bd){bd.addEventListener('click',function(e){if(e.target===bd)close(bd);});});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){close(payBd);close(introBd);}});
+
+  // ---- payment modal validation ----
+  var pn=$('payName'), pe=$('payEmail'), pc=$('payCountry'), pp=$('payPolicy'), bd1=$('btnDeposit'), bf=$('btnFull');
+  function emailOk(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);}
+  function payValid(){return pn.value.trim() && emailOk(pe.value.trim()) && pc.value.trim() && pp.checked;}
+  function refreshPay(){var ok=payValid();bd1.disabled=!ok;bf.disabled=!ok;}
+  [pn,pe].forEach(function(el){el.addEventListener('input',refreshPay);});
+  pc.addEventListener('change',refreshPay);
+  pp.addEventListener('change',refreshPay);
+
+  // In the real site these go to the event's Stripe payment links, whose
+  // success URL returns the visitor to the "introduce yourself" step.
+  function goPay(kind){
+    // window.location = STRIPE_LINK[kind];   // <-- real behaviour
+    close(payBd);
+    open(introBd);                            // prototype: jump straight to step 2
+  }
+  bd1.addEventListener('click',function(){goPay('deposit');});
+  bf.addEventListener('click',function(){goPay('full');});
+
+  // ---- introduce modal ----
+  var ic=$('introConsent'), bs=$('btnSend');
+  ic.addEventListener('change',function(){bs.disabled=!ic.checked;});
+  bs.addEventListener('click',function(){
+    // real site: POST to storage endpoint + email; then show done
+    $('introForm').hidden=true;
+    $('introDone').hidden=false;
+  });
+})();
+</script>
+</body>
+</html>
