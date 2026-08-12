@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Forest Therapy Guide Training FAQ — Cost, Certification & More | ANFT</title>
+<!-- LAUNCH TODO: delete the next line in production so search engines can index the FAQ. It is here only to keep the staging site out of search. -->
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/x-icon" href="/favicon-white.ico?v=2">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
@@ -161,6 +162,21 @@
   .tv-q{margin:0 auto;max-width:560px;font-family:"EB Garamond",Georgia,serif;font-style:italic;font-size:clamp(20px,2.4vw,25px);line-height:1.5;color:var(--navy)}
   .tv-attr{margin-top:22px;font-family:"Nunito Sans",system-ui,sans-serif;font-style:normal;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep)}
   @media(max-width:640px){.tvoices-wrap{padding:36px 0}.tv-item{padding:36px 0}}
+  /* faq landing enhancements */
+  .most-asked{background:var(--fir-tint);border-radius:12px;padding:18px 20px;margin:24px 0 10px}
+  .most-asked .ma-label{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);font-weight:700;margin-bottom:12px}
+  .most-asked .ma-links{display:flex;flex-wrap:wrap;gap:9px}
+  .most-asked a{font-size:14px;font-weight:600;color:var(--navy);background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 15px;text-decoration:none}
+  .most-asked a:hover{border-color:var(--fir);color:var(--gold-deep)}
+  .faq-tools{display:flex;gap:14px;align-items:center;margin:2px 0 6px;font-size:13.5px;color:var(--ink-soft)}
+  .faq-tools button{background:none;border:0;color:var(--fir);font-weight:600;cursor:pointer;font-family:inherit;font-size:13.5px;padding:0;text-decoration:underline;text-underline-offset:2px}
+  .faq-tools button:hover{color:var(--gold-deep)}
+  details.qa{scroll-margin-top:24px}
+  .qa-permalink{opacity:0;margin-left:8px;font-weight:400;color:var(--gold-deep);text-decoration:none;font-size:15px;transition:opacity .15s ease}
+  details.qa>summary:hover .qa-permalink,details.qa[open]>summary .qa-permalink{opacity:.65}
+  .qa-permalink:hover{opacity:1 !important;text-decoration:underline}
+  .faq-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:10px 18px;border-radius:999px;font-size:13.5px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;z-index:999}
+  .faq-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
 <script type="application/ld+json">
 {
@@ -476,14 +492,19 @@
   <p class="faq-lede">Everything you might want to know while considering ANFT &mdash; what forest therapy is, how training and certification work, what it costs, and what becomes possible afterward. Still have a question? <a href="contact.html">Reach out</a> or <a href="walkthrough-calls.html">join a walkthrough call</a>.</p>
   <div class="faq-cta"><a class="btn btn-gold" href="apply.html">Begin your application</a> <a class="p-link p-go" href="calendar.html">See upcoming trainings</a></div>
   <nav class="faq-nav" aria-label="Jump to a topic"><a href="#basics">Forest therapy basics</a><a href="#choosing">Choosing your path</a><a href="#credibility">Credibility, recognition &amp; research</a><a href="#different">What makes ANFT different</a><a href="#cost">Cost &amp; financial support</a><a href="#rigor">Instructors, format &amp; rigor</a><a href="#after">After you certify</a><a href="#healthcare">For healthcare professionals</a><a href="#trails">Trails, organizations &amp; partnerships</a><a href="#logistics">Logistics &amp; getting started</a></nav>
+  <div class="most-asked">
+    <div class="ma-label">Most asked</div>
+    <div class="ma-links"><a href="#q-what-is-forest-therapy">What is forest therapy?</a><a href="#q-what-is-shinrin-yoku-forest-bathing">What is forest bathing?</a><a href="#q-i-m-new-to-forest-therapy-where-should-i-start">Where do I start?</a><a href="#q-how-much-does-forest-therapy-guide-training-cost">What does it cost?</a><a href="#q-how-long-does-it-take-to-become-a-certified-anft-forest-ther">How long does it take?</a><a href="#q-can-i-earn-a-living-as-a-forest-therapy-guide">Can I earn a living?</a></div>
+  </div>
+  <div class="faq-tools"><span>All questions:</span> <button type="button" id="faqExpandAll">Expand all</button> <button type="button" id="faqCollapseAll">Collapse all</button></div>
   <h2 class="faq-cat" id="basics">Forest therapy basics</h2>
-  <details class="qa">
+  <details class="qa" id="q-what-is-forest-therapy">
     <summary>What is forest therapy?</summary>
     <div class="ans">
       <p>Forest therapy is a guided practice of slowing down and opening the senses in the living world &mdash; a research-informed way of supporting health and wellbeing through relationship with nature. It draws on the Japanese practice of shinrin-yoku (forest bathing), and in ANFT’s approach it goes further. We call it <a href="relational-forest-therapy-academy.html">Relational Forest Therapy</a>, because its heart is genuine, reciprocal relationship between people and the more-than-human world rather than a set of techniques. A certified forest therapy guide offers a gentle sequence of invitations that help people move out of ordinary busyness and into direct experience.</p>
     </div>
   </details>
-  <details class="qa">
+  <details class="qa" id="q-what-is-shinrin-yoku-forest-bathing">
     <summary>What is shinrin-yoku (forest bathing)?</summary>
     <div class="ans">
       <p>Shinrin-yoku &mdash; literally &ldquo;forest bathing&rdquo; &mdash; is a Japanese practice of immersing oneself in the atmosphere of the forest through the senses. A substantial body of research links it to reduced stress, improved mood, and other benefits to health. Forest bathing is the root from which modern forest therapy grew; ANFT’s guide training carries that lineage forward and adds the pedagogy of the Way of the Guide and the Standard Sequence. You can experience it for yourself by <a href="relational-forest-therapy-academy--global-guide-map.html">finding a guide near you</a> or by reading <a href="the-book.html"><em>Your Guide to Forest Bathing</em></a>.</p>
@@ -496,62 +517,62 @@
 <hr class="tv-rule">
 </div></div>
 <h2 class="faq-cat" id="choosing">Choosing your path</h2>
-  <details class="qa">
+  <details class="qa" id="q-what-does-anft-offer">
     <summary>What does ANFT offer?</summary>
     <div class="ans">
       <p>ANFT trains and certifies Forest Therapy Guides and supports a worldwide community of practice. Programs are organized into distinct academies: the <a href="relational-forest-therapy-academy.html">Relational Forest Therapy Academy</a> (guide certification), the <a href="academy-of-place.html">Academy of Place</a> (certifying trails, spaces, and places), the <a href="academy-of-applied-partnerships.html">Academy of Applied Partnerships</a> (bringing forest therapy into professions and organizations), the <a href="opus-academy.html">Opus Academy</a> (advanced, imaginal practice), and <a href="nature-as-medicine.html">Nature as Medicine</a> (for licensed health-care professionals). Most people begin with guide certification.</p>
     </div>
   </details>
-  <details class="qa">
+  <details class="qa" id="q-i-m-new-to-forest-therapy-where-should-i-start">
     <summary>I’m new to forest therapy &mdash; where should I start?</summary>
     <div class="ans">
       <p>Most newcomers begin with <a href="relational-forest-therapy-academy.html">Relational Forest Therapy Guide certification</a>, which teaches the foundational practice: the Way of the Guide, the Standard Sequence, and the Language of Invitation. If you’re simply curious, join a <a href="walkthrough-calls.html">walkthrough call</a> or attend a <a href="relational-forest-therapy-academy--global-guide-map.html">guided walk</a>. Many people begin by simply reading <a href="the-book.html"><em>Your Guide to Forest Bathing: Experience the Healing Power of Nature</em></a>, by ANFT founder M. Amos Clifford. It provides a comprehensive overview of the practice along with step-by-step instruction and is available in many languages. These are gentle ways to feel the practice before committing.</p>
     </div>
   </details>
-  <details class="qa">
+  <details class="qa" id="q-do-i-need-prior-experience-or-prerequisites-to-enroll">
     <summary>Do I need prior experience or prerequisites to enroll?</summary>
     <div class="ans">
       <p>No special background is required. Our guides come from healthcare, education, ministry, the outdoors, the arts, and many other walks of life. What matters most is a sincere wish to guide others into relationship with the living world, while deepening your own connection to self, others, and the more-than-human world. Think of it as a path that steadily increases your range of freedom.</p>
     </div>
   </details>
-  <details class="qa">
+  <details class="qa" id="q-how-long-does-it-take-to-become-a-certified-anft-forest-ther">
     <summary>How long does it take to become a certified ANFT Forest Therapy Guide?</summary>
     <div class="ans">
       <p>Certification is a mentored journey rather than a single class: an immersive training, a supervised practicum in which you guide real walks, and a period of guided practice before you certify. Most candidates complete it in about six months. The duration of our curriculum has developed over many years of experience, guided by our observations of what learning experiences are necessary to help most people move beyond the familiar patterns of being teachers or therapists &mdash; hard habits to break. Your investment of time will enable you to understand and embody what we call &ldquo;the Way of the Guide.&rdquo; You will find that the insights and tools you gain permeate many aspects of your life, well beyond the edges of the forest.</p>
     </div>
   </details>
-  <details class="qa">
+  <details class="qa" id="q-is-the-training-in-person-online-or-both">
     <summary>Is the training in person, online, or both?</summary>
     <div class="ans">
       <p>Both. The heart of the training is immersive, in-person experience on the land. ANFT also developed a remote pathway to certification &mdash; created without compromising rigor or relationship &mdash; so you can train from where you live. All training pathways require an immersion, where two experienced ANFT trainers guide you and the others in your cohort and help you refine your skills. These immersions are not just a retreat; they are a direct transmission of skills and knowledge from the most experienced forest therapy trainers in the world.</p>
     </div>
   </details>
-  <details class="qa">
+  <details class="qa" id="q-which-anft-path-is-right-for-me">
     <summary>Which ANFT path is right for me?</summary>
     <div class="ans">
       <p>If you want to guide others, begin with the <a href="relational-forest-therapy-academy.html">Relational Forest Therapy Academy</a>. If you steward land or a venue, the <a href="academy-of-place.html">Academy of Place</a> certifies trails and places. If you’re a licensed clinician, see <a href="nature-as-medicine.html">Nature as Medicine</a>. If you want to bring the practice into an organization or profession, the <a href="academy-of-applied-partnerships.html">Academy of Applied Partnerships</a> is your door. The <a href="opus-academy.html">Opus Academy</a> is for those who experience life as pilgrimage and want tools to deepen the transformational processes of their inner alchemy; it is also for guides ready to go further into imaginal and pilgrimage practice &mdash; to learn not just the Way of the Guide, but its other half: the Way of the Guided.</p>
     </div>
   </details>
   <h2 class="faq-cat" id="credibility">Credibility, recognition &amp; research</h2>
-  <details class="qa">
+  <details class="qa" id="q-is-anft-certification-recognized-and-respected">
     <summary>Is ANFT certification recognized and respected?</summary>
     <div class="ans">
       <p>ANFT is one of the field’s founding organizations, and ANFT-certified guides practice across dozens of countries in healthcare, parks, education, retreats, and private practice.</p>
     </div>
   </details>
-  <details class="qa">
+  <details class="qa" id="q-who-accredits-anft-training">
     <summary>Who accredits ANFT training?</summary>
     <div class="ans">
       <p>Our <a href="nature-as-medicine.html">Nature as Medicine</a> program is accredited by Mass General Brigham &mdash; the teaching affiliate of Harvard Medical School &mdash; for up to 86 continuing-education credits for licensed health professionals. Our leaders are part of an international, multidisciplinary group developing accreditation standards for Forest Therapy Guide training programs. As of this writing (mid-2026), no internationally recognized, objective process of accreditation exists for forest therapy.</p>
     </div>
   </details>
-  <details class="qa">
+  <details class="qa" id="q-how-established-is-anft">
     <summary>How established is ANFT?</summary>
     <div class="ans">
       <p>ANFT was the first organization to bring forest therapy to the United States and Europe. A few years later, other organizations started &mdash; mostly by people who had gained their core experience by completing the ANFT training. Our framework, pedagogy, and experiential model have been adapted by almost every other training company, who have used them as a foundation from which to develop their variants. ANFT was founded in 2012. We spent most of two years developing and field-testing our approach, known as &ldquo;Relational Forest Therapy.&rdquo; ANFT held the first Forest Therapy Guide training in 2014 and awarded the first forest therapy trail certification in 2015. Our founder, Amos Clifford, wrote <a href="the-book.html"><em>Your Guide to Forest Bathing</em></a>, a foundational text now published in several languages. Since then, more than 3,000 ANFT-certified guides have carried the practice into forests and communities around the world, across 70 countries and many cohorts (as of mid-2026 we are training our 186th cohort).</p>
     </div>
   </details>
-  <details class="qa">
+  <details class="qa" id="q-is-forest-therapy-supported-by-science">
     <summary>Is forest therapy supported by science?</summary>
     <div class="ans">
       <p>Yes. Forest therapy draws on a substantial and growing body of research &mdash; on stress, immune function, mood, focus, and cardiovascular health &mdash; much of it rooted in the Japanese practice of shinrin-yoku. Our <a href="science.html">science page</a> summarizes peer-reviewed studies whose methodology used the ANFT Standard Sequence and ANFT-certified guides. We represent the evidence honestly rather than overstate it, which we believe serves both guides and the people they serve.</p>
@@ -565,26 +586,26 @@
 <hr class="tv-rule">
 </div></div>
 <h2 class="faq-cat" id="different">What makes ANFT different</h2>
-  <details class="qa">
+  <details class="qa" id="q-how-is-anft-different-from-other-forest-therapy-or-forest-ba">
     <summary>How is ANFT different from other forest therapy or forest bathing trainings?</summary>
     <div class="ans">
       <p>Many programs teach forest bathing as a set of techniques. ANFT teaches <a href="relational-forest-therapy-academy.html">Relational Forest Therapy</a> &mdash; a deeper practice centered on genuine relationship between people and the more-than-human world. Our pedagogy (the Way of the Guide, the Standard Sequence, the Language of Invitation) has been refined over more than a decade and carries a living lineage rather than a borrowed framework.</p>
     </div>
   </details>
-  <details class="qa">
+  <details class="qa" id="q-what-is-relational-forest-therapy">
     <summary>What is Relational Forest Therapy?</summary>
     <div class="ans">
       <p>It is the practice of entering into reciprocal relationship with a world that has its own voice &mdash; not using nature as a backdrop for wellness, but meeting the forest, waters, and creatures as partners. It is ANFT’s distinctive approach and the foundation of everything we teach. Beyond being a lovely phrase, we have developed powerful methods for growing these relationships, rooted in forms of intelligence that live in the body and especially in the heart. In our approach, forest therapy is only partly about understanding, and much more about directly knowing.</p>
     </div>
   </details>
-  <details class="qa">
+  <details class="qa" id="q-what-is-the-way-of-the-guide">
     <summary>What is “the Way of the Guide”?</summary>
     <div class="ans">
       <p>The Way of the Guide is ANFT’s core framework for how a guide holds space &mdash; the inner stance, the sequence of a walk, and the Language of Invitation that opens doorways for participants without directing their experience. It’s what distinguishes a trained ANFT guide from someone simply leading a nature walk. The outcome of skillful guiding is not just providing new experiences; it is a partnership with the landscape in which invitations are crafted that increase the range of freedom of the people who walk it.</p>
     </div>
   </details>
   <h2 class="faq-cat" id="cost">Cost &amp; financial support</h2>
-  <details class="qa">
+  <details class="qa" id="q-how-much-does-forest-therapy-guide-training-cost">
     <summary>How much does Forest Therapy Guide training cost?</summary>
     <div class="ans">
       <p>Tuition varies by program and location.</p>
@@ -595,7 +616,7 @@
       <p>Tuition does not include travel, lodging, meals, or incidentals. A requirement for certification is that guide candidates also be certified in wilderness first aid, provided by third parties such as the <a href="https://www.nols.edu/" target="_blank" rel="noopener">National Outdoor Leadership School</a> (one of many); tuition varies.</p>
     </div>
   </details>
-  <details class="qa">
+  <details class="qa" id="q-are-payment-plans-available">
     <summary>Are payment plans available?</summary>
     <div class="ans">
       <p><strong>Online first (Route A):</strong> $560 USD per month over six months &mdash; $3,360.00 USD total &mdash; with the first payment of $560 serving as a deposit that confirms your enrollment and reserves your space. This does not include the fee for the required immersion (typically $495 as of mid-2026).</p>
@@ -603,7 +624,7 @@
       <p>The deposit and enrollment deadline for any training is the day before the start date.</p>
     </div>
   </details>
-  <details class="qa">
+  <details class="qa" id="q-are-scholarships-or-discounts-available">
     <summary>Are scholarships or discounts available?</summary>
     <div class="ans">
       <p>Scholarships are rarely given and are reserved for circumstances where two conditions apply: (1) the applicant can demonstrate financial need; and (2) the applicant has a solid plan for how their training will expand the practice of forest therapy into new applications or populations. For example, ANFT provided scholarship support for the cost of sign-language interpreters to make possible the world’s first cohort of Deaf forest therapy guides.</p>
@@ -611,20 +632,20 @@
     </div>
   </details>
   <h2 class="faq-cat" id="rigor">Instructors, format &amp; rigor</h2>
-  <details class="qa">
+  <details class="qa" id="q-who-will-teach-me">
     <summary>Who will teach me?</summary>
     <div class="ans">
       <p>You’ll learn from ANFT’s international team of 22 experienced trainers, many of whom have guided and taught for years across multiple countries and languages. These trainers have completed the most rigorous qualifications path in the field, often taking two years of closely mentored apprenticeship before earning the status of ANFT trainer. By the time they do, they have demonstrated true mastery of both the practice and the pedagogy. Meet them on our <a href="our-trainers.html">Trainers page</a>.</p>
     </div>
   </details>
-  <details class="qa">
+  <details class="qa" id="q-what-does-the-training-to-become-a-forest-therapy-guide-invo">
     <summary>What does the training to become a Forest Therapy Guide involve?</summary>
     <div class="ans">
       <p>The ANFT curriculum is best-in-class, having evolved through the contributions of top-tier trainers and experts. It articulates a guide’s Scope of Practice and rests on a foundation of clearly defined skills and knowledge essential for guiding safely and competently. Weekly online meetings with your cohort are sequenced within a flow of field activities and group discussions. <em>A Guide’s Handbook of Forest Therapy</em>, ANFT’s comprehensive manual, is included in the online materials and available in a print edition exclusively to ANFT guide trainees (purchase price not included in tuition).</p>
       <p>The immersion brings it all together experientially: trainees are guided by trainers &mdash; a direct demonstration and transmission of knowledge and skills &mdash; and also guide one another while being mentored. You will learn theory, practice, and ways of working in partnership with the forest. Your perceptions will shift and expand; you will never see the natural world in the same way again.</p>
     </div>
   </details>
-  <details class="qa">
+  <details class="qa" id="q-how-large-are-cohorts-and-how-much-personal-attention-will-i">
     <summary>How large are cohorts, and how much personal attention will I get?</summary>
     <div class="ans">
       <p>ANFT deliberately keeps cohorts small enough for real relationship and individual feedback. Cohorts range in size from 12 to 22 people. We frequently see lifelong friendships emerge from the bonds formed in sharing the transformational journey to becoming a guide.</p>
@@ -637,46 +658,46 @@
 <hr class="tv-rule">
 </div></div>
 <h2 class="faq-cat" id="after">After you certify</h2>
-  <details class="qa">
+  <details class="qa" id="q-what-can-i-do-with-an-anft-certification">
     <summary>What can I do with an ANFT certification?</summary>
     <div class="ans">
       <p>Certified guides lead walks for the public; in healthcare, wellness, and retreat settings; for parks, land trusts, and botanical gardens; in schools and universities; and in corporate wellbeing programs. Many combine guiding with an existing profession.</p>
     </div>
   </details>
-  <details class="qa">
+  <details class="qa" id="q-can-i-earn-a-living-as-a-forest-therapy-guide">
     <summary>Can I earn a living as a forest therapy guide?</summary>
     <div class="ans">
       <p>If your primary aim is to earn a full-time living, we urge you not to depend upon guide certification. When we began this field in 2012, we recognized that &ldquo;Forest Therapy Guide&rdquo; was not an employment category; one of our aims has been to support its emergence as a credible career path. There has been much progress since then, but we see very few graduates make a full-time career out of it. The exceptions depend upon the guide’s entrepreneurial skills, partnership opportunities, location, and other factors &mdash; if you have succeeded in the past as a small-business owner or independent entrepreneur, your odds are better.</p>
       <p>That said, many guides meaningfully supplement their income through public walks, private clients, organizational partnerships, and retreats, and others weave the practice into an existing career. Be aware that a guiding practice is usually built over time, and that income varies with location, effort, and how you position your offerings.</p>
     </div>
   </details>
-  <details class="qa">
+  <details class="qa" id="q-will-i-be-listed-so-clients-can-find-me">
     <summary>Will I be listed so clients can find me?</summary>
     <div class="ans">
       <p>Yes. Certified guides can appear in our <a href="relational-forest-therapy-academy--global-guide-map.html">Find a Guide</a> directory so the public can find you, and certified trails appear in <a href="academy-of-place--global-trail-map.html">Find a Trail</a>.</p>
     </div>
   </details>
-  <details class="qa">
+  <details class="qa" id="q-is-there-an-ongoing-community-after-i-certify">
     <summary>Is there an ongoing community after I certify?</summary>
     <div class="ans">
       <p>Yes &mdash; certification connects you to a worldwide community of guides, continuing education, and advanced pathways such as the <a href="opus-academy.html">Opus Academy</a>. You will choose the connections that best fit your needs.</p>
     </div>
   </details>
-  <details class="qa">
+  <details class="qa" id="q-how-do-i-maintain-my-certification">
     <summary>How do I maintain my certification?</summary>
     <div class="ans">
       <p>As of mid-2026, it’s a one-and-done matter: your certification does not need to be maintained or renewed. Even so, we highly recommend you continue your learning journey, and ANFT provides a variety of opportunities to do so.</p>
       <p>Looking ahead, as accreditation by credible independent bodies becomes available for training organizations like ANFT, continuing education will likely become a standard requirement in the field &mdash; as it is for many professions &mdash; which will also accelerate forest therapy’s evolution into a credible career path.</p>
     </div>
   </details>
-  <details class="qa">
+  <details class="qa" id="q-does-anft-help-with-insurance-or-liability-for-practicing-gu">
     <summary>Does ANFT help with insurance or liability for practicing guides?</summary>
     <div class="ans">
       <p>Recommendations are included in our training curriculum. It is a professional standard for guides to carry insurance appropriate to their activities.</p>
     </div>
   </details>
   <h2 class="faq-cat" id="healthcare">For healthcare professionals</h2>
-  <details class="qa">
+  <details class="qa" id="q-i-m-a-licensed-healthcare-professional-is-there-a-track-for">
     <summary>I’m a licensed healthcare professional &mdash; is there a track for me?</summary>
     <div class="ans">
       <p>Yes. <a href="nature-as-medicine.html">Nature as Medicine</a>, led by Dr. Susan Abookire, offers licensed health-care professionals a dual certification (Forest Therapy Guide plus Nature as Medicine Practitioner) with up to 86 continuing-education credits accredited by Mass General Brigham. It’s designed to bring forest therapy into clinical practice.</p>
@@ -684,13 +705,13 @@
     </div>
   </details>
   <h2 class="faq-cat" id="trails">Trails, organizations &amp; partnerships</h2>
-  <details class="qa">
+  <details class="qa" id="q-can-i-certify-a-trail-space-or-place">
     <summary>Can I certify a trail, space, or place?</summary>
     <div class="ans">
       <p>Yes. The <a href="academy-of-place.html">Academy of Place</a> trains guides as consultants and connects them with our global trail-certification initiative. These consultant guides work with land managers to certify forest therapy trails, spaces, and places, joining a global network recognized by ANFT &mdash; ideal for parks, land trusts, resorts, campuses, and healthcare settings. ANFT awarded the field’s first trail certification in 2015.</p>
     </div>
   </details>
-  <details class="qa">
+  <details class="qa" id="q-can-anft-bring-forest-therapy-to-my-organization-or-institut">
     <summary>Can ANFT bring forest therapy to my organization or institution?</summary>
     <div class="ans">
       <p>Yes. The <a href="academy-of-applied-partnerships.html">Academy of Applied Partnerships</a> helps organizations, professionals, and institutions bring forest therapy into their work through workshops, retreats, and specialized training. We work with you to understand your goals, timeframe, and resources, and to design a bespoke experience that mobilizes the power of forest therapy &mdash; for organizational development, team building, deepening nature connection and environmental commitment, reducing burnout and fatigue, and much more. <a href="contact.html">Contact us</a> to reach the Director of the Academy of Applied Partnerships.</p>
@@ -703,25 +724,25 @@
 <hr class="tv-rule">
 </div></div>
 <h2 class="faq-cat" id="logistics">Logistics &amp; getting started</h2>
-  <details class="qa">
+  <details class="qa" id="q-where-are-trainings-held">
     <summary>Where are trainings held?</summary>
     <div class="ans">
       <p>Remote trainings are scheduled with different time zones in mind. In-person immersions are held in many countries around the world. When we select venues, we’re guided by where trainees cluster geographically &mdash; aiming to keep locations reasonably accessible to as many people as possible &mdash; while holding to our standard for places that are &ldquo;wild enough.&rdquo; Upcoming dates and locations are on our <a href="calendar.html">calendar</a>.</p>
     </div>
   </details>
-  <details class="qa">
+  <details class="qa" id="q-is-training-available-in-languages-other-than-english">
     <summary>Is training available in languages other than English?</summary>
     <div class="ans">
       <p>Yes. ANFT trainings have been offered in several languages &mdash; including Spanish, Portuguese, Mandarin, Japanese, and American Sign Language &mdash; reflecting our international community. Most of our trainers are multilingual.</p>
     </div>
   </details>
-  <details class="qa">
+  <details class="qa" id="q-what-is-your-refund-or-cancellation-policy">
     <summary>What is your refund or cancellation policy?</summary>
     <div class="ans">
       <p>Our payment and refund policies are described in detail on our <a href="payment-refund-policy.html">Payment &amp; Refund Policy</a> page. We encourage you to read them carefully.</p>
     </div>
   </details>
-  <details class="qa">
+  <details class="qa" id="q-how-do-i-enroll-and-what-happens-next">
     <summary>How do I enroll, and what happens next?</summary>
     <div class="ans">
       <p>Choose your program and introduce yourself through our <a href="apply.html">application</a>. Pay a deposit to hold your place, and you’ll hear from ANFT staff and your trainers, who will walk you through the logistics of joining the course.</p>
@@ -785,5 +806,44 @@
     <span><a href="privacy.html">Privacy</a> &nbsp;&middot;&nbsp; <a href="#top" aria-label="Back to top">Back to top &uarr;</a></span>
   </div>
 </footer>
+<script>
+(function(){
+  var qs = Array.prototype.slice.call(document.querySelectorAll('details.qa'));
+  var bulk = false, toast;
+  function showToast(){
+    if(!toast){ toast=document.createElement('div'); toast.className='faq-toast'; toast.textContent='Link copied'; document.body.appendChild(toast); }
+    toast.classList.add('show'); setTimeout(function(){ toast.classList.remove('show'); }, 1600);
+  }
+  qs.forEach(function(d){
+    var sm = d.querySelector('summary'); if(!sm || !d.id) return;
+    var a = document.createElement('a');
+    a.className='qa-permalink'; a.href='#'+d.id; a.textContent='#';
+    a.setAttribute('aria-label','Copy a link to this question');
+    a.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      d.open = true;
+      history.replaceState(null,'',location.pathname+location.search+'#'+d.id);
+      if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(showToast, showToast); } else { showToast(); }
+      setTimeout(function(){ d.scrollIntoView({behavior:'smooth',block:'start'}); }, 20);
+    });
+    sm.appendChild(a);
+    d.addEventListener('toggle', function(){
+      if(bulk) return;
+      if(d.open){ history.replaceState(null,'',location.pathname+location.search+'#'+d.id); }
+    });
+  });
+  function openTarget(){
+    var id = decodeURIComponent((location.hash||'').replace(/^#/,''));
+    if(!id) return;
+    var el = document.getElementById(id);
+    if(el && el.tagName === 'DETAILS'){ el.open = true; setTimeout(function(){ el.scrollIntoView({behavior:'smooth',block:'start'}); }, 50); }
+  }
+  window.addEventListener('hashchange', openTarget);
+  openTarget();
+  var exp=document.getElementById('faqExpandAll'), col=document.getElementById('faqCollapseAll');
+  if(exp) exp.addEventListener('click', function(){ bulk=true; qs.forEach(function(d){ d.open=true; }); bulk=false; });
+  if(col) col.addEventListener('click', function(){ bulk=true; qs.forEach(function(d){ d.open=false; }); bulk=false; });
+})();
+</script>
 </body>
 </html>
