@@ -173,6 +173,31 @@
   .tv-q{margin:0 auto;max-width:560px;font-family:"EB Garamond",Georgia,serif;font-style:italic;font-size:clamp(20px,2.4vw,25px);line-height:1.5;color:var(--navy)}
   .tv-attr{margin-top:22px;font-family:"Nunito Sans",system-ui,sans-serif;font-style:normal;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep)}
   @media(max-width:640px){.tvoices-wrap{padding:36px 0}.tv-item{padding:36px 0}}
+
+  /* ---------- upcoming-events chyron (bottom of hero) ---------- */
+  .chyron{position:absolute;left:0;right:0;bottom:0;z-index:3;display:flex;align-items:stretch;
+    background:linear-gradient(180deg,rgba(20,32,22,0),rgba(17,26,18,.82) 46%);
+    border-top:1px solid rgba(255,255,255,.16)}
+  .cy-badge{flex:0 0 auto;display:flex;align-items:center;gap:8px;padding:0 18px;
+    font-family:"Nunito Sans",system-ui,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+    font-weight:700;color:#fff;background:linear-gradient(90deg,var(--fir),rgba(46,91,62,.35));white-space:nowrap}
+  .cy-viewport{flex:1 1 auto;overflow:hidden;position:relative;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+  .cy-track{display:inline-flex;align-items:center;padding:13px 0;white-space:nowrap;
+    animation:cyscroll 80s linear infinite;will-change:transform}
+  .cy-viewport:hover .cy-track,.cy-viewport:focus-within .cy-track{animation-play-state:paused}
+  .cy-item{display:inline-flex;align-items:baseline;gap:10px;padding:0 30px;text-decoration:none;
+    border-right:1px solid rgba(255,255,255,.14);color:#EAF0E8}
+  .cy-item:hover,.cy-item:focus-visible{color:#fff;outline:none}
+  .cy-item:hover .cy-name,.cy-item:focus-visible .cy-name{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--gold)}
+  .cy-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);align-self:center;flex:0 0 auto}
+  .cy-name{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:700;font-size:14.5px}
+  .cy-loc{font-family:"Nunito Sans",system-ui,sans-serif;font-size:13.5px;color:#BFD0BC}
+  .cy-date{font-family:"Nunito Sans",system-ui,sans-serif;font-size:13px;color:#fff;background:rgba(255,255,255,.12);border-radius:999px;padding:2px 10px}
+  @keyframes cyscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){.cy-track{animation:none}.cy-viewport{overflow-x:auto}}
+  @media (max-width:640px){.cy-badge{display:none}.cy-name{font-size:13.5px}.cy-loc{font-size:12.5px}}
 </style>
 </head>
 <body id="top">
@@ -210,6 +235,29 @@
     <defs><path id="heroArc" d="M 40,185 Q 660,55 1280,185" fill="none"></path></defs>
     <text text-anchor="middle"><textPath href="#heroArc" startOffset="50%">Something In You Remembers</textPath></text>
   </svg>
+  <div class="chyron" aria-label="Upcoming events">
+    <span class="cy-badge">Upcoming</span>
+    <div class="cy-viewport"><div class="cy-track" id="cyTrack">
+      <!-- chyron:start -->
+      <a class="cy-item" href="/events/cb-ontario-2026-08.html"><span class="cy-dot" aria-hidden="true"></span><span class="cy-name">Dharma Centre of Canada</span><span class="cy-loc">Ontario, Canada</span><span class="cy-date">Aug 28, 2026</span></a>
+      <a class="cy-item" href="/events/im-ontario-2026-09.html"><span class="cy-dot" aria-hidden="true"></span><span class="cy-name">Dharma Centre of Canada</span><span class="cy-loc">Ontario, Canada</span><span class="cy-date">Sep 4, 2026</span></a>
+      <a class="cy-item" href="/events/im-italy-2026-09.html"><span class="cy-dot" aria-hidden="true"></span><span class="cy-name">Hotel Tosco Romagnolo</span><span class="cy-loc">Bagno di Romagna, Italy</span><span class="cy-date">Sep 24, 2026</span></a>
+      <a class="cy-item" href="/events/cb-georgia-2026-11.html"><span class="cy-dot" aria-hidden="true"></span><span class="cy-name">Just Love Forest</span><span class="cy-loc">Georgia, USA</span><span class="cy-date">Oct 1, 2026</span></a>
+      <a class="cy-item" href="/events/im-australia-2026-10.html"><span class="cy-dot" aria-hidden="true"></span><span class="cy-name">Daintree Siesta</span><span class="cy-loc">Queensland, Australia</span><span class="cy-date">Oct 11, 2026</span></a>
+      <a class="cy-item" href="/events/im-chile-2026-10.html"><span class="cy-dot" aria-hidden="true"></span><span class="cy-name">Lodge Kod Kod Study Center</span><span class="cy-loc">Pucón, Chile</span><span class="cy-date">Oct 19, 2026</span></a>
+      <a class="cy-item" href="/events/cb-thailand-2026-11.html"><span class="cy-dot" aria-hidden="true"></span><span class="cy-name">Baba Ecolodge</span><span class="cy-loc">Koh Phra Thong, Thailand</span><span class="cy-date">Nov 15, 2026</span></a>
+      <a class="cy-item" href="/events/im-thailand-2026-11.html"><span class="cy-dot" aria-hidden="true"></span><span class="cy-name">Baba Ecolodge</span><span class="cy-loc">Koh Phra Thong, Thailand</span><span class="cy-date">Nov 25, 2026</span></a>
+      <a class="cy-item" href="/events/cb-ontario-2026-08.html"><span class="cy-dot" aria-hidden="true"></span><span class="cy-name">Dharma Centre of Canada</span><span class="cy-loc">Ontario, Canada</span><span class="cy-date">Aug 28, 2026</span></a>
+      <a class="cy-item" href="/events/im-ontario-2026-09.html"><span class="cy-dot" aria-hidden="true"></span><span class="cy-name">Dharma Centre of Canada</span><span class="cy-loc">Ontario, Canada</span><span class="cy-date">Sep 4, 2026</span></a>
+      <a class="cy-item" href="/events/im-italy-2026-09.html"><span class="cy-dot" aria-hidden="true"></span><span class="cy-name">Hotel Tosco Romagnolo</span><span class="cy-loc">Bagno di Romagna, Italy</span><span class="cy-date">Sep 24, 2026</span></a>
+      <a class="cy-item" href="/events/cb-georgia-2026-11.html"><span class="cy-dot" aria-hidden="true"></span><span class="cy-name">Just Love Forest</span><span class="cy-loc">Georgia, USA</span><span class="cy-date">Oct 1, 2026</span></a>
+      <a class="cy-item" href="/events/im-australia-2026-10.html"><span class="cy-dot" aria-hidden="true"></span><span class="cy-name">Daintree Siesta</span><span class="cy-loc">Queensland, Australia</span><span class="cy-date">Oct 11, 2026</span></a>
+      <a class="cy-item" href="/events/im-chile-2026-10.html"><span class="cy-dot" aria-hidden="true"></span><span class="cy-name">Lodge Kod Kod Study Center</span><span class="cy-loc">Pucón, Chile</span><span class="cy-date">Oct 19, 2026</span></a>
+      <a class="cy-item" href="/events/cb-thailand-2026-11.html"><span class="cy-dot" aria-hidden="true"></span><span class="cy-name">Baba Ecolodge</span><span class="cy-loc">Koh Phra Thong, Thailand</span><span class="cy-date">Nov 15, 2026</span></a>
+      <a class="cy-item" href="/events/im-thailand-2026-11.html"><span class="cy-dot" aria-hidden="true"></span><span class="cy-name">Baba Ecolodge</span><span class="cy-loc">Koh Phra Thong, Thailand</span><span class="cy-date">Nov 25, 2026</span></a>
+      <!-- chyron:end -->
+    </div></div>
+  </div>
 </section>
 
 <!-- intro lead: the copy that used to sit on the photo -->
@@ -1384,6 +1432,23 @@
     var h=document.getElementById('siteHeader');
     function onScroll(){ if(window.scrollY>40){h.classList.add('scrolled');}else{h.classList.remove('scrolled');} }
     onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+  })();
+</script>
+<script>
+  /* Upcoming-events chyron speed. DWELL = seconds each event stays readable on
+     screen as it drifts across. Change the number below to speed up / slow down. */
+  (function(){
+    var track=document.getElementById('cyTrack'); if(!track) return;
+    var DWELL=10;
+    function apply(){
+      var n=track.getElementsByClassName('cy-item').length/2; if(n<1) return;
+      var setW=track.scrollWidth/2, vp=track.parentElement.clientWidth, avg=setW/n;
+      var speed=(vp+avg)/DWELL; if(speed<=0) return;
+      track.style.animationDuration=(setW/speed).toFixed(1)+'s';
+    }
+    if(document.fonts&&document.fonts.ready){document.fonts.ready.then(apply);}
+    apply();
+    var t; window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(apply,200);},{passive:true});
   })();
 </script>
 </body>
