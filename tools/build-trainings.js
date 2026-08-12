@@ -169,7 +169,7 @@ const FOOTER =
   '      <a href="/contact.html">Contact</a>\n' +
   '    </div>\n' +
   '  </div>\n' +
-  '  <div class="foot-legal">&copy; 2026 ANFT.earth LLC, doing business as the Association of Nature and Forest Therapies. All rights reserved.</div>\n' +
+  '  <div class="foot-legal">&copy; 2026 ANFT.earth LLC, doing business as the Association of Nature and Forest Therapies. All rights reserved. All photos &copy; M. Amos Clifford unless otherwise identified.</div>\n' +
   '</footer>\n';
 
 function buildEventPage(rec, offerings, venuesById, trainersById) {
