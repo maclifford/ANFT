@@ -390,6 +390,31 @@ function writeVenuePages(venues) {
   console.log('Wrote ' + n + ' venue page(s) into venues/.');
 }
 
+// Build the hero "upcoming events" chyron from live trainings + venues data.
+// Shows open-enrollment events that have a real venue location, soonest first,
+// dropping any whose date has passed. Emits the set twice for a seamless loop.
+const CHY_BLOCK = /(<!--\s*chyron:start\s*-->)[\s\S]*?(<!--\s*chyron:end\s*-->)/;
+function buildChyron(data, venuesById) {
+  const M = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  function fmt(s) { var p = String(s).split('-'); if (p.length < 3) return s; return M[(+p[1]) - 1] + ' ' + (+p[2]) + ', ' + p[0]; }
+  function rawDate(r) { return r.date || r.startDate || r.firstCall || r.start || r.enrollmentDeadline || ''; }
+  function loc(r) { var v = venuesById[r.venue_id]; if (v) { var s = [v.region, v.country].filter(Boolean).join(', '); if (s) return s; } var t = r.title || ''; var i = t.search(/[—–]/); return i > -1 ? t.slice(0, i).trim() : t.trim(); }
+  function nm(r) { var v = venuesById[r.venue_id]; if (v && v.name) return v.name; var t = r.title || ''; var parts = t.split(/[—–]/); return parts.length > 1 ? parts[parts.length - 1].trim() : t.trim(); }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  var today = new Date().toISOString().slice(0, 10);
+  var recs = (data.trainings || []).concat(data.events || []);
+  var items = recs
+    .filter(function (r) { return r.venue_id && /open/i.test(r.status || '') && (!rawDate(r) || rawDate(r) >= today); })
+    .sort(function (a, b) { return rawDate(a) < rawDate(b) ? -1 : 1; });
+  function itemHtml(r) {
+    var dr = rawDate(r); var date = dr ? ('<span class="cy-date">' + fmt(dr) + '</span>') : '';
+    return '<a class="cy-item" href="/events/' + r.id + '.html"><span class="cy-dot" aria-hidden="true"></span>' +
+      '<span class="cy-name">' + esc(nm(r)) + '</span><span class="cy-loc">' + esc(loc(r)) + '</span>' + date + '</a>';
+  }
+  var set = items.map(itemHtml).join('\n      ');
+  return { count: items.length, html: '\n      ' + set + '\n      ' + set + '\n      ' };
+}
+
 function main() {
   const json = fs.readFileSync(jsonFp, 'utf8');
   let data;
@@ -435,6 +460,18 @@ function main() {
       else { console.log('index.html venues block already current.'); }
     }
   } catch (e) { console.log('venues inline skipped: ' + e.message); }
+
+  // Regenerate the upcoming-events chyron in the hero from live data.
+  try {
+    const idxFp = path.join(root, 'index.html');
+    const idxHtml = fs.readFileSync(idxFp, 'utf8');
+    if (CHY_BLOCK.test(idxHtml)) {
+      const chy = buildChyron(data, venuesById);
+      const idxOut = idxHtml.replace(CHY_BLOCK, function (m, open, close) { return open + chy.html + close; });
+      if (idxOut !== idxHtml) { fs.writeFileSync(idxFp, idxOut); console.log('Rebuilt hero chyron in index.html (' + chy.count + ' events).'); }
+      else { console.log('index.html chyron already current (' + chy.count + ' events).'); }
+    } else { console.log('chyron markers not found in index.html; skipped.'); }
+  } catch (e) { console.log('chyron build skipped: ' + e.message); }
 
   const trainersById = {};
   try { (JSON.parse(fs.readFileSync(trainersFp, 'utf8')).trainers || []).forEach(function (t) { trainersById[t.id] = t; }); }
