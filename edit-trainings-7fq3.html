@@ -142,6 +142,7 @@
       {k:'price',l:'Full tuition, USD (optional)',t:'number'},
       {k:'deposit',l:'Deposit to reserve, USD (optional)',t:'number'},
       {k:'depositUrl',l:'Deposit payment link — Stripe URL (optional)',t:'url'},
+      {k:'fullUrl',l:'Pay-in-full payment link — Stripe URL (optional)',t:'url'},
       {k:'image',l:'Image (banner) URL',t:'url'}
     ],
     event:[
@@ -164,7 +165,7 @@
     ]
   };
   var ORDER={
-    training:['id','start','kind','title','category','subcategory','cohort','status','enrollmentDeadline','firstCall','startDate','language','schedule','url','registrationUrl','zoomUrl','image','price','deposit','depositUrl','academy','venue_id','description','trainers','lodgingCost','tuition'],
+    training:['id','start','kind','title','category','subcategory','cohort','status','enrollmentDeadline','firstCall','startDate','language','schedule','url','registrationUrl','zoomUrl','image','price','deposit','depositUrl','fullUrl','academy','venue_id','description','trainers','lodgingCost','tuition'],
     event:['id','start','kind','title','category','date','time','url','registrationUrl','zoomUrl','image','academy','venue_id','description','trainers','lodgingCost','tuition']
   };
   var state={meta:{},trainings:[],events:[],venues:[],seq:1};
@@ -293,6 +294,7 @@
       else if(!o.enrollmentDeadline&&!o.startDate&&!o.date)w.push(label+': no date (enrollment / start / date)');
       if(o.url&&!/^https?:\/\//i.test(o.url))w.push(label+': URL should start with http(s)://');
       if(o.depositUrl&&!/^https?:\/\//i.test(o.depositUrl))w.push(label+': deposit link should start with http(s)://');
+      if(o.fullUrl&&!/^https?:\/\//i.test(o.fullUrl))w.push(label+': pay-in-full link should start with http(s)://');
       ['price','deposit'].forEach(function(kk){if(o[kk]!==undefined&&o[kk]!==''&&(typeof o[kk]!=='number'||o[kk]<0))w.push(label+': '+kk+' must be a non-negative number');});
       if(o.id){ if(seen[o.id])w.push('Duplicate id "'+o.id+'"'); seen[o.id]=true; }
     }
