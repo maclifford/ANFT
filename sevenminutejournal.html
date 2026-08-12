@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Seven-Minute Journal | ANFT</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/x-icon" href="/favicon-white.ico?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png?v=2">
+<meta name="description" content="A short by-hand writing practice: one prompt, a seven-minute timer, and a place to share the story that comes.">
+<link rel="canonical" href="https://anft.earth/seven-minute-journal.html">
+<meta property="og:url" content="https://anft.earth/seven-minute-journal.html">
+<meta property="og:title" content="The Seven-Minute Journal | ANFT">
+<meta property="og:description" content="A short by-hand writing practice: one prompt, a seven-minute timer, and a place to share the story that comes.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://anft.earth/images/banners/testimonials-banner.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2F3EC; --card:#FBFCF8; --ink:#26301F; --ink-soft:#4E5A47;
+    --navy:#1E3A5F; --fir:#2E5B3E; --fir-tint:#E1EBDD; --river:#2E6E6A;
+    --gold:#A9862C; --gold-deep:#7C6118; --gold-tint:#F3EDD9;
+    --bark:#6B4F3A; --bark-deep:#4E3324; --bark-tint:#EFE7DF;
+    --line:#C9D0BE; --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:"Nunito Sans",system-ui,sans-serif;
+    font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .serif{font-family:"Nunito Sans",system-ui,sans-serif}
+  .site-header{background:#fff;border-bottom:1px solid var(--line)}
+  .hdr-in{max-width:1120px;margin:0 auto;padding:4px 28px;display:flex;align-items:center;
+    justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .hdr-in img{width:200px;height:auto;display:block}
+  nav{display:flex;gap:26px;flex-wrap:wrap;align-items:center}
+  nav a{color:var(--navy);text-decoration:none;font-size:14.5px;font-weight:600;letter-spacing:.02em}
+  nav a:hover{color:var(--gold-deep);text-decoration:underline;text-underline-offset:4px}
+  nav a.nav-cta{background:var(--fir);color:#fff;border-radius:8px;padding:9px 18px;text-decoration:none;transition:background .18s ease}
+  nav a.nav-cta:hover{background:#264b33;color:#fff;text-decoration:none}
+  /* About dropdown */
+  .has-drop{position:relative;display:inline-flex;align-items:center}
+  .has-drop>.drop-top{display:inline-flex;align-items:center;gap:5px}
+  .drop-caret{font-size:10px;line-height:1;transition:transform .18s ease}
+  .has-drop:hover .drop-caret,.has-drop:focus-within .drop-caret{transform:rotate(180deg)}
+  .drop-menu{position:absolute;top:100%;left:0;min-width:210px;background:#fff;
+    border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 26px rgba(38,48,31,.16);
+    padding:8px 0;display:none;z-index:60}
+  .drop-menu a{display:block;padding:8px 16px;font-size:14px;font-weight:600;color:var(--navy);white-space:nowrap;letter-spacing:.01em}
+  .drop-menu a:hover{background:var(--fir-tint);color:var(--gold-deep);text-decoration:none}
+  .has-drop:hover .drop-menu,.has-drop:focus-within .drop-menu{display:block}
+  .banner{width:100%;margin:0;aspect-ratio:12/5;min-height:240px;overflow:hidden}
+  .banner img{display:block;width:100%;height:100%;object-fit:cover;
+    border-radius:0}
+  .section{max-width:880px;margin:0 auto;padding:48px 28px 72px}
+  .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);
+    font-weight:600;margin-bottom:10px}
+  h1{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:500;color:var(--navy);
+    font-size:clamp(28px,4vw,40px);line-height:1.15}
+  .lede{margin-top:12px;color:var(--ink-soft);font-size:17.5px;max-width:64ch}
+  h2{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:500;color:var(--navy);
+    font-size:25px;margin:38px 0 10px}
+  p{margin:0 0 14px;max-width:70ch}
+  .quote{border-left:3px solid var(--gold);padding:4px 0 4px 22px;margin:26px 0;
+    font-family:"Nunito Sans",system-ui,sans-serif;font-size:20px;color:var(--navy)}
+  .quote cite{display:block;font-family:"Nunito Sans",system-ui,sans-serif;font-style:normal;
+    font-size:13px;color:var(--ink-soft);margin-top:6px}
+  .facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin:20px 0 6px;
+    padding:0;list-style:none}
+  .facts li{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;
+    font-size:14.5px}
+  .facts b{color:var(--navy)}
+  .stepline{counter-reset:st;list-style:none;margin:18px 0 8px;padding:0}
+  .stepline li{position:relative;padding:0 0 18px 52px}
+  .stepline li::before{counter-increment:st;content:counter(st);position:absolute;left:0;top:0;
+    width:34px;height:34px;border-radius:50%;background:var(--fir);color:#fff;font-weight:700;
+    display:flex;align-items:center;justify-content:center;font-size:15px}
+  .stepline b{color:var(--navy)}
+  .cta-row{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .btn{display:inline-block;font-size:14.5px;font-weight:600;border-radius:999px;padding:12px 26px;
+    text-decoration:none;cursor:pointer;border:1.5px solid transparent;font-family:inherit}
+  .btn-gold{background:var(--fir);color:#fff;border-radius:8px;transition:background .18s ease,transform .18s ease}
+  .btn-gold:hover{background:#264b33;transform:translateY(-1px)}
+  .btn-quiet{background:transparent;color:var(--fir);border-color:var(--fir)}
+  .btn-quiet:hover{background:var(--fir-tint)}
+  .p-link{font-size:14.5px;font-weight:600;color:var(--fir);text-decoration:underline;text-decoration-color:rgba(46,91,62,.35);text-underline-offset:3px;transition:text-decoration-color .2s ease}
+  .p-link:hover{text-decoration-color:var(--fir)}
+  .p-link.p-go::after{content:"\00a0\2192";display:inline-block;transition:transform .2s ease}
+  .p-link.p-go:hover::after{transform:translateX(3px)}
+  .subnav{margin-top:34px;padding-top:22px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-soft)}
+  .subnav a{color:var(--fir);font-weight:600;text-decoration:none}
+  .subnav a:hover{text-decoration:underline}
+  .stub-note{background:var(--gold-tint);border:1px solid var(--gold);border-radius:10px;
+    padding:14px 18px;font-size:14px;color:var(--bark-deep);margin-top:26px}
+
+
+  /* comprehensive footer */
+  footer{margin-top:72px;background:var(--navy);color:#F4F7FB;
+    border-top:3px solid var(--gold);padding:48px 28px 26px}
+  .foot-grid{max-width:1120px;margin:0 auto;display:grid;
+    grid-template-columns:1.6fr 1fr 1fr 1.3fr;gap:34px 44px}
+  @media (max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
+  @media (max-width:540px){.foot-grid{grid-template-columns:1fr}}
+  .foot-brand{font-family:"Nunito Sans",system-ui,sans-serif;font-size:21px;line-height:1.3;color:#FFFFFF}
+  .foot-tagline{font-family:"Nunito Sans",system-ui,sans-serif;font-size:14.5px;
+    color:#E7D9A8;letter-spacing:.06em;margin-top:8px}
+  .foot-mission{font-size:14px;color:#C9D5E6;margin:16px 0 0;max-width:40ch;line-height:1.65}
+  .foot-sys{display:inline-block;margin-top:16px;font-size:13.5px;font-weight:600;
+    color:#E7D9A8;text-decoration:none;border:1px solid rgba(231,217,168,.45);
+    border-radius:999px;padding:7px 16px}
+  .foot-sys:hover{background:rgba(231,217,168,.12);border-color:#E7D9A8}
+  .foot-col h3{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:#E7D9A8;
+    font-weight:700;margin:0 0 14px}
+  .foot-col a{display:block;color:#EDF2F8;text-decoration:none;font-size:14px;
+    padding:4px 0;line-height:1.5}
+  .foot-col a:hover{color:#FFFFFF;text-decoration:underline;text-underline-offset:3px;
+    text-decoration-color:var(--gold)}
+  .foot-contact p{font-size:14px;color:#C9D5E6;margin:0 0 12px;line-height:1.7;max-width:none}
+  .foot-contact a{display:inline;color:#EDF2F8;text-decoration:none;font-size:14px;
+    overflow-wrap:anywhere}
+  .foot-contact a:hover{text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px}
+  .foot-social{display:flex;gap:8px 18px;flex-wrap:wrap;margin-top:14px}
+  .foot-social a{display:inline;font-size:13.5px;color:#C9D5E6;text-decoration:none;
+    font-weight:600;padding:0}
+  .foot-social a:hover{color:#FFFFFF;text-decoration:underline;text-underline-offset:3px}
+  .foot-land{max-width:1120px;margin:40px auto 0;padding-top:24px;
+    border-top:1px solid rgba(244,247,251,.22);
+    font-family:"Nunito Sans",system-ui,sans-serif;font-style:italic;font-size:15.5px;
+    color:#D8E0EC;line-height:1.7;max-width:76ch}
+  .foot-legal{max-width:1120px;margin:26px auto 0;padding-top:16px;
+    border-top:1px solid rgba(244,247,251,.16);
+    font-size:12.5px;color:#B9C6D9;display:flex;justify-content:space-between;
+    gap:10px 24px;flex-wrap:wrap;line-height:1.6}
+  .foot-legal a{color:#C9D5E6;text-decoration:none}
+  .foot-legal a:hover{color:#FFFFFF;text-decoration:underline}
+  /* serif body: prose keeps EB Garamond */
+  p,.lede,.quote,.foot-land,.foot-mission,.deck{font-family:"EB Garamond",Georgia,serif}
+  /* power of story + journal */
+  .story{border-bottom:1px solid var(--line)}
+  .story>summary{cursor:pointer;list-style:none;padding:16px 34px 16px 2px;position:relative;font-family:"Nunito Sans",system-ui,sans-serif;font-weight:600;color:var(--navy);font-size:18px;scroll-margin-top:20px}
+  .story>summary::-webkit-details-marker{display:none}
+  .story>summary::after{content:"+";position:absolute;right:6px;top:13px;font-size:22px;color:var(--gold-deep)}
+  .story[open]>summary::after{content:"\2013"}
+  .story-body{padding:2px 2px 22px}
+  .story-body p{font-family:"EB Garamond",Georgia,serif;font-size:17px;line-height:1.72;color:var(--ink);max-width:64ch}
+  .story-by{font-family:"Nunito Sans",system-ui,sans-serif;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);margin-top:10px}
+  .invite{margin-top:46px;background:var(--fir-tint);border-radius:14px;padding:28px 30px}
+  .invite h2{margin-top:0}
+  .prompt-card{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:14px;padding:34px 34px 26px;margin:26px 0 8px;text-align:center}
+  .prompt-eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);font-weight:700;margin-bottom:16px}
+  .prompt-text{font-family:"EB Garamond",Georgia,serif;font-style:italic;font-size:clamp(24px,3.4vw,34px);line-height:1.3;color:var(--navy);margin:0 auto 18px;max-width:20ch}
+  .timer-wrap{text-align:center;margin:28px 0 6px}
+  .timer{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:600;font-size:clamp(56px,11vw,92px);color:var(--fir);letter-spacing:.02em;line-height:1}
+  .timer-done{font-family:"EB Garamond",Georgia,serif;font-style:italic;font-size:clamp(30px,5vw,46px);color:var(--gold-deep)}
+  #shareSection{margin-top:52px;scroll-margin-top:20px}
+  form.story-form{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 30px;margin-top:16px}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:6px}
+  .field input[type=text],.field input[type=email],.field input[type=file]{width:100%;font-family:inherit;font-size:15px;border:1px solid var(--line);border-radius:10px;padding:11px 13px;background:#fff}
+  .field .form-hint{font-size:12.5px;color:var(--ink-soft);margin-top:5px;font-weight:400}
+  .check{display:flex;gap:10px;align-items:flex-start;font-size:14px;margin:14px 0;line-height:1.5}
+  .check input{margin-top:3px;accent-color:var(--fir);width:17px;height:17px;flex:none}
+  .by-hand{font-family:"EB Garamond",Georgia,serif;font-style:italic;font-size:clamp(21px,2.7vw,27px);line-height:1.4;color:var(--navy);margin:16px 0 10px;max-width:60ch}
+</style>
+</head>
+<body id="top">
+<header class="site-header">
+  <div class="hdr-in">
+    <a href="index.html" aria-label="Association of Nature and Forest Therapies — home"><img src="images/brand/logo.webp" width="500" height="167" decoding="async" alt="Association of Nature and Forest Therapies"></a>
+    <nav aria-label="Primary">
+      <a href="academies.html">The Academies</a>
+      <a href="specializations.html">Specializations</a>
+      <a href="calendar.html">Find a Training</a>
+      <a href="the-book.html">The Book</a>
+      <a href="science.html">Science</a>
+      <span class="has-drop">
+        <a href="about.html" class="drop-top" aria-haspopup="true">About <span class="drop-caret" aria-hidden="true">&#9660;</span></a>
+        <span class="drop-menu">
+          <a href="a-living-system.html#who-we-are">Who We Are</a>
+          <a href="history-and-lineage.html">History &amp; Lineage</a>
+          <a href="international-leadership.html">International Leadership</a>
+          <a href="our-trainers.html">Our Trainers</a>
+          <a href="our-partners.html">Partners</a>
+          <a href="seven-minute-journal.html">Testimonials</a>
+          <a href="media-and-blog.html">Media &amp; Blog</a>
+        </span>
+      </span>
+      <a class="nav-cta" href="apply.html">Introduce Yourself</a>
+    </nav>
+  </div>
+</header>
+<div class="banner"><img src="images/banners/sitspotbanner.webp" alt="A quiet place to sit and write in the forest" loading="eager" decoding="async"></div>
+<main class="section">
+  <div class="eyebrow">A practice</div>
+  <h1>The Seven-Minute Journal</h1>
+  <p class="lede">A short practice for letting an experience find its words.</p>
+  <p class="by-hand">It is best done by hand &mdash; the hand knows things when it holds a pen that it forgets on a keyboard.</p>
+  <p>Gather a writing pad, a pencil or pen, and settle into a place where the words are invited to flow.</p>
+  <p>Read your prompt. Set everything else aside. When you&rsquo;re ready, start the timer and write for seven minutes without stopping and without editing &mdash; let the story arrive the way it wants to. There is no wrong way, and no one is grading.</p>
+
+  <div class="prompt-card">
+    <div class="prompt-eyebrow">Your prompt</div>
+    <p class="prompt-text" id="promptText">&hellip;</p>
+    <button type="button" class="p-link" id="newPrompt">Give me a different prompt</button>
+  </div>
+
+  <div class="timer-wrap">
+    <button type="button" class="btn btn-gold" id="startBtn">I&rsquo;m ready &mdash; let&rsquo;s go!</button>
+    <div class="timer" id="timer" hidden>7:00</div>
+    <div class="timer-done" id="done" hidden>Pencils down!</div>
+    <div style="margin-top:14px"><button type="button" class="p-link" id="againBtn" hidden>Start again</button></div>
+  </div>
+
+  <div id="shareSection">
+    <h2>Share your story</h2>
+    <p>When your page feels ready, photograph it and share it here. We read every story with care; with your permission we may add it to <a href="power-of-story.html">The Power of Story</a>, anonymized as your initials and country.</p>
+    <!-- Submission backend: FormSubmit (formsubmit.co). The FIRST submission triggers a
+         one-time activation email to stories@anft.earth; click Activate once, then every
+         submission (including the photo attachment) is emailed there. Automatic Claude
+         transcription is a later phase (a Netlify Function); for now the photo is emailed as-is. -->
+    <form class="story-form" action="https://formsubmit.co/stories@anft.earth" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_subject" value="A new story — The Power of Story">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_autoresponse" value="Thank you for trusting us with your story. We read every one with care, and if it finds its place on The Power of Story we will keep it anonymous, as your initials and country. — ANFT">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+      <div class="field"><label for="ti">A title for your story</label>
+        <input type="text" id="ti" name="Title" placeholder="e.g. The Squirrel&rsquo;s Paw"></div>
+      <div class="field"><label for="ph">A photo of your journal page</label>
+        <input type="file" id="ph" name="Journal page" accept="image/*">
+        <p class="form-hint">A clear photo of your handwriting is perfect &mdash; we can read even challenging penmanship. Up to about 10&nbsp;MB.</p></div>
+      <div class="field"><label for="ini">Your initials <span style="color:var(--ink-soft);font-weight:400">(how you&rsquo;d be credited, if published)</span></label>
+        <input type="text" id="ini" name="Initials" placeholder="e.g. MG"></div>
+      <div class="field"><label for="co">Country <span style="color:var(--ink-soft);font-weight:400">(optional)</span></label>
+        <input type="text" id="co" name="Country"></div>
+      <div class="field"><label for="em">Your email</label>
+        <input type="email" id="em" name="Email" required>
+        <p class="form-hint">So we can reach you &mdash; never published, never shared.</p></div>
+      <label class="check"><input type="checkbox" name="Transcription requested" value="Yes, transcribe verbatim">
+        <span>Please also include a typed transcription of my page &mdash; transcribed <strong>exactly as written</strong>, never edited or altered.</span></label>
+      <label class="check"><input type="checkbox" name="Consent" value="Yes, I consent" required>
+        <span>I&rsquo;m sharing this story with ANFT and give permission to publish it anonymously (initials and country). <span style="color:var(--gold-deep)">*</span></span></label>
+      <div style="margin-top:8px"><button type="submit" class="btn btn-gold">Share my story</button></div>
+    </form>
+  </div>
+</main>
+<script>
+(function(){
+  var PROMPTS=["The trees are saying\u2026","The trail\u2026","In the secret places\u2026","It should not have surprised me\u2026","What I find, what I leave behind\u2026","The next bend of the trail\u2026","Something is telling me\u2026","I can\u2019t wait to tell you\u2026","Under the sky\u2026","As I move through this place\u2026"];
+  var current=-1;
+  var ptext=document.getElementById('promptText');
+  function pick(){ var i; do { i=Math.floor(Math.random()*PROMPTS.length); } while(i===current && PROMPTS.length>1); current=i; ptext.textContent=PROMPTS[i]; }
+  pick();
+  document.getElementById('newPrompt').addEventListener('click',pick);
+  var startBtn=document.getElementById('startBtn'), timer=document.getElementById('timer'),
+      done=document.getElementById('done'), again=document.getElementById('againBtn'),
+      newBtn=document.getElementById('newPrompt'), tid=null;
+  function reset(){ if(tid){clearInterval(tid);tid=null;} timer.hidden=true; done.hidden=true; again.hidden=true; startBtn.hidden=false; newBtn.hidden=false; }
+  startBtn.addEventListener('click',function(){
+    startBtn.hidden=true; newBtn.hidden=true; done.hidden=true; timer.hidden=false;
+    var secs=7*60;
+    function render(){ var m=Math.floor(secs/60), s=secs%60; timer.textContent=m+':'+String(s).padStart(2,'0'); }
+    render();
+    tid=setInterval(function(){ secs--; if(secs<0){ clearInterval(tid); tid=null; timer.hidden=true; done.hidden=false; again.hidden=false; document.getElementById('shareSection').scrollIntoView({behavior:'smooth'}); return; } render(); },1000);
+  });
+  again.addEventListener('click',function(){ reset(); pick(); window.scrollTo({top:0,behavior:'smooth'}); });
+})();
+</script>
+<footer>
+  <div class="foot-grid">
+    <div class="foot-col">
+      <div class="foot-brand">Association of Nature<br>and Forest Therapies</div>
+      <div class="foot-aka" style="font-size:13px;font-style:italic;color:#C9D5E6;margin-top:6px">aka Academies of Nature and Forest Therapies</div>
+      <div class="foot-tagline">Knowledge &middot; Practice &middot; Transformation</div>
+      <p class="foot-mission">Supporting the wellbeing of people and planet by nurturing heart-centered relationship between all peoples and the more-than-human world of nature.</p>
+      <a class="foot-sys" href="a-living-system.html">A Living System &rarr;</a>
+    </div>
+    <div class="foot-col">
+      <h3>The Academies</h3>
+      <a href="forest-threshold.html">The Forest Threshold</a>
+      <a href="relational-forest-therapy-academy.html">Relational Forest Therapy</a>
+      <a href="re-collection.html" style="padding-left:14px;font-size:13px">Re-collection</a>
+      <a href="immersion.html" style="padding-left:14px;font-size:13px">Immersion</a>
+      <a href="practicum.html" style="padding-left:14px;font-size:13px">Practicum</a>
+      <a href="practice.html" style="padding-left:14px;font-size:13px">Practice</a>
+      <a href="nature-as-medicine.html">Nature as Medicine</a>
+      <a href="academy-of-place.html">Academy of Place</a>
+      <a href="opus-academy.html">Opus Academy</a>
+      <a href="academy-of-applied-partnerships.html">Applied Forest Therapy</a>
+    </div>
+    <div class="foot-col">
+      <h3>Participate</h3>
+      <a href="about.html">About</a>
+      <a href="apply.html">Introduce Yourself</a>
+      <a href="index.html#trainings">Upcoming trainings</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="membership.html">Membership</a>
+      <a href="relational-forest-therapy-academy--global-guide-map.html">Find a guide</a>
+      <a href="academy-of-place--global-trail-map.html">Find a trail</a>
+      <a href="faq.html">FAQ</a>
+      <a href="field-glossary.html">Field Glossary</a>
+      <a href="science.html">Science</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="foot-col foot-contact">
+      <h3>Reach Us</h3>
+      <p><a href="mailto:admissions@anft.earth">admissions@anft.earth</a><br>
+         <a href="mailto:info@anft.earth">info@anft.earth</a></p>
+      <p>1&#8209;707&#8209;385&#8209;1563<br>Monday&ndash;Friday, 9am&ndash;5pm PST</p>
+      <p>1745 Rustic Timbers Lane, Suite B<br>Prescott, AZ 86303, USA</p>
+      <div class="foot-social">
+        <a href="https://www.facebook.com/natureandforesttherapy/">Facebook</a>
+        <a href="https://www.instagram.com/natureandforesttherapy/">Instagram</a>
+        <a href="https://www.linkedin.com/company/nature-and-forest-therapy">LinkedIn</a>
+        <a href="https://www.youtube.com/channel/UCE-q1cBI6E6s0mHo_FcvTiA">YouTube</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-land">The land itself is the elder here and everywhere in our world. From our home in Prescott, Arizona, we work on land that has hosted many lives across its long existence &mdash; human and other-than-human, some now gone from the Earth &mdash; and many cultures, most recently, before those of us here now, the Yavapai and Apache peoples and their relations. We honor the land, and all whom it has held, and its infinite threads of relational connections, in which we and our work are embedded, which we live into with awe and love, and for which we are profoundly grateful.</div>
+  <div class="foot-legal">
+    <span>&copy; 2026 ANFT.earth LLC, doing business as the Association of Nature and Forest Therapies. All rights reserved. All photos &copy; M. Amos Clifford except people profile photos and where otherwise noted.</span>
+    <span><a href="privacy.html">Privacy</a> &nbsp;&middot;&nbsp; <a href="#top" aria-label="Back to top">Back to top &uarr;</a></span>
+  </div>
+</footer>
+</body>
+</html>
