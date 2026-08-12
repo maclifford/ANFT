@@ -131,6 +131,7 @@ const CSS = [
   '.foot-in{max-width:1120px;margin:0 auto}',
   '.foot-brand{font-family:"Nunito Sans",system-ui,sans-serif;font-size:21px;line-height:1.3;color:#fff}',
   '.foot-tagline{font-family:"Nunito Sans",system-ui,sans-serif;font-size:14.5px;color:#E7D9A8;letter-spacing:.06em;margin-top:8px}',
+  '.foot-mission{font-size:14px;color:#C9D5E6;margin:14px 0 0;max-width:60ch;line-height:1.6;font-family:"EB Garamond",Georgia,serif}',
   '.foot-nav{margin-top:18px;display:flex;gap:8px 22px;flex-wrap:wrap}',
   '.foot-nav a{color:#EDF2F8;text-decoration:none;font-size:14px}',
   '.foot-nav a:hover{text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px}',
@@ -159,6 +160,7 @@ const FOOTER =
   '  <div class="foot-in">\n' +
   '    <div class="foot-brand">Academies of Nature<br>and Forest Therapies</div>\n' +
   '    <div class="foot-tagline">Knowledge &middot; Practice &middot; Transformation</div>\n' +
+  '    <p class="foot-mission"><strong>Our Mission:</strong> Support planetary health by nurturing heart-centered relationships between all peoples and the More-Than-Human World of Nature.</p>\n' +
   '    <div class="foot-nav">\n' +
   '      <a href="/academies.html">The Academies</a>\n' +
   '      <a href="/about.html">About</a>\n' +
