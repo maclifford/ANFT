@@ -246,7 +246,7 @@
 </main>
 <script>
 (function(){
-  var PROMPTS=["The trees are saying\u2026","The trail\u2026","In the secret places\u2026","It should not have surprised me\u2026","What I find, what I leave behind\u2026","The next bend of the trail\u2026","Something is telling me\u2026","I can\u2019t wait to tell you\u2026","Under the sky\u2026","As I move through this place\u2026"];
+  var PROMPTS=["The trees are saying\u2026","The trail\u2026","In the secret places\u2026","It should not have surprised me\u2026","What I find, what I leave behind\u2026","The next bend of the trail\u2026","Something is telling me\u2026","I can\u2019t wait to tell you\u2026","Under the sky\u2026","As I move through this place\u2026","The medicine of this place is\u2026","My secret life\u2026","The simple truth\u2026","The fork in the road\u2026","Ripples\u2026","My heart knows\u2026","My body knows\u2026","It\u2019s so fun\u2026","Wow! Whoa!\u2026","My animal body\u2026","My true name\u2026","Lost\u2026","The red thread\u2026","At the edges\u2026"];
   var current=-1;
   var ptext=document.getElementById('promptText');
   function pick(){ var i; do { i=Math.floor(Math.random()*PROMPTS.length); } while(i===current && PROMPTS.length>1); current=i; ptext.textContent=PROMPTS[i]; }
