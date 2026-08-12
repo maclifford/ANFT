@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Introduce yourself — ANFT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#F2F3EC;--card:#FBFCF8;--ink:#26301F;--ink-soft:#4E5A47;--navy:#1E3A5F;--fir:#2E5B3E;--fir-tint:#E1EBDD;--gold:#A9862C;--gold-deep:#7C6118;--line:#C9D0BE}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Nunito Sans",system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.55}
+  .top{background:#fff;border-bottom:1px solid var(--line);padding:16px 22px;text-align:center}
+  .top img{height:44px;width:auto}
+  .wrap{max-width:600px;margin:0 auto;padding:40px 20px 70px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 16px 50px rgba(20,32,22,.10);padding:34px 32px 30px}
+  .eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep);font-weight:700}
+  h1{font-family:"Nunito Sans",sans-serif;font-weight:600;color:var(--navy);font-size:27px;margin:6px 0 4px}
+  .evlabel{font-family:"EB Garamond",Georgia,serif;font-size:16.5px;color:var(--fir);margin:0 0 4px;min-height:1.2em}
+  .sub{font-family:"EB Garamond",Georgia,serif;font-size:16.5px;color:var(--ink-soft);margin:8px 0 22px;line-height:1.6}
+  .fld{margin:0 0 16px;text-align:left}
+  .fld label{display:block;font-size:14px;font-weight:600;color:var(--ink);margin:0 0 6px}
+  .fld .req{color:var(--gold-deep)}
+  .fld input,.fld textarea,.fld select{width:100%;font-family:inherit;font-size:15.5px;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:9px;padding:11px 13px}
+  .fld textarea{min-height:88px;resize:vertical;line-height:1.55;font-family:"EB Garamond",Georgia,serif;font-size:16px}
+  .fld select{cursor:pointer;appearance:none;-webkit-appearance:none;padding-right:38px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%234E5A47' stroke-width='2'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+  .fld input:focus,.fld textarea:focus,.fld select:focus{outline:none;border-color:var(--fir);box-shadow:0 0 0 3px rgba(46,91,62,.14)}
+  .fld .hint{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;font-family:"EB Garamond",Georgia,serif}
+  .invite{font-family:"EB Garamond",Georgia,serif;font-style:italic;color:var(--navy);font-size:16.5px}
+  .check{display:flex;gap:11px;align-items:flex-start;margin:4px 0 18px;text-align:left}
+  .check input{margin-top:3px;width:17px;height:17px;flex:0 0 auto;accent-color:var(--fir)}
+  .check label{font-size:13.8px;color:var(--ink-soft);line-height:1.5}
+  .check a{color:var(--fir);font-weight:600}
+  .btn{display:block;width:100%;border:0;cursor:pointer;font-family:"Nunito Sans",sans-serif;font-weight:700;font-size:16px;border-radius:10px;padding:15px 24px;background:var(--fir);color:#fff;transition:background .18s ease}
+  .btn:hover:not(:disabled){background:#264b33}
+  .btn:disabled{opacity:.45;cursor:not-allowed}
+  .err-msg{color:#8a2b2b;font-size:14px;margin:12px 0 0;text-align:center;min-height:1em}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  .done{text-align:center;padding:10px 6px}
+  .done .tick{width:58px;height:58px;border-radius:50%;background:var(--fir-tint);color:var(--fir);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:30px}
+  .step-note{font-size:12.5px;color:var(--ink-soft);text-align:center;margin-top:16px;font-family:"EB Garamond",Georgia,serif}
+</style>
+</head>
+<body>
+<div class="top"><a href="/index.html"><img src="/images/brand/logo.webp" alt="Association of Nature and Forest Therapies"></a></div>
+<div class="wrap">
+  <div class="card" id="card">
+    <div id="formWrap">
+      <div class="eyebrow">Your place is reserved</div>
+      <h1>Introduce yourself</h1>
+      <p class="evlabel" id="evLabel"></p>
+      <p class="sub">Thank you. Before we meet, we'd love to hear a little from you. Three invitations; answer as fully or as simply as you like.</p>
+
+      <form id="introForm" novalidate>
+        <input type="text" class="hp" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" id="evId">
+        <input type="hidden" id="payment">
+
+        <div class="fld"><label for="fname">Full name <span class="req">*</span></label>
+          <input type="text" id="fname" autocomplete="name"></div>
+        <div class="fld"><label for="email">Email <span class="req">*</span></label>
+          <input type="email" id="email" autocomplete="email"></div>
+        <div class="fld"><label for="country">Country <span class="req">*</span></label>
+          <select id="country" autocomplete="country-name">
+            <option value="">Select your country&hellip;</option>
+        <option value="Afghanistan">Afghanistan</option>
+        <option value="Albania">Albania</option>
+        <option value="Algeria">Algeria</option>
+        <option value="Andorra">Andorra</option>
+        <option value="Angola">Angola</option>
+        <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+        <option value="Argentina">Argentina</option>
+        <option value="Armenia">Armenia</option>
+        <option value="Australia">Australia</option>
+        <option value="Austria">Austria</option>
+        <option value="Azerbaijan">Azerbaijan</option>
+        <option value="Bahamas">Bahamas</option>
+        <option value="Bahrain">Bahrain</option>
+        <option value="Bangladesh">Bangladesh</option>
+        <option value="Barbados">Barbados</option>
+        <option value="Belarus">Belarus</option>
+        <option value="Belgium">Belgium</option>
+        <option value="Belize">Belize</option>
+        <option value="Benin">Benin</option>
+        <option value="Bhutan">Bhutan</option>
+        <option value="Bolivia">Bolivia</option>
+        <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+        <option value="Botswana">Botswana</option>
+        <option value="Brazil">Brazil</option>
+        <option value="Brunei">Brunei</option>
+        <option value="Bulgaria">Bulgaria</option>
+        <option value="Burkina Faso">Burkina Faso</option>
+        <option value="Burundi">Burundi</option>
+        <option value="Cabo Verde">Cabo Verde</option>
+        <option value="Cambodia">Cambodia</option>
+        <option value="Cameroon">Cameroon</option>
+        <option value="Canada">Canada</option>
+        <option value="Central African Republic">Central African Republic</option>
+        <option value="Chad">Chad</option>
+        <option value="Chile">Chile</option>
+        <option value="China">China</option>
+        <option value="Colombia">Colombia</option>
+        <option value="Comoros">Comoros</option>
+        <option value="Congo (Brazzaville)">Congo (Brazzaville)</option>
+        <option value="Congo (Kinshasa)">Congo (Kinshasa)</option>
+        <option value="Costa Rica">Costa Rica</option>
+        <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+        <option value="Croatia">Croatia</option>
+        <option value="Cuba">Cuba</option>
+        <option value="Cyprus">Cyprus</option>
+        <option value="Czechia">Czechia</option>
+        <option value="Denmark">Denmark</option>
+        <option value="Djibouti">Djibouti</option>
+        <option value="Dominica">Dominica</option>
+        <option value="Dominican Republic">Dominican Republic</option>
+        <option value="Ecuador">Ecuador</option>
+        <option value="Egypt">Egypt</option>
+        <option value="El Salvador">El Salvador</option>
+        <option value="Equatorial Guinea">Equatorial Guinea</option>
+        <option value="Eritrea">Eritrea</option>
+        <option value="Estonia">Estonia</option>
+        <option value="Eswatini">Eswatini</option>
+        <option value="Ethiopia">Ethiopia</option>
+        <option value="Fiji">Fiji</option>
+        <option value="Finland">Finland</option>
+        <option value="France">France</option>
+        <option value="Gabon">Gabon</option>
+        <option value="Gambia">Gambia</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Germany">Germany</option>
+        <option value="Ghana">Ghana</option>
+        <option value="Greece">Greece</option>
+        <option value="Grenada">Grenada</option>
+        <option value="Guatemala">Guatemala</option>
+        <option value="Guinea">Guinea</option>
+        <option value="Guinea-Bissau">Guinea-Bissau</option>
+        <option value="Guyana">Guyana</option>
+        <option value="Haiti">Haiti</option>
+        <option value="Honduras">Honduras</option>
+        <option value="Hong Kong">Hong Kong</option>
+        <option value="Hungary">Hungary</option>
+        <option value="Iceland">Iceland</option>
+        <option value="India">India</option>
+        <option value="Indonesia">Indonesia</option>
+        <option value="Iran">Iran</option>
+        <option value="Iraq">Iraq</option>
+        <option value="Ireland">Ireland</option>
+        <option value="Israel">Israel</option>
+        <option value="Italy">Italy</option>
+        <option value="Jamaica">Jamaica</option>
+        <option value="Japan">Japan</option>
+        <option value="Jordan">Jordan</option>
+        <option value="Kazakhstan">Kazakhstan</option>
+        <option value="Kenya">Kenya</option>
+        <option value="Kiribati">Kiribati</option>
+        <option value="Kosovo">Kosovo</option>
+        <option value="Kuwait">Kuwait</option>
+        <option value="Kyrgyzstan">Kyrgyzstan</option>
+        <option value="Laos">Laos</option>
+        <option value="Latvia">Latvia</option>
+        <option value="Lebanon">Lebanon</option>
+        <option value="Lesotho">Lesotho</option>
+        <option value="Liberia">Liberia</option>
+        <option value="Libya">Libya</option>
+        <option value="Liechtenstein">Liechtenstein</option>
+        <option value="Lithuania">Lithuania</option>
+        <option value="Luxembourg">Luxembourg</option>
+        <option value="Macau">Macau</option>
+        <option value="Madagascar">Madagascar</option>
+        <option value="Malawi">Malawi</option>
+        <option value="Malaysia">Malaysia</option>
+        <option value="Maldives">Maldives</option>
+        <option value="Mali">Mali</option>
+        <option value="Malta">Malta</option>
+        <option value="Marshall Islands">Marshall Islands</option>
+        <option value="Mauritania">Mauritania</option>
+        <option value="Mauritius">Mauritius</option>
+        <option value="Mexico">Mexico</option>
+        <option value="Micronesia">Micronesia</option>
+        <option value="Moldova">Moldova</option>
+        <option value="Monaco">Monaco</option>
+        <option value="Mongolia">Mongolia</option>
+        <option value="Montenegro">Montenegro</option>
+        <option value="Morocco">Morocco</option>
+        <option value="Mozambique">Mozambique</option>
+        <option value="Myanmar">Myanmar</option>
+        <option value="Namibia">Namibia</option>
+        <option value="Nauru">Nauru</option>
+        <option value="Nepal">Nepal</option>
+        <option value="Netherlands">Netherlands</option>
+        <option value="New Zealand">New Zealand</option>
+        <option value="Nicaragua">Nicaragua</option>
+        <option value="Niger">Niger</option>
+        <option value="Nigeria">Nigeria</option>
+        <option value="North Korea">North Korea</option>
+        <option value="North Macedonia">North Macedonia</option>
+        <option value="Norway">Norway</option>
+        <option value="Oman">Oman</option>
+        <option value="Pakistan">Pakistan</option>
+        <option value="Palau">Palau</option>
+        <option value="Palestine">Palestine</option>
+        <option value="Panama">Panama</option>
+        <option value="Papua New Guinea">Papua New Guinea</option>
+        <option value="Paraguay">Paraguay</option>
+        <option value="Peru">Peru</option>
+        <option value="Philippines">Philippines</option>
+        <option value="Poland">Poland</option>
+        <option value="Portugal">Portugal</option>
+        <option value="Qatar">Qatar</option>
+        <option value="Romania">Romania</option>
+        <option value="Russia">Russia</option>
+        <option value="Rwanda">Rwanda</option>
+        <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+        <option value="Saint Lucia">Saint Lucia</option>
+        <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+        <option value="Samoa">Samoa</option>
+        <option value="San Marino">San Marino</option>
+        <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+        <option value="Saudi Arabia">Saudi Arabia</option>
+        <option value="Senegal">Senegal</option>
+        <option value="Serbia">Serbia</option>
+        <option value="Seychelles">Seychelles</option>
+        <option value="Sierra Leone">Sierra Leone</option>
+        <option value="Singapore">Singapore</option>
+        <option value="Slovakia">Slovakia</option>
+        <option value="Slovenia">Slovenia</option>
+        <option value="Solomon Islands">Solomon Islands</option>
+        <option value="Somalia">Somalia</option>
+        <option value="South Africa">South Africa</option>
+        <option value="South Korea">South Korea</option>
+        <option value="South Sudan">South Sudan</option>
+        <option value="Spain">Spain</option>
+        <option value="Sri Lanka">Sri Lanka</option>
+        <option value="Sudan">Sudan</option>
+        <option value="Suriname">Suriname</option>
+        <option value="Sweden">Sweden</option>
+        <option value="Switzerland">Switzerland</option>
+        <option value="Syria">Syria</option>
+        <option value="Taiwan">Taiwan</option>
+        <option value="Tajikistan">Tajikistan</option>
+        <option value="Tanzania">Tanzania</option>
+        <option value="Thailand">Thailand</option>
+        <option value="Timor-Leste">Timor-Leste</option>
+        <option value="Togo">Togo</option>
+        <option value="Tonga">Tonga</option>
+        <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+        <option value="Tunisia">Tunisia</option>
+        <option value="Turkey">Turkey</option>
+        <option value="Turkmenistan">Turkmenistan</option>
+        <option value="Tuvalu">Tuvalu</option>
+        <option value="Uganda">Uganda</option>
+        <option value="Ukraine">Ukraine</option>
+        <option value="United Arab Emirates">United Arab Emirates</option>
+        <option value="United Kingdom">United Kingdom</option>
+        <option value="United States">United States</option>
+        <option value="Uruguay">Uruguay</option>
+        <option value="Uzbekistan">Uzbekistan</option>
+        <option value="Vanuatu">Vanuatu</option>
+        <option value="Vatican City">Vatican City</option>
+        <option value="Venezuela">Venezuela</option>
+        <option value="Vietnam">Vietnam</option>
+        <option value="Yemen">Yemen</option>
+        <option value="Zambia">Zambia</option>
+        <option value="Zimbabwe">Zimbabwe</option>
+          </select></div>
+
+        <div class="fld"><label for="q1"><span class="invite">What is calling you to this training?</span></label>
+          <textarea id="q1"></textarea></div>
+        <div class="fld"><label for="q2"><span class="invite">What are you hoping for — your intention for this time?</span></label>
+          <textarea id="q2"></textarea></div>
+        <div class="fld"><label for="q3"><span class="invite">Is there anything about how you learn best, or anything you'd like us to know to support you?</span></label>
+          <textarea id="q3"></textarea>
+          <p class="hint">Optional, and shared only with the guides for your event.</p></div>
+
+        <div class="check">
+          <input type="checkbox" id="consent">
+          <label for="consent">I understand my responses will be stored securely and shared with the guides for this event, as described in the <a href="/privacy.html" target="_blank" rel="noopener">privacy policy</a>.</label>
+        </div>
+
+        <button type="submit" class="btn" id="sendBtn" disabled>Send my introduction</button>
+        <p class="err-msg" id="errMsg"></p>
+        <p class="step-note">Your introduction goes to admissions and your event's guides, and is saved securely.</p>
+      </form>
+    </div>
+
+    <div class="done" id="doneWrap" hidden>
+      <div class="tick">&#10003;</div>
+      <h1>Your introduction is on its way</h1>
+      <p class="sub" style="margin-top:8px">Thank you for sharing. Your guides will read it before you meet. We look forward to walking with you.</p>
+      <p style="text-align:center"><a href="/index.html" style="color:var(--fir);font-weight:600;text-decoration:none">Return home</a></p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  function $(id){return document.getElementById(id);}
+  var qs=new URLSearchParams(location.search);
+  var saved={}; try{saved=JSON.parse(localStorage.getItem("anft_intro")||"{}");}catch(e){}
+
+  var eventId=qs.get("event")||saved.eventId||"";
+  $("evId").value=eventId;
+
+  // payment method carried from the payment modal (?pay=deposit|full) or storage
+  var payMap={deposit:"Deposit","full":"Paid in full"};
+  var pay=payMap[qs.get("pay")]||saved.payment||"";
+  $("payment").value=pay;
+
+  // prefill basics if the payment modal saved them
+  if(saved.name) $("fname").value=saved.name;
+  if(saved.email) $("email").value=saved.email;
+  if(saved.country) $("country").value=saved.country;
+
+  // show a friendly event label
+  fetch("/data/trainings.json").then(function(r){return r.json();}).then(function(d){
+    var recs=(d.trainings||[]).concat(d.events||[]);
+    var rec=recs.find(function(r){return r.id===eventId;});
+    if(rec){ $("evLabel").textContent=rec.title+(rec.cohort?(" \u00b7 "+rec.cohort):""); }
+  }).catch(function(){});
+
+  var fn=$("fname"),em=$("email"),co=$("country"),cs=$("consent"),btn=$("sendBtn");
+  function emailOk(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);}
+  function valid(){return fn.value.trim()&&emailOk(em.value.trim())&&co.value&&cs.checked;}
+  function refresh(){btn.disabled=!valid();}
+  [fn,em].forEach(function(el){el.addEventListener("input",refresh);});
+  co.addEventListener("change",refresh); cs.addEventListener("change",refresh);
+
+  $("introForm").addEventListener("submit",function(e){
+    e.preventDefault();
+    if(!valid())return;
+    btn.disabled=true; btn.textContent="Sending\u2026"; $("errMsg").textContent="";
+    var payload={
+      eventId:eventId, payment:$("payment").value,
+      fullName:fn.value.trim(), email:em.value.trim(), country:co.value,
+      calling:$("q1").value.trim(), intention:$("q2").value.trim(), supportNeeds:$("q3").value.trim(),
+      consent:true, policyRead:true, company:""
+    };
+    fetch("/.netlify/functions/submit-introduction",{
+      method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(payload)
+    }).then(function(r){return r.json().catch(function(){return {ok:r.ok};});})
+      .then(function(res){
+        if(res&&res.ok){ try{localStorage.removeItem("anft_intro");}catch(e){} $("formWrap").hidden=true; $("doneWrap").hidden=false; window.scrollTo(0,0); }
+        else { throw new Error((res&&res.error)||"Something went wrong."); }
+      }).catch(function(err){
+        btn.disabled=false; btn.textContent="Send my introduction";
+        $("errMsg").textContent=err.message||"Something went wrong. Please try again.";
+      });
+  });
+})();
+</script>
+</body>
+</html>
