@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Global Trail Map — Certified Forest Therapy Trails, Spaces, and Places</title>
+<title>The Power of Story | ANFT</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/x-icon" href="/favicon-white.ico?v=2">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png?v=2">
-<meta name="description" content="Explore the world map of certified forest therapy trails, spaces, and places — from quiet woodlands and coastal paths to sacred groves and urban greenways.">
-<link rel="canonical" href="https://anft.earth/academy-of-place--global-trail-map.html">
-<meta property="og:url" content="https://anft.earth/academy-of-place--global-trail-map.html">
-<meta property="og:title" content="Global Trail Map">
-<meta property="og:description" content="Explore the world map of certified forest therapy trails, spaces, and places — from quiet woodlands and coastal paths to sacred groves and urban greenways.">
+<meta name="description" content="Stories of what people carry home from the forest, and an invitation to write and share your own.">
+<link rel="canonical" href="https://anft.earth/power-of-story.html">
+<meta property="og:url" content="https://anft.earth/power-of-story.html">
+<meta property="og:title" content="The Power of Story | ANFT">
+<meta property="og:description" content="Stories of what people carry home from the forest, and an invitation to write and share your own.">
 <meta property="og:type" content="website">
-
+<meta property="og:image" content="https://anft.earth/images/banners/testimonials-banner.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -50,8 +50,8 @@
   .drop-menu a{display:block;padding:8px 16px;font-size:14px;font-weight:600;color:var(--navy);white-space:nowrap;letter-spacing:.01em}
   .drop-menu a:hover{background:var(--fir-tint);color:var(--gold-deep);text-decoration:none}
   .has-drop:hover .drop-menu,.has-drop:focus-within .drop-menu{display:block}
-  .banner{width:100%;margin:0}
-  .banner img{display:block;width:100%;height:clamp(180px,26vw,320px);object-fit:cover;
+  .banner{width:100%;margin:0;aspect-ratio:12/5;min-height:240px;overflow:hidden}
+  .banner img{display:block;width:100%;height:100%;object-fit:cover;
     border-radius:0}
   .section{max-width:880px;margin:0 auto;padding:48px 28px 72px}
   .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);
@@ -136,6 +136,31 @@
   .foot-legal a:hover{color:#FFFFFF;text-decoration:underline}
   /* serif body: prose keeps EB Garamond */
   p,.lede,.quote,.foot-land,.foot-mission,.deck{font-family:"EB Garamond",Georgia,serif}
+  /* power of story + journal */
+  .story{border-bottom:1px solid var(--line)}
+  .story>summary{cursor:pointer;list-style:none;padding:16px 34px 16px 2px;position:relative;font-family:"Nunito Sans",system-ui,sans-serif;font-weight:600;color:var(--navy);font-size:18px;scroll-margin-top:20px}
+  .story>summary::-webkit-details-marker{display:none}
+  .story>summary::after{content:"+";position:absolute;right:6px;top:13px;font-size:22px;color:var(--gold-deep)}
+  .story[open]>summary::after{content:"\2013"}
+  .story-body{padding:2px 2px 22px}
+  .story-body p{font-family:"EB Garamond",Georgia,serif;font-size:17px;line-height:1.72;color:var(--ink);max-width:64ch}
+  .story-by{font-family:"Nunito Sans",system-ui,sans-serif;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);margin-top:10px}
+  .invite{margin-top:46px;background:var(--fir-tint);border-radius:14px;padding:28px 30px}
+  .invite h2{margin-top:0}
+  .prompt-card{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:14px;padding:34px 34px 26px;margin:26px 0 8px;text-align:center}
+  .prompt-eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);font-weight:700;margin-bottom:16px}
+  .prompt-text{font-family:"EB Garamond",Georgia,serif;font-style:italic;font-size:clamp(24px,3.4vw,34px);line-height:1.3;color:var(--navy);margin:0 auto 18px;max-width:20ch}
+  .timer-wrap{text-align:center;margin:28px 0 6px}
+  .timer{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:600;font-size:clamp(56px,11vw,92px);color:var(--fir);letter-spacing:.02em;line-height:1}
+  .timer-done{font-family:"EB Garamond",Georgia,serif;font-style:italic;font-size:clamp(30px,5vw,46px);color:var(--gold-deep)}
+  #shareSection{margin-top:52px;scroll-margin-top:20px}
+  form.story-form{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 30px;margin-top:16px}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:6px}
+  .field input[type=text],.field input[type=email],.field input[type=file]{width:100%;font-family:inherit;font-size:15px;border:1px solid var(--line);border-radius:10px;padding:11px 13px;background:#fff}
+  .field .form-hint{font-size:12.5px;color:var(--ink-soft);margin-top:5px;font-weight:400}
+  .check{display:flex;gap:10px;align-items:flex-start;font-size:14px;margin:14px 0;line-height:1.5}
+  .check input{margin-top:3px;accent-color:var(--fir);width:17px;height:17px;flex:none}
 </style>
 </head>
 <body id="top">
@@ -156,7 +181,7 @@
           <a href="international-leadership.html">International Leadership</a>
           <a href="our-trainers.html">Our Trainers</a>
           <a href="our-partners.html">Partners</a>
-          <a href="student-testimonials.html">Testimonials</a>
+          <a href="power-of-story.html">Testimonials</a>
           <a href="media-and-blog.html">Media &amp; Blog</a>
         </span>
       </span>
@@ -164,17 +189,42 @@
     </nav>
   </div>
 </header>
-
+<div class="banner"><img src="images/banners/IsaSkyBanner.webp" alt="An open sky above the trees" loading="eager" decoding="async"></div>
 <main class="section">
-  <div class="eyebrow">Academy of Place</div>
-  <h1>The Global Trail Map</h1>
-  <p class="lede">From quiet woodlands to urban greenways &mdash; certified places, growing across continents.</p>
+  <div class="eyebrow">Stories</div>
+  <h1>The Power of Story</h1>
+  <p class="lede">Whatever else we carry home from the forest, we carry it as a story. Story is how an experience becomes part of a life &mdash; how it travels with us <em>to</em> the threshold, <em>through</em> it, and <em>beyond</em>.</p>
+  <p>A forest therapy walk doesn&rsquo;t hand us conclusions; it offers encounters &mdash; a squirrel&rsquo;s paused gaze, a trail that seems to have been waiting, a sudden weightlessness among the trees. In the days afterward those encounters keep speaking, and the way we keep them is by telling them. To put an experience into words, even a few imperfect ones, is to let it settle deeper and change us more truly. Here are a few stories from our community. We would be honored to add yours.</p>
 
-<p>Each certified trail, space, and place is a unique expression of its landscape and culture, inviting people to slow down, listen, and remember their place in the web of life. The interactive map shows certified sites worldwide, along with projects in progress being developed in alignment with principles of relationship, reciprocity, and care for the land.</p>
-<div class="cta-row"><a class="btn btn-gold" href="https://anft.earth/trails-overview/">Open the trail map</a><a class="p-link p-go" href="academy-of-place--trail-certification.html">Certify your own place</a></div>
+  <h2>Stories from the threshold</h2>
+  <details class="story" id="s-the-squirrels-paw"><summary>The Squirrel&rsquo;s Paw</summary><div class="story-body">
+    <p>The March morning was brisk as I walked &mdash; sun rising, magnolia buds swelling, a cardinal singing &mdash; and yet I was lost in thoughts about my granddaughter, who is growing up and searching for her path. Suddenly a young squirrel scampered along a redbud branch, the orange sun glowing through his tail. I stopped, and realized I had never truly taken the time to appreciate a squirrel. I greeted him like a new friend. He paused, stood on his hind legs, and placed one tiny paw over his heart &mdash; then switched hands and placed the other paw over his heart. For a few moments, I think we both felt the connection. Then he was gone. I hope my granddaughter will always remember our connection &mdash; with nature, and with each other.</p>
+    <p class="story-by">&mdash; BS</p>
+  </div></details>
+  <details class="story" id="s-trust-the-forest"><summary>Trust the Forest</summary><div class="story-body">
+    <p>There were mornings I woke sad, not always knowing why. I would put on my shoes and walk toward the forest with a single thought, almost a mantra: <em>trust the forest</em>. And there it was, with all its small gifts &mdash; the morning mist, the falling leaves, the sun trying to reach through the trees, a bird calling persistently to the others. The heaviness in my body began to lift until I felt almost weightless, as if I were dispersing into the forest. And then joy came, through tears and laughter, and I could share it with the forest. One night I walked the trail in the dark for the first time, certain it would frighten me. It didn&rsquo;t. I simply felt the forest holding me.</p>
+    <p class="story-by">&mdash; MG, Slovenia</p>
+  </div></details>
+  <details class="story" id="s-the-trees-let-go"><summary>The Trees Let Go</summary><div class="story-body">
+    <p>On my medicine walk I found a place to sit in a forest I didn&rsquo;t know well &mdash; not the forest I grew up in. As I settled, I asked quietly, &ldquo;Is it alright that I&rsquo;m here? I know I don&rsquo;t know you yet.&rdquo; All at once, every tree in my field of vision began to release its leaves. They came down together with a luminous quality in the air, and I understood I was being welcomed &mdash; told I could be here, as a friend. I laughed out loud, and made a small drawing to remember it.</p>
+    <p class="story-by">&mdash; EK</p>
+  </div></details>
 
-  <div class="subnav">Back to <a href="academy-of-place.html">Academy of Place</a></div>
+  <div class="invite">
+    <h2>Begin your own story</h2>
+    <p>The forest gave you something. Let it find its words. The Seven-Minute Journal offers a single prompt and a quiet timer &mdash; write by hand, and then, if you wish, share what came.</p>
+    <div class="cta-row" style="margin-top:6px"><a class="btn btn-gold" href="seven-minute-journal.html">Begin your own story &rarr;</a></div>
+  </div>
 </main>
+<script>
+(function(){
+  var items=document.querySelectorAll('details.story');
+  function openHash(){ var id=decodeURIComponent((location.hash||'').replace(/^#/,'')); if(!id) return;
+    var el=document.getElementById(id); if(el&&el.tagName==='DETAILS'){ el.open=true; setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'start'});},50);} }
+  items.forEach(function(d){ d.addEventListener('toggle',function(){ if(d.open) history.replaceState(null,'',location.pathname+'#'+d.id); }); });
+  window.addEventListener('hashchange',openHash); openHash();
+})();
+</script>
 <footer>
   <div class="foot-grid">
     <div class="foot-col">

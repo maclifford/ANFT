@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Global Trail Map — Certified Forest Therapy Trails, Spaces, and Places</title>
+<title>The Seven-Minute Journal | ANFT</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/x-icon" href="/favicon-white.ico?v=2">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png?v=2">
-<meta name="description" content="Explore the world map of certified forest therapy trails, spaces, and places — from quiet woodlands and coastal paths to sacred groves and urban greenways.">
-<link rel="canonical" href="https://anft.earth/academy-of-place--global-trail-map.html">
-<meta property="og:url" content="https://anft.earth/academy-of-place--global-trail-map.html">
-<meta property="og:title" content="Global Trail Map">
-<meta property="og:description" content="Explore the world map of certified forest therapy trails, spaces, and places — from quiet woodlands and coastal paths to sacred groves and urban greenways.">
+<meta name="description" content="A short by-hand writing practice: one prompt, a seven-minute timer, and a place to share the story that comes.">
+<link rel="canonical" href="https://anft.earth/seven-minute-journal.html">
+<meta property="og:url" content="https://anft.earth/seven-minute-journal.html">
+<meta property="og:title" content="The Seven-Minute Journal | ANFT">
+<meta property="og:description" content="A short by-hand writing practice: one prompt, a seven-minute timer, and a place to share the story that comes.">
 <meta property="og:type" content="website">
-
+<meta property="og:image" content="https://anft.earth/images/banners/testimonials-banner.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -50,8 +50,8 @@
   .drop-menu a{display:block;padding:8px 16px;font-size:14px;font-weight:600;color:var(--navy);white-space:nowrap;letter-spacing:.01em}
   .drop-menu a:hover{background:var(--fir-tint);color:var(--gold-deep);text-decoration:none}
   .has-drop:hover .drop-menu,.has-drop:focus-within .drop-menu{display:block}
-  .banner{width:100%;margin:0}
-  .banner img{display:block;width:100%;height:clamp(180px,26vw,320px);object-fit:cover;
+  .banner{width:100%;margin:0;aspect-ratio:12/5;min-height:240px;overflow:hidden}
+  .banner img{display:block;width:100%;height:100%;object-fit:cover;
     border-radius:0}
   .section{max-width:880px;margin:0 auto;padding:48px 28px 72px}
   .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);
@@ -136,6 +136,31 @@
   .foot-legal a:hover{color:#FFFFFF;text-decoration:underline}
   /* serif body: prose keeps EB Garamond */
   p,.lede,.quote,.foot-land,.foot-mission,.deck{font-family:"EB Garamond",Georgia,serif}
+  /* power of story + journal */
+  .story{border-bottom:1px solid var(--line)}
+  .story>summary{cursor:pointer;list-style:none;padding:16px 34px 16px 2px;position:relative;font-family:"Nunito Sans",system-ui,sans-serif;font-weight:600;color:var(--navy);font-size:18px;scroll-margin-top:20px}
+  .story>summary::-webkit-details-marker{display:none}
+  .story>summary::after{content:"+";position:absolute;right:6px;top:13px;font-size:22px;color:var(--gold-deep)}
+  .story[open]>summary::after{content:"\2013"}
+  .story-body{padding:2px 2px 22px}
+  .story-body p{font-family:"EB Garamond",Georgia,serif;font-size:17px;line-height:1.72;color:var(--ink);max-width:64ch}
+  .story-by{font-family:"Nunito Sans",system-ui,sans-serif;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);margin-top:10px}
+  .invite{margin-top:46px;background:var(--fir-tint);border-radius:14px;padding:28px 30px}
+  .invite h2{margin-top:0}
+  .prompt-card{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:14px;padding:34px 34px 26px;margin:26px 0 8px;text-align:center}
+  .prompt-eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);font-weight:700;margin-bottom:16px}
+  .prompt-text{font-family:"EB Garamond",Georgia,serif;font-style:italic;font-size:clamp(24px,3.4vw,34px);line-height:1.3;color:var(--navy);margin:0 auto 18px;max-width:20ch}
+  .timer-wrap{text-align:center;margin:28px 0 6px}
+  .timer{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:600;font-size:clamp(56px,11vw,92px);color:var(--fir);letter-spacing:.02em;line-height:1}
+  .timer-done{font-family:"EB Garamond",Georgia,serif;font-style:italic;font-size:clamp(30px,5vw,46px);color:var(--gold-deep)}
+  #shareSection{margin-top:52px;scroll-margin-top:20px}
+  form.story-form{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 30px;margin-top:16px}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:6px}
+  .field input[type=text],.field input[type=email],.field input[type=file]{width:100%;font-family:inherit;font-size:15px;border:1px solid var(--line);border-radius:10px;padding:11px 13px;background:#fff}
+  .field .form-hint{font-size:12.5px;color:var(--ink-soft);margin-top:5px;font-weight:400}
+  .check{display:flex;gap:10px;align-items:flex-start;font-size:14px;margin:14px 0;line-height:1.5}
+  .check input{margin-top:3px;accent-color:var(--fir);width:17px;height:17px;flex:none}
 </style>
 </head>
 <body id="top">
@@ -156,7 +181,7 @@
           <a href="international-leadership.html">International Leadership</a>
           <a href="our-trainers.html">Our Trainers</a>
           <a href="our-partners.html">Partners</a>
-          <a href="student-testimonials.html">Testimonials</a>
+          <a href="seven-minute-journal.html">Testimonials</a>
           <a href="media-and-blog.html">Media &amp; Blog</a>
         </span>
       </span>
@@ -164,17 +189,80 @@
     </nav>
   </div>
 </header>
-
+<div class="banner"><img src="images/banners/sitspotbanner.webp" alt="A quiet place to sit and write in the forest" loading="eager" decoding="async"></div>
 <main class="section">
-  <div class="eyebrow">Academy of Place</div>
-  <h1>The Global Trail Map</h1>
-  <p class="lede">From quiet woodlands to urban greenways &mdash; certified places, growing across continents.</p>
+  <div class="eyebrow">A practice</div>
+  <h1>The Seven-Minute Journal</h1>
+  <p class="lede">A short practice for letting an experience find its words. It is best done by hand &mdash; the hand knows things when it holds a pen that it forgets on a keyboard.</p>
+  <p>Read your prompt. Set everything else aside. When you&rsquo;re ready, start the timer and write for seven minutes without stopping and without editing &mdash; let the story arrive the way it wants to. There is no wrong way, and no one is grading.</p>
 
-<p>Each certified trail, space, and place is a unique expression of its landscape and culture, inviting people to slow down, listen, and remember their place in the web of life. The interactive map shows certified sites worldwide, along with projects in progress being developed in alignment with principles of relationship, reciprocity, and care for the land.</p>
-<div class="cta-row"><a class="btn btn-gold" href="https://anft.earth/trails-overview/">Open the trail map</a><a class="p-link p-go" href="academy-of-place--trail-certification.html">Certify your own place</a></div>
+  <div class="prompt-card">
+    <div class="prompt-eyebrow">Your prompt</div>
+    <p class="prompt-text" id="promptText">&hellip;</p>
+    <button type="button" class="p-link" id="newPrompt">Give me a different prompt</button>
+  </div>
 
-  <div class="subnav">Back to <a href="academy-of-place.html">Academy of Place</a></div>
+  <div class="timer-wrap">
+    <button type="button" class="btn btn-gold" id="startBtn">I&rsquo;m ready &mdash; let&rsquo;s go!</button>
+    <div class="timer" id="timer" hidden>7:00</div>
+    <div class="timer-done" id="done" hidden>Pencils down!</div>
+    <div style="margin-top:14px"><button type="button" class="p-link" id="againBtn" hidden>Start again</button></div>
+  </div>
+
+  <div id="shareSection">
+    <h2>Share your story</h2>
+    <p>When your page feels ready, photograph it and share it here. We read every story with care; with your permission we may add it to <a href="power-of-story.html">The Power of Story</a>, anonymized as your initials and country.</p>
+    <!-- Submission backend: FormSubmit (formsubmit.co). The FIRST submission triggers a
+         one-time activation email to stories@anft.earth; click Activate once, then every
+         submission (including the photo attachment) is emailed there. Automatic Claude
+         transcription is a later phase (a Netlify Function); for now the photo is emailed as-is. -->
+    <form class="story-form" action="https://formsubmit.co/stories@anft.earth" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_subject" value="A new story — The Power of Story">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_autoresponse" value="Thank you for trusting us with your story. We read every one with care, and if it finds its place on The Power of Story we will keep it anonymous, as your initials and country. — ANFT">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+      <div class="field"><label for="ti">A title for your story</label>
+        <input type="text" id="ti" name="Title" placeholder="e.g. The Squirrel&rsquo;s Paw"></div>
+      <div class="field"><label for="ph">A photo of your journal page</label>
+        <input type="file" id="ph" name="Journal page" accept="image/*">
+        <p class="form-hint">A clear photo of your handwriting is perfect &mdash; we can read even challenging penmanship. Up to about 10&nbsp;MB.</p></div>
+      <div class="field"><label for="ini">Your initials <span style="color:var(--ink-soft);font-weight:400">(how you&rsquo;d be credited, if published)</span></label>
+        <input type="text" id="ini" name="Initials" placeholder="e.g. MG"></div>
+      <div class="field"><label for="co">Country <span style="color:var(--ink-soft);font-weight:400">(optional)</span></label>
+        <input type="text" id="co" name="Country"></div>
+      <div class="field"><label for="em">Your email</label>
+        <input type="email" id="em" name="Email" required>
+        <p class="form-hint">So we can reach you &mdash; never published, never shared.</p></div>
+      <label class="check"><input type="checkbox" name="Transcription requested" value="Yes, transcribe verbatim">
+        <span>Please also include a typed transcription of my page &mdash; transcribed <strong>exactly as written</strong>, never edited or altered.</span></label>
+      <label class="check"><input type="checkbox" name="Consent" value="Yes, I consent" required>
+        <span>I&rsquo;m sharing this story with ANFT and give permission to publish it anonymously (initials and country). <span style="color:var(--gold-deep)">*</span></span></label>
+      <div style="margin-top:8px"><button type="submit" class="btn btn-gold">Share my story</button></div>
+    </form>
+  </div>
 </main>
+<script>
+(function(){
+  var PROMPTS=["The trees are saying\u2026","The trail\u2026","In the secret places\u2026","It should not have surprised me\u2026","What I find, what I leave behind\u2026","The next bend of the trail\u2026","Something is telling me\u2026","I can\u2019t wait to tell you\u2026","Under the sky\u2026","As I move through this place\u2026"];
+  var current=-1;
+  var ptext=document.getElementById('promptText');
+  function pick(){ var i; do { i=Math.floor(Math.random()*PROMPTS.length); } while(i===current && PROMPTS.length>1); current=i; ptext.textContent=PROMPTS[i]; }
+  pick();
+  document.getElementById('newPrompt').addEventListener('click',pick);
+  var startBtn=document.getElementById('startBtn'), timer=document.getElementById('timer'),
+      done=document.getElementById('done'), again=document.getElementById('againBtn'),
+      newBtn=document.getElementById('newPrompt'), tid=null;
+  function reset(){ if(tid){clearInterval(tid);tid=null;} timer.hidden=true; done.hidden=true; again.hidden=true; startBtn.hidden=false; newBtn.hidden=false; }
+  startBtn.addEventListener('click',function(){
+    startBtn.hidden=true; newBtn.hidden=true; done.hidden=true; timer.hidden=false;
+    var secs=7*60;
+    function render(){ var m=Math.floor(secs/60), s=secs%60; timer.textContent=m+':'+String(s).padStart(2,'0'); }
+    render();
+    tid=setInterval(function(){ secs--; if(secs<0){ clearInterval(tid); tid=null; timer.hidden=true; done.hidden=false; again.hidden=false; document.getElementById('shareSection').scrollIntoView({behavior:'smooth'}); return; } render(); },1000);
+  });
+  again.addEventListener('click',function(){ reset(); pick(); window.scrollTo({top:0,behavior:'smooth'}); });
+})();
+</script>
 <footer>
   <div class="foot-grid">
     <div class="foot-col">
