@@ -180,13 +180,12 @@
   .hero-mission{text-align:center;color:#fff;padding:34px 22px 15px;text-shadow:0 2px 16px rgba(8,14,8,.75)}
   .hero-mission .hm-title{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:800;font-size:clamp(20px,3.1vw,32px);letter-spacing:.01em;line-height:1.15}
   .hero-mission .hm-stmt{font-family:"EB Garamond",Georgia,serif;font-size:clamp(14.5px,1.9vw,19px);max-width:62ch;margin:9px auto 0;line-height:1.5;color:#F2F3EC}
-  .chyron{position:relative;z-index:3;display:flex;align-items:stretch;
-    background:rgba(17,26,18,.34);
-    border-top:1px solid rgba(255,255,255,.16)}
+  .chyron{display:flex;align-items:stretch;background:var(--paper);
+    margin-top:14px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   @media (max-width:640px){.hero-mission{padding-top:24px}}
   .cy-badge{flex:0 0 auto;display:flex;align-items:center;gap:8px;padding:0 18px;
     font-family:"Nunito Sans",system-ui,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
-    font-weight:700;color:#fff;background:linear-gradient(90deg,var(--fir),rgba(46,91,62,.35));white-space:nowrap}
+    font-weight:700;color:var(--gold-deep);background:transparent;white-space:nowrap;border-right:1px solid var(--line)}
   .cy-viewport{flex:1 1 auto;overflow:hidden;position:relative;
     -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
     mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
@@ -194,13 +193,13 @@
     animation:cyscroll 80s linear infinite;will-change:transform}
   .cy-viewport:hover .cy-track,.cy-viewport:focus-within .cy-track{animation-play-state:paused}
   .cy-item{display:inline-flex;align-items:baseline;gap:10px;padding:0 30px;text-decoration:none;
-    border-right:1px solid rgba(255,255,255,.14);color:#EAF0E8}
-  .cy-item:hover,.cy-item:focus-visible{color:#fff;outline:none}
+    border-right:1px solid var(--line);color:var(--ink-soft)}
+  .cy-item:hover,.cy-item:focus-visible{color:var(--ink);outline:none}
   .cy-item:hover .cy-name,.cy-item:focus-visible .cy-name{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--gold)}
   .cy-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);align-self:center;flex:0 0 auto}
-  .cy-name{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:700;font-size:14.5px}
-  .cy-loc{font-family:"Nunito Sans",system-ui,sans-serif;font-size:13.5px;color:#BFD0BC}
-  .cy-date{font-family:"Nunito Sans",system-ui,sans-serif;font-size:13px;color:#fff;background:rgba(255,255,255,.12);border-radius:999px;padding:2px 10px}
+  .cy-name{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:700;font-size:14.5px;color:var(--navy)}
+  .cy-loc{font-family:"Nunito Sans",system-ui,sans-serif;font-size:13.5px;color:var(--ink-soft)}
+  .cy-date{font-family:"Nunito Sans",system-ui,sans-serif;font-size:13px;color:var(--fir);background:var(--fir-tint);border-radius:999px;padding:2px 10px}
   @keyframes cyscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   @media (prefers-reduced-motion:reduce){.cy-track{animation:none}.cy-viewport{overflow-x:auto}}
   @media (max-width:640px){.cy-badge{display:none}.cy-name{font-size:13.5px}.cy-loc{font-size:12.5px}}
@@ -246,6 +245,9 @@
     <div class="hm-title">Four Academies, One Mission</div>
     <p class="hm-stmt">Support planetary health by nurturing heart-centered relationships between all peoples and the More-Than-Human World of Nature.</p>
   </div>
+  </div>
+</section>
+
   <div class="chyron" aria-label="Upcoming events">
     <span class="cy-badge">Upcoming</span>
     <div class="cy-viewport"><div class="cy-track" id="cyTrack">
@@ -269,8 +271,7 @@
       <!-- chyron:end -->
     </div></div>
   </div>
-  </div>
-</section>
+
 
 <!-- intro lead: the copy that used to sit on the photo -->
 <section class="section intro-lead" aria-label="Introduction">
