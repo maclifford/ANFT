@@ -175,9 +175,15 @@
   @media(max-width:640px){.tvoices-wrap{padding:36px 0}.tv-item{padding:36px 0}}
 
   /* ---------- upcoming-events chyron (bottom of hero) ---------- */
-  .chyron{position:absolute;left:0;right:0;bottom:0;z-index:3;display:flex;align-items:stretch;
-    background:linear-gradient(180deg,rgba(20,32,22,0),rgba(17,26,18,.82) 46%);
+  .hero-foot{position:absolute;left:0;right:0;bottom:0;z-index:3;
+    background:linear-gradient(180deg,rgba(17,26,18,0),rgba(17,26,18,.55) 30%,rgba(17,26,18,.86))}
+  .hero-mission{text-align:center;color:#fff;padding:34px 22px 15px;text-shadow:0 2px 16px rgba(8,14,8,.75)}
+  .hero-mission .hm-title{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:800;font-size:clamp(20px,3.1vw,32px);letter-spacing:.01em;line-height:1.15}
+  .hero-mission .hm-stmt{font-family:"EB Garamond",Georgia,serif;font-size:clamp(14.5px,1.9vw,19px);max-width:62ch;margin:9px auto 0;line-height:1.5;color:#F2F3EC}
+  .chyron{position:relative;z-index:3;display:flex;align-items:stretch;
+    background:rgba(17,26,18,.34);
     border-top:1px solid rgba(255,255,255,.16)}
+  @media (max-width:640px){.hero-mission{padding-top:24px}}
   .cy-badge{flex:0 0 auto;display:flex;align-items:center;gap:8px;padding:0 18px;
     font-family:"Nunito Sans",system-ui,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
     font-weight:700;color:#fff;background:linear-gradient(90deg,var(--fir),rgba(46,91,62,.35));white-space:nowrap}
@@ -235,6 +241,11 @@
     <defs><path id="heroArc" d="M 40,185 Q 660,55 1280,185" fill="none"></path></defs>
     <text text-anchor="middle"><textPath href="#heroArc" startOffset="50%">Something In You Remembers</textPath></text>
   </svg>
+  <div class="hero-foot">
+  <div class="hero-mission">
+    <div class="hm-title">Four Academies, One Mission</div>
+    <p class="hm-stmt">Support planetary health by nurturing heart-centered relationships between all peoples and the More-Than-Human World of Nature.</p>
+  </div>
   <div class="chyron" aria-label="Upcoming events">
     <span class="cy-badge">Upcoming</span>
     <div class="cy-viewport"><div class="cy-track" id="cyTrack">
@@ -257,6 +268,7 @@
       <a class="cy-item" href="/events/im-thailand-2026-11.html"><span class="cy-dot" aria-hidden="true"></span><span class="cy-name">Baba Ecolodge</span><span class="cy-loc">Koh Phra Thong, Thailand</span><span class="cy-date">Nov 25, 2026</span></a>
       <!-- chyron:end -->
     </div></div>
+  </div>
   </div>
 </section>
 
