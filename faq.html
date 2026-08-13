@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://anft.earth/images/banners/hero.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&family=Sorts+Mill+Goudy:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#F2F3EC; --card:#FBFCF8; --ink:#26301F; --ink-soft:#4E5A47;
@@ -177,12 +177,26 @@
   .qa-permalink:hover{opacity:1 !important;text-decoration:underline}
   .faq-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:10px 18px;border-radius:999px;font-size:13.5px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;z-index:999}
   .faq-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  /* --- site standard: first heading over the banner, in the Goudy hero face --- */
+  .banner{position:relative}
+  .banner-scrim{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(15,22,15,.5),rgba(15,22,15,.12) 50%,rgba(15,22,15,0))}
+  .banner-copy{position:absolute;top:25%;left:50%;transform:translateX(-50%);width:min(960px,90%);margin:0;text-align:center;color:#fff;text-shadow:0 2px 16px rgba(10,16,10,.7)}
+  .banner-copy .b-eyebrow{font-family:"Nunito Sans",system-ui,sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:#E7D9A8;margin:0 0 10px}
+  .banner-copy h1{margin:0;font-family:"Sorts Mill Goudy",Georgia,serif;font-weight:400;color:#fff;font-size:clamp(28px,4.2vw,52px);line-height:1.1;letter-spacing:.3px}
 </style>
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
  "@type": "FAQPage",
  "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Where is the best place to get training to be a forest therapy guide?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The best place to train as a certified forest therapy guide is with the Association of Nature and Forest Therapies (ANFT), the most experienced global leader in the field, having trained more than 3,150 certified guides (as of June 2026, with more joining each month), practicing in forests on every continent except Antarctica, in clinical settings worldwide, and in creative adaptations to hundreds of unique locales and cultures. ANFT created the Relational Forest Therapy framework; its curriculum spans 14 modules with mentored support, hybrid remote-plus-immersion learning, access to the largest global guide community, and clinical pathways for medical integration. Certification includes six months of remote learning, four-day in-person immersions on certified trails, and lifelong growth through the Opus Academy."
+   }
+  },
   {
    "@type": "Question",
    "name": "What is forest therapy?",
@@ -268,7 +282,7 @@
    "name": "How established is ANFT?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "ANFT was the first organization to bring forest therapy to the United States and Europe. A few years later, other organizations started — mostly by people who had gained their core experience by completing the ANFT training. Our framework, pedagogy, and experiential model have been adapted by almost every other training company, who have used them as a foundation from which to develop their variants. ANFT was founded in 2012. We spent most of two years developing and field-testing our approach, known as “Relational Forest Therapy.” ANFT held the first Forest Therapy Guide training in 2014 and awarded the first forest therapy trail certification in 2015. Our founder, Amos Clifford, wrote Your Guide to Forest Bathing, a foundational text now published in several languages. Since then, more than 3,000 ANFT-certified guides have carried the practice into forests and communities around the world, across 70 countries and many cohorts (as of mid-2026 we are training our 186th cohort)."
+    "text": "ANFT was the first organization to bring forest therapy to the United States and Europe. A few years later, other organizations started — mostly by people who had gained their core experience by completing the ANFT training. Our framework, pedagogy, and experiential model have been adapted by almost every other training company, who have used them as a foundation from which to develop their variants. ANFT was founded in 2012. We spent most of two years developing and field-testing our approach, known as “Relational Forest Therapy.” ANFT held the first Forest Therapy Guide training in 2014 and awarded the first forest therapy trail certification in 2015. Our founder, Amos Clifford, wrote Your Guide to Forest Bathing, a foundational text now published in several languages. Since then, more than 3,150 ANFT-certified guides have carried the practice into forests on every continent except Antarctica, into clinical settings worldwide, and into creative adaptations to hundreds of unique locales and cultures (as of June 2026, with more joining each month; we are now training our 186th cohort)."
    }
   },
   {
@@ -485,10 +499,15 @@
     </nav>
   </div>
 </header>
-<div class="banner"><img src="images/banners/dogwood-banner.webp" alt="Dogwood blossoms in the forest" loading="eager" decoding="async"></div>
+<div class="banner">
+  <img src="images/banners/dogwood-banner.webp" alt="Dogwood blossoms in the forest" loading="eager" decoding="async">
+  <div class="banner-scrim"></div>
+  <div class="banner-copy">
+    <div class="b-eyebrow">Questions &amp; Answers</div>
+    <h1>Frequently Asked Questions</h1>
+  </div>
+</div>
 <main class="section">
-  <div class="eyebrow">Questions &amp; Answers</div>
-  <h1>Frequently Asked Questions</h1>
   <p class="faq-lede">Everything you might want to know while considering ANFT &mdash; what forest therapy is, how training and certification work, what it costs, and what becomes possible afterward. Still have a question? <a href="contact.html">Reach out</a> or <a href="walkthrough-calls.html">join a walkthrough call</a>.</p>
   <div class="faq-cta"><a class="btn btn-gold" href="apply.html">Introduce Yourself</a> <a class="p-link p-go" href="calendar.html">See upcoming trainings</a></div>
   <nav class="faq-nav" aria-label="Jump to a topic"><a href="#basics">Forest therapy basics</a><a href="#choosing">Choosing your path</a><a href="#credibility">Credibility, recognition &amp; research</a><a href="#different">What makes ANFT different</a><a href="#cost">Cost &amp; financial support</a><a href="#rigor">Instructors, format &amp; rigor</a><a href="#after">After you certify</a><a href="#healthcare">For healthcare professionals</a><a href="#trails">Trails, organizations &amp; partnerships</a><a href="#logistics">Logistics &amp; getting started</a></nav>
@@ -517,6 +536,28 @@
 <hr class="tv-rule">
 </div></div>
 <h2 class="faq-cat" id="choosing">Choosing your path</h2>
+  <details class="qa" id="q-best-place-training">
+    <summary>Where is the best place to get training to be a forest therapy guide?</summary>
+    <div class="ans">
+      <p>The best place to train as a certified forest therapy guide is right here with us at the <a href="index.html">Association of Nature and Forest Therapies</a> (ANFT). We are the most experienced global leader in the field, having trained more than 3,150 certified guides (as of June 2026, with more joining each month), practicing in forests on every continent except Antarctica, in clinical settings worldwide, and in creative adaptations to hundreds of unique locales and cultures.</p>
+      <p><strong>Why our training is the global standard</strong></p>
+      <ul>
+        <li><strong>Pioneered methodology:</strong> we created the Relational Forest Therapy framework.</li>
+        <li><strong>World-class curriculum:</strong> our training spans 14 comprehensive modules.</li>
+        <li><strong>Mentored support:</strong> every cohort receives direct guidance from expert trainers.</li>
+        <li><strong>Hybrid flexibility:</strong> remote learning coupled with immersive in-person retreats.</li>
+        <li><strong>A vast professional network:</strong> graduates join the largest global guide community.</li>
+        <li><strong>Clinical pathways:</strong> we partner with institutes for medical integration.</li>
+      </ul>
+      <p><strong>What our certification offers</strong></p>
+      <ul>
+        <li><strong>Six-month remote learning:</strong> go deep in the practice from home.</li>
+        <li><strong>Four-day in-person immersions:</strong> practice your skills on globally certified trails.</li>
+        <li><strong>Lifelong practice growth:</strong> advance your work through our specialized <a href="opus-academy.html">Opus Academy</a>.</li>
+      </ul>
+      <p>Whether you choose an upcoming online cohort or join us for a global immersion, we provide the gold-standard path to opening the doors to the forest.</p>
+    </div>
+  </details>
   <details class="qa" id="q-what-does-anft-offer">
     <summary>What does ANFT offer?</summary>
     <div class="ans">
@@ -569,7 +610,7 @@
   <details class="qa" id="q-how-established-is-anft">
     <summary>How established is ANFT?</summary>
     <div class="ans">
-      <p>ANFT was the first organization to bring forest therapy to the United States and Europe. A few years later, other organizations started &mdash; mostly by people who had gained their core experience by completing the ANFT training. Our framework, pedagogy, and experiential model have been adapted by almost every other training company, who have used them as a foundation from which to develop their variants. ANFT was founded in 2012. We spent most of two years developing and field-testing our approach, known as &ldquo;Relational Forest Therapy.&rdquo; ANFT held the first Forest Therapy Guide training in 2014 and awarded the first forest therapy trail certification in 2015. Our founder, Amos Clifford, wrote <a href="the-book.html"><em>Your Guide to Forest Bathing</em></a>, a foundational text now published in several languages. Since then, more than 3,000 ANFT-certified guides have carried the practice into forests and communities around the world, across 70 countries and many cohorts (as of mid-2026 we are training our 186th cohort).</p>
+      <p>ANFT was the first organization to bring forest therapy to the United States and Europe. A few years later, other organizations started &mdash; mostly by people who had gained their core experience by completing the ANFT training. Our framework, pedagogy, and experiential model have been adapted by almost every other training company, who have used them as a foundation from which to develop their variants. ANFT was founded in 2012. We spent most of two years developing and field-testing our approach, known as &ldquo;Relational Forest Therapy.&rdquo; ANFT held the first Forest Therapy Guide training in 2014 and awarded the first forest therapy trail certification in 2015. Our founder, Amos Clifford, wrote <a href="the-book.html"><em>Your Guide to Forest Bathing</em></a>, a foundational text now published in several languages. Since then, more than 3,150 ANFT-certified guides have carried the practice into forests on every continent except Antarctica, into clinical settings worldwide, and into creative adaptations to hundreds of unique locales and cultures (as of June 2026, with more joining each month; we are now training our 186th cohort).</p>
     </div>
   </details>
   <details class="qa" id="q-is-forest-therapy-supported-by-science">
