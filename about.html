@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://anft.earth/images/banners/slovenia-group-banner.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&family=Sorts+Mill+Goudy:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#F2F3EC; --card:#FBFCF8; --ink:#26301F; --ink-soft:#4E5A47;
@@ -140,7 +140,14 @@
   .banner{position:relative;width:100%;margin:0;aspect-ratio:12/5;min-height:240px;overflow:hidden}
   .banner img{display:block;width:100%;height:100%;object-fit:cover}
   .banner-scrim{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(15,22,15,.45),rgba(15,22,15,.08) 45%,rgba(15,22,15,0))}
-  .banner-title{position:absolute;top:25%;left:50%;transform:translateX(-50%);width:min(900px,88%);margin:0;text-align:center;color:#fff;font-family:"Nunito Sans",system-ui,sans-serif;font-weight:500;font-size:clamp(24px,3.6vw,44px);line-height:1.14;text-shadow:0 2px 16px rgba(10,16,10,.7)}
+  .banner-title{position:absolute;top:25%;left:50%;transform:translateX(-50%);width:min(960px,90%);margin:0;text-align:center;color:#fff;font-family:"Sorts Mill Goudy",Georgia,serif;font-weight:400;font-size:clamp(28px,4.2vw,52px);line-height:1.1;letter-spacing:.3px;text-shadow:0 2px 16px rgba(10,16,10,.7)}
+  .pullquote{margin:20px 0;padding:4px 0 4px 22px;border-left:3px solid var(--fir-tint);font-family:"EB Garamond",Georgia,serif;font-style:italic;font-size:clamp(20px,2.6vw,27px);line-height:1.4;color:var(--navy);max-width:60ch}
+  .about-list{margin:6px 0 16px;padding-left:22px;max-width:70ch;list-style:disc}
+  .about-list li{font-family:"EB Garamond",Georgia,serif;font-size:17px;line-height:1.6;margin:0 0 10px;color:var(--ink)}
+  .about-list li strong{color:var(--navy);font-weight:600}
+  .about-list .p-link{font-family:"Nunito Sans",system-ui,sans-serif;white-space:nowrap}
+  .in-link{color:var(--fir);text-decoration:underline;text-decoration-color:rgba(46,91,62,.4);text-underline-offset:2px}
+  .in-link:hover{text-decoration-color:var(--fir)}
 </style>
 </head>
 <body id="top">
@@ -172,40 +179,41 @@
 <div class="banner">
   <img src="images/banners/trailpostsbanner.webp" alt="Wooden trail posts marking a forest path" loading="eager" decoding="async">
   <div class="banner-scrim"></div>
-  <h1 class="banner-title">About the Academies<br>of Nature and Forest&nbsp;Therapies</h1>
+  <h1 class="banner-title">About the Association of Nature<br>and Forest Therapies&nbsp;(ANFT)</h1>
 </div>
 <main class="section">
-  <div class="eyebrow">About</div>
+  <p class="lede">Welcome to the global home of forest therapy. Founded in 2012 by M. Amos Clifford, our organization was born out of a deep inspiration for Shinrin-Yoku (the Japanese practice of forest bathing). Today, we are the leading global trailblazer in training certified guides, certifying healing trails, and fostering a worldwide community dedicated to nature connection.</p>
 
-  <div class="draft-note">
-    <span class="draft-label">Draft &mdash; placeholder introduction</span>
-    <p>This is placeholder text and is not the final copy. It stands in for a short, welcoming introduction to the organization &mdash; who ANFT is, what the work is, and why it matters &mdash; which the site owner will supply.</p>
-    <p><strong>Do not publish as-is.</strong> Replace this box with the real introduction before this page goes live.</p>
-  </div>
+  <h2>Our Core Philosophy</h2>
+  <p>Our work is grounded in a simple, profound truth:</p>
+  <blockquote class="pullquote">The Forest is the Therapist, the Guide opens the Doors.</blockquote>
+  <p>We do not believe our guides are clinical therapists. Instead, we train our guides to act as facilitators. Through sensory invitations, we help participants open their hearts and minds to form a direct, reciprocal relationship with the natural world.</p>
 
-  <h2>Explore</h2>
-  <div class="about-grid">
-    <a class="about-card" href="a-living-system.html">
-      <h2>A Living System</h2>
-      <p>How ANFT works as a living whole &mdash; its people, academies, and shared mission.</p>
-    </a>
-    <a class="about-card" href="our-trainers.html">
-      <h2>Our Trainers</h2>
-      <p>The international team at the heart of our global learning community.</p>
-    </a>
-    <a class="about-card" href="science.html">
-      <h2>Science</h2>
-      <p>The research behind the liminal journey of nature and forest therapy.</p>
-    </a>
-    <a class="about-card" href="the-book.html">
-      <h2>The Book</h2>
-      <p><em>Your Guide to Forest Bathing</em> &mdash; the foundational book of the practice.</p>
-    </a>
-    <a class="about-card" href="history-and-lineage.html">
-      <h2>History and Lineage</h2>
-      <p>Our roots in shinrin-yoku and the story of a global movement.</p>
-    </a>
-  </div>
+  <h2>Our Mission and Framework</h2>
+  <p>Our mission is to support global healing by rebuilding the fractured bond between humanity and the earth. To achieve this, we developed a unique framework known as Relational Forest Therapy.</p>
+  <ul class="about-list">
+    <li><strong>Human Wellness:</strong> We cultivate spaces where people can lower stress, find peace, and support their physical and mental health.</li>
+    <li><strong>Planetary Health:</strong> We believe that when people fall in love with nature, they naturally want to protect it. Healing is a two-way street.</li>
+  </ul>
+
+  <h2>Transforming Landscapes: Our Places, Trails, and Spaces Certification</h2>
+  <p>True reciprocity requires that we care for the land just as it cares for us. To support this, we establish enduring partnerships with parks, resorts, municipalities, and land stewards through our <a class="in-link" href="https://anft.earth/trails-overview/">ANFT Trail Certification Program</a>.</p>
+  <p>Led by our specialized <a class="in-link" href="https://anft.earth/certified-trail-consultants/">Certified Trail Consultants</a>, we thoroughly assess natural areas based on sensory richness, accessibility, safety, and biodiversity. We then help design intentional, immersive pathways that optimize the forest therapy experience. Whether it is a quiet woodland, an urban greenway, or a coastal path, an official ANFT Certified Forest Therapy Trail signals a space intentionally held for deep, self-guided or guided relational healing.</p>
+
+  <h2>Our 2026 Evolution: Moving into Four Specialized Academies</h2>
+  <p>As our global community expands, so too must our infrastructure to support it. To meet the demands of a changing world and a growing network of over 2,500 guides, we are transitioning our entire operational model into a unified ecosystem of four distinct academies.</p>
+  <p>This strategic shift organizes our collective wisdom into specialized branches, ensuring deep, dedicated attention to every facet of our mission:</p>
+  <ul class="about-list">
+    <li><strong>The Academy of Relational Forest Therapy:</strong> Protecting and advancing our core, heart-centered framework of Shinrin-Yoku, and serving as the foundational training home for our global network of certified guides. <a class="p-link p-go" href="relational-forest-therapy-academy.html">Explore Relational Forest Therapy</a></li>
+    <li><strong>The Academy of Places, Trails, and Spaces:</strong> Scaling our efforts to consult, design, assess, and officially certify the natural landscapes, parks, and pathways that host our immersive practices worldwide. <a class="p-link p-go" href="academy-of-place.html">Explore the Academy of Place</a></li>
+    <li><strong>The Academy of Applied Forest Therapy:</strong> Bridging the gap between our methodology and the broader world by integrating forest therapy frameworks into healthcare, education, tourism, corporate wellness, and environmental policy. <a class="p-link p-go" href="academy-of-applied-partnerships.html">Explore Applied Forest Therapy</a></li>
+    <li><strong>The Opus Academy:</strong> Nurturing the long-term professional development, creative work, ongoing mentorship, and specialized advanced studies of our seasoned practitioners as they grow in their mastery. <a class="p-link p-go" href="opus-academy.html">Explore the Opus Academy</a></li>
+    <li><strong>Our Healthcare &amp; Clinical Partnerships:</strong> Beyond our core academies, we actively collaborate with leading organizations to bring nature-based intervention to clinical spaces. Through our proud partnership with the Nature and Systems Institute, we support specialized dual-pathways like the <a class="in-link" href="https://www.naturesystemsinstitute.com/nature-as-medicine-practitioner-fall">Nature as Medicine Practitioner Training and Certification</a> program, helping licensed healthcare professionals integrate certified forest therapy directly into medical and clinical practice. <a class="p-link p-go" href="nature-as-medicine.html">Explore Nature as Medicine</a></li>
+  </ul>
+  <p>By deepening our focus through these four distinct structural pillars and collaborative partnerships, we are positioning our collective mission to better serve human wellness and planetary health for decades to come.</p>
+
+  <h2>Join Us</h2>
+  <p>Join us as we walk this path together, one step, one breath, and one tree at a time.</p>
 
   <h2>Contact</h2>
   <div class="contact-block">
@@ -215,6 +223,7 @@
     <p>1745 Rustic Timbers Lane, Suite B<br>Prescott, AZ 86303, USA</p>
   </div>
 </main>
+<div class="banner"><img src="images/banners/CanopyViewBanner.webp" alt="Looking up into the forest canopy" loading="lazy" decoding="async"></div>
 <footer>
   <div class="foot-grid">
     <div class="foot-col">
