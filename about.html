@@ -137,8 +137,10 @@
   .foot-legal a:hover{color:#FFFFFF;text-decoration:underline}
   /* serif body: prose keeps EB Garamond */
   p,.lede,.quote,.foot-land,.foot-mission,.deck{font-family:"EB Garamond",Georgia,serif}
-  .banner{width:100%;margin:0;aspect-ratio:12/5;min-height:240px;overflow:hidden}
+  .banner{position:relative;width:100%;margin:0;aspect-ratio:12/5;min-height:240px;overflow:hidden}
   .banner img{display:block;width:100%;height:100%;object-fit:cover}
+  .banner-scrim{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(15,22,15,.45),rgba(15,22,15,.08) 45%,rgba(15,22,15,0))}
+  .banner-title{position:absolute;top:25%;left:50%;transform:translateX(-50%);width:min(900px,88%);margin:0;text-align:center;color:#fff;font-family:"Nunito Sans",system-ui,sans-serif;font-weight:500;font-size:clamp(24px,3.6vw,44px);line-height:1.14;text-shadow:0 2px 16px rgba(10,16,10,.7)}
 </style>
 </head>
 <body id="top">
@@ -167,10 +169,13 @@
     </nav>
   </div>
 </header>
-<div class="banner"><img src="images/banners/trailpostsbanner.webp" alt="Wooden trail posts marking a forest path" loading="eager" decoding="async"></div>
+<div class="banner">
+  <img src="images/banners/trailpostsbanner.webp" alt="Wooden trail posts marking a forest path" loading="eager" decoding="async">
+  <div class="banner-scrim"></div>
+  <h1 class="banner-title">About the Academies of Nature and Forest Therapies</h1>
+</div>
 <main class="section">
   <div class="eyebrow">About</div>
-  <h1>About the Academies of Nature and Forest Therapies</h1>
 
   <div class="draft-note">
     <span class="draft-label">Draft &mdash; placeholder introduction</span>
