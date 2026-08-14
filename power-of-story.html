@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://anft.earth/images/banners/testimonials-banner.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&family=Sorts+Mill+Goudy:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#F2F3EC; --card:#FBFCF8; --ink:#26301F; --ink-soft:#4E5A47;
@@ -161,6 +161,13 @@
   .field .form-hint{font-size:12.5px;color:var(--ink-soft);margin-top:5px;font-weight:400}
   .check{display:flex;gap:10px;align-items:flex-start;font-size:14px;margin:14px 0;line-height:1.5}
   .check input{margin-top:3px;accent-color:var(--fir);width:17px;height:17px;flex:none}
+  /* --- site standard: first heading over the banner, in the Goudy hero face --- */
+  .banner{position:relative}
+  .banner-scrim{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(15,22,15,.5),rgba(15,22,15,.12) 50%,rgba(15,22,15,0))}
+  .banner-copy{position:absolute;top:11%;left:60%;transform:translateX(-50%);width:min(560px,80%);margin:0;text-align:center;color:#fff;text-shadow:0 2px 16px rgba(10,16,10,.7)}
+  @media (max-width:640px){.banner-copy{top:9%;left:56%}}
+  .banner-copy .b-eyebrow{font-family:"Nunito Sans",system-ui,sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:#E7D9A8;margin:0 0 10px}
+  .banner-copy h1{margin:0;font-family:"Sorts Mill Goudy",Georgia,serif;font-weight:400;color:#fff;font-size:clamp(28px,4.2vw,52px);line-height:1.1;letter-spacing:.3px}
 </style>
 </head>
 <body id="top">
@@ -189,10 +196,15 @@
     </nav>
   </div>
 </header>
-<div class="banner"><img src="images/banners/IsaSkyBanner.webp" alt="An open sky above the trees" loading="eager" decoding="async"></div>
+<div class="banner">
+  <img src="images/banners/IsaSkyBanner.webp" alt="An open sky above the trees" loading="eager" decoding="async">
+  <div class="banner-scrim"></div>
+  <div class="banner-copy">
+    <div class="b-eyebrow">Stories</div>
+    <h1>The Power of Story</h1>
+  </div>
+</div>
 <main class="section">
-  <div class="eyebrow">Stories</div>
-  <h1>The Power of Story</h1>
   <p class="lede">Whatever else we carry home from the forest, we carry it as a story. Story is how an experience becomes part of a life &mdash; how it travels with us <em>to</em> the threshold, <em>through</em> it, and <em>beyond</em>.</p>
   <p>A forest therapy walk doesn&rsquo;t hand us conclusions; it offers encounters &mdash; a squirrel&rsquo;s paused gaze, a trail that seems to have been waiting, a sudden weightlessness among the trees. In the days afterward those encounters keep speaking, and the way we keep them is by telling them. To put an experience into words, even a few imperfect ones, is to let it settle deeper and change us more truly. Here are a few stories from our community. We would be honored to add yours.</p>
 
