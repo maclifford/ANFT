@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Forest Threshold — a One-Week Immersion | Academies of Nature and Forest Therapies</title>
+<title>The Forest Threshold — Retreats | Association of Nature and Forest Therapies</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/x-icon" href="/favicon-white.ico?v=2">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png?v=2">
-<meta name="description" content="The Forest Threshold: nature itself as the doorway into every path of the Academies — crossed through five movements: Connect, Discover, Embody, Remember, Shine.">
+<meta name="description" content="The Forest Threshold: forests as places of passage from one chapter of life to another. Guided retreats exploring myth, depth psychology, sacred landscapes, cinema, and the thresholds we cross in the living world.">
 <link rel="canonical" href="https://anft.earth/forest-threshold.html">
 <meta property="og:url" content="https://anft.earth/forest-threshold.html">
 <meta property="og:title" content="The Forest Threshold">
-<meta property="og:description" content="Nature itself is the doorway into every path of the Academies — crossed through five movements: Connect, Discover, Embody, Remember, Shine.">
+<meta property="og:description" content="Forests as places of passage — a carefully supported entrance into possibility. Guided retreats exploring myth, depth psychology, sacred landscapes, and cinema.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://anft.earth/images/banners/threshold-banner.webp">
+<meta property="og:image" content="https://anft.earth/images/banners/forestthresholdbanner.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&family=Sorts+Mill+Goudy:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/aside-float.css">
 <style>
   :root{
@@ -155,6 +155,33 @@
   .tv-q{margin:0 auto;max-width:560px;font-family:"EB Garamond",Georgia,serif;font-style:italic;font-size:clamp(20px,2.4vw,25px);line-height:1.5;color:var(--navy)}
   .tv-attr{margin-top:22px;font-family:"Nunito Sans",system-ui,sans-serif;font-style:normal;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep)}
   @media(max-width:640px){.tvoices-wrap{padding:36px 0}.tv-item{padding:36px 0}}
+  /* --- site standard: first heading over the banner, in the Goudy hero face --- */
+  .banner{position:relative}
+  .banner-scrim{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(15,22,15,.5),rgba(15,22,15,.12) 50%,rgba(15,22,15,0))}
+  .banner-copy{position:absolute;top:25%;left:50%;transform:translateX(-50%);width:min(960px,90%);margin:0;text-align:center;color:#fff;text-shadow:0 2px 16px rgba(10,16,10,.7)}
+  .banner-copy .b-eyebrow{font-family:"Nunito Sans",system-ui,sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:#E7D9A8;margin:0 0 10px}
+  .banner-copy h1{margin:0;font-family:"Sorts Mill Goudy",Georgia,serif;font-weight:400;color:#fff;font-size:clamp(28px,4.2vw,52px);line-height:1.1;letter-spacing:.3px}
+  /* --- upcoming Forest Threshold retreats: event tiles --- */
+  .ft-events{margin-top:14px}
+  .ft-events h2{margin-bottom:4px}
+  .ft-intro{color:var(--ink-soft);font-size:15.5px;margin:0 0 6px;max-width:64ch}
+  .ft-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:22px;margin:22px 0 6px;padding:0;list-style:none}
+  .ft-card{display:flex;flex-direction:column;text-decoration:none;color:inherit;background:var(--card);
+    border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+    transition:transform .18s ease,box-shadow .18s ease}
+  .ft-card:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(38,48,31,.13)}
+  .ft-card .ph{aspect-ratio:16/10;width:100%;overflow:hidden;background:var(--fir-tint)}
+  .ft-card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+  .ft-card:hover .ph img{transform:scale(1.04)}
+  .ft-card .cbody{padding:15px 18px 18px;display:flex;flex-direction:column;gap:5px}
+  .ft-card .c-when{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-deep);font-weight:700}
+  .ft-card h3{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:600;color:var(--navy);font-size:18px;margin:0;line-height:1.25}
+  .ft-card .c-loc{font-family:"Nunito Sans",system-ui,sans-serif;font-size:14px;color:var(--ink-soft);margin:0}
+  .ft-card .c-go{margin-top:6px;font-size:14px;font-weight:600;color:var(--fir)}
+  .ft-card:hover .c-go{text-decoration:underline;text-underline-offset:3px}
+  .ft-empty{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:20px 22px;font-family:"EB Garamond",Georgia,serif;font-size:16px;color:var(--ink-soft);max-width:64ch}
+  .ft-empty a{color:var(--fir);font-weight:600;font-family:"Nunito Sans",system-ui,sans-serif}
 </style>
 </head>
 <body id="top">
@@ -183,47 +210,39 @@
     </nav>
   </div>
 </header>
-<div class="banner"><img src="images/trails/camino-trail-banner.webp" alt="A trail on the Camino de Santiago" loading="eager" decoding="async"></div>
-<main class="section">
-  <div class="eyebrow">Begin at the Source</div>
-  <h1>The Forest Threshold: An Invitation</h1>
-  <p class="lede">A doorway for people who arrive looking, not shopping.</p>
-  <div class="journey">
-    <h3>At a glance</h3>
-    <dl>
-      <dt>Price</dt><dd>$595&ndash;$1,295 USD, depending on duration</dd>
-      <dt>Duration</dt><dd>4 to 8 days, residential retreat</dd>
-    </dl>
+<div class="banner">
+  <img src="images/banners/forestthresholdbanner.webp" alt="Light falling across a forest threshold" loading="eager" decoding="async">
+  <div class="banner-scrim"></div>
+  <div class="banner-copy">
+    <div class="b-eyebrow">Retreats</div>
+    <h1>The Forest Threshold</h1>
   </div>
-<h2>The Red Thread</h2>
-<p>As the poet William Stafford reminds us &ldquo;There is a thread you follow.&rdquo; (Poem: &ldquo;The Way It Is.&rdquo;) It is often during our time in nature that the thread appears most clearly, perhaps like a flash of recognition or remembrance of the bright colors you carry in your heart.</p>
-<p>As you explore the academies of ANFT you may recognize one to which your thread is calling you. It may yet be a good choice to immerse yourself in the residential Forest Threshold retreat. But perhaps your encounters with the thread you follow have been your Forest Threshold; perhaps they have already been the opening you have always sought.</p>
-<p>You are welcome to directly register in any of the academies. Start with <a href="apply.html?path=forest-threshold" style="color:var(--gold-deep)">the application</a>, which in itself may be a moment of reflection. Perhaps a moment of following the red thread of your essential self. Where will it lead?</p>
+</div>
+<main class="section">
+  <p class="lede">Forests have always been places of passage from one chapter of life to another. Our lived experiences of forest are mirrored in myth, fairy tale, pilgrimage, literature, and cinema, where to enter the forest is rarely simply to enter a landscape. It is to cross a threshold into a territory where familiar identities and assumptions may be challenged, where unexpected encounters become possible, and where the path that emerges may not be the path we imagined when we began.</p>
 
-<aside class="aside-float">
-<h2>The five movements</h2>
-<ul class="stepline">
-<li><b>Connect</b> &mdash; arrival, welcome, and the slow settling of the senses into the place that holds the week.</li>
-<li><b>Discover</b> &mdash; the ideas beneath the work: the lineages, sciences, and stories of relational practice, partnership, place, and the creative path.</li>
-<li><b>Embody</b> &mdash; skills lived rather than studied: guiding practice, sensory and somatic work, council, and creative process, taken into the body each day on the land.</li>
-<li><b>Remember</b> &mdash; integration and return: honoring the week as complete, and recognizing which path, if any, calls you onward.</li>
-<li><b>Shine</b> &mdash; letting what the week has kindled be seen: voice, gifts, and light offered first to the circle, then carried into the world.</li>
-</ul>
-</aside>
+<p>These retreats introduce The Forest Threshold as a way of understanding guided forest experiences. A forest therapy walk may begin with a carefully held structure &mdash; a sequence of invitations, a sensory practice, a gathering in council &mdash; but what it opens into cannot (and should not) be predicted or prescribed. Beyond the threshold lies an infinite field of possible experiences. Among those we have seen many times are wonder, grief, play, memory, belonging, fear, beauty, disorientation, intimacy, revelation, and sometimes a changed sense of one&rsquo;s place in the living world. The guide can help create the conditions for crossing into a threshold experience but cannot know in advance what will meet a person on the other side.</p>
 
-<h2>Residential retreat</h2>
-<p>Four to seven days, in residence with the land. Complete in itself &mdash; and the source of every path that leads from it.</p>
-<p>The Forest Threshold is an immersive event that samples the ideas, content, and impacts of the pathways offered through the Academies. Held at venues in long-term relationship with us, it carries participants through five movements over the course of a week: <b>Connect</b>, <b>Discover</b>, <b>Embody</b>, <b>Remember</b>, and <b>Shine</b>.</p>
-<p>For many, the week is enough &mdash; a threshold crossed, an experience whole in itself. For others, it reveals which of the five paths calls onward: guide training, clinical practice, the stewardship of place, the creative path of Opus, or a partnership of your own making.</p>
-<p><b>Afterward:</b> Complete in itself. Excellent complement to guide training or other paths in ANFT.</p>
-<p style="margin-top:16px;font-size:14px;color:var(--ink-soft)">Not sure yet? <a class="p-link" href="walkthrough-calls.html">Join a monthly open call</a> &mdash; an unhurried conversation about what this path asks and offers.</p>
-  <div class="subnav">Explore the five paths: <a href="relational-forest-therapy-academy.html">Relational Forest Therapy</a> &middot; <a href="nature-as-medicine.html">Nature as Medicine</a> &middot; <a href="academy-of-place.html">Place</a> &middot; <a href="opus-academy.html">Opus</a> &middot; <a href="academy-of-applied-partnerships.html">Applied Forest Therapy</a></div>
+<h2>Deep cultural roots</h2>
+<p>Together we explore the deep cultural roots of this pattern through myth and fairy tale, depth psychology, literature, sacred landscapes, and contemporary cinema. The forests of Hayao Miyazaki and Studio Ghibli offer particularly vivid examples: enchanted places inhabited by presences that resist simple categories of benevolent or threatening, human or more-than-human. The work of C.&nbsp;G. Jung and Marie-Louise von Franz provides another lens through which to consider the forest as a symbolic territory of encounter with what lies beyond the familiar ego.</p>
 
-<div class="tvoices-wrap"><div class="tvoices">
-<hr class="tv-rule">
-<figure class="tv-item"><blockquote class="tv-q">“During training I felt the space to open to the beauty of the world. I called two people I hadn’t spoken to in over a year and mended a relationship that had been in a painful place. That was huge.”</blockquote><figcaption class="tv-attr">— Anisa</figcaption></figure>
-<hr class="tv-rule">
-</div></div>
+<h2>The luminous and the difficult</h2>
+<p>Importantly, the forest threshold is not only a passage toward beauty, healing, or transcendence. Traditional stories repeatedly remind us that forests also contain darkness: getting lost, meeting what has been avoided, confronting uncertainty, grief, fear, and transformation. A mature understanding of guided forest experience makes room for both the luminous and the difficult.</p>
+
+<p>We also visit forest shrines, sacred groves, pilgrimage routes, and other threshold places from cultures around the world, considering how people have long gone into forests to listen, pray, seek guidance, undergo transition, or renew relationship with the sacred.</p>
+
+<h2>How guiding changes the guide</h2>
+<p>Reflections from forest therapy guides illuminate what happens when this threshold is crossed repeatedly over years of practice. How does guiding change the guide? How does a forest once experienced primarily as scenery gradually become relationship, community, teacher, mystery, or home? Throughout the retreat, participants are invited to reflect on their own experiences, and to inquire into how forests may have been transitional thresholds in their own lives.</p>
+
+<p>The Forest Threshold offers a language for understanding forest therapy not as a pathway toward one predetermined outcome, but as a carefully supported entrance into possibility.</p>
+
+<section class="ft-events">
+  <h2>Upcoming Forest Threshold retreats</h2>
+  <p class="ft-intro">Dates and locations for our residential Forest Threshold retreats appear here as they open for registration.</p>
+  <div id="ftEvents" class="ft-grid" aria-live="polite" role="list">
+    <p class="ft-empty" id="ftStatus">Loading upcoming retreats&hellip;</p>
+  </div>
+</section>
 </main>
 <footer>
   <div class="foot-grid">
@@ -281,5 +300,67 @@
     <span><a href="privacy.html">Privacy</a> &nbsp;&middot;&nbsp; <a href="#top" aria-label="Back to top">Back to top &uarr;</a></span>
   </div>
 </footer>
+<script>
+(function(){
+  var host=document.getElementById('ftEvents');
+  var status=document.getElementById('ftStatus');
+  if(!host) return;
+  var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var DEFAULT_IMG='images/banners/forestthresholdbanner.webp';
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function pad(n){return (n<10?'0':'')+n;}
+  function todayStr(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+  function isFT(ev){
+    var s=((ev.category||'')+' '+(ev.academy||'')+' '+(ev.type||'')+' '+(ev.subcategory||'')).toLowerCase();
+    return s.indexOf('forest threshold')>-1;
+  }
+  function whenLabel(ev){
+    var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(ev.start||'');
+    if(!m) return 'Dates to be announced';
+    return MON[(+m[2])-1]+' '+(+m[3])+', '+m[1];
+  }
+  function locLabel(ev){
+    /* location = the part of the title before an em/en dash, if present */
+    var t=ev.title||'';
+    var i=t.search(/[—–]/);
+    var loc=i>-1?t.slice(0,i).trim():'';
+    return loc;
+  }
+  function nameLabel(ev){
+    var t=ev.title||'Forest Threshold retreat';
+    var i=t.search(/[—–]/);
+    return i>-1?t.slice(i+1).trim()||t:t;
+  }
+  function card(ev){
+    var href = ev.id ? ('/events/'+esc(ev.id)+'.html') : (ev.url?esc(ev.url):'#');
+    var img = esc(ev.image||DEFAULT_IMG);
+    var loc = locLabel(ev);
+    return '<a class="ft-card" role="listitem" href="'+href+'">'+
+      '<span class="ph"><img src="'+img+'" alt="" loading="lazy" decoding="async"></span>'+
+      '<span class="cbody">'+
+        '<span class="c-when">'+esc(whenLabel(ev))+'</span>'+
+        '<h3>'+esc(nameLabel(ev))+'</h3>'+
+        (loc?'<span class="c-loc">'+esc(loc)+'</span>':'')+
+        '<span class="c-go">Learn more &rarr;</span>'+
+      '</span></a>';
+  }
+  fetch('/data/trainings.json')
+    .then(function(r){ if(!r.ok) throw new Error('http '+r.status); return r.json(); })
+    .then(function(data){
+      var recs=[].concat(data.trainings||[], data.events||[]).filter(isFT);
+      var today=todayStr();
+      var upcoming=recs.filter(function(ev){ return !ev.start || ev.start>=today; });
+      upcoming.sort(function(a,b){ var x=a.start||'9999', y=b.start||'9999'; return x<y?-1:(x>y?1:0); });
+      if(!upcoming.length){
+        host.innerHTML='<p class="ft-empty">No Forest Threshold retreats are scheduled just now. New dates are added regularly &mdash; please <a href="calendar.html">check the calendar</a> or <a href="apply.html">introduce yourself</a> to be notified.</p>';
+        return;
+      }
+      host.innerHTML=upcoming.map(card).join('');
+    })
+    .catch(function(){
+      host.innerHTML='<p class="ft-empty">Upcoming retreats couldn&rsquo;t load just now. Please refresh, or view the full <a href="calendar.html">calendar</a>.</p>';
+    });
+})();
+</script>
 </body>
 </html>
