@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://anft.earth/images/banners/rfta-banner.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&family=Sorts+Mill+Goudy:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#F2F3EC; --card:#FBFCF8; --ink:#26301F; --ink-soft:#4E5A47;
@@ -163,6 +163,12 @@
   .tv-q{margin:0 auto;max-width:560px;font-family:"EB Garamond",Georgia,serif;font-style:italic;font-size:clamp(20px,2.4vw,25px);line-height:1.5;color:var(--navy)}
   .tv-attr{margin-top:22px;font-family:"Nunito Sans",system-ui,sans-serif;font-style:normal;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep)}
   @media(max-width:640px){.tvoices-wrap{padding:36px 0}.tv-item{padding:36px 0}}
+  /* --- site standard: first heading over the banner, in the Goudy hero face --- */
+  .banner{position:relative}
+  .banner-scrim{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(15,22,15,.5),rgba(15,22,15,.12) 50%,rgba(15,22,15,0))}
+  .banner-copy{position:absolute;top:25%;left:50%;transform:translateX(-50%);width:min(960px,90%);margin:0;text-align:center;color:#fff;text-shadow:0 2px 16px rgba(10,16,10,.7)}
+  .banner-copy .b-eyebrow{font-family:"Nunito Sans",system-ui,sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:#E7D9A8;margin:0 0 10px}
+  .banner-copy h1{margin:0;font-family:"Sorts Mill Goudy",Georgia,serif;font-weight:400;color:#fff;font-size:clamp(28px,4.2vw,52px);line-height:1.1;letter-spacing:.3px}
 </style>
 </head>
 <body id="top">
@@ -191,16 +197,21 @@
     </nav>
   </div>
 </header>
-<div class="banner"><img src="images/banners/rfta-banner.webp" alt="A person resting a hand on tree bark, listening" loading="eager" decoding="async"></div>
+<div class="banner">
+  <img src="images/banners/rfta-banner.webp" alt="A person resting a hand on tree bark, listening" loading="eager" decoding="async">
+  <div class="banner-scrim"></div>
+  <div class="banner-copy">
+    <div class="b-eyebrow">A Path from the Source</div>
+    <h1>Relational Forest Therapy Academy</h1>
+  </div>
+</div>
 <main class="section">
-  <div class="eyebrow">A Path from the Source</div>
-  <h1>Relational Forest Therapy Academy</h1>
   <p class="lede">Guide the practice. Join a worldwide community of certified forest therapy guides.</p>
 
-<div class="quote">&ldquo;The Forest is the Therapist, the Guide opens the Doors.&rdquo;<cite>&mdash; M. Amos Clifford, founder</cite></div>
+<div class="quote">&ldquo;The Forest is the Therapist, the Guide opens the Doors.&rdquo;<cite>&mdash; M. Amos Clifford, founder (our founding phrase, since deepened into the Way of the Guide)</cite></div>
 <p>Relational Forest Therapy&trade; is a heart-based practice: people and planet heal together, and healing happens in the context of relationship. Our guide training is more than a set of techniques &mdash; it is a pathway back into relationship with the more-than-human world.</p>
-<p>We train guides, not therapists. A guide&rsquo;s role is to facilitate an environment in which the forest itself does the therapeutic work, offering carefully crafted invitations that help participants slow down, open their senses, and meet the natural world directly. The method rests on a research-informed standard sequence &mdash; a strong framework that is also culturally adaptable to a great diversity of populations and places.</p>
-<p>Guides bring this practice into psychotherapy, coaching, expressive arts, mindfulness, education, and community work &mdash; or build standalone guiding practices of their own. Certified guides now practice in more than 65 countries.</p>
+<p>We train guides, not therapists. A guide&rsquo;s role is to offer carefully crafted invitations that help participants slow down, open their senses, and meet the natural world directly &mdash; so that the deepening relationship with the living world, not anything the guide administers, becomes the ground of the work. The method rests on a research-informed standard sequence &mdash; a strong framework that is also culturally adaptable to a great diversity of populations and places.</p>
+<p>Guides bring this practice into psychotherapy, coaching, expressive arts, mindfulness, education, and community work &mdash; or build standalone guiding practices of their own. Certified guides now practice in forests on every continent except Antarctica, in clinical settings worldwide, and in creative adaptations to hundreds of unique locales and cultures.</p>
 <div class="gt-panel">
   <div class="eyebrow">Academy of Relational Forest Therapy</div>
   <h3 class="gt-heading">Relational Forest Therapy Guide Training Pathway</h3>
