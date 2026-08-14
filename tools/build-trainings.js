@@ -21,6 +21,9 @@ const root = path.join(__dirname, '..');
 const jsonFp = path.join(root, 'data', 'trainings.json');
 const offeringsFp = path.join(root, 'data', 'offerings.json');
 const venuesFp = path.join(root, 'data', 'venues.json');
+const payLinksFp = path.join(root, 'data', 'payment-links.json');
+let PAYLINKS = {};
+try { PAYLINKS = JSON.parse(fs.readFileSync(payLinksFp, 'utf8')); } catch (e) { PAYLINKS = {}; }
 const pages = ['index.html', 'apply.html'];
 
 const BLOCK = /(<script type="application\/json" id="trainingsData">)[\s\S]*?(<\/script>)/;
@@ -174,6 +177,92 @@ const FOOTER =
   '  <div class="foot-legal">&copy; 2026 ANFT.earth LLC, doing business as the Association of Nature and Forest Therapies. All rights reserved. All photos &copy; M. Amos Clifford except people profile photos and where otherwise noted.</div>\n' +
   '</footer>\n';
 
+// Resolve an event's payment info from its type (default) with per-event override.
+function resolvePayment(rec) {
+  const base = (rec.type && PAYLINKS[rec.type]) ? PAYLINKS[rec.type] : {};
+  const pick = function (a, b) { return (a != null && a !== '') ? a : (b != null ? b : ''); };
+  return {
+    deposit: pick(rec.deposit, base.deposit),
+    price: pick(rec.price, base.price),
+    depositUrl: pick(rec.depositUrl, base.depositUrl),
+    fullUrl: pick(rec.fullUrl, base.fullUrl)
+  };
+}
+function isPayUrl(u) { return /^https?:\/\//i.test(String(u || '')); }
+function money(v) { return (v != null && v !== '') ? ('$' + Number(v).toLocaleString()) : ''; }
+
+const PAY_CSS = [
+  '.pay-backdrop{position:fixed;inset:0;z-index:80;background:rgba(20,26,20,.62);display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:40px 18px}',
+  '.pay-backdrop.open{display:flex}',
+  '.pay-modal{background:var(--card);width:100%;max-width:520px;border-radius:18px;border:1px solid var(--line);box-shadow:0 24px 70px rgba(20,32,22,.36);padding:32px 30px 26px;position:relative;margin:auto}',
+  '.pay-modal h2{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:600;color:var(--navy);font-size:24px;margin:0 0 4px}',
+  '.pay-sub{font-family:"EB Garamond",Georgia,serif;font-size:16px;color:var(--ink-soft);margin:0 0 18px}',
+  '.pay-x{position:absolute;top:12px;right:14px;border:0;background:transparent;font-size:26px;line-height:1;color:var(--ink-soft);cursor:pointer;padding:4px 8px;border-radius:8px}',
+  '.pay-x:hover{background:var(--fir-tint);color:var(--ink)}',
+  '.pay-chip{background:var(--fir-tint);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 0 18px;font-weight:700;color:var(--navy);font-size:14.5px}',
+  '.pay-chip .pc-m{font-weight:400;font-size:13px;color:var(--ink-soft);margin-top:3px}',
+  '.pay-fld{margin:0 0 14px;text-align:left}',
+  '.pay-fld label{display:block;font-size:14px;font-weight:600;color:var(--ink);margin:0 0 6px}',
+  '.pay-fld input{width:100%;font-family:inherit;font-size:15.5px;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:9px;padding:11px 13px}',
+  '.pay-fld input:focus{outline:none;border-color:var(--fir);box-shadow:0 0 0 3px rgba(46,91,62,.14)}',
+  '.pay-checkrow{display:flex;gap:10px;align-items:flex-start;margin:2px 0 18px;text-align:left}',
+  '.pay-checkrow input{margin-top:3px;width:17px;height:17px;flex:0 0 auto;accent-color:var(--fir)}',
+  '.pay-checkrow label{font-size:13.6px;color:var(--ink-soft);line-height:1.5}',
+  '.pay-checkrow a{color:var(--fir);font-weight:600}',
+  '.pay-btns{display:flex;flex-direction:column;gap:10px}',
+  '.pay-btns .btn{width:100%;text-align:center}',
+  '.pay-btns .btn:disabled{opacity:.45;cursor:not-allowed}',
+  '.pay-alt{background:transparent;color:var(--fir);border:1.5px solid var(--fir)}',
+  '.pay-secure{font-size:12.5px;color:var(--ink-soft);text-align:center;margin:14px 0 0;font-family:"EB Garamond",Georgia,serif}'
+].join('\n  ');
+
+function payModalHtml(rec, pay, title, dateStr) {
+  const meta = [rec.cohort, dateStr].filter(Boolean).join(' · ');
+  const depBtn = isPayUrl(pay.depositUrl)
+    ? '<button class="btn pay-go" data-href="' + esc(pay.depositUrl) + '" data-kind="deposit" disabled>Make a deposit to reserve your place' + (pay.deposit ? (' &mdash; ' + money(pay.deposit)) : '') + '</button>'
+    : '';
+  const fullBtn = isPayUrl(pay.fullUrl)
+    ? '<button class="btn pay-alt pay-go" data-href="' + esc(pay.fullUrl) + '" data-kind="full" disabled>Pay in full now' + (pay.price ? (' &mdash; ' + money(pay.price)) : '') + '</button>'
+    : '';
+  return '\n<div class="pay-backdrop" id="payBackdrop" data-event="' + esc(rec.id) + '" role="dialog" aria-modal="true" aria-label="Reserve your place">\n' +
+    '  <div class="pay-modal">\n' +
+    '    <button class="pay-x" data-pay-close aria-label="Close">&times;</button>\n' +
+    '    <h2>Reserve your place</h2>\n' +
+    '    <p class="pay-sub">A place is held with a deposit, or you may pay in full. Just two details first.</p>\n' +
+    '    <div class="pay-chip">' + esc(title) + (meta ? ('<div class="pc-m">' + esc(meta) + '</div>') : '') + '</div>\n' +
+    '    <div class="pay-fld"><label for="payName">Full name</label><input type="text" id="payName" autocomplete="name"></div>\n' +
+    '    <div class="pay-fld"><label for="payEmail">Email</label><input type="email" id="payEmail" autocomplete="email"></div>\n' +
+    '    <div class="pay-checkrow"><input type="checkbox" id="payPolicy"><label for="payPolicy">I have read and understand the <a href="/payment-refund-policy.html" target="_blank" rel="noopener">payment &amp; refund policy</a>.</label></div>\n' +
+    '    <div class="pay-btns">' + depBtn + fullBtn + '</div>\n' +
+    '    <p class="pay-secure">Secure payment via Stripe. After paying, you&rsquo;ll be invited to introduce yourself.</p>\n' +
+    '  </div>\n</div>\n';
+}
+
+const PAY_JS = '<script>\n' +
+  '(function(){\n' +
+  '  var open=document.getElementById("openPay"), bd=document.getElementById("payBackdrop");\n' +
+  '  if(!open||!bd) return;\n' +
+  '  var nm=document.getElementById("payName"), em=document.getElementById("payEmail"), pol=document.getElementById("payPolicy");\n' +
+  '  var goes=[].slice.call(bd.querySelectorAll(".pay-go"));\n' +
+  '  function emailOk(v){return /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(v);}\n' +
+  '  function valid(){return nm.value.trim() && emailOk(em.value.trim()) && pol.checked;}\n' +
+  '  function refresh(){var ok=valid();goes.forEach(function(b){b.disabled=!ok;});}\n' +
+  '  [nm,em].forEach(function(el){el.addEventListener("input",refresh);}); pol.addEventListener("change",refresh);\n' +
+  '  function openM(){bd.classList.add("open");document.body.style.overflow="hidden";var f=bd.querySelector("input");if(f)setTimeout(function(){f.focus();},40);}\n' +
+  '  function closeM(){bd.classList.remove("open");document.body.style.overflow="";}\n' +
+  '  open.addEventListener("click",openM);\n' +
+  '  bd.addEventListener("click",function(e){if(e.target===bd)closeM();});\n' +
+  '  [].slice.call(bd.querySelectorAll("[data-pay-close]")).forEach(function(b){b.addEventListener("click",closeM);});\n' +
+  '  document.addEventListener("keydown",function(e){if(e.key==="Escape")closeM();});\n' +
+  '  goes.forEach(function(btn){btn.addEventListener("click",function(){\n' +
+  '    if(!valid())return; var href=btn.getAttribute("data-href"); if(!href)return;\n' +
+  '    try{localStorage.setItem("anft_intro",JSON.stringify({eventId:bd.getAttribute("data-event"),name:nm.value.trim(),email:em.value.trim(),payment:btn.getAttribute("data-kind")==="deposit"?"Deposit":"Paid in full"}));}catch(e){}\n' +
+  '    var sep=href.indexOf("?")>-1?"&":"?"; var url=href+sep+"client_reference_id="+encodeURIComponent(bd.getAttribute("data-event"));\n' +
+  '    if(em.value.trim())url+="&prefilled_email="+encodeURIComponent(em.value.trim());\n' +
+  '    window.location.href=url;\n' +
+  '  });});\n' +
+  '})();\n</script>\n';
+
 function buildEventPage(rec, offerings, venuesById, trainersById) {
   const title = rec.title || 'Event';
   const description = (rec.description && String(rec.description).trim())
@@ -214,9 +303,14 @@ function buildEventPage(rec, offerings, venuesById, trainersById) {
   const banner = rec.image
     ? '<div class="banner"><img src="' + esc(assetUrl(rec.image)) + '" alt="' + esc(title) + '" loading="eager" decoding="async"></div>\n'
     : '';
-  const registerBtn = reg.href
-    ? '  <div class="cta-row"><a class="btn" href="' + esc(reg.href) + '"' + (reg.ext ? ' target="_blank" rel="noopener"' : '') + '>Register</a></div>\n'
-    : '';
+  const pay = resolvePayment(rec);
+  const hasPay = isPayUrl(pay.depositUrl) || isPayUrl(pay.fullUrl);
+  const registerBtn = hasPay
+    ? '  <div class="cta-row"><button class="btn" id="openPay">Reserve your place</button></div>\n'
+    : (reg.href
+      ? '  <div class="cta-row"><a class="btn" href="' + esc(reg.href) + '"' + (reg.ext ? ' target="_blank" rel="noopener"' : '') + '>Register</a></div>\n'
+      : '');
+  const payModal = hasPay ? payModalHtml(rec, pay, title, dateStr) : '';
 
   const descMeta = description ? String(description).replace(/\s+/g, ' ').slice(0, 180) : ('Details for ' + title + '.');
 
@@ -232,7 +326,7 @@ function buildEventPage(rec, offerings, venuesById, trainersById) {
     '<link rel="preconnect" href="https://fonts.googleapis.com">\n' +
     '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n' +
     '<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">\n' +
-    '<style>\n  ' + CSS + '\n</style>\n</head>\n<body>\n' +
+    '<style>\n  ' + CSS + '\n  ' + PAY_CSS + '\n</style>\n</head>\n<body>\n' +
     HEADER +
     banner +
     '<main class="section">\n' +
@@ -243,7 +337,9 @@ function buildEventPage(rec, offerings, venuesById, trainersById) {
     registerBtn +
     '  <div class="cta-row" style="margin-top:26px"><a class="p-link p-go" href="/calendar.html">See the full calendar</a></div>\n' +
     '</main>\n' +
+    payModal +
     FOOTER +
+    PAY_JS +
     '</body>\n</html>\n';
 }
 
