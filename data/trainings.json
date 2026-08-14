@@ -1,8 +1,8 @@
 {
   "_meta": {
     "harvested_from": "https://anft.earth/ (homepage curated listings)",
-    "harvest_date": "2026-08-07",
-    "notes": "Statuses and deadlines are as of harvest date and change frequently — re-verify before leadership presentation and before launch. Detail/registration URLs point to the live anft.earth site by design during transition. Images are localized into images/thumbnails/ (no longer hotlinked). Categories with no entries yet (Opus Companies, Professional Development) are intentional placeholders so the accordion structure shows the full catalog shape. Optional per-training fields are supported and read by the homepage accordion and the apply page: 'price' (number, full tuition in USD), 'deposit' (number, USD), and 'depositUrl' (a Stripe Payment Link). They are intentionally left absent until real values exist — do not invent them. — edited via editor page 2026-07-21 — edited via editor page 2026-08-07",
+    "harvest_date": "2026-08-14",
+    "notes": "Statuses and deadlines are as of harvest date and change frequently — re-verify before leadership presentation and before launch. Detail/registration URLs point to the live anft.earth site by design during transition. Images are localized into images/thumbnails/ (no longer hotlinked). Categories with no entries yet (Opus Companies, Professional Development) are intentional placeholders so the accordion structure shows the full catalog shape. Optional per-training fields are supported and read by the homepage accordion and the apply page: 'price' (number, full tuition in USD), 'deposit' (number, USD), and 'depositUrl' (a Stripe Payment Link). They are intentionally left absent until real values exist — do not invent them. — edited via editor page 2026-07-21 — edited via editor page 2026-08-07 — edited via editor page 2026-08-14",
     "categories_order": [
       "Forest Therapy Guide Training",
       "Nature as Medicine",
@@ -27,6 +27,8 @@
       "url": "https://anft.earth/combos/cb-ontario-august-2026/",
       "registrationUrl": "",
       "image": "images/thumbnails/dharma-centre.webp",
+      "price": 3600,
+      "deposit": 295,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "dharma-centre-of-canada",
       "description": "",
@@ -34,9 +36,7 @@
         "stana-luxford-oddie",
         "darlene-rooney-keller"
       ],
-      "price": 3600,
       "tuition": "$3,600 USD — 7-day in-person training plus 4-month online program (excludes lodging, meals and transport).",
-      "deposit": 295,
       "type": "guide-inperson-first"
     },
     {
@@ -54,6 +54,8 @@
       "url": "https://anft.earth/combos/usa-georgia-just-love-forest-november-2026/",
       "registrationUrl": "",
       "image": "images/thumbnails/just-love-forest.webp",
+      "price": 3600,
+      "deposit": 295,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "just-love-forest",
       "description": "",
@@ -61,9 +63,7 @@
         "tam-willey",
         "christine-hoyer"
       ],
-      "price": 3600,
       "tuition": "$3,600 USD — 7-day in-person training plus 4-month online program (excludes lodging, meals and transport).",
-      "deposit": 295,
       "type": "guide-inperson-first"
     },
     {
@@ -81,6 +81,8 @@
       "url": "https://anft.earth/combos/thailand-koh-phra-thong-baba-ecolodge-november-2026/",
       "registrationUrl": "",
       "image": "images/thumbnails/baba-ecolodge.webp",
+      "price": 3600,
+      "deposit": 295,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "baba-ecolodge",
       "description": "",
@@ -88,9 +90,7 @@
         "youmin-yap",
         "amanda-yik"
       ],
-      "price": 3600,
       "tuition": "$3,600 USD — 7-day in-person training plus 4-month online program (excludes lodging, meals and transport).",
-      "deposit": 295,
       "type": "guide-inperson-first"
     },
     {
@@ -109,12 +109,12 @@
       "url": "https://anft.earth/training-events/pudu-in-spanish/",
       "registrationUrl": "",
       "image": "images/thumbnails/pudu.webp",
+      "deposit": 295,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "",
       "description": "",
       "trainers": [],
       "tuition": "",
-      "deposit": 295,
       "type": "guide-online-first"
     },
     {
@@ -132,12 +132,12 @@
       "schedule": "Live calls Wednesdays 5:30–7:30 pm PST",
       "url": "https://anft.earth/training-events/komorebi-%e6%9c%a8%e6%bc%8f%e3%82%8c%e6%97%a5/",
       "image": "images/thumbnails/komorebi.webp",
+      "deposit": 295,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "",
       "description": "",
       "trainers": [],
       "tuition": "",
-      "deposit": 295,
       "type": "guide-online-first"
     },
     {
@@ -155,6 +155,8 @@
       "schedule": "Live calls Wednesdays 3:30–5:30 pm PST",
       "url": "https://anft.earth/training-events/peacock/",
       "image": "images/thumbnails/peacock.webp",
+      "price": 3350,
+      "deposit": 295,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "",
       "description": "",
@@ -162,9 +164,7 @@
         "marcela-morales",
         "carla-zorzanelli"
       ],
-      "price": 3350,
       "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
-      "deposit": 295,
       "type": "guide-online-first"
     },
     {
@@ -182,6 +182,8 @@
       "schedule": "Live calls Tuesdays 5:30–7:30 pm PST",
       "url": "https://anft.earth/training-events/sea-otter/",
       "image": "images/thumbnails/sea-otter.webp",
+      "price": 3350,
+      "deposit": 295,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "",
       "description": "",
@@ -189,9 +191,7 @@
         "tam-willey",
         "ken-ouendag"
       ],
-      "price": 3350,
       "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
-      "deposit": 295,
       "type": "guide-online-first"
     },
     {
@@ -209,6 +209,8 @@
       "schedule": "Live calls Tuesdays 3:30–5:30 pm PST",
       "url": "https://anft.earth/training-events/cedar/",
       "image": "images/thumbnails/cedar.webp",
+      "price": 3350,
+      "deposit": 295,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "",
       "description": "",
@@ -216,9 +218,7 @@
         "amanda-yik",
         "makiko-sugishita"
       ],
-      "price": 3350,
       "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
-      "deposit": 295,
       "type": "guide-online-first"
     },
     {
@@ -236,6 +236,8 @@
       "schedule": "Live calls Mondays 9:00–11:00 am PST",
       "url": "https://anft.earth/training-events/winter-jasmine/",
       "image": "images/thumbnails/winter-jasmine.webp",
+      "price": 3350,
+      "deposit": 295,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "",
       "description": "",
@@ -243,9 +245,7 @@
         "nadine-mazzola",
         "geeta-stilwell"
       ],
-      "price": 3350,
       "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
-      "deposit": 295,
       "type": "guide-online-first"
     },
     {
@@ -261,6 +261,8 @@
       "url": "https://anft.earth/training-immersions/usa-maine-casa-portal-august-2026/",
       "registrationUrl": "",
       "image": "images/thumbnails/casa-portal.webp",
+      "price": 495,
+      "deposit": 150,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "casa-portal",
       "description": "",
@@ -268,9 +270,7 @@
         "tam-willey",
         "nadine-mazzola"
       ],
-      "price": 495,
       "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue).",
-      "deposit": 150,
       "type": "immersion"
     },
     {
@@ -286,6 +286,8 @@
       "url": "https://anft.earth/training-immersions/canada-ontario-dharma-centre-of-canada-september-2026/",
       "registrationUrl": "",
       "image": "images/thumbnails/dharma-centre.webp",
+      "price": 495,
+      "deposit": 150,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "dharma-centre-of-canada",
       "description": "",
@@ -293,9 +295,7 @@
         "stana-luxford-oddie",
         "darlene-rooney-keller"
       ],
-      "price": 495,
       "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue).",
-      "deposit": 150,
       "type": "immersion"
     },
     {
@@ -311,6 +311,8 @@
       "url": "https://anft.earth/training-immersions/usa-tennessee-well-being-retreat-center-september-2026-2/",
       "registrationUrl": "",
       "image": "images/thumbnails/well-being-retreat-center.webp",
+      "price": 495,
+      "deposit": 150,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "well-being-retreat-center",
       "description": "",
@@ -318,9 +320,7 @@
         "christine-hoyer",
         "tam-willey"
       ],
-      "price": 495,
       "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue).",
-      "deposit": 150,
       "type": "immersion"
     },
     {
@@ -336,15 +336,15 @@
       "url": "https://anft.earth/training-immersions/italy-bagno-di-romagna-emilia-romagna-september-2026/",
       "registrationUrl": "",
       "image": "images/thumbnails/santuario-la-verna.webp",
+      "price": 495,
+      "deposit": 150,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "santuario-la-verna",
       "description": "",
       "trainers": [
         "geeta-stilwell"
       ],
-      "price": 495,
       "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue).",
-      "deposit": 150,
       "type": "immersion"
     },
     {
@@ -360,6 +360,8 @@
       "url": "https://anft.earth/training-immersions/usa-colorado-rocky-mountain-ecodharma-retreat-center-october-2026/",
       "registrationUrl": "",
       "image": "images/thumbnails/rocky-mountain-ecodharma.webp",
+      "price": 495,
+      "deposit": 150,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "rocky-mountain-ecodharma-retreat-center",
       "description": "",
@@ -367,9 +369,7 @@
         "darlene-rooney-keller",
         "carla-zorzanelli"
       ],
-      "price": 495,
       "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue).",
-      "deposit": 150,
       "type": "immersion"
     },
     {
@@ -385,6 +385,8 @@
       "url": "https://anft.earth/training-immersions/australia-qld-daintree-siesta-october-2026/",
       "registrationUrl": "",
       "image": "images/thumbnails/daintree-siesta.webp",
+      "price": 495,
+      "deposit": 150,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "daintree-siesta",
       "description": "",
@@ -392,9 +394,7 @@
         "vicky-kyan",
         "monique-ross"
       ],
-      "price": 495,
       "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue).",
-      "deposit": 150,
       "type": "immersion"
     },
     {
@@ -410,6 +410,8 @@
       "url": "https://anft.earth/training-immersions/in-spanish-chile-pucon-lodge-kod-kod-study-center-october-2026/",
       "registrationUrl": "",
       "image": "images/thumbnails/lodge-kod-kod.webp",
+      "price": 495,
+      "deposit": 150,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "lodge-kod-kod-study-center",
       "description": "",
@@ -417,9 +419,7 @@
         "giovanna-raineri",
         "mario-reyes"
       ],
-      "price": 495,
       "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue).",
-      "deposit": 150,
       "type": "immersion"
     },
     {
@@ -435,6 +435,8 @@
       "url": "https://anft.earth/training-immersions/thailand-ko-phra-thong-baba-ecolodge-november-2026/",
       "registrationUrl": "",
       "image": "images/thumbnails/baba-ecolodge-2.webp",
+      "price": 495,
+      "deposit": 150,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "baba-ecolodge",
       "description": "",
@@ -442,31 +444,32 @@
         "youmin-yap",
         "amanda-yik"
       ],
-      "price": 495,
       "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue).",
-      "deposit": 150,
       "type": "immersion"
     },
     {
       "id": "alchemy-of-pilgrimage",
-      "start": "2026-08-25",
+      "start": "2026-11-03",
       "kind": "",
-      "title": "Alchemy of Pilgrimage",
+      "title": "Alchemy of Pilgrimage - Lapis Cohort",
       "category": "Opus Training",
       "cohort": "2",
       "status": "Enrollment Open",
-      "enrollmentDeadline": "2026-08-20",
-      "firstCall": "2026-08-25",
+      "enrollmentDeadline": "2026-09-20",
+      "firstCall": "2026-11-03",
+      "startDate": "2026-11-03",
       "language": "English",
       "schedule": "Tuesdays, 11 am - 12:30 pm Pacific Time",
-      "registrationUrl": "",
       "image": "images/thumbnails/OPUS_WELL.webp",
-      "price": 565,
+      "price": 900,
       "deposit": 50,
       "academy": "Opus Academy",
       "venue_id": "",
       "description": "",
-      "trainers": [],
+      "trainers": [
+        "Amos Clifford",
+        "Carla Zorzanelli"
+      ],
       "tuition": "",
       "type": "opus"
     },
@@ -508,6 +511,8 @@
       "schedule": "Live calls Tuesdays 3:00–5:00 pm PST",
       "url": "https://anft.earth/training-events/honey-bee/",
       "image": "",
+      "price": 3350,
+      "deposit": 295,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "",
       "description": "",
@@ -515,9 +520,7 @@
         "jackie-kuang",
         "marcela-morales"
       ],
-      "price": 3350,
       "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
-      "deposit": 295,
       "type": "guide-online-first"
     },
     {
@@ -535,6 +538,8 @@
       "schedule": "Live calls Saturdays 8:00–10:00 am PST",
       "url": "https://anft.earth/training-events/mule-deer/",
       "image": "",
+      "price": 3350,
+      "deposit": 295,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "",
       "description": "",
@@ -542,9 +547,7 @@
         "ken-ouendag",
         "katarina-cuk"
       ],
-      "price": 3350,
       "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
-      "deposit": 295,
       "type": "guide-online-first"
     },
     {
@@ -562,6 +565,8 @@
       "schedule": "Live calls Thursdays 3:30–5:30 pm PST",
       "url": "https://anft.earth/training-events/ancient-rock/",
       "image": "",
+      "price": 3350,
+      "deposit": 295,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "",
       "description": "",
@@ -569,9 +574,7 @@
         "makiko-sugishita",
         "stana-luxford-oddie"
       ],
-      "price": 3350,
       "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
-      "deposit": 295,
       "type": "guide-online-first"
     },
     {
@@ -589,6 +592,8 @@
       "schedule": "Live calls Mondays 9:00–11:00 am PST",
       "url": "https://anft.earth/training-events/mountain-gorilla/",
       "image": "",
+      "price": 3350,
+      "deposit": 295,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "",
       "description": "",
@@ -596,9 +601,7 @@
         "caitlin-williams",
         "geeta-stilwell"
       ],
-      "price": 3350,
       "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
-      "deposit": 295,
       "type": "guide-online-first"
     },
     {
@@ -616,6 +619,8 @@
       "schedule": "Live calls Thursdays 4:00–6:00 am PST",
       "url": "https://anft.earth/training-events/frogfish/",
       "image": "",
+      "price": 3350,
+      "deposit": 295,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "",
       "description": "",
@@ -623,9 +628,7 @@
         "tam-willey",
         "bansi-shah"
       ],
-      "price": 3350,
       "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
-      "deposit": 295,
       "type": "guide-online-first"
     },
     {
@@ -643,6 +646,8 @@
       "schedule": "Live calls Wednesdays 4:00–6:00 pm PST",
       "url": "https://anft.earth/training-events/burrowing-owl/",
       "image": "",
+      "price": 3350,
+      "deposit": 295,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "",
       "description": "",
@@ -650,9 +655,7 @@
         "ken-ouendag",
         "darlene-rooney-keller"
       ],
-      "price": 3350,
       "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
-      "deposit": 295,
       "type": "guide-online-first"
     },
     {
@@ -670,6 +673,8 @@
       "schedule": "Live calls Tuesdays 6:00–8:00 am PST",
       "url": "https://anft.earth/training-events/chrysalis/",
       "image": "",
+      "price": 3350,
+      "deposit": 295,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "",
       "description": "",
@@ -677,9 +682,7 @@
         "youmin-yap",
         "katarina-cuk"
       ],
-      "price": 3350,
       "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
-      "deposit": 295,
       "type": "guide-online-first"
     },
     {
@@ -697,6 +700,8 @@
       "schedule": "Live calls Tuesdays 3:30–5:30 pm PST",
       "url": "https://anft.earth/training-events/waterfall/",
       "image": "",
+      "price": 3350,
+      "deposit": 295,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "",
       "description": "",
@@ -704,9 +709,7 @@
         "stana-luxford-oddie",
         "giovanna-raineri"
       ],
-      "price": 3350,
       "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
-      "deposit": 295,
       "type": "guide-online-first"
     },
     {
@@ -724,6 +727,8 @@
       "schedule": "Live calls Thursdays 8:00–10:00 am PST",
       "url": "https://anft.earth/training-events/giraffe/",
       "image": "",
+      "price": 3350,
+      "deposit": 295,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "",
       "description": "",
@@ -731,9 +736,7 @@
         "darlene-rooney-keller",
         "carla-zorzanelli"
       ],
-      "price": 3350,
       "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
-      "deposit": 295,
       "type": "guide-online-first"
     },
     {
@@ -751,6 +754,8 @@
       "schedule": "Live calls Wednesdays 5:00–7:00 pm PST",
       "url": "https://anft.earth/training-events/angelfish/",
       "image": "",
+      "price": 3350,
+      "deposit": 295,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "",
       "description": "",
@@ -758,9 +763,7 @@
         "amanda-yik",
         "marcela-morales"
       ],
-      "price": 3350,
       "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
-      "deposit": 295,
       "type": "guide-online-first"
     },
     {
@@ -778,6 +781,8 @@
       "schedule": "Live calls Wednesdays 5:00–7:00 am PST",
       "url": "https://anft.earth/training-events/unfurling-ferns/",
       "image": "",
+      "price": 3350,
+      "deposit": 295,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "",
       "description": "",
@@ -785,9 +790,7 @@
         "nadine-mazzola",
         "youmin-yap"
       ],
-      "price": 3350,
       "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
-      "deposit": 295,
       "type": "guide-online-first"
     },
     {
@@ -805,6 +808,8 @@
       "schedule": "Live calls Saturdays 9:00–11:00 am PST",
       "url": "https://anft.earth/training-events/japanese-maple/",
       "image": "",
+      "price": 3350,
+      "deposit": 295,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "",
       "description": "",
@@ -812,9 +817,7 @@
         "geeta-stilwell",
         "jackie-kuang"
       ],
-      "price": 3350,
       "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
-      "deposit": 295,
       "type": "guide-online-first"
     },
     {
@@ -832,6 +835,8 @@
       "schedule": "Live calls Thursdays 4:00–6:00 pm PST",
       "url": "https://anft.earth/training-events/polar-bear/",
       "image": "",
+      "price": 3350,
+      "deposit": 295,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "",
       "description": "",
@@ -839,9 +844,7 @@
         "ronna-schneberger",
         "carla-zorzanelli"
       ],
-      "price": 3350,
       "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
-      "deposit": 295,
       "type": "guide-online-first"
     },
     {
@@ -859,15 +862,15 @@
       "schedule": "Live calls Wednesdays 4:00–6:00 pm PST",
       "url": "https://anft.earth/training-events/paw-paw/",
       "image": "",
+      "price": 3350,
+      "deposit": 295,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "",
       "description": "",
       "trainers": [
         "caitlin-williams"
       ],
-      "price": 3350,
       "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
-      "deposit": 295,
       "type": "guide-online-first"
     },
     {
@@ -885,6 +888,8 @@
       "schedule": "Live calls Thursdays 5:00–7:00 am PST",
       "url": "https://anft.earth/training-events/sika-deer/",
       "image": "",
+      "price": 3350,
+      "deposit": 295,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "",
       "description": "",
@@ -892,9 +897,7 @@
         "nadine-mazzola",
         "amanda-yik"
       ],
-      "price": 3350,
       "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
-      "deposit": 295,
       "type": "guide-online-first"
     },
     {
@@ -912,6 +915,8 @@
       "schedule": "Live calls Wednesdays 4:00–6:00 pm PST",
       "url": "https://anft.earth/training-events/shell-ginger/",
       "image": "",
+      "price": 3350,
+      "deposit": 295,
       "academy": "Academy of Relational Forest Therapy",
       "venue_id": "",
       "description": "",
@@ -919,9 +924,7 @@
         "tam-willey",
         "makiko-sugishita"
       ],
-      "price": 3350,
       "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
-      "deposit": 295,
       "type": "guide-online-first"
     }
   ],
