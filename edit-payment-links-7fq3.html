@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Edit payment links | ANFT staff</title>
+<style>
+  :root{--paper:#F2F3EC;--card:#FBFCF8;--ink:#26301F;--ink-soft:#4E5A47;--navy:#1E3A5F;--fir:#2E5B3E;--fir-tint:#E1EBDD;--gold:#A9862C;--gold-deep:#7C6118;--gold-tint:#F3EDD9;--line:#C9D0BE;--radius:12px}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Nunito Sans",system-ui,sans-serif;line-height:1.55;font-size:16px}
+  .wrap{max-width:820px;margin:0 auto;padding:32px 22px 80px}
+  a.back{font-size:14px;color:var(--fir);text-decoration:none;font-weight:600}
+  h1{color:var(--navy);font-size:28px;margin:10px 0 4px}
+  .routine{font-size:14px;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:10px 0 6px}
+  code{font-family:ui-monospace,Consolas,monospace;font-size:13px;background:var(--gold-tint);padding:1px 6px;border-radius:5px}
+  p.intro{color:var(--ink-soft);font-size:15.5px;max-width:66ch}
+  .notice{background:var(--gold-tint);border:1px solid var(--gold);border-radius:10px;padding:12px 16px;margin:12px 0;font-size:14.5px}
+  .type-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin:16px 0}
+  .type-card h2{color:var(--navy);font-size:19px;margin:0 0 2px}
+  .type-card .id{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-deep);font-weight:700;margin-bottom:12px}
+  .grid{display:grid;grid-template-columns:120px 120px 1fr;gap:12px 16px;align-items:end}
+  @media(max-width:640px){.grid{grid-template-columns:1fr 1fr}}
+  .fld{display:flex;flex-direction:column;gap:5px}
+  .fld.wide{grid-column:1 / -1}
+  .fld label{font-size:13px;font-weight:600;color:var(--ink)}
+  .fld input{font-family:inherit;font-size:15px;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:8px;padding:9px 11px}
+  .fld input:focus{outline:none;border-color:var(--fir);box-shadow:0 0 0 3px rgba(46,91,62,.14)}
+  .bar{position:sticky;bottom:0;background:var(--paper);border-top:1px solid var(--line);padding:16px 0 8px;margin-top:8px}
+  button.primary{background:var(--fir);color:#fff;border:0;border-radius:8px;font-size:15px;font-weight:700;padding:12px 24px;cursor:pointer;font-family:inherit}
+  button.primary:hover{background:#264b33}
+  .muted{font-size:13px;color:var(--ink-soft);margin-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="staff-hub-7fq3.html">&larr; Back to the data hub</a>
+  <h1>Payment links &amp; amounts</h1>
+  <p class="routine">Internal tool. Update routine: edit below &rarr; <b>Download <code>payment-links.json</code></b> &rarr; upload it to the repo&rsquo;s <code>data/</code> folder &rarr; deploy.</p>
+  <p class="intro">These amounts and Stripe links are set <b>once per event type</b>. Every event of that type inherits them automatically, so you never enter a link per event. Leave a link blank and the payment button simply stays hidden until you fill it in &mdash; safe to save at any time. (A single event can override any of these on its own record for special cases.)</p>
+
+  <div id="loadErr" class="notice" hidden>Couldn&rsquo;t load <code>data/payment-links.json</code> automatically (normal when opening this file directly rather than through the website). Load it by hand: <input type="file" id="fileInput" accept="application/json,.json"></div>
+
+  <div id="types"></div>
+
+  <div class="bar">
+    <button id="download" class="primary">Download payment-links.json</button>
+    <p class="muted">Amounts are whole US dollars. Links must start with <code>https://</code>.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var META=null, ORDER=[], DATA={};
+  function el(id){return document.getElementById(id);}
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');}
+
+  function render(json){
+    META = json._meta || null;
+    var host = el('types'); host.innerHTML=''; ORDER=[];
+    Object.keys(json).forEach(function(k){
+      if(k==='_meta') return;
+      ORDER.push(k);
+      var t=json[k]||{};
+      var card=document.createElement('div'); card.className='type-card';
+      card.innerHTML =
+        '<h2>'+esc(t.label||k)+'</h2>'+
+        '<div class="id">'+esc(k)+'</div>'+
+        '<div class="grid">'+
+          '<div class="fld"><label>Deposit (USD)</label><input type="number" min="0" data-k="'+esc(k)+'" data-f="deposit" value="'+esc(t.deposit==null?'':t.deposit)+'"></div>'+
+          '<div class="fld"><label>Full tuition (USD)</label><input type="number" min="0" data-k="'+esc(k)+'" data-f="price" value="'+esc(t.price==null?'':t.price)+'"></div>'+
+          '<div class="fld wide"><label>Deposit payment link (Stripe URL)</label><input type="url" placeholder="https://buy.stripe.com/..." data-k="'+esc(k)+'" data-f="depositUrl" value="'+esc(t.depositUrl||'')+'"></div>'+
+          '<div class="fld wide"><label>Pay-in-full payment link (Stripe URL)</label><input type="url" placeholder="https://buy.stripe.com/..." data-k="'+esc(k)+'" data-f="fullUrl" value="'+esc(t.fullUrl||'')+'"></div>'+
+        '</div>';
+      host.appendChild(card);
+    });
+    // keep the original label/other fields to preserve on save
+    DATA=JSON.parse(JSON.stringify(json));
+  }
+
+  function collect(){
+    var out={}; if(META) out._meta=META;
+    ORDER.forEach(function(k){ out[k]=JSON.parse(JSON.stringify(DATA[k]||{})); });
+    [].slice.call(document.querySelectorAll('input[data-k]')).forEach(function(inp){
+      var k=inp.getAttribute('data-k'), f=inp.getAttribute('data-f'), v=inp.value.trim();
+      if(f==='deposit'||f==='price'){ out[k][f]= v===''?null:Number(v); }
+      else { out[k][f]=v; }
+    });
+    return out;
+  }
+
+  el('download').addEventListener('click',function(){
+    var json=collect();
+    var blob=new Blob([JSON.stringify(json,null,2)+'\n'],{type:'application/json'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='payment-links.json';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){URL.revokeObjectURL(a.href);},1000);
+  });
+
+  el('fileInput') && el('fileInput').addEventListener('change',function(e){
+    var f=e.target.files[0]; if(!f) return;
+    var r=new FileReader(); r.onload=function(){ try{ render(JSON.parse(r.result)); el('loadErr').hidden=true; }catch(err){ alert('That file is not valid JSON.'); } }; r.readAsText(f);
+  });
+
+  fetch('data/payment-links.json').then(function(r){ if(!r.ok) throw 0; return r.json(); })
+    .then(render).catch(function(){ el('loadErr').hidden=false; });
+})();
+</script>
+</body>
+</html>
