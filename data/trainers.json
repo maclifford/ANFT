@@ -2,14 +2,14 @@
   "_meta": {
     "source": "Seeded from the hand-coded trainer cards on our-trainers.html",
     "generated_date": "2026-08-07",
-    "notes": "Trainer directory rendered by our-trainers.html via the inlined trainersData block. Carried across: name, role, region, email, photo, and bio (multi-paragraph bio_full; short first-sentence bio_excerpt). team groups the roster on the page; teams_order sets the section order. Read/written by the People editor (edit-people-7fq3.html). — edited via editor page 2026-08-08 — edited via editor page 2026-08-10",
+    "notes": "Trainer directory rendered by our-trainers.html via the inlined trainersData block. Carried across: name, role, region, email, photo, and bio (multi-paragraph bio_full; short first-sentence bio_excerpt). team groups the roster on the page; teams_order sets the section order. Read/written by the People editor (edit-people-7fq3.html). — edited via editor page 2026-08-08 — edited via editor page 2026-08-10 — edited via editor page 2026-08-14",
     "teams_order": [
       "Leadership",
       "Our Trainers",
       "Specialty Training Team",
       "Administration and Operations"
     ],
-    "harvest_date": "2026-08-10"
+    "harvest_date": "2026-08-14"
   },
   "trainers": [
     {
@@ -312,13 +312,13 @@
     {
       "id": "monique-ross",
       "name": "Monique Ross",
-      "role": "Trainer",
+      "role": null,
       "team": "Our Trainers",
       "region": "Australia",
       "email": null,
       "bio_excerpt": null,
       "bio_full": null,
-      "photo": ""
+      "photo": null
     }
   ]
 }
