@@ -66,6 +66,15 @@
   .fld textarea{min-height:80px;resize:vertical}
   .fld input:focus,.fld select:focus,.fld textarea:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
   .other-input{margin-top:6px}
+  .people-filter{margin-bottom:6px}
+  .people-pick{border:1.5px solid var(--line);border-radius:8px;padding:8px 10px;max-height:230px;overflow:auto;
+    background:#fff;display:grid;grid-template-columns:1fr 1fr;gap:1px 16px}
+  @media(max-width:560px){.people-pick{grid-template-columns:1fr}}
+  .people-pick .pick-item{display:flex;align-items:center;gap:8px;font-size:14px;padding:4px 2px;cursor:pointer;margin:0}
+  .people-pick .pick-item input{width:auto;margin:0;flex:none}
+  .people-pick .pick-item span{line-height:1.3}
+  .people-pick .pick-unknown span{color:#8A2B23;font-style:italic}
+  .people-pick .pick-empty{grid-column:1/-1;font-size:13px;color:var(--ink-soft,#4E5A47)}
   .modal-actions{display:flex;gap:10px;margin-top:8px}
   .copied{color:var(--fir);font-size:13px;font-weight:600;margin-left:6px}
   /* serif body: prose keeps EB Garamond */
@@ -134,7 +143,7 @@
       {k:'venue_id',l:'Venue',t:'venue',keep:true},
       {k:'lodgingCost',l:'Lodging cost, USD (optional)',t:'number'},
       {k:'description',l:'Description',t:'textarea',keep:true},
-      {k:'trainers',l:'Trainers (one name per line)',t:'list',keep:true},
+      {k:'trainers',l:'Trainers (tick everyone leading this)',t:'people',keep:true},
       {k:'url',l:'Details / registration URL',t:'url'},
       {k:'registrationUrl',l:'Thinkific registration link',t:'url'},
       {k:'zoomUrl',l:'Zoom registration link (calls/events)',t:'url'},
@@ -156,7 +165,7 @@
       {k:'venue_id',l:'Venue',t:'venue',keep:true},
       {k:'lodgingCost',l:'Lodging cost, USD (optional)',t:'number'},
       {k:'description',l:'Description',t:'textarea',keep:true},
-      {k:'trainers',l:'Trainers (one name per line)',t:'list',keep:true},
+      {k:'trainers',l:'Trainers (tick everyone leading this)',t:'people',keep:true},
       {k:'url',l:'Registration URL',t:'url'},
       {k:'registrationUrl',l:'Thinkific registration link',t:'url'},
       {k:'zoomUrl',l:'Zoom registration link (calls/events)',t:'url'},
@@ -170,7 +179,7 @@
   };
   // Values that should always appear in a dropdown, even if no record uses them yet.
   var SEED={category:['Forest Threshold'],academy:['Forest Threshold']};
-  var state={meta:{},trainings:[],events:[],venues:[],seq:1};
+  var state={meta:{},trainings:[],events:[],venues:[],trainers:[],seq:1};
   var edit={type:null,key:null};
   var $=function(id){return document.getElementById(id);};
   function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
@@ -212,8 +221,20 @@
   function buildForm(type,entry){
     var f=$('entryForm'),h='';
     FIELDS[type].forEach(function(fd){
-      h+='<label class="fld"><span>'+esc(fd.l)+(fd.req?' *':'')+'</span>';
-      if(fd.t==='select'){
+      var wrap=(fd.t==='people')?'div':'label';
+      h+='<'+wrap+' class="fld"><span>'+esc(fd.l)+(fd.req?' *':'')+'</span>';
+      if(fd.t==='people'){
+        var cur=(entry&&Array.isArray(entry[fd.k]))?entry[fd.k]:[],known={};
+        h+='<input type="text" class="people-filter" id="ff_'+fd.k+'" placeholder="Type to filter names…">';
+        h+='<div class="people-pick" id="f_'+fd.k+'">';
+        (state.trainers||[]).slice().sort(function(a,b){return (a.name||a.id||'').toLowerCase()<(b.name||b.id||'').toLowerCase()?-1:1;}).forEach(function(p){
+          known[p.id]=true;var on=cur.indexOf(p.id)>-1;
+          h+='<label class="pick-item"><input type="checkbox" name="f_'+fd.k+'" value="'+esc(p.id)+'"'+(on?' checked':'')+'><span>'+esc(p.name||p.id)+'</span></label>';
+        });
+        cur.forEach(function(id){if(!known[id]){h+='<label class="pick-item pick-unknown"><input type="checkbox" name="f_'+fd.k+'" value="'+esc(id)+'" checked><span>'+esc(id)+' (not in People list)</span></label>';}});
+        if(!(state.trainers||[]).length&&!cur.length){h+='<div class="pick-empty">No people loaded. Open this tool from the website (not a local file) so it can read the trainers list.</div>';}
+        h+='</div>';
+      } else if(fd.t==='select'){
         var opts=uniqueValues(fd.k);(SEED[fd.k]||[]).forEach(function(v){if(opts.indexOf(v)<0)opts.push(v);});opts.sort();
         var cur=entry?entry[fd.k]:'',known=cur&&opts.indexOf(cur)>-1;
         h+='<select id="f_'+fd.k+'"><option value=""></option>';
@@ -235,11 +256,12 @@
         var extra=(fd.t==='number')?' step="0.01" min="0" inputmode="decimal"':'';
         h+='<input type="'+fd.t+'" id="f_'+fd.k+'"'+extra+' value="'+(entry&&entry[fd.k]!=null?esc(entry[fd.k]):'')+'">';
       }
-      h+='</label>';
+      h+='</'+wrap+'>';
     });
     f.innerHTML=h;
     FIELDS[type].forEach(function(fd){
       if(fd.t==='select'){var s=$('f_'+fd.k),oi=$('f_'+fd.k+'_other');s.addEventListener('change',function(){oi.hidden=(s.value!=='__other__');});}
+      if(fd.t==='people'){var ff=$('ff_'+fd.k),box=$('f_'+fd.k);if(ff&&box){ff.addEventListener('input',function(){var q=ff.value.trim().toLowerCase();[].slice.call(box.querySelectorAll('.pick-item')).forEach(function(it){it.style.display=(!q||it.textContent.toLowerCase().indexOf(q)>-1)?'':'none';});});}}
     });
   }
   function readForm(type){
@@ -249,6 +271,7 @@
       if(fd.t==='select'){v=(el.value==='__other__')?($('f_'+fd.k+'_other').value||'').trim():el.value;}
       else if(fd.t==='number'){var raw=(el.value||'').trim();v=(raw==='')?'':(isNaN(parseFloat(raw))?raw:parseFloat(raw));}
       else if(fd.t==='list'){v=(el.value||'').split(/\r?\n/).map(function(s){return s.trim();}).filter(function(s){return s;});}
+      else if(fd.t==='people'){v=[].slice.call(el.querySelectorAll('input[type=checkbox]:checked')).map(function(c){return c.value;});}
       else{v=(el.value||'').trim();}
       vals[fd.k]=v;
     });
@@ -264,8 +287,8 @@
   function closeModal(){$('modal').hidden=true;}
   function saveEntry(){
     var type=edit.type,vals=readForm(type);
-    function isEmpty(fd,v){return (fd.t==='list')?(!v||v.length===0):(v===''||v==null);}
-    function emptyVal(fd){return (fd.t==='list')?[]:'';}
+    function isEmpty(fd,v){return (fd.t==='list'||fd.t==='people')?(!v||v.length===0):(v===''||v==null);}
+    function emptyVal(fd){return (fd.t==='list'||fd.t==='people')?[]:'';}
     if(edit.key){
       var o=arr(type).filter(function(x){return x._key===edit.key;})[0];
       FIELDS[type].forEach(function(fd){ var v=vals[fd.k];
@@ -353,6 +376,10 @@
   // load — venues first (populates the Venue picklist), then trainings
   fetch('data/venues.json').then(function(r){return r.ok?r.json():{venues:[]};})
     .then(function(v){state.venues=(v&&v.venues)||[];}).catch(function(){state.venues=[];})
+    .then(function(){
+      return fetch('data/trainers.json').then(function(r){return r.ok?r.json():{trainers:[]};})
+        .then(function(p){state.trainers=(p&&p.trainers)||[];}).catch(function(){state.trainers=[];});
+    })
     .then(function(){
       return fetch('data/trainings.json').then(function(r){if(!r.ok)throw 0;return r.json();}).then(init);
     }).catch(function(){
