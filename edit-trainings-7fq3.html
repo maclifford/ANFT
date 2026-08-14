@@ -168,6 +168,8 @@
     training:['id','start','kind','title','category','subcategory','cohort','status','enrollmentDeadline','firstCall','startDate','language','schedule','url','registrationUrl','zoomUrl','image','price','deposit','depositUrl','fullUrl','academy','venue_id','description','trainers','lodgingCost','tuition'],
     event:['id','start','kind','title','category','date','time','url','registrationUrl','zoomUrl','image','academy','venue_id','description','trainers','lodgingCost','tuition']
   };
+  // Values that should always appear in a dropdown, even if no record uses them yet.
+  var SEED={category:['Forest Threshold'],academy:['Forest Threshold']};
   var state={meta:{},trainings:[],events:[],venues:[],seq:1};
   var edit={type:null,key:null};
   var $=function(id){return document.getElementById(id);};
@@ -212,7 +214,8 @@
     FIELDS[type].forEach(function(fd){
       h+='<label class="fld"><span>'+esc(fd.l)+(fd.req?' *':'')+'</span>';
       if(fd.t==='select'){
-        var opts=uniqueValues(fd.k),cur=entry?entry[fd.k]:'',known=cur&&opts.indexOf(cur)>-1;
+        var opts=uniqueValues(fd.k);(SEED[fd.k]||[]).forEach(function(v){if(opts.indexOf(v)<0)opts.push(v);});opts.sort();
+        var cur=entry?entry[fd.k]:'',known=cur&&opts.indexOf(cur)>-1;
         h+='<select id="f_'+fd.k+'"><option value=""></option>';
         opts.forEach(function(o){h+='<option'+(o===cur?' selected':'')+'>'+esc(o)+'</option>';});
         h+='<option value="__other__"'+((cur&&!known)?' selected':'')+'>Other&hellip;</option></select>';
