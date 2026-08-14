@@ -1,0 +1,35 @@
+{
+  "_meta": {
+    "note": "Single source of truth for payment amounts and Stripe links, keyed by event type. Each event in trainings.json references one of these via its 'type' field; the build joins them and feeds the payment modal. An event may override any field by setting deposit / price / depositUrl / fullUrl directly on its own record (for special-circumstance events). Buttons stay hidden until a real https link is present here, so this file is safe to deploy with the URLs blank. Paste the Stripe Payment Link URLs into depositUrl / fullUrl when the coordinator provides them.",
+    "types": "guide-inperson-first | guide-online-first | immersion | opus",
+    "set_up": "2026-08"
+  },
+  "guide-inperson-first": {
+    "label": "Guide Training — In-person first",
+    "deposit": 295,
+    "price": 3600,
+    "depositUrl": "",
+    "fullUrl": ""
+  },
+  "guide-online-first": {
+    "label": "Guide Training — Online first",
+    "deposit": 295,
+    "price": 3350,
+    "depositUrl": "",
+    "fullUrl": ""
+  },
+  "immersion": {
+    "label": "4-Day In-Person Immersion",
+    "deposit": 150,
+    "price": 495,
+    "depositUrl": "",
+    "fullUrl": ""
+  },
+  "opus": {
+    "label": "Opus — Alchemy of Pilgrimage",
+    "deposit": 50,
+    "price": 565,
+    "depositUrl": "",
+    "fullUrl": ""
+  }
+}

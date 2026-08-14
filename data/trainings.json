@@ -35,7 +35,9 @@
         "darlene-rooney-keller"
       ],
       "price": 3600,
-      "tuition": "$3,600 USD — 7-day in-person training plus 4-month online program (excludes lodging, meals and transport)."
+      "tuition": "$3,600 USD — 7-day in-person training plus 4-month online program (excludes lodging, meals and transport).",
+      "deposit": 295,
+      "type": "guide-inperson-first"
     },
     {
       "id": "cb-georgia-2026-11",
@@ -60,7 +62,9 @@
         "christine-hoyer"
       ],
       "price": 3600,
-      "tuition": "$3,600 USD — 7-day in-person training plus 4-month online program (excludes lodging, meals and transport)."
+      "tuition": "$3,600 USD — 7-day in-person training plus 4-month online program (excludes lodging, meals and transport).",
+      "deposit": 295,
+      "type": "guide-inperson-first"
     },
     {
       "id": "cb-thailand-2026-11",
@@ -85,7 +89,9 @@
         "amanda-yik"
       ],
       "price": 3600,
-      "tuition": "$3,600 USD — 7-day in-person training plus 4-month online program (excludes lodging, meals and transport)."
+      "tuition": "$3,600 USD — 7-day in-person training plus 4-month online program (excludes lodging, meals and transport).",
+      "deposit": 295,
+      "type": "guide-inperson-first"
     },
     {
       "id": "on-pudu-2026-07",
@@ -107,7 +113,9 @@
       "venue_id": "",
       "description": "",
       "trainers": [],
-      "tuition": ""
+      "tuition": "",
+      "deposit": 295,
+      "type": "guide-online-first"
     },
     {
       "id": "on-komorebi-2026-07",
@@ -128,7 +136,9 @@
       "venue_id": "",
       "description": "",
       "trainers": [],
-      "tuition": ""
+      "tuition": "",
+      "deposit": 295,
+      "type": "guide-online-first"
     },
     {
       "id": "on-peacock-2026-08",
@@ -153,7 +163,9 @@
         "carla-zorzanelli"
       ],
       "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
+      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
+      "deposit": 295,
+      "type": "guide-online-first"
     },
     {
       "id": "on-sea-otter-2026-09",
@@ -178,7 +190,9 @@
         "ken-ouendag"
       ],
       "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
+      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
+      "deposit": 295,
+      "type": "guide-online-first"
     },
     {
       "id": "on-cedar-2026-10",
@@ -203,7 +217,9 @@
         "makiko-sugishita"
       ],
       "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
+      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
+      "deposit": 295,
+      "type": "guide-online-first"
     },
     {
       "id": "on-winter-jasmine-2026-10",
@@ -228,7 +244,9 @@
         "geeta-stilwell"
       ],
       "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
+      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
+      "deposit": 295,
+      "type": "guide-online-first"
     },
     {
       "id": "im-maine-2026-08",
@@ -251,7 +269,9 @@
         "nadine-mazzola"
       ],
       "price": 495,
-      "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue)."
+      "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue).",
+      "deposit": 150,
+      "type": "immersion"
     },
     {
       "id": "im-ontario-2026-09",
@@ -274,7 +294,9 @@
         "darlene-rooney-keller"
       ],
       "price": 495,
-      "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue)."
+      "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue).",
+      "deposit": 150,
+      "type": "immersion"
     },
     {
       "id": "im-tennessee-2026-09",
@@ -297,7 +319,9 @@
         "tam-willey"
       ],
       "price": 495,
-      "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue)."
+      "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue).",
+      "deposit": 150,
+      "type": "immersion"
     },
     {
       "id": "im-italy-2026-09",
@@ -319,7 +343,9 @@
         "geeta-stilwell"
       ],
       "price": 495,
-      "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue)."
+      "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue).",
+      "deposit": 150,
+      "type": "immersion"
     },
     {
       "id": "im-colorado-2026-10",
@@ -342,7 +368,9 @@
         "carla-zorzanelli"
       ],
       "price": 495,
-      "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue)."
+      "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue).",
+      "deposit": 150,
+      "type": "immersion"
     },
     {
       "id": "im-australia-2026-10",
@@ -365,7 +393,9 @@
         "monique-ross"
       ],
       "price": 495,
-      "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue)."
+      "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue).",
+      "deposit": 150,
+      "type": "immersion"
     },
     {
       "id": "im-chile-2026-10",
@@ -388,7 +418,9 @@
         "mario-reyes"
       ],
       "price": 495,
-      "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue)."
+      "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue).",
+      "deposit": 150,
+      "type": "immersion"
     },
     {
       "id": "im-thailand-2026-11",
@@ -411,7 +443,9 @@
         "amanda-yik"
       ],
       "price": 495,
-      "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue)."
+      "tuition": "$495 USD — four-day in-person immersion (lodging and meals are billed separately by the venue).",
+      "deposit": 150,
+      "type": "immersion"
     },
     {
       "id": "alchemy-of-pilgrimage",
@@ -433,7 +467,8 @@
       "venue_id": "",
       "description": "",
       "trainers": [],
-      "tuition": ""
+      "tuition": "",
+      "type": "opus"
     },
     {
       "id": "alchemy-of-pilgrimage-2",
@@ -455,7 +490,8 @@
       "venue_id": "",
       "description": "",
       "trainers": [],
-      "tuition": ""
+      "tuition": "",
+      "type": "opus"
     },
     {
       "id": "on-honey-bee-2027-01",
@@ -480,7 +516,9 @@
         "marcela-morales"
       ],
       "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
+      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
+      "deposit": 295,
+      "type": "guide-online-first"
     },
     {
       "id": "on-mule-deer-2027-01",
@@ -505,7 +543,9 @@
         "katarina-cuk"
       ],
       "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
+      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
+      "deposit": 295,
+      "type": "guide-online-first"
     },
     {
       "id": "on-ancient-rock-2027-02",
@@ -530,7 +570,9 @@
         "stana-luxford-oddie"
       ],
       "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
+      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
+      "deposit": 295,
+      "type": "guide-online-first"
     },
     {
       "id": "on-mountain-gorilla-2027-03",
@@ -555,7 +597,9 @@
         "geeta-stilwell"
       ],
       "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
+      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
+      "deposit": 295,
+      "type": "guide-online-first"
     },
     {
       "id": "on-frogfish-2027-03",
@@ -580,7 +624,9 @@
         "bansi-shah"
       ],
       "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
+      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
+      "deposit": 295,
+      "type": "guide-online-first"
     },
     {
       "id": "on-burrowing-owl-2027-04",
@@ -605,7 +651,9 @@
         "darlene-rooney-keller"
       ],
       "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
+      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
+      "deposit": 295,
+      "type": "guide-online-first"
     },
     {
       "id": "on-chrysalis-2027-05",
@@ -630,7 +678,9 @@
         "katarina-cuk"
       ],
       "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
+      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
+      "deposit": 295,
+      "type": "guide-online-first"
     },
     {
       "id": "on-waterfall-2027-06",
@@ -655,7 +705,9 @@
         "giovanna-raineri"
       ],
       "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
+      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
+      "deposit": 295,
+      "type": "guide-online-first"
     },
     {
       "id": "on-giraffe-2027-07",
@@ -680,7 +732,9 @@
         "carla-zorzanelli"
       ],
       "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
+      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
+      "deposit": 295,
+      "type": "guide-online-first"
     },
     {
       "id": "on-angelfish-2027-08",
@@ -705,7 +759,9 @@
         "marcela-morales"
       ],
       "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
+      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
+      "deposit": 295,
+      "type": "guide-online-first"
     },
     {
       "id": "on-unfurling-ferns-2027-09",
@@ -730,7 +786,9 @@
         "youmin-yap"
       ],
       "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
+      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
+      "deposit": 295,
+      "type": "guide-online-first"
     },
     {
       "id": "on-japanese-maple-2027-10",
@@ -755,7 +813,9 @@
         "jackie-kuang"
       ],
       "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
+      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
+      "deposit": 295,
+      "type": "guide-online-first"
     },
     {
       "id": "on-polar-bear-2027-10",
@@ -780,7 +840,9 @@
         "carla-zorzanelli"
       ],
       "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
+      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
+      "deposit": 295,
+      "type": "guide-online-first"
     },
     {
       "id": "on-paw-paw-2027-11",
@@ -804,7 +866,9 @@
         "caitlin-williams"
       ],
       "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
+      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
+      "deposit": 295,
+      "type": "guide-online-first"
     },
     {
       "id": "on-sika-deer-2027-11",
@@ -829,7 +893,9 @@
         "amanda-yik"
       ],
       "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
+      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
+      "deposit": 295,
+      "type": "guide-online-first"
     },
     {
       "id": "on-shell-ginger-2027-12",
@@ -854,7 +920,9 @@
         "makiko-sugishita"
       ],
       "price": 3350,
-      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately)."
+      "tuition": "$3,350 USD — six-month core online guide training (the four-day immersion is $495 and Wilderness First Aid $175–$300 are billed separately).",
+      "deposit": 295,
+      "type": "guide-online-first"
     }
   ],
   "events": [
